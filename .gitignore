@@ -1,0 +1,22 @@
+# Dépendances (si vous utilisez npm ou yarn)
+node_modules/
+dist/
+build/
+
+# Fichiers de configuration sensibles
+.env
+.env.local
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers temporaires d'éditeurs
+.vscode/
+.idea/
+*.swp
+*.log
+
+# Assets volumineux (optionnel, selon votre gestion)
+# *.psd
+# *.ai
