@@ -5,6 +5,13 @@ import { Link } from 'react-router-dom';
 import Reveal from '../animations/Reveal';
 import { services } from '../../data/services';
 import { BACKGROUND_IMAGES } from '../../config/images';
+import Autoplay from 'embla-carousel-autoplay';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselDots,
+} from "../ui/carousel";
 
 const ServiceCard = ({ service }: { service: typeof services[0] }) => {
 
@@ -104,11 +111,39 @@ const Services = () => {
                     </div>
                 </Reveal>
 
-                {/* Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Desktop Grid (Hidden on mobile) */}
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {services.map((service, index) => (
                         <ServiceCard key={index} service={service} />
                     ))}
+                </div>
+
+                {/* Mobile Carousel (Visible only on mobile) */}
+                <div className="md:hidden">
+                    <Carousel
+                        opts={{
+                            align: "start",
+                            loop: true,
+                        }}
+                        plugins={[
+                            Autoplay({
+                                delay: 3000,
+                                stopOnInteraction: false,
+                                stopOnMouseEnter: true,
+                            }),
+                        ]}
+                    >
+                        <CarouselContent>
+                            {services.map((service, index) => (
+                                <CarouselItem key={index} className="basis-[85%]">
+                                    <div className="h-full px-2">
+                                        <ServiceCard service={service} />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselDots className="mt-8" />
+                    </Carousel>
                 </div>
 
             </div>

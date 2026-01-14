@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Instagram } from 'lucide-react';
 import { Button } from "../ui/button";
 import Reveal from '../animations/Reveal';
 
@@ -53,6 +53,33 @@ const ContactSection = () => {
                                         <iframe
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2745.358245644122!2d6.591!3d46.523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c2e365021e1d7%3A0xc3f5d5e23f859560!2sRoute%20de%20Chavannes%20207%2C%201007%20Lausanne!5e0!3m2!1sen!2sch!4v1700000000000!5m2!1sen!2sch"
                                             width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy" title="Google Map"></iframe>
+                                    </div>
+
+                                    {/* Social Links */}
+                                    <div className="mt-8 pt-8 border-t border-gray-100">
+                                        <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-4 text-left">Suivez-nous</p>
+                                        <div className="flex gap-4">
+                                            <motion.a
+                                                href="https://www.linkedin.com/company/swissecogestes/"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-700 hover:bg-[#0077b5] hover:text-white transition-colors duration-300"
+                                                whileHover={{ y: -8, scale: 1.1 }}
+                                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                            >
+                                                <Linkedin size={22} />
+                                            </motion.a>
+                                            <motion.a
+                                                href="https://www.instagram.com/swissecogestes/"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-700 hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF] hover:text-white transition-colors duration-300"
+                                                whileHover={{ y: -8, scale: 1.1 }}
+                                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                            >
+                                                <Instagram size={22} />
+                                            </motion.a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

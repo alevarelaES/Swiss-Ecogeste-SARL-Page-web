@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Facebook, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -19,12 +20,24 @@ const Footer = () => {
                         Votre partenaire de confiance pour la transition énergétique en Suisse. Expertise, innovation et durabilité.
                     </p>
                     <div className="flex gap-4">
-                        <a href="https://www.linkedin.com/company/swissecogestes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 transition-colors">
+                        <motion.a
+                            href="https://www.linkedin.com/company/swissecogestes/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-[#0077b5] transition-colors"
+                            whileHover={{ y: -5, scale: 1.1 }}
+                        >
                             <Linkedin size={18} />
-                        </a>
-                        <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer">
-                            <Facebook size={18} />
-                        </div>
+                        </motion.a>
+                        <motion.a
+                            href="https://www.instagram.com/swissecogestes/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF] transition-colors"
+                            whileHover={{ y: -5, scale: 1.1 }}
+                        >
+                            <Instagram size={18} />
+                        </motion.a>
                     </div>
                 </div>
 
