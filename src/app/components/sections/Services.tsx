@@ -4,9 +4,9 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Reveal from '../animations/Reveal';
 import { services } from '../../data/services';
+import { BACKGROUND_IMAGES } from '../../config/images';
 
 const ServiceCard = ({ service }: { service: typeof services[0] }) => {
-    const Icon = service.icon;
 
     return (
         <Reveal delay={service.delay}>
@@ -73,7 +73,7 @@ const Services = () => {
             <div
                 className="absolute inset-0 bg-fixed bg-cover bg-center grayscale opacity-40"
                 style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000')",
+                    backgroundImage: `url('${BACKGROUND_IMAGES.services}')`,
                 }}
             />
 

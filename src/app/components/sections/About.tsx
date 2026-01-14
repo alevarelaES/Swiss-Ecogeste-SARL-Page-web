@@ -1,9 +1,10 @@
 import React from 'react';
 import Reveal from '../animations/Reveal';
+import { BACKGROUND_IMAGES, PLACEHOLDER_IMAGES } from '../../config/images';
 
 const About = () => {
     return (
-        <section id="about" className="py-24 bg-cover bg-center relative overflow-hidden" style={{ backgroundImage: "url('/images/image_fond_section_Propos.png')", backgroundBlendMode: 'screen' }}>
+        <section id="about" className="py-24 bg-cover bg-center relative overflow-hidden" style={{ backgroundImage: `url('${BACKGROUND_IMAGES.about}')`, backgroundBlendMode: 'screen' }}>
             <div className="absolute inset-0 bg-white/75"></div>
             <div className="absolute inset-0 bg-emerald-900/15"></div>
 

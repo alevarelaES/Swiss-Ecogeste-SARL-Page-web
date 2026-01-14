@@ -1,4 +1,5 @@
 import { Home, Calculator, Flame, Building } from 'lucide-react';
+import { SERVICE_IMAGES } from '../config/images';
 
 export const services = [
     {
@@ -9,7 +10,7 @@ export const services = [
         subtitle: "Villa & Individuel",
         description: "Audit complet de l'enveloppe thermique, solaire et chauffage. Réduisez vos coûts immédiatement.",
         fullDescription: "Notre visite conseil pour villa est une étape essentielle pour comprendre les performances énergétiques de votre habitation. Nous analysons l'isolation, les systèmes de chauffage, et les opportunités d'énergie solaire pour vous fournir un plan d'action concret.",
-        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000",
+        image: SERVICE_IMAGES.visiteConseil,
         delay: 0.1
     },
     {
@@ -20,7 +21,7 @@ export const services = [
         subtitle: "Compliance & Audit",
         description: "Établissement officiel de l'Indice de Dépense de Chaleur pour la conformité légale.",
         fullDescription: "L'Indice de Dépense de Chaleur (IDC) est obligatoire pour de nombreux bâtiments. Nous calculons cet indice avec précision pour garantir votre conformité aux normes légales genevoises et suisses.",
-        image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1000",
+        image: SERVICE_IMAGES.calculIdc,
         delay: 0.2
     },
     {
@@ -31,7 +32,7 @@ export const services = [
         subtitle: "Renouvelable",
         description: "Transition subventionnée vers des énergies décarbonées. Expertise technique et financière.",
         fullDescription: "Passez aux énergies renouvelables et bénéficiez de subventions. Nous vous accompagnons dans le choix et l'installation de pompes à chaleur, chauffage à distance ou bois.",
-        image: "/images/Chuaffage_card.jpg",
+        image: SERVICE_IMAGES.chauffage,
         delay: 0.3
     },
     {
@@ -42,7 +43,7 @@ export const services = [
         subtitle: "Gestion Bâtiment",
         description: "Optimisation hydraulique et électrique pour les gérances et grands propriétaires.",
         fullDescription: "Pour les grands parcs immobiliers, chaque détail compte. Nous optimisons les flux hydrauliques et électriques pour réduire les charges et améliorer le confort des locataires.",
-        image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000",
+        image: SERVICE_IMAGES.ecoLogement,
         delay: 0.4
     }
 ];
