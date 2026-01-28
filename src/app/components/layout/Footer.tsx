@@ -1,82 +1,114 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Facebook, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
+import { Linkedin, Instagram, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-white pt-20 pb-10">
-            <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 border-b border-gray-800 pb-16">
-                <div className="col-span-1 md:col-span-1 text-left">
-                    <Link to="/" className="flex items-center gap-3 mb-6">
-                        <img
-                            src="/Logo/Logo_EcoGeste_Sans_Fond.png"
-                            alt="Swiss Ecogestes Logo"
-                            className="h-10 w-auto brightness-0 invert"
-                        />
-                        <span className="text-xl font-bold">Swiss Ecogestes</span>
-                    </Link>
-                    <p className="text-gray-400 leading-relaxed mb-6">
-                        Votre partenaire de confiance pour la transition énergétique en Suisse. Expertise, innovation et durabilité.
-                    </p>
-                    <div className="flex gap-4">
-                        <motion.a
-                            href="https://www.linkedin.com/company/swissecogestes/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-[#0077b5] transition-colors"
-                            whileHover={{ y: -5, scale: 1.1 }}
-                        >
-                            <Linkedin size={18} />
-                        </motion.a>
-                        <motion.a
-                            href="https://www.instagram.com/swissecogestes/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF] transition-colors"
-                            whileHover={{ y: -5, scale: 1.1 }}
-                        >
-                            <Instagram size={18} />
-                        </motion.a>
+        <footer className="bg-gray-50 text-gray-900 pt-24 pb-12 font-sans overflow-hidden border-t border-gray-100">
+            <div className="max-w-7xl mx-auto px-6">
+                {/* TOP SECTION: COLUMNS */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20 border-b border-gray-200 pb-20">
+
+                    {/* COMPANY INFO (4 columns) */}
+                    <div className="lg:col-span-4 max-w-sm">
+                        <Link to="/" className="flex items-center gap-2 mb-6 group">
+                            <img
+                                src="/Logo/Logo_EcoGeste_Sans_Fond.png"
+                                alt="Swiss Ecogeste Logo"
+                                className="h-10 w-auto group-hover:scale-105 transition-transform"
+                            />
+                            <span className="text-xl font-black tracking-tighter">Swiss Ecogeste</span>
+                        </Link>
+                        <p className="text-gray-500 text-sm leading-relaxed mb-8">
+                            Votre partenaire expert pour la transition énergétique en Suisse Romande. <br /> Solutions durables et accompagnement sur-mesure.
+                        </p>
+
+                        <div className="space-y-4">
+                            <a href="mailto:info@swissecogestes.ch" className="flex items-center gap-3 text-sm text-gray-500 hover:text-[var(--primary)] transition-colors">
+                                <Mail size={16} strokeWidth={2.5} className="text-gray-400" />
+                                info@swissecogestes.ch
+                            </a>
+                            <div className="flex items-start gap-3 text-sm text-gray-500">
+                                <MapPin size={16} strokeWidth={2.5} className="text-gray-400 mt-1 shrink-0" />
+                                <span>Présence sur les cantons de <br /> <span className="font-bold text-gray-700">Vaud et Genève</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* LINKS COLUMNS (8 columns) */}
+                    <div className="lg:col-span-8 grid grid-cols-2 lg:grid-cols-3 gap-12 text-left">
+                        {/* Column 1: Services */}
+                        <div>
+                            <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Nos Services</h4>
+                            <ul className="space-y-4 text-[13px] font-bold text-gray-400/80">
+                                <li><Link to="/villa" className="hover:text-[var(--primary)] transition-colors">Visite Villa</Link></li>
+                                <li><Link to="/gerance" className="hover:text-[var(--primary)] transition-colors">Gérances (IDC)</Link></li>
+                                <li><Link to="/entreprise" className="hover:text-[var(--primary)] transition-colors">Entreprises</Link></li>
+                                <li><Link to="/equiwatt" className="hover:text-[var(--primary)] transition-colors">Subventions Equiwatt</Link></li>
+                            </ul>
+                        </div>
+
+                        {/* Column 2: Entreprise */}
+                        <div>
+                            <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Swiss Ecogeste</h4>
+                            <ul className="space-y-4 text-[13px] font-bold text-gray-400/80">
+                                <li><Link to="/entreprise" className="hover:text-[var(--primary)] transition-colors">À propos</Link></li>
+                                <li><Link to="/equipe" className="hover:text-[var(--primary)] transition-colors">Notre équipe</Link></li>
+                                <li><Link to="/conseils" className="hover:text-[var(--primary)] transition-colors">Le Journal</Link></li>
+                                <li><Link to="/contact" className="hover:text-[var(--primary)] transition-colors">Contact</Link></li>
+                            </ul>
+                        </div>
+
+                        {/* Column 3: Partenaires Officiels */}
+                        <div>
+                            <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Partenaires</h4>
+                            <ul className="space-y-4 text-[13px] font-bold text-gray-400/80">
+                                <li className="hover:text-[var(--primary)] cursor-default">SIG Éco21</li>
+                                <li className="hover:text-[var(--primary)] cursor-default">Suisse Énergie</li>
+                                <li className="hover:text-[var(--primary)] cursor-default transition-colors">Chauffez Renouvelable</li>
+                                <li className="hover:text-[var(--primary)] cursor-default transition-colors">Canton de Vaud & Genève</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div className="text-left">
-                    <h4 className="text-lg font-bold mb-6">Services</h4>
-                    <ul className="space-y-4 text-gray-400">
-                        <li><Link to="/services" className="hover:text-amber-400 transition-colors">Visite conseil Villa</Link></li>
-                        <li><Link to="/services" className="hover:text-amber-400 transition-colors">Calcul de l'IDC</Link></li>
-                        <li><Link to="/services" className="hover:text-amber-400 transition-colors">Chauffez Renouvelable</Link></li>
-                        <li><Link to="/services" className="hover:text-amber-400 transition-colors">Eco-logement</Link></li>
-                    </ul>
-                </div>
+                {/* BOTTOM SECTION: COPYRIGHT AND SOCIALS */}
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                    {/* Copyright */}
+                    <p className="text-[13px] font-bold text-gray-400/80 order-2 md:order-1">
+                        © 2026 Swiss Ecogeste - Tous droits réservés
+                    </p>
 
-                <div className="text-left">
-                    <h4 className="text-lg font-bold mb-6">Entreprise</h4>
-                    <ul className="space-y-4 text-gray-400">
-                        <li><Link to="/equipe" className="hover:text-amber-400 transition-colors">À propos</Link></li>
-                        <li><Link to="/equipe" className="hover:text-amber-400 transition-colors">Notre Équipe</Link></li>
-                        <li><Link to="/conseils" className="hover:text-amber-400 transition-colors">Actualités</Link></li>
-                        <li className="hover:text-amber-400 cursor-pointer transition-colors">Carrières</li>
-                    </ul>
-                </div>
+                    {/* Legal Links (centered in reference) */}
+                    <div className="flex flex-wrap justify-center gap-8 text-[13px] font-bold text-gray-400/80 order-3 md:order-2">
+                        <Link to="/" className="hover:text-[var(--primary)] transition-colors">Mentions Légales</Link>
+                        <Link to="/" className="hover:text-[var(--primary)] transition-colors">Confidentialité</Link>
+                        <Link to="/" className="hover:text-[var(--primary)] transition-colors">Cookie Policy</Link>
+                    </div>
 
-                <div className="text-left">
-                    <h4 className="text-lg font-bold mb-6">Contact</h4>
-                    <ul className="space-y-4 text-gray-400">
-                        <li className="flex items-center gap-3"><Phone size={16} className="text-green-600" /> +41 21 000 00 00</li>
-                        <li className="flex items-center gap-3"><Mail size={16} className="text-green-600" /> info@swissecogestes.ch</li>
-                        <li className="flex items-center gap-3"><MapPin size={16} className="text-green-600" /> Route de Chavannes 207,<br />1007 Lausanne</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className="max-w-7xl mx-auto px-6 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-                <p>&copy; 2026 Swiss Ecogestes SA. Tous droits réservés.</p>
-                <div className="flex gap-6 mt-4 md:mt-0">
-                    <span className="hover:text-white cursor-pointer transition-colors">Mentions Légales</span>
-                    <span className="hover:text-white cursor-pointer transition-colors">Confidentialité</span>
-                    <span className="hover:text-white cursor-pointer transition-colors">CGV</span>
+                    {/* Social Icons (Only LinkedIn & Instagram) */}
+                    <div className="flex items-center gap-6 order-1 md:order-3">
+                        <motion.a
+                            whileHover={{ y: -3, scale: 1.1 }}
+                            href="https://www.linkedin.com/company/swissecogestes/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-400 hover:text-[#0077b5] transition-colors"
+                        >
+                            <Linkedin size={22} fill="currentColor" strokeWidth={0} />
+                        </motion.a>
+                        <motion.a
+                            whileHover={{ y: -3, scale: 1.1 }}
+                            href="https://www.instagram.com/swissecogestes/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-400 hover:text-[#DD2A7B] transition-colors"
+                        >
+                            <Instagram size={22} />
+                        </motion.a>
+                    </div>
                 </div>
             </div>
         </footer>

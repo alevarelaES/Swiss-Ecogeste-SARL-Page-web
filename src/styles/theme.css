@@ -2,16 +2,19 @@
 
 :root {
   --font-size: 16px;
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
+  --background: #fdfdfd;
+  --foreground: #0f1f1a;
+  /* Darker green-black for text */
   --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
+  --card-foreground: #0f1f1a;
+  --popover: #ffffff;
+  --popover-foreground: #0f1f1a;
+  --primary: #1b5e39;
+  /* Lighter Forest Green - More distinguishable from black */
+  --primary-foreground: #ffffff;
+  --secondary: #e8f5e9;
+  /* Very light green hint for backgrounds */
+  --secondary-foreground: #1b5e39;
   --muted: #ececf0;
   --muted-foreground: #717182;
   --accent: #e9ebef;

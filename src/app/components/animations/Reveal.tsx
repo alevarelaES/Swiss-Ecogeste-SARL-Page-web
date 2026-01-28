@@ -18,3 +18,4 @@ const Reveal: React.FC<RevealProps> = ({ children, delay = 0 }) => (
 );
 
 export default Reveal;
+

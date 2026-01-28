@@ -1,7 +1,8 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import Autoplay from "embla-carousel-autoplay";
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Leaf, Shield, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from "../ui/button";
 import {
     Carousel,
@@ -13,81 +14,107 @@ import {
 const slides = [
     {
         img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070',
-        title: 'Swiss Ecogestes',
-        sub: 'Car chaque geste compte!'
+        title: 'La transition énergétique simple et rentable',
+        sub: 'Swiss Ecogestes accompagne les propriétaires et entreprises vers une autonomie durable avec des solutions d’audit et de rénovation haute performance.',
+        features: ['Audits CECB', 'Pompes à chaleur', 'Solaire Photovoltaïque']
     },
     {
-        img: 'https://images.unsplash.com/photo-1759398430338-8057876edf61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzdXN0YWluYWJsZSUyMGhvbWUlMjBpbnRlcmlvciUyMGJyaWdodHxlbnwxfHx8fDE3Njc5Njg3MTd8MA&ixlib=rb-4.1.0&q=80&w=1920',
-        title: 'Expertise Énergétique',
-        sub: 'Rejoignez-nous dans la transition énergétique.'
+        img: 'https://images.unsplash.com/photo-1759398430338-8057876edf61?q=80&w=1920',
+        title: 'Optimisez votre budget énergétique',
+        sub: 'Réduisez vos charges jusqu’à 60% grâce à nos stratégies d’optimisation personnalisées et aux subventions cantonales disponibles.',
+        features: ['Subventions maximales', 'Rentabilité garantie', 'Accompagnement A-Z']
     },
     {
-        img: 'https://images.unsplash.com/photo-1764515296584-cdf00acebe3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBidWlsZGluZyUyMGFyY2hpdGVjdHVyZSUyMGdyZWVufGVufDF8fHx8MTc2Nzk2ODcyMXww&ixlib=rb-4.1.0&q=80&w=1920',
-        title: 'Solutions Durables',
-        sub: 'L’énergie la plus propre est celle que l’on ne consomme pas.'
+        img: 'https://images.unsplash.com/photo-1764515296584-cdf00acebe3b?q=80&w=1920',
+        title: 'Valorisez votre patrimoine immobilier',
+        sub: 'Une maison bien isolée et équipée est un actif qui prend de la valeur. Anticipez les normes de demain dès aujourd’hui.',
+        features: ['Valeur immobilière', 'Zéro Émission', 'Confort Thermique']
     }
 ];
 
 const Hero = () => {
     return (
-        <section className="relative h-screen w-full overflow-hidden">
+        <section className="relative h-screen w-full overflow-hidden bg-gray-950">
             <Carousel
-                plugins={[Autoplay({ delay: 6000, stopOnInteraction: false })]}
+                opts={{ loop: true }}
+                plugins={[Autoplay({ delay: 7000, stopOnInteraction: false })]}
                 className="w-full h-full"
             >
                 <CarouselContent className="h-full">
                     {slides.map((slide, index) => (
-                        <CarouselItem key={index} className="relative h-screen w-full">
-                            <div
-                                className="absolute inset-0 bg-cover bg-center"
-                                style={{ backgroundImage: `url(${slide.img})` }}
-                            >
-                                <div className="absolute inset-0 bg-black/40" />
+                        <CarouselItem key={index} className="relative h-screen w-full flex items-center">
+                            {/* Background with advanced overlay */}
+                            <div className="absolute inset-0">
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center brightness-[0.85]"
+                                    style={{ backgroundImage: `url(${slide.img})` }}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-r from-gray-950/80 via-gray-900/50 to-transparent" />
                             </div>
 
-                            <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 max-w-5xl mx-auto pt-20">
-                                <motion.h1
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.2 }}
-                                    className="text-5xl md:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl italic tracking-tighter"
-                                >
-                                    {slide.title}
-                                </motion.h1>
-                                <motion.p
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.4 }}
-                                    className="text-xl md:text-3xl text-white/90 font-medium mb-10 max-w-2xl text-center"
-                                >
-                                    {slide.sub}
-                                </motion.p>
+                            <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+                                <div className="max-w-3xl text-left">
+                                    <motion.h1
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.8, delay: 0.1 }}
+                                        className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-[1.05] tracking-tight"
+                                    >
+                                        {slide.title}
+                                    </motion.h1>
 
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.5, delay: 0.6 }}
-                                    className="flex flex-col sm:flex-row gap-4"
-                                >
-                                    <Button size="lg" className="bg-green-600 hover:bg-amber-500 text-white rounded-full px-10 py-7 text-lg font-bold transition-all transform hover:scale-105 shadow-xl">
-                                        Commencer mon audit <ArrowRight className="ml-2 w-5 h-5" />
-                                    </Button>
-                                    <Button size="lg" variant="outline" className="bg-white/10 hover:bg-amber-400/30 backdrop-blur-md text-white border-white/30 px-10 py-7 rounded-full text-lg font-bold transition-all hover:scale-105">
-                                        Nos services
-                                    </Button>
-                                </motion.div>
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.8, delay: 0.2 }}
+                                        className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl"
+                                    >
+                                        {slide.sub}
+                                    </motion.p>
+
+                                    {/* Features Display restored */}
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        whileInView={{ opacity: 1 }}
+                                        transition={{ delay: 0.4 }}
+                                        className="hidden md:flex gap-6 mb-12 border-l-2 border-[var(--primary)] pl-6"
+                                    >
+                                        {slide.features.map((feature, fIdx) => (
+                                            <div key={fIdx} className="flex items-center gap-2 text-white/80 text-sm font-medium">
+                                                <Zap size={14} className="text-amber-500" />
+                                                {feature}
+                                            </div>
+                                        ))}
+                                    </motion.div>
+
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.5 }}
+                                        className="flex flex-col sm:flex-row gap-5"
+                                    >
+                                        <Button asChild size="lg" className="bg-[var(--primary)] hover:bg-amber-600 text-white rounded-xl px-10 py-8 text-lg font-bold transition-all shadow-2xl group cursor-pointer">
+                                            <Link to="/#contact">
+                                                Lancer mon projet
+                                                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                            </Link>
+                                        </Button>
+                                        <Button asChild size="lg" variant="outline" className="bg-white/5 hover:bg-white/10 text-white border-white/20 px-10 py-8 rounded-xl text-lg font-bold backdrop-blur-sm transition-all cursor-pointer">
+                                            <Link to="/services">
+                                                Découvrir nos solutions
+                                            </Link>
+                                        </Button>
+                                    </motion.div>
+                                </div>
                             </div>
-
-                            {/* Dynamic Shapes from original index.html */}
-                            <div className="absolute bottom-0 right-0 w-1/4 h-32 bg-white z-20 rounded-tl-[80px] hidden md:block border-l border-t border-gray-100"></div>
-                            <div className="absolute top-0 left-0 w-32 h-64 bg-green-600/10 backdrop-blur-3xl z-20 rounded-br-[120px] hidden md:block border-r border-b border-white/10"></div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselDots className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30" />
+                <CarouselDots className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30" />
             </Carousel>
         </section>
     );
 };
 
 export default Hero;
+

@@ -63,3 +63,4 @@ export const BRAND_IMAGES = {
 export const PLACEHOLDER_IMAGES = {
     office: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop",
 };
+

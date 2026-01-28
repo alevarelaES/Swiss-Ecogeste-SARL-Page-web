@@ -44,7 +44,7 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
                         </h3>
 
                         {/* Subtitle / Category */}
-                        <span className="text-xs font-bold uppercase tracking-wider text-green-600 mb-3 block">
+                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--primary)] mb-3 block">
                             {service.subtitle}
                         </span>
 
@@ -89,7 +89,7 @@ const Services = () => {
                         <div className="max-w-2xl">
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="h-[4px] w-12 bg-amber-500" />
-                                <span className="text-green-700 font-bold tracking-[0.25em] uppercase text-xs">Excellence Technique</span>
+                                <span className="text-[var(--primary)] font-bold tracking-[0.25em] uppercase text-xs">Excellence Technique</span>
                             </div>
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight">
                                 Nos Domaines <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-600">d'Expertise</span>
@@ -117,3 +117,4 @@ const Services = () => {
 };
 
 export default Services;
+

@@ -8,6 +8,11 @@ import TeamPage from './pages/TeamPage';
 import ContactPage from './pages/ContactPage';
 import ConseilsPage from './pages/ConseilsPage';
 import ServiceDetail from './pages/ServiceDetail';
+import ArticleDetailPage from './pages/ArticleDetailPage';
+import EquiwattPage from './pages/EquiwattPage';
+import VillaPage from './pages/VillaPage';
+import EntreprisePage from './pages/EntreprisePage';
+import GerancePage from './pages/GerancePage';
 
 export default function App() {
   return (
@@ -17,10 +22,17 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<ServicesPage />} />
-            <Route path="/equipe" element={<TeamPage />} />
+            <Route path="/team" element={<TeamPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/conseils" element={<ConseilsPage />} />
+            <Route path="/conseils/:slug" element={<ArticleDetailPage />} />
             <Route path="/service/:id" element={<ServiceDetail />} />
+
+            {/* New Routes */}
+            <Route path="/services/villa" element={<VillaPage />} />
+            <Route path="/services/entreprise" element={<EntreprisePage />} />
+            <Route path="/services/gerance" element={<GerancePage />} />
+
             {/* Fallback to Home or a 404 page could go here */}
             <Route path="*" element={<Home />} />
           </Routes>
@@ -29,3 +41,4 @@ export default function App() {
     </HelmetProvider>
   );
 }
+

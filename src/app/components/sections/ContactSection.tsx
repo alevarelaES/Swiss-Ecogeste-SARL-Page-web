@@ -12,7 +12,7 @@ const ContactSection = () => {
             {/* Decorative background from original index.html */}
             <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
             <svg className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-[0.05]" viewBox="0 0 100 100">
-                <circle cx="80" cy="80" r="40" fill="currentColor" className="text-green-600" />
+                <circle cx="80" cy="80" r="40" fill="currentColor" className="text-[var(--primary)]" />
                 <circle cx="20" cy="20" r="15" fill="currentColor" className="text-green-500" />
             </svg>
 
@@ -29,8 +29,8 @@ const ContactSection = () => {
 
                                 <div className="space-y-8">
                                     <div className="flex items-center gap-5 group">
-                                        <div className="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
-                                            <Mail className="w-7 h-7 text-green-600 group-hover:text-white" />
+                                        <div className="w-14 h-14 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
+                                            <Mail className="w-7 h-7 text-[var(--primary)] group-hover:text-white" />
                                         </div>
                                         <div className="text-left">
                                             <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">Email</p>
@@ -39,20 +39,14 @@ const ContactSection = () => {
                                     </div>
 
                                     <div className="flex items-center gap-5 group">
-                                        <div className="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
-                                            <MapPin className="w-7 h-7 text-green-600 group-hover:text-white" />
+                                        <div className="w-14 h-14 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
+                                            <MapPin className="w-7 h-7 text-[var(--primary)] group-hover:text-white" />
                                         </div>
                                         <div className="text-left">
-                                            <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">Bureau</p>
-                                            <p className="font-bold text-xl text-gray-900">Route de Chavannes 207, 1007 Lausanne</p>
+                                            <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">Notre Présence</p>
+                                            <p className="font-bold text-xl text-gray-900">Vaud & Genève</p>
+                                            <p className="text-sm text-gray-500 mt-1">Intervention dans toute la Suisse Romande</p>
                                         </div>
-                                    </div>
-
-                                    {/* Google Map from original index.html */}
-                                    <div className="mt-8 rounded-2xl overflow-hidden h-48 border border-gray-200">
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2745.358245644122!2d6.591!3d46.523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c2e365021e1d7%3A0xc3f5d5e23f859560!2sRoute%20de%20Chavannes%20207%2C%201007%20Lausanne!5e0!3m2!1sen!2sch!4v1700000000000!5m2!1sen!2sch"
-                                            width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy" title="Google Map"></iframe>
                                     </div>
 
                                     {/* Social Links */}
@@ -95,13 +89,13 @@ const ContactSection = () => {
                                     </div>
                                     <div className="space-y-2 text-left">
                                         <label className="text-sm font-medium text-gray-700">Nom</label>
-                                        <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none transition-all" placeholder="Dupont" />
+                                        <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[var(--primary)] focus:ring-[var(--primary)]/20 outline-none transition-all" placeholder="Dupont" />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2 text-left">
                                     <label className="text-sm font-medium text-gray-700">Email</label>
-                                    <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none transition-all" placeholder="jean.dupont@email.com" />
+                                    <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[var(--primary)] focus:ring-[var(--primary)]/20 outline-none transition-all" placeholder="jean.dupont@email.com" />
                                 </div>
 
                                 <div className="space-y-2 text-left">
@@ -122,7 +116,7 @@ const ContactSection = () => {
 
                                 <div className="space-y-2 text-left">
                                     <label className="text-sm font-medium text-gray-700">Message</label>
-                                    <textarea rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none transition-all" placeholder="Décrivez votre projet..."></textarea>
+                                    <textarea rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[var(--primary)] focus:ring-[var(--primary)]/20 outline-none transition-all" placeholder="Décrivez votre projet..."></textarea>
                                 </div>
 
                                 <Button className="w-full bg-gray-900 hover:bg-amber-500 text-white py-6 rounded-xl text-lg font-medium shadow-lg hover:shadow-xl transition-all">
@@ -138,3 +132,4 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+

@@ -17,7 +17,7 @@ const ServicesPage = () => {
                 "Installation de panneaux photovoltaïques",
                 "Gestion des demandes de subventions"
             ],
-            image: "https://images.unsplash.com/photo-1513584684374-8bdb7489feef?q=80&w=800"
+            image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
         },
         {
             title: "Pour les Gérances",
@@ -58,7 +58,7 @@ const ServicesPage = () => {
             <div className="max-w-7xl mx-auto px-6">
                 <Reveal>
                     <div className="text-center mb-20">
-                        <span className="text-green-600 font-semibold tracking-wider uppercase text-sm">Expertise & Solutions</span>
+                        <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">Expertise & Solutions</span>
                         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-6">Nos services à 360°</h1>
                         <p className="text-gray-600 max-w-3xl mx-auto text-lg">
                             De l'audit initial à la mise en œuvre finale, nous fournissons l'expertise technique nécessaire pour transformer votre consommation énergétique.
@@ -72,7 +72,7 @@ const ServicesPage = () => {
                             <div className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center`}>
                                 <div className="md:w-1/2">
                                     <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
-                                        <service.icon className="w-8 h-8 text-green-600" />
+                                        <service.icon className="w-8 h-8 text-[var(--primary)]" />
                                     </div>
                                     <h2 className="text-3xl font-bold text-gray-900 mb-4">{service.title}</h2>
                                     <p className="text-gray-600 text-lg mb-8 leading-relaxed">
@@ -86,16 +86,15 @@ const ServicesPage = () => {
                                             </li>
                                         ))}
                                     </ul>
-                                    <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 group">
+                                    <Button className="bg-[var(--primary)] hover:bg-green-700 text-white rounded-md px-8 group">
                                         Demander un devis <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </Button>
                                 </div>
                                 <div className="md:w-1/2 w-full">
-                                    <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] relative">
-                                        <img
-                                            src={service.image}
-                                            alt={service.title}
-                                            className="w-full h-full object-cover"
+                                    <div className="rounded-lg overflow-hidden shadow-2xl aspect-[4/3] relative">
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center"
+                                            style={{ backgroundImage: `url(${service.image})` }}
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                                     </div>
@@ -110,3 +109,4 @@ const ServicesPage = () => {
 };
 
 export default ServicesPage;
+
