@@ -32,11 +32,11 @@ const Navbar = () => {
                 <Link to="/" className="flex items-center gap-3">
                     <img
                         src="/Logo/Logo_EcoGeste_Sans_Fond.png"
-                        alt="Swiss Ecogestes Logo"
+                        alt="Swiss Ecogeste Logo"
                         className="h-12 w-auto"
                     />
                     <span className={`text-xl font-bold tracking-tight ${isScrolled || !isHome ? 'text-[var(--primary)]' : 'text-white'}`}>
-                        Swiss Ecogestes
+                        Swiss Ecogeste
                     </span>
                 </Link>
 
