@@ -33,7 +33,7 @@ const Navbar = () => {
                     <img
                         src="/Logo/Logo_EcoGeste_Sans_Fond.png"
                         alt="Swiss Ecogeste Logo"
-                        className="h-12 w-auto"
+                        className="h-14 md:h-20 w-auto drop-shadow-lg hover:scale-105 transition-transform duration-300"
                     />
                     <span className={`text-xl font-bold tracking-tight ${isScrolled || !isHome ? 'text-[var(--primary)]' : 'text-white'}`}>
                         Swiss Ecogeste

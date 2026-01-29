@@ -6,13 +6,13 @@ import { Linkedin, Instagram, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-50 text-gray-900 pt-24 pb-12 font-sans overflow-hidden border-t border-gray-100">
+        <footer className="bg-gray-50 text-gray-900 pt-16 sm:pt-20 md:pt-24 pb-8 sm:pb-12 font-sans overflow-hidden border-t border-gray-100">
             <div className="max-w-7xl mx-auto px-6">
                 {/* TOP SECTION: COLUMNS */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20 border-b border-gray-200 pb-20">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16 mb-12 md:mb-20 border-b border-gray-200 pb-12 md:pb-20">
 
                     {/* COMPANY INFO (4 columns) */}
-                    <div className="lg:col-span-4 max-w-sm">
+                    <div className="md:col-span-4 max-w-sm">
                         <Link to="/" className="flex items-center gap-2 mb-6 group">
                             <img
                                 src="/Logo/Logo_EcoGeste_Sans_Fond.png"
@@ -38,7 +38,7 @@ const Footer = () => {
                     </div>
 
                     {/* LINKS COLUMNS (8 columns) */}
-                    <div className="lg:col-span-8 grid grid-cols-2 lg:grid-cols-3 gap-12 text-left">
+                    <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12 text-left">
                         {/* Column 1: Services */}
                         <div>
                             <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Nos Services</h4>
@@ -88,14 +88,13 @@ const Footer = () => {
                         <Link to="/" className="hover:text-[var(--primary)] transition-colors">Cookie Policy</Link>
                     </div>
 
-                    {/* Social Icons (Only LinkedIn & Instagram) */}
                     <div className="flex items-center gap-6 order-1 md:order-3">
                         <motion.a
                             whileHover={{ y: -3, scale: 1.1 }}
                             href="https://www.linkedin.com/company/swissecogestes/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-[#0077b5] transition-colors"
+                            className="text-[#0077b5] transition-colors"
                         >
                             <Linkedin size={22} fill="currentColor" strokeWidth={0} />
                         </motion.a>
@@ -104,7 +103,7 @@ const Footer = () => {
                             href="https://www.instagram.com/swissecogestes/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-[#DD2A7B] transition-colors"
+                            className="text-[#E4405F] transition-colors"
                         >
                             <Instagram size={22} />
                         </motion.a>

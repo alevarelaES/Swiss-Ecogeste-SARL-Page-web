@@ -52,13 +52,13 @@ const Hero = () => {
                                 <div className="absolute inset-0 bg-gradient-to-r from-gray-950/80 via-gray-900/50 to-transparent" />
                             </div>
 
-                            <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+                            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-24 sm:pt-28 md:pt-20">
                                 <div className="max-w-3xl text-left">
                                     <motion.h1
                                         initial={{ opacity: 0, y: 30 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.8, delay: 0.1 }}
-                                        className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-[1.05] tracking-tight"
+                                        className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 sm:mb-8 leading-[1.05] tracking-tight drop-shadow-lg"
                                     >
                                         {slide.title}
                                     </motion.h1>
@@ -67,7 +67,7 @@ const Hero = () => {
                                         initial={{ opacity: 0, y: 30 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.8, delay: 0.2 }}
-                                        className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl"
+                                        className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-10 leading-relaxed max-w-xl drop-shadow-md"
                                     >
                                         {slide.sub}
                                     </motion.p>
@@ -81,7 +81,6 @@ const Hero = () => {
                                     >
                                         {slide.features.map((feature, fIdx) => (
                                             <div key={fIdx} className="flex items-center gap-2 text-white/80 text-sm font-medium">
-                                                <Zap size={14} className="text-amber-500" />
                                                 {feature}
                                             </div>
                                         ))}
@@ -91,15 +90,15 @@ const Hero = () => {
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: 0.5 }}
-                                        className="flex flex-col sm:flex-row gap-5"
+                                        className="flex flex-col sm:flex-row items-start gap-4"
                                     >
-                                        <Button asChild size="lg" className="bg-[var(--primary)] hover:bg-amber-600 text-white rounded-xl px-10 py-8 text-lg font-bold transition-all shadow-2xl group cursor-pointer">
+                                        <Button asChild className="h-14 px-8 text-lg font-bold bg-[var(--primary)] hover:bg-amber-600 text-white rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all hover:scale-105 active:scale-95">
                                             <Link to="/#contact">
                                                 Lancer mon projet
-                                                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                                <ArrowRight className="ml-2 w-5 h-5" />
                                             </Link>
                                         </Button>
-                                        <Button asChild size="lg" variant="outline" className="bg-white/5 hover:bg-white/10 text-white border-white/20 px-10 py-8 rounded-xl text-lg font-bold backdrop-blur-sm transition-all cursor-pointer">
+                                        <Button asChild variant="outline" className="h-14 px-8 text-lg font-bold bg-white/10 hover:bg-white/20 text-white border-white/20 rounded-xl backdrop-blur-md transition-all hover:scale-105 active:scale-95">
                                             <Link to="/services">
                                                 Découvrir nos solutions
                                             </Link>

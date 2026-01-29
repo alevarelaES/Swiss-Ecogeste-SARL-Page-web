@@ -35,7 +35,7 @@ const stats = [
 
 const Counter = ({ value, suffix }: { value: number, suffix: string }) => {
     const ref = React.useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const isInView = useInView(ref, { once: true, margin: "0px" });
     const [count, setCount] = React.useState(0);
 
     React.useEffect(() => {
@@ -64,7 +64,7 @@ const Counter = ({ value, suffix }: { value: number, suffix: string }) => {
 
 const StatsSection = () => {
     return (
-        <section className="relative py-28 w-full overflow-hidden bg-[#2a7f55]">
+        <section className="relative py-16 sm:py-20 md:py-28 w-full overflow-hidden bg-[#2a7f55]">
             {/* Background Gradient & Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)] via-[#226d48] to-[#1a5236]"></div>
 
@@ -78,13 +78,13 @@ const StatsSection = () => {
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-white/20 pb-8">
-                    <div className="max-w-2xl">
+                <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 md:mb-20 gap-6 md:gap-8 border-b border-white/20 pb-6 md:pb-8">
+                    <div className="max-w-2xl text-center md:text-left">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="flex items-center gap-3 mb-4"
+                            className="flex items-center justify-center md:justify-start gap-3 mb-4"
                         >
                             <span className="h-px w-10 bg-amber-400"></span>
                             <span className="text-amber-400 font-bold tracking-widest uppercase text-sm">Performance Durable</span>
@@ -93,7 +93,7 @@ const StatsSection = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight"
+                            className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-black text-white leading-tight"
                         >
                             L'impact de nos actions
                         </motion.h2>
@@ -109,7 +109,7 @@ const StatsSection = () => {
                     </motion.div>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
                     {stats.map((stat, index) => (
                         <motion.div
                             key={stat.id}
@@ -117,13 +117,13 @@ const StatsSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15 + 0.3 }}
-                            className={`flex flex-col justify-between items-start lg:px-8 ${index !== stats.length - 1 ? 'lg:border-r border-white/10' : ''}`}
+                            className={`flex flex-col justify-between items-center text-center md:items-start md:text-left lg:px-8 ${index !== stats.length - 1 ? 'lg:border-r border-white/10' : ''}`}
                         >
                             <div className="mb-6">
                                 <stat.icon size={32} className="text-amber-400 opacity-90" strokeWidth={1.5} />
                             </div>
                             <div>
-                                <div className="text-5xl lg:text-7xl font-bold text-white mb-2 tracking-tight">
+                                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 tracking-tight">
                                     <Counter value={stat.value} suffix={stat.suffix} />
                                 </div>
                                 <p className="text-white/70 font-medium text-sm lg:text-base uppercase tracking-wider">

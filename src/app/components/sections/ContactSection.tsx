@@ -1,130 +1,174 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Mail, MapPin, Linkedin, Instagram } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Button } from "../ui/button";
 import Reveal from '../animations/Reveal';
 
 const ContactSection = () => {
-    const [currentType, setCurrentType] = useState('Particulier');
+    const [currentType, setCurrentType] = useState('Villa');
 
     return (
-        <section id="contact" className="py-16 relative overflow-hidden">
-            {/* Decorative background from original index.html */}
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
-            <svg className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-[0.05]" viewBox="0 0 100 100">
-                <circle cx="80" cy="80" r="40" fill="currentColor" className="text-[var(--primary)]" />
-                <circle cx="20" cy="20" r="15" fill="currentColor" className="text-green-500" />
-            </svg>
+        <section id="contact" className="py-20 md:py-32 bg-white relative overflow-hidden">
+            {/* Cool Abstract Background Shapes */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
+                {/* Large Green Wave Blob - Top Left */}
+                <svg className="absolute -top-[10%] -left-[10%] w-[50%] h-[60%] text-[#1b5e39]/5" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M42.7,-73.2C55.9,-67.1,67.6,-57.6,76.1,-46.1C84.6,-34.6,89.9,-21.1,89.2,-7.9C88.5,5.3,81.8,18.2,73.1,29.4C64.4,40.6,53.7,50.1,42.1,58.3C30.5,66.5,18,73.4,4.2,76.2C-9.6,79,-20.9,77.7,-31.6,72.6C-42.3,67.5,-52.4,58.6,-61,48.1C-69.6,37.6,-76.7,25.5,-79.8,12.4C-82.9,-0.7,-82,-9.5,-76.3,-19.9C-70.6,-30.3,-60.1,-42.3,-48.5,-50C-36.9,-57.7,-24.2,-61.1,-11.7,-63.9C0.8,-66.7,13.3,-68.9,29.5,-71.3L42.7,-73.2Z" transform="translate(100 100)" />
+                </svg>
+
+                {/* Secondary Accent Blob - Bottom Right */}
+                <svg className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[70%] text-[#4ade80]/10" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M37.5,-64.4C49.6,-58.3,61.1,-50.7,69.5,-40.4C77.9,-30.1,83.2,-17.1,83.8,-3.8C84.4,9.5,80.3,23.1,72.7,34.7C65.1,46.3,54,55.9,41.9,62.8C29.8,69.7,16.7,73.9,3.1,76.4C-10.5,78.9,-24.6,79.7,-36.8,75C-49,70.3,-59.3,60.1,-66.4,48.1C-73.5,36.1,-77.4,22.3,-78.3,8.3C-79.2,-5.7,-77.1,-19.9,-69.6,-32.1C-62.1,-44.3,-49.2,-54.5,-35.8,-61.1C-22.4,-67.7,-8.5,-70.7,3.9,-71.9C16.3,-73.1,30.3,-72.5,41.5,-67.2L37.5,-64.4Z" transform="translate(100 100)" />
+                </svg>
+
+                {/* Subtle Grid Pattern Overlay */}
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMS0xdjM4aDM4VjFIMXoiIGZpbGw9IiMxYjVlMzkiIGZpbGwtb3BhY2l0eT0iMC4wMyIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
+
+                {/* Floating Element 1 - Circle */}
+                <div className="absolute top-[20%] right-[15%] w-32 h-32 rounded-full border-4 border-[#1b5e39]/5 opacity-60"></div>
+
+                {/* Floating Element 2 - Dashed Circle */}
+                <div className="absolute bottom-[20%] left-[8%] w-24 h-24 rounded-full border-2 border-dashed border-[#1b5e39]/10 rotate-45"></div>
+
+            </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 <Reveal>
-                    <div className="bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row border border-gray-100">
-                        {/* Info Side */}
-                        <div className="p-10 md:p-16 text-gray-900 lg:w-1/2 flex flex-col justify-between relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
-                            <div className="relative z-10">
-                                <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight text-gray-900">Parlons de votre projet</h2>
-                                <p className="text-gray-600 text-lg mb-8 leading-relaxed text-left">
-                                    Nos experts sont à votre disposition pour analyser vos besoins et vous proposer des solutions concrètes pour votre transition énergétique.
+                    <div className="bg-[#F4F7F5] rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row min-h-[640px] shadow-sm ring-1 ring-gray-100 mb-12">
+
+                        {/* Form Side */}
+                        <div className="w-full lg:w-1/2 p-8 sm:p-16 flex flex-col justify-center">
+                            <div className="max-w-lg mx-auto w-full">
+                                <span className="inline-block text-[#1b5e39] font-bold tracking-wider text-xs uppercase mb-4 bg-[#e8f5e9] px-4 py-1.5 rounded-full">
+                                    Contact
+                                </span>
+                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0f1f1a] mb-6 tracking-tight font-sans">
+                                    Parlons de votre projet.
+                                </h2>
+                                <p className="text-gray-600 mb-10 text-lg leading-relaxed">
+                                    Remplissez ce formulaire pour recevoir une estimation gratuite de vos économies potentielles.
                                 </p>
 
-                                <div className="space-y-8">
-                                    <div className="flex items-center gap-5 group">
-                                        <div className="w-14 h-14 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
-                                            <Mail className="w-7 h-7 text-[var(--primary)] group-hover:text-white" />
-                                        </div>
-                                        <div className="text-left">
-                                            <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">Email</p>
-                                            <p className="font-bold text-xl text-gray-900">info@swissecogestes.ch</p>
+                                <form className="space-y-8">
+                                    <div className="space-y-4">
+                                        <label className="text-sm font-bold text-[#0f1f1a] uppercase tracking-wide">Vous êtes</label>
+                                        <div className="flex flex-wrap gap-3">
+                                            {/* Updated options: Villa, Entreprise, Gérance/Régie */}
+                                            {['Villa', 'Entreprise', 'Gérance/Régie'].map((type) => (
+                                                <button
+                                                    key={type}
+                                                    type="button"
+                                                    onClick={() => setCurrentType(type)}
+                                                    className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentType === type
+                                                        ? 'bg-[#1b5e39] text-white shadow-lg shadow-[#1b5e39]/20 transform scale-105'
+                                                        : 'bg-white text-gray-600 hover:bg-gray-50 border border-transparent hover:border-gray-200'
+                                                        }`}
+                                                >
+                                                    {type}
+                                                </button>
+                                            ))}
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-5 group">
-                                        <div className="w-14 h-14 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
-                                            <MapPin className="w-7 h-7 text-[var(--primary)] group-hover:text-white" />
+                                    <div className="grid grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Prénom</label>
+                                            <input
+                                                type="text"
+                                                className="w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm"
+                                                placeholder="Jean"
+                                            />
                                         </div>
-                                        <div className="text-left">
-                                            <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">Notre Présence</p>
-                                            <p className="font-bold text-xl text-gray-900">Vaud & Genève</p>
-                                            <p className="text-sm text-gray-500 mt-1">Intervention dans toute la Suisse Romande</p>
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Nom</label>
+                                            <input
+                                                type="text"
+                                                className="w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm"
+                                                placeholder="Dupont"
+                                            />
                                         </div>
                                     </div>
 
-                                    {/* Social Links */}
-                                    <div className="mt-8 pt-8 border-t border-gray-100">
-                                        <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-4 text-left">Suivez-nous</p>
-                                        <div className="flex gap-4">
-                                            <motion.a
-                                                href="https://www.linkedin.com/company/swissecogestes/"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-700 hover:bg-[#0077b5] hover:text-white transition-colors duration-300"
-                                                whileHover={{ y: -8, scale: 1.1 }}
-                                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                            >
-                                                <Linkedin size={22} />
-                                            </motion.a>
-                                            <motion.a
-                                                href="https://www.instagram.com/swissecogestes/"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-700 hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF] hover:text-white transition-colors duration-300"
-                                                whileHover={{ y: -8, scale: 1.1 }}
-                                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                            >
-                                                <Instagram size={22} />
-                                            </motion.a>
-                                        </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Email</label>
+                                        <input
+                                            type="email"
+                                            className="w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm"
+                                            placeholder="jean.dupont@email.com"
+                                        />
                                     </div>
+
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Message</label>
+                                        <textarea
+                                            rows={4}
+                                            className="w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm resize-none"
+                                            placeholder="Comment pouvons-nous vous aider ?"
+                                        ></textarea>
+                                    </div>
+
+                                    <Button className="w-full h-14 bg-[#1b5e39] hover:bg-[#144a2d] text-white rounded-xl text-lg font-bold shadow-xl shadow-[#1b5e39]/20 transition-all hover:-translate-y-1 group">
+                                        <span>Envoyer ma demande</span>
+                                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </Button>
+                                </form>
+                            </div>
+                        </div>
+
+                        {/* Image Side */}
+                        <div className="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-full overflow-hidden">
+                            <img
+                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
+                                alt="Experte Swiss Ecogestes"
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-[#1b5e39]/80 mix-blend-multiply opacity-60"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0f1f1a] via-transparent to-transparent"></div>
+
+                            <div className="absolute bottom-0 left-0 right-0 p-12 text-white">
+                                <div className="mb-6 w-12 h-1 bg-[#4ade80]"></div>
+                                <blockquote className="text-2xl md:text-3xl font-medium leading-normal mb-8 tracking-tight font-sans">
+                                    "L'énergie la moins chère est celle que l'on ne consomme pas. Ensemble, valorisons votre patrimoine."
+                                </blockquote>
+                                <div className="flex items-center gap-3 opacity-90">
+                                    <span className="font-bold tracking-widest uppercase text-sm">Swiss Ecogestes</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Form Side */}
-                        <div className="bg-white p-10 md:p-16 lg:w-1/2">
-                            <form className="space-y-6">
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div className="space-y-2 text-left">
-                                        <label className="text-sm font-medium text-gray-700">Prénom</label>
-                                        <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-100 outline-none transition-all" placeholder="Jean" />
-                                    </div>
-                                    <div className="space-y-2 text-left">
-                                        <label className="text-sm font-medium text-gray-700">Nom</label>
-                                        <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[var(--primary)] focus:ring-[var(--primary)]/20 outline-none transition-all" placeholder="Dupont" />
-                                    </div>
-                                </div>
+                    </div>
 
-                                <div className="space-y-2 text-left">
-                                    <label className="text-sm font-medium text-gray-700">Email</label>
-                                    <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[var(--primary)] focus:ring-[var(--primary)]/20 outline-none transition-all" placeholder="jean.dupont@email.com" />
-                                </div>
+                    {/* INFO ROW - Updated: No Container, Simple & Clean */}
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-12 text-gray-600">
+                        <a href="mailto:info@swissecogestes.ch" className="flex items-center gap-4 group transition-colors">
+                            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39] group-hover:bg-[#e8f5e9] transition-colors">
+                                <Mail size={18} />
+                            </div>
+                            <span className="text-lg font-medium border-b-2 border-transparent group-hover:border-[#1b5e39] group-hover:text-[#1b5e39] transition-all pb-0.5">
+                                info@swissecogestes.ch
+                            </span>
+                        </a>
 
-                                <div className="space-y-2 text-left">
-                                    <label className="text-sm font-medium text-gray-700">Je suis un...</label>
-                                    <div className="grid grid-cols-3 gap-4">
-                                        {['Particulier', 'Entreprise', 'Gérance'].map((type) => (
-                                            <button
-                                                key={type}
-                                                type="button"
-                                                onClick={() => setCurrentType(type)}
-                                                className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all ${currentType === type ? 'bg-amber-50 border-amber-500 text-amber-700' : 'border-gray-200 text-gray-600 hover:border-amber-500 hover:text-amber-600'}`}
-                                            >
-                                                {type}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
+                        <span className="hidden md:block w-px h-8 bg-gray-300"></span>
 
-                                <div className="space-y-2 text-left">
-                                    <label className="text-sm font-medium text-gray-700">Message</label>
-                                    <textarea rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[var(--primary)] focus:ring-[var(--primary)]/20 outline-none transition-all" placeholder="Décrivez votre projet..."></textarea>
-                                </div>
+                        <div className="flex items-center gap-4 cursor-default">
+                            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39]">
+                                <MapPin size={18} />
+                            </div>
+                            <span className="text-lg font-medium">Vaud & Genève</span>
+                        </div>
 
-                                <Button className="w-full bg-gray-900 hover:bg-amber-500 text-white py-6 rounded-xl text-lg font-medium shadow-lg hover:shadow-xl transition-all">
-                                    Envoyer le message
-                                </Button>
-                            </form>
+                        <span className="hidden md:block w-px h-8 bg-gray-300"></span>
+
+                        <div className="flex gap-4">
+                            <a href="https://www.linkedin.com/company/swissecogestes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                                <Linkedin size={18} />
+                            </a>
+                            <a href="https://www.instagram.com/swissecogestes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#E4405F]/10 flex items-center justify-center text-[#E4405F] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                                <Instagram size={18} />
+                            </a>
                         </div>
                     </div>
+
                 </Reveal>
             </div>
         </section>
@@ -132,4 +176,3 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
-

@@ -91,7 +91,7 @@ const Services = () => {
                                 <div className="h-[4px] w-12 bg-amber-500" />
                                 <span className="text-[var(--primary)] font-bold tracking-[0.25em] uppercase text-xs">Excellence Technique</span>
                             </div>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-black text-gray-900 leading-tight">
                                 Nos Domaines <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-600">d'Expertise</span>
                             </h2>
                         </div>
@@ -105,7 +105,7 @@ const Services = () => {
                 </Reveal>
 
                 {/* Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {services.map((service, index) => (
                         <ServiceCard key={index} service={service} />
                     ))}

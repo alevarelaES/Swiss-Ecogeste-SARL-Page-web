@@ -10,10 +10,10 @@ const About = () => {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <div className="bg-white/40 backdrop-blur-md p-6 md:p-10 rounded-2xl border border-white/50 text-left w-full">
+                    <div className="bg-white/40 backdrop-blur-md p-4 sm:p-6 md:p-10 rounded-2xl border border-white/50 text-left w-full">
                         <Reveal>
                             <span className="inline-block text-[var(--primary)] font-bold tracking-widest uppercase text-xs bg-[var(--primary)]/10 px-4 py-2 rounded-md mb-4">À propos de nous</span>
-                            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mt-4 mb-8 leading-tight">Engagés pour un avenir durable</h2>
+                            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mt-4 mb-6 sm:mb-8 leading-tight">Engagés pour un avenir durable</h2>
                             <p className="text-gray-800 text-sm md:text-base leading-relaxed mb-6 font-medium">
                                 Chez Swiss Ecogestes, nous sommes des acteurs de la transition énergétique. L'impact global commence par des actions locales, et nous collaborons étroitement avec les acteurs suisses pour promouvoir l'efficacité énergétique et réduire les déchets.
                             </p>
@@ -21,19 +21,19 @@ const About = () => {
                                 Notre engagement se manifeste à travers des audits énergétiques personnalisés, conçus pour optimiser l’utilisation de l’énergie et minimiser les déchets. Nous accompagnons avec des solutions clés en main.
                             </p>
 
-                            <div className="flex flex-wrap gap-4 md:gap-8 justify-between md:justify-start">
+                            <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 md:gap-8 justify-start">
                                 <div className="flex flex-col items-start min-w-[30%] md:min-w-0">
-                                    <span className="text-3xl md:text-4xl font-black text-[var(--primary)] mb-2">Local</span>
+                                    <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[var(--primary)] mb-2">Local</span>
                                     <span className="text-gray-700 font-semibold text-xs md:text-sm">Action suisse</span>
                                 </div>
                                 <div className="hidden md:block w-0.5 h-16 bg-gradient-to-b from-[var(--primary)] to-emerald-500"></div>
                                 <div className="flex flex-col items-start min-w-[30%] md:min-w-0">
-                                    <span className="text-3xl md:text-4xl font-black text-[var(--primary)] mb-2">Bio</span>
+                                    <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[var(--primary)] mb-2">Bio</span>
                                     <span className="text-gray-700 font-semibold text-xs md:text-sm">Écologique</span>
                                 </div>
                                 <div className="hidden md:block w-0.5 h-16 bg-gradient-to-b from-[var(--primary)] to-emerald-500"></div>
                                 <div className="flex flex-col items-start min-w-[30%] md:min-w-0">
-                                    <span className="text-3xl md:text-4xl font-black text-[var(--primary)] mb-2">Éco</span>
+                                    <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[var(--primary)] mb-2">Éco</span>
                                     <span className="text-gray-700 font-semibold text-xs md:text-sm">Économique</span>
                                 </div>
                             </div>

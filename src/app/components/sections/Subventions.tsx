@@ -31,14 +31,14 @@ const Subventions = () => {
                 <Reveal>
                     <div className="text-center mb-12">
                         <span className="text-amber-500 font-bold tracking-wider uppercase text-lg bg-amber-50 px-4 py-2 rounded-md inline-block">Subventions</span>
-                        <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mt-3 mb-4">Demande de subvention en ligne</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-3 mb-4">Demande de subvention en ligne</h2>
                         <p className="text-gray-900 font-medium text-lg max-w-3xl mx-auto">
                             Pour vous encourager à diminuer votre consommation d’énergie, nous vous aidons à obtenir des aides pour vos projets durables.
                         </p>
                     </div>
                 </Reveal>
 
-                <div className="grid md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                     <SubventionCard
                         delay={0.1}
                         icon={Bike}

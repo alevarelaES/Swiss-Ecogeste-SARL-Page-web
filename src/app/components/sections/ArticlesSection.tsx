@@ -7,7 +7,7 @@ import { articles } from '../../data/articles';
 
 const ArticlesSection = () => {
     return (
-        <section className="py-24 bg-white">
+        <section id="articles" className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex justify-between items-end mb-12">
                     <div>
@@ -34,7 +34,7 @@ const ArticlesSection = () => {
                     </Link>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
                     {articles.map((article, index) => (
                         <motion.div
                             key={article.id}
@@ -45,6 +45,7 @@ const ArticlesSection = () => {
                         >
                             <Link
                                 to={`/conseils/${article.slug}`}
+                                state={{ from: '/#articles' }}
                                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col h-full border border-gray-100"
                             >
                                 <div className="relative h-56 overflow-hidden">

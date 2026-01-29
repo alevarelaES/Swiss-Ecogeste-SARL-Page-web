@@ -28,11 +28,11 @@ const Team = () => {
                 <Reveal>
                     <div className="text-center mb-12">
                         <span className="text-amber-500 font-bold tracking-wider uppercase text-lg bg-amber-50 px-4 py-2 rounded-md inline-block">Notre Équipe</span>
-                        <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mt-3 mb-4">Experts à votre écoute</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-3 mb-4">Experts à votre écoute</h2>
                     </div>
                 </Reveal>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {teamMembers.map((member, index) => (
                         <Reveal key={index} delay={index * 0.05}>
                             <div className="bg-white/90 backdrop-blur-sm border border-[var(--primary)]/20 p-6 rounded-lg shadow-sm hover:shadow-lg hover:border-amber-400 transition-all h-full text-left">
