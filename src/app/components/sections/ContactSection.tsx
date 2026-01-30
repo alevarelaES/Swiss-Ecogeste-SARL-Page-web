@@ -1,13 +1,96 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Instagram, ArrowRight, Phone } from 'lucide-react';
 import { Button } from "../ui/button";
 import Reveal from '../animations/Reveal';
+import { toast } from 'sonner';
 
-const ContactSection = () => {
+const ContactSection = ({ compact = false }: { compact?: boolean }) => {
     const [currentType, setCurrentType] = useState('Villa');
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        message: ''
+    });
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const validateForm = () => {
+        const newErrors: Record<string, string> = {};
+        if (!formData.fullName.trim()) newErrors.fullName = 'Le nom complet est requis';
+        if (!formData.email.trim()) {
+            newErrors.email = "L'email est requis";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = "L'email n'est pas valide";
+        }
+        if (formData.phone && !/^\+?[0-9]*$/.test(formData.phone)) {
+            newErrors.phone = "Le numéro n'est pas valide";
+        }
+        if (!formData.message.trim()) newErrors.message = 'Le message est requis';
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let value = e.target.value;
+
+        // Automatically replace "00" with "+" at the beginning
+        if (value.startsWith('00')) {
+            value = '+' + value.slice(2);
+        }
+
+        // Only allow numbers and the "+" character
+        if (/^[\d+]*$/.test(value)) {
+            setFormData(prev => ({ ...prev, phone: value }));
+            if (errors.phone) setErrors(prev => {
+                const newErrors = { ...prev };
+                delete newErrors.phone;
+                return newErrors;
+            });
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (validateForm()) {
+            setIsSubmitting(true);
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                toast.success('Message envoyé avec succès ! Nous vous recontacterons bientôt.');
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                });
+                setErrors({});
+            } catch (error) {
+                toast.error("Une erreur est survenue. Veuillez réessayer.");
+            } finally {
+                setIsSubmitting(false);
+            }
+        } else {
+            toast.error("Veuillez remplir correctement tous les champs obligatoires.");
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        // Clear error when user start typing
+        if (errors[name]) {
+            setErrors(prev => {
+                const newErrors = { ...prev };
+                delete newErrors[name];
+                return newErrors;
+            });
+        }
+    };
 
     return (
-        <section id="contact" className="py-20 md:py-32 bg-white relative overflow-hidden">
+        <section id="contact" className={`${compact ? 'py-12 md:pb-32 md:pt-4' : 'py-20 md:py-32'} bg-white relative overflow-hidden`}>
             {/* Cool Abstract Background Shapes */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
 
@@ -33,7 +116,7 @@ const ContactSection = () => {
             </div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 <Reveal>
-                    <div className="bg-[#F4F7F5] rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row min-h-[640px] shadow-sm ring-1 ring-gray-100 mb-12">
+                    <div className="bg-[#F4F7F5] rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row min-h-[640px] shadow-sm ring-1 ring-gray-100 mb-8">
 
                         {/* Form Side */}
                         <div className="w-full lg:w-1/2 p-8 sm:p-16 flex flex-col justify-center">
@@ -48,7 +131,7 @@ const ContactSection = () => {
                                     Remplissez ce formulaire pour recevoir une estimation gratuite de vos économies potentielles.
                                 </p>
 
-                                <form className="space-y-8">
+                                <form onSubmit={handleSubmit} className="space-y-8">
                                     <div className="space-y-4">
                                         <label className="text-sm font-bold text-[#0f1f1a] uppercase tracking-wide">Vous êtes</label>
                                         <div className="flex flex-wrap gap-3">
@@ -69,53 +152,86 @@ const ContactSection = () => {
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-6">
-                                        <div className="space-y-2">
-                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Prénom</label>
-                                            <input
-                                                type="text"
-                                                className="w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm"
-                                                placeholder="Jean"
-                                            />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Nom</label>
-                                            <input
-                                                type="text"
-                                                className="w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm"
-                                                placeholder="Dupont"
-                                            />
-                                        </div>
-                                    </div>
-
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Email</label>
+                                        <div className="flex justify-between items-center">
+                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Prénom & Nom</label>
+                                            {errors.fullName && <span className="text-[10px] text-red-500 font-medium">{errors.fullName}</span>}
+                                        </div>
                                         <input
-                                            type="email"
-                                            className="w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm"
-                                            placeholder="jean.dupont@email.com"
+                                            type="text"
+                                            name="fullName"
+                                            value={formData.fullName}
+                                            onChange={handleChange}
+                                            className={`w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm ${errors.fullName ? 'ring-1 ring-red-500' : ''}`}
+                                            placeholder="Jean Dupont"
                                         />
                                     </div>
 
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between items-center">
+                                                <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Email</label>
+                                                {errors.email && <span className="text-[10px] text-red-500 font-medium">{errors.email}</span>}
+                                            </div>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                className={`w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm ${errors.email ? 'ring-1 ring-red-500' : ''}`}
+                                                placeholder="jean.dupont@email.com"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between items-center">
+                                                <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Téléphone (Optionnel)</label>
+                                                {errors.phone && <span className="text-[10px] text-red-500 font-medium">{errors.phone}</span>}
+                                            </div>
+                                            <div className="relative">
+                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                                                    <Phone size={16} />
+                                                </div>
+                                                <input
+                                                    type="tel"
+                                                    name="phone"
+                                                    value={formData.phone}
+                                                    onChange={handlePhoneChange}
+                                                    className={`w-full bg-white border-0 rounded-xl pl-12 pr-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm ${errors.phone ? 'ring-1 ring-red-500' : ''}`}
+                                                    placeholder="+41 79 000 00 00"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Message</label>
+                                        <div className="flex justify-between items-center">
+                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Message</label>
+                                            {errors.message && <span className="text-[10px] text-red-500 font-medium">{errors.message}</span>}
+                                        </div>
                                         <textarea
                                             rows={4}
-                                            className="w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm resize-none"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            className={`w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm resize-none ${errors.message ? 'ring-1 ring-red-500' : ''}`}
                                             placeholder="Comment pouvons-nous vous aider ?"
                                         ></textarea>
                                     </div>
 
-                                    <Button className="w-full h-14 bg-[#1b5e39] hover:bg-[#144a2d] text-white rounded-xl text-lg font-bold shadow-xl shadow-[#1b5e39]/20 transition-all hover:-translate-y-1 group">
-                                        <span>Envoyer ma demande</span>
-                                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    <Button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="w-full h-14 bg-[#1b5e39] hover:bg-[#144a2d] text-white rounded-xl text-lg font-bold shadow-xl shadow-[#1b5e39]/20 transition-all hover:-translate-y-1 group disabled:opacity-70 disabled:hover:translate-y-0"
+                                    >
+                                        <span>{isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}</span>
+                                        {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                                     </Button>
                                 </form>
                             </div>
                         </div>
 
                         {/* Image Side */}
-                        <div className="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-full overflow-hidden">
+                        <div className="hidden lg:block lg:w-1/2 relative lg:min-h-full overflow-hidden">
                             <img
                                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
                                 alt="Experte Swiss Ecogestes"

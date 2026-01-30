@@ -79,27 +79,31 @@ const ArticleDetailPage = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                         <div>
                             <Reveal>
-                                <div className="inline-flex items-center gap-2 bg-green-50 text-[var(--primary)] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4">
+                                <div className="inline-flex items-center gap-2 bg-green-50 text-[var(--primary)] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
                                     <Sparkles size={12} /> {article.category}
                                 </div>
-                                <h1 className="text-3xl md:text-5xl lg:text-5xl font-extrabold text-gray-900 leading-[1.15] mb-6 tracking-tight">
+                                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] mb-8 tracking-tight">
                                     {article.title}
                                 </h1>
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-3 mb-8 lg:mb-0">
                                     <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-green-100 shadow-sm">
                                         <User size={18} className="text-[var(--primary)]" />
                                     </div>
-                                    <div className="text-sm">
+                                    <div className="text-left text-sm">
                                         <p className="font-bold text-gray-900">Expert Swiss Ecogeste</p>
                                         <p className="text-gray-500 font-medium">{article.date}</p>
                                     </div>
                                 </div>
                             </Reveal>
                         </div>
-                        <div className="relative">
+
+                        <div>
                             <Reveal delay={0.2}>
-                                <div className="rounded-2xl overflow-hidden shadow-xl aspect-video max-h-[350px] relative">
-                                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${article.imageUrl})` }} />
+                                <div className="rounded-2xl overflow-hidden shadow-xl aspect-video relative group">
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                        style={{ backgroundImage: `url(${article.imageUrl})` }}
+                                    />
                                     <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl"></div>
                                 </div>
                             </Reveal>
@@ -108,57 +112,44 @@ const ArticleDetailPage = () => {
                 </div>
             </header>
 
-            {/* CONTENT GRID */}
             <main className="bg-gray-100 py-12 lg:py-16">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div className="max-w-3xl mx-auto">
+                    <Reveal delay={0.3}>
+                        <article
+                            className="prose prose-lg prose-slate max-w-none 
+                            [&_p]:text-gray-600 [&_p]:leading-[1.9] [&_p]:mb-8 [&_p]:mt-0 [&_p]:text-lg [&_p]:font-normal
+                            [&_h3]:text-gray-900 [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-3xl [&_h3]:mt-14 [&_h3]:mb-6 [&_h3]:leading-tight
+                            [&_h3]:border-l-4 [&_h3]:border-[var(--primary)] [&_h3]:pl-4
+                            [&_strong]:text-gray-900 [&_strong]:font-bold
+                            [&_li]:text-lg [&_li]:mb-3 [&_li]:text-gray-600
+                            [&_ul]:list-none [&_ul]:pl-0
+                            [&_ul>li]:relative [&_ul>li]:pl-6
+                            [&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:top-[0.6em] [&_ul>li]:before:w-2 [&_ul>li]:before:h-2 [&_ul>li]:before:bg-[var(--primary)] [&_ul>li]:before:rounded-full
+                            [&_a]:text-[var(--primary)] [&_a]:font-bold [&_a]:no-underline hover:text-[#1a4d3e] transition-colors
+                            "
+                            dangerouslySetInnerHTML={{ __html: article.content || '' }}
+                        />
 
-                        {/* SIDEBAR PLUS PROMINENTE */}
-                        <aside className="lg:col-span-3">
-                            <div className="sticky top-40 bg-white rounded-[2rem] p-8 border border-gray-100 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-transform hover:scale-[1.02] duration-300">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-[var(--primary)] rounded-b-full opacity-20"></div>
-
-                                <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-400 mb-6 text-center">Partager l'article</h3>
-
-                                <div className="grid grid-cols-3 gap-3 mb-6">
-                                    <a href={shareLinks.x} target="_blank" rel="noopener noreferrer" className="h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-900 border border-gray-100 hover:bg-black hover:text-white hover:border-black transition-all shadow-sm">
-                                        <XIcon />
-                                    </a>
-                                    <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#0077b5] border border-gray-100 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all shadow-sm">
-                                        <Linkedin size={20} fill="currentColor" strokeWidth={0} />
-                                    </a>
-                                    <a href={shareLinks.meta} target="_blank" rel="noopener noreferrer" className="h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#1877F2] border border-gray-100 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all shadow-sm">
-                                        <Facebook size={20} fill="currentColor" strokeWidth={0} />
-                                    </a>
-                                </div>
-
-                                <button onClick={handleCopyLink} className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-xs font-black transition-all border-2 ${copied ? 'bg-[var(--primary)] text-white border-[var(--primary)] shadow-lg shadow-green-900/20' : 'bg-white text-gray-700 border-gray-100 hover:border-[var(--primary)] hover:text-[var(--primary)] shadow-sm'}`}>
-                                    {copied ? <Check size={16} strokeWidth={3} /> : <LinkIcon size={16} strokeWidth={3} />}
-                                    {copied ? "LIEN COPIÉ !" : "COPIER LE LIEN"}
+                        {/* SHARE SECTION CENTERED BOTTOM */}
+                        <div className="mt-16 pt-12 border-t border-gray-100">
+                            <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-400 mb-6 text-center">Partager l'article</h3>
+                            <div className="flex justify-center gap-3 mb-6">
+                                <a href={shareLinks.x} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-900 border border-gray-100 hover:bg-black hover:text-white hover:border-black transition-all shadow-sm">
+                                    <XIcon />
+                                </a>
+                                <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-[#0077b5] border border-gray-100 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all shadow-sm">
+                                    <Linkedin size={16} fill="currentColor" strokeWidth={0} />
+                                </a>
+                                <a href={shareLinks.meta} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-[#1877F2] border border-gray-100 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all shadow-sm">
+                                    <Facebook size={16} fill="currentColor" strokeWidth={0} />
+                                </a>
+                                <button onClick={handleCopyLink} className={`px-4 h-10 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-wider transition-all border ${copied ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-gray-50 text-gray-600 border-gray-100 hover:border-gray-300'}`}>
+                                    {copied ? <Check size={14} strokeWidth={3} /> : <LinkIcon size={14} strokeWidth={3} />}
+                                    {copied ? "Copié !" : "Copier"}
                                 </button>
                             </div>
-                        </aside>
-
-                        {/* MAIN TEXT - TYPOGRAPHIE AFFINÉE ET COLOREE */}
-                        <div className="lg:col-span-8 lg:col-start-5">
-                            <Reveal delay={0.3}>
-                                <article
-                                    className="prose prose-lg prose-slate max-w-none 
-                                [&_p]:text-gray-600 [&_p]:leading-[1.9] [&_p]:mb-8 [&_p]:mt-0 [&_p]:text-lg [&_p]:font-normal
-                                [&_h3]:text-gray-900 [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-3xl [&_h3]:mt-14 [&_h3]:mb-6 [&_h3]:leading-tight
-                                [&_h3]:border-l-4 [&_h3]:border-[var(--primary)] [&_h3]:pl-4
-                                [&_strong]:text-gray-900 [&_strong]:font-bold
-                                [&_li]:text-lg [&_li]:mb-3 [&_li]:text-gray-600
-                                [&_ul]:list-none [&_ul]:pl-0
-                                [&_ul>li]:relative [&_ul>li]:pl-6
-                                [&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:top-[0.6em] [&_ul>li]:before:w-2 [&_ul>li]:before:h-2 [&_ul>li]:before:bg-[var(--primary)] [&_ul>li]:before:rounded-full
-                                [&_a]:text-[var(--primary)] [&_a]:font-bold [&_a]:no-underline hover:text-[#1a4d3e] transition-colors
-                                "
-                                    dangerouslySetInnerHTML={{ __html: article.content || '' }}
-                                />
-                            </Reveal>
                         </div>
-                    </div>
+                    </Reveal>
                 </div>
             </main>
 

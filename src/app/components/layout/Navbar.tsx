@@ -20,10 +20,10 @@ const Navbar = () => {
     }, []);
 
     const serviceLinks = [
-        { name: 'Villa', path: '/services/villa' },
-        { name: 'Entreprise', path: '/services/entreprise' },
-        { name: 'Gérance', path: '/services/gerance' },
-        { name: 'Tous les services', path: '/services' },
+        { name: 'Régies & Immeubles', path: '/services/gerance' },
+        { name: 'Villas & Maisons', path: '/services/villa' },
+        { name: 'Entreprises', path: '/services/entreprise' },
+        { name: 'Communes & GRD', path: '/services/communes' },
     ];
 
     return (
@@ -49,7 +49,7 @@ const Navbar = () => {
                         </span>
 
                         {/* Dropdown Content */}
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[200px]">
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[240px]">
                             <div className="bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden py-2 flex flex-col">
                                 {serviceLinks.map((link) => (
                                     <Link
@@ -64,12 +64,12 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <Link to="/team" className={`hover:text-amber-400 transition-colors ${location.pathname === '/team' ? 'text-amber-500' : ''}`}>
-                        Équipe
-
-                    </Link>
                     <Link to="/conseils" className={`hover:text-amber-400 transition-colors ${location.pathname === '/conseils' ? 'text-amber-500' : ''}`}>
-                        Conseils
+                        Ressources
+                    </Link>
+
+                    <Link to="/team" className={`hover:text-amber-400 transition-colors px-3 py-1 rounded-full border border-transparent hover:border-amber-400/30 ${location.pathname === '/team' ? 'text-amber-500 bg-amber-50 border-amber-200' : ''}`}>
+                        À propos
                     </Link>
 
                     <Button asChild className="bg-[var(--primary)] hover:bg-[#0b2e24] text-white rounded-md px-6 transition-colors shadow-lg shadow-green-900/20">
@@ -98,14 +98,6 @@ const Navbar = () => {
                         className="absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-xl md:hidden flex flex-col p-6 gap-4"
                         style={{ maxHeight: '80vh', overflowY: 'auto' }}
                     >
-                        <Link
-                            to="/equiwatt"
-                            className="text-gray-800 text-lg font-medium text-left border-b border-gray-50 pb-2"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Équiwatt
-                        </Link>
-
                         {/* Mobile Services Accordion */}
                         <div className="flex flex-col gap-2 border-b border-gray-50 pb-2">
                             <button
@@ -139,18 +131,19 @@ const Navbar = () => {
                         </div>
 
                         <Link
-                            to="/equipe"
-                            className="text-gray-800 text-lg font-medium text-left border-b border-gray-50 pb-2"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Équipe
-                        </Link>
-                        <Link
                             to="/conseils"
                             className="text-gray-800 text-lg font-medium text-left border-b border-gray-50 pb-2"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Conseils
+                            Ressources
+                        </Link>
+
+                        <Link
+                            to="/team"
+                            className="text-gray-800 text-lg font-medium text-left border-b border-gray-50 pb-2"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            À propos
                         </Link>
 
                         <Button asChild className="w-full bg-[var(--primary)] text-white mt-2">

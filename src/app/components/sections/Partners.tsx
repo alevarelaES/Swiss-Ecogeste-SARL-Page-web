@@ -48,7 +48,7 @@ const Partners = () => {
     );
 
     return (
-        <section id="partners" className="py-20 bg-[var(--primary)]/5 border-y border-gray-100 overflow-hidden">
+        <section id="partners" className="py-12 md:py-16 lg:py-20 bg-[var(--primary)]/5 border-y border-gray-100 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 text-center mb-12">
                 <div className="flex flex-col items-center gap-3">
                     <span className="h-1 w-12 bg-[#1b5e39] rounded-md"></span>

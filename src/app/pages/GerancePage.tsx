@@ -1,7 +1,7 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
-import { Calculator, BarChart3, ArrowRight, Building } from 'lucide-react';
+import { Calculator, BarChart3, ArrowRight, Building, ArrowLeft } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
 
@@ -36,6 +36,11 @@ const GerancePage = () => {
             />
 
             <div className="max-w-7xl mx-auto px-6">
+                {/* Back Link */}
+                <Link to="/#nos-partenaires" className="inline-flex items-center text-gray-400 hover:text-[var(--primary)] transition-colors mb-8 font-medium">
+                    <ArrowLeft size={16} className="mr-2" /> Retour au choix
+                </Link>
+
                 {/* Hero Section with Image */}
                 <Reveal>
                     <div className="flex flex-col md:flex-row gap-12 items-center mb-20">
@@ -53,9 +58,10 @@ const GerancePage = () => {
                         </div>
                         <div className="md:w-1/2">
                             <div className="rounded-lg overflow-hidden shadow-2xl border border-gray-100 h-64 md:h-96 relative">
-                                <div
-                                    className="absolute inset-0 bg-cover bg-center"
-                                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070')" }}
+                                <img
+                                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070"
+                                    alt="Gestion immobilière moderne"
+                                    className="absolute inset-0 w-full h-full object-cover"
                                 />
                             </div>
                         </div>

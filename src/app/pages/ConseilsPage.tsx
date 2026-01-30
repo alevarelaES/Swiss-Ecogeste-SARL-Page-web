@@ -10,7 +10,7 @@ const ConseilsPage = () => {
     return (
         <div className="pt-32 pb-24">
             <SEO
-                title="Conseils & Actualités Énergétiques"
+                title="Actualités & Ressources | Swiss Ecogestes"
                 description="Retrouvez nos derniers articles, guides et actualités sur la transition énergétique, le solaire et les économies d'énergie en Suisse."
                 canonical="/conseils"
             />
@@ -20,7 +20,7 @@ const ConseilsPage = () => {
                     <div className="text-center mb-20">
                         <span className="text-[var(--primary)] font-bold tracking-widest uppercase text-xs">Le Journal de l'Énergie</span>
                         <h1 className="text-5xl md:text-7xl font-black text-gray-900 mt-4 mb-6 tracking-tight">
-                            Actualités & <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">Conseils d'Experts</span>
+                            Actualités & <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">Ressources</span>
                         </h1>
                         <p className="text-gray-500 max-w-2xl mx-auto text-xl font-light leading-relaxed">
                             Décrypter la transition énergétique. Des guides pratiques, des analyses de marché et les dernières actualités sur les subventions.

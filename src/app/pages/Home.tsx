@@ -10,15 +10,16 @@ import Partners from '../components/sections/Partners';
 import ContactSection from '../components/sections/ContactSection';
 import StatsSection from '../components/sections/StatsSection';
 import ArticlesSection from '../components/sections/ArticlesSection';
+import ClientTypeSection from '../components/sections/ClientTypeSection';
 
 const Home = () => {
     const { hash } = useLocation();
 
-    useLayoutEffect(() => {
+    React.useEffect(() => {
         if (hash) {
             const element = document.querySelector(hash);
             if (element) {
-                element.scrollIntoView({ behavior: 'auto', block: 'start' });
+                element.scrollIntoView({ behavior: 'smooth' });
             }
         }
     }, [hash]);
@@ -32,12 +33,12 @@ const Home = () => {
             />
             <div className="bg-white">
                 <Hero />
-                <About />
-                <Services />
                 <StatsSection />
+                <ClientTypeSection />
+                <About />
                 <ArticlesSection />
                 <Partners />
-                <ContactSection />
+                <ContactSection compact />
             </div>
         </>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
-import { Home, Thermometer, Sun, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Home, Thermometer, Sun, ArrowRight, ShieldCheck, ArrowLeft } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
 
@@ -39,6 +39,11 @@ const VillaPage = () => {
             />
 
             <div className="max-w-7xl mx-auto px-6">
+                {/* Back Link */}
+                <Link to="/#nos-partenaires" className="inline-flex items-center text-gray-400 hover:text-[var(--primary)] transition-colors mb-8 font-medium">
+                    <ArrowLeft size={16} className="mr-2" /> Retour au choix
+                </Link>
+
                 {/* Hero Section */}
                 <Reveal>
                     <div className="text-center mb-20">

@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
 import { BACKGROUND_IMAGES, PLACEHOLDER_IMAGES } from '../../config/images';
 
 const About = () => {
     return (
-        <section id="about" className="py-24 bg-cover bg-center relative overflow-hidden" style={{ backgroundImage: `url('${BACKGROUND_IMAGES.about}')`, backgroundBlendMode: 'screen' }}>
+        <section id="about" className="py-16 md:py-20 lg:py-24 bg-cover bg-center relative overflow-hidden" style={{ backgroundImage: `url('${BACKGROUND_IMAGES.about}')`, backgroundBlendMode: 'screen' }}>
             <div className="absolute inset-0 bg-white/75"></div>
             <div className="absolute inset-0 bg-emerald-900/15"></div>
 
@@ -21,7 +23,7 @@ const About = () => {
                                 Notre engagement se manifeste à travers des audits énergétiques personnalisés, conçus pour optimiser l’utilisation de l’énergie et minimiser les déchets. Nous accompagnons avec des solutions clés en main.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 md:gap-8 justify-start">
+                            <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 md:gap-8 justify-start mb-8">
                                 <div className="flex flex-col items-start min-w-[30%] md:min-w-0">
                                     <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[var(--primary)] mb-2">Local</span>
                                     <span className="text-gray-700 font-semibold text-xs md:text-sm">Action suisse</span>
@@ -37,10 +39,14 @@ const About = () => {
                                     <span className="text-gray-700 font-semibold text-xs md:text-sm">Économique</span>
                                 </div>
                             </div>
+
+                            <Link to="/team" className="inline-flex items-center gap-2 text-[var(--primary)] font-bold uppercase tracking-wider text-sm hover:gap-4 transition-all group">
+                                Découvrir notre ADN <ArrowRight size={18} />
+                            </Link>
                         </Reveal>
                     </div>
 
-                    <div className="relative flex justify-center w-full order-first lg:order-last">
+                    <div className="relative flex justify-center w-full">
                         <Reveal delay={0.2}>
                             <div className="relative aspect-square bg-white/40 backdrop-blur-lg rounded-lg overflow-hidden shadow-2xl border-2 border-white/70 w-full max-w-md mx-auto">
                                 <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000" alt="Office" className="w-full h-full object-cover opacity-95 hover:opacity-100 transition-opacity duration-300" />

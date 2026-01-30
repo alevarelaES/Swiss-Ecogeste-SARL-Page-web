@@ -11,7 +11,7 @@ const ContactPage = () => {
                 description="Besoin d'un conseil ou d'un devis ? Contactez Swiss Ecogestes pour votre projet de transition énergétique en Suisse."
                 canonical="/contact"
             />
-            <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
+            <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
                 <Reveal>
                     <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Prêt à faire le premier pas ?</h1>
                     <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -19,7 +19,7 @@ const ContactPage = () => {
                     </p>
                 </Reveal>
             </div>
-            <ContactSection />
+            <ContactSection compact />
         </div>
     );
 };

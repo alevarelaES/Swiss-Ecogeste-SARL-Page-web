@@ -93,7 +93,7 @@ const Hero = () => {
                                         className="flex flex-col sm:flex-row items-start gap-4"
                                     >
                                         <Button asChild className="h-14 px-8 text-lg font-bold bg-[var(--primary)] hover:bg-amber-600 text-white rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all hover:scale-105 active:scale-95">
-                                            <Link to="/#contact">
+                                            <Link to="/contact">
                                                 Lancer mon projet
                                                 <ArrowRight className="ml-2 w-5 h-5" />
                                             </Link>

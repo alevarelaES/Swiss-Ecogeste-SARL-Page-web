@@ -5,35 +5,37 @@ import { Leaf, Building2, Zap, Users } from 'lucide-react';
 const stats = [
     {
         id: 1,
-        value: 1500,
-        suffix: "+",
-        label: "Projets Réalisés",
-        icon: Building2,
-    },
-    {
-        id: 2,
         value: 50,
-        suffix: "GWh",
-        label: "Énergie Économisée/an",
+        prefix: "Jusqu'à ",
+        suffix: "%",
+        label: "De Subventions",
         icon: Zap,
     },
     {
-        id: 3,
-        value: 12000,
-        suffix: "t",
-        label: "CO2 Évités",
+        id: 2,
+        value: 20,
+        prefix: "10 à ",
+        suffix: "%",
+        label: "D'économies d'énergie",
         icon: Leaf,
     },
     {
+        id: 3,
+        value: 2,
+        prefix: "≈ ",
+        suffix: " ans",
+        label: "Retour sur investissement",
+        icon: Users, // Or another icon representing time/money overlap? Button/Clock? keeping Users for now or swapping
+    },
+    {
         id: 4,
-        value: 100,
-        suffix: "%",
-        label: "Satisfaction Client",
-        icon: Users,
+        text: "Reconnus",
+        label: "Partenaires Institutionnels",
+        icon: Building2,
     }
 ];
 
-const Counter = ({ value, suffix }: { value: number, suffix: string }) => {
+const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: string, suffix: string }) => {
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true, margin: "0px" });
     const [count, setCount] = React.useState(0);
@@ -59,7 +61,7 @@ const Counter = ({ value, suffix }: { value: number, suffix: string }) => {
         }
     }, [isInView, value]);
 
-    return <span ref={ref}>{count}{suffix}</span>;
+    return <span ref={ref}>{prefix}{count}{suffix}</span>;
 }
 
 const StatsSection = () => {
@@ -117,14 +119,18 @@ const StatsSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15 + 0.3 }}
-                            className={`flex flex-col justify-between items-center text-center md:items-start md:text-left lg:px-8 ${index !== stats.length - 1 ? 'lg:border-r border-white/10' : ''}`}
+                            className={`flex flex-col justify-between items-center text-center lg:px-8 ${index !== stats.length - 1 ? 'lg:border-r border-white/10' : ''}`}
                         >
                             <div className="mb-6">
                                 <stat.icon size={32} className="text-amber-400 opacity-90" strokeWidth={1.5} />
                             </div>
                             <div>
                                 <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 tracking-tight">
-                                    <Counter value={stat.value} suffix={stat.suffix} />
+                                    {stat.value ? (
+                                        <Counter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+                                    ) : (
+                                        <span>{stat.text}</span>
+                                    )}
                                 </div>
                                 <p className="text-white/70 font-medium text-sm lg:text-base uppercase tracking-wider">
                                     {stat.label}

@@ -68,7 +68,7 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
 
 const Services = () => {
     return (
-        <section id="services" className="relative py-24 bg-white overflow-hidden">
+        <section id="services" className="relative py-16 md:py-20 lg:py-24 bg-white overflow-hidden">
             {/* Background Image (Parallax) */}
             <div
                 className="absolute inset-0 bg-fixed bg-cover bg-center grayscale opacity-40"
@@ -92,7 +92,7 @@ const Services = () => {
                                 <span className="text-[var(--primary)] font-bold tracking-[0.25em] uppercase text-xs">Excellence Technique</span>
                             </div>
                             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-black text-gray-900 leading-tight">
-                                Nos Domaines <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-600">d'Expertise</span>
+                                Nos <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-600">Prestations</span>
                             </h2>
                         </div>
 
