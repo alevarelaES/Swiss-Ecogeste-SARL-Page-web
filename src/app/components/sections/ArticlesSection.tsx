@@ -7,9 +7,9 @@ import { articles } from '../../data/articles';
 
 const ArticlesSection = () => {
     return (
-        <section id="articles" className="py-16 md:py-20 lg:py-24 bg-white">
+        <section id="articles" className="py-8 md:py-10 lg:py-12 bg-white">
             <div className="max-w-7xl mx-auto px-6">
-                <div className="flex justify-between items-end mb-12">
+                <div className="flex justify-between items-end mb-8">
                     <div>
                         <motion.span
                             initial={{ opacity: 0, y: 10 }}

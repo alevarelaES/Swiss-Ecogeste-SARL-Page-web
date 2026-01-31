@@ -1,32 +1,26 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
-import { Home, Thermometer, Sun, ArrowRight, ShieldCheck, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
 
 const VillaPage = () => {
     const services = [
         {
-            icon: ShieldCheck,
             title: "Audit CECB & CECB+",
             description: "Analyse officielle de l'étiquette énergétique de votre bâtiment. Le CECB+ inclut un rapport de conseil complet avec scénarios de rénovation chiffrés.",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800",
-            color: "primary"
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800"
         },
         {
-            icon: Sun,
             title: "Solaire Photovoltaïque",
             description: "Produisez votre propre électricité. Étude de rentabilité, dimensionnement et installation de panneaux solaires performants.",
-            image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800",
-            color: "amber"
+            image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
         },
         {
-            icon: Thermometer,
             title: "Pompes à Chaleur",
             description: "Remplacez votre chauffage fossile par une solution durable et économique. Programme \"Chauffez Renouvelable\" inclus.",
-            image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800",
-            color: "blue"
+            image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800"
         }
     ];
 
@@ -72,9 +66,6 @@ const VillaPage = () => {
 
                                 {/* Content */}
                                 <div className="p-8 flex-grow flex flex-col">
-                                    <div className={`w-14 h-14 ${service.color === 'primary' ? 'bg-[var(--primary)]/10 text-[var(--primary)]' : service.color === 'amber' ? 'bg-amber-100 text-amber-500' : 'bg-blue-100 text-blue-500'} rounded-2xl flex items-center justify-center mb-6 -mt-16 relative z-10 shadow-lg bg-white border-4 border-white`}>
-                                        <service.icon className="w-7 h-7" />
-                                    </div>
                                     <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
                                     <p className="text-gray-600 leading-relaxed flex-grow">
                                         {service.description}
@@ -84,25 +75,6 @@ const VillaPage = () => {
                         </Reveal>
                     ))}
                 </div>
-
-                {/* Call to Action */}
-                <Reveal>
-                    <div className="relative rounded-lg overflow-hidden bg-[var(--primary)] text-white p-10 md:p-16 text-center">
-                        <div className="relative z-10 max-w-2xl mx-auto">
-                            <h2 className="text-3xl font-bold mb-6">Commencez par un audit offert sous conditions</h2>
-                            <p className="text-white/80 mb-8 text-lg">
-                                Découvrez le potentiel de votre maison. Nos experts certifiés vous guident vers les meilleures subventions cantonales et fédérales.
-                            </p>
-                            <Link to="/contact">
-                                <Button size="lg" className="bg-white text-[var(--primary)] hover:bg-gray-100 rounded-md px-8 text-lg font-bold">
-                                    Prendre rendez-vous
-                                </Button>
-                            </Link>
-                        </div>
-                        {/* Background pattern */}
-                        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                    </div>
-                </Reveal>
             </div>
         </div>
     );

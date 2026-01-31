@@ -41,14 +41,14 @@ const clients = [
 
 const ClientTypeSection = () => {
     return (
-        <section id="nos-partenaires" className="py-20 md:py-28 bg-gray-100 bg-[url('https://www.transparenttextures.com/patterns/gray-lines.png')] bg-fixed">
+        <section id="nos-solutions" className="py-10 md:py-12 bg-gray-100 bg-[url('https://www.transparenttextures.com/patterns/gray-lines.png')] bg-fixed">
             <div className="max-w-7xl mx-auto px-6">
                 <Reveal>
-                    <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 border-b border-gray-200 pb-8">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-8 border-b border-gray-200 pb-6">
                         <div className="max-w-2xl">
                             <div className="flex items-center gap-4 mb-4">
                                 <span className="h-[2px] w-12 bg-amber-500"></span>
-                                <span className="text-amber-600 font-bold tracking-widest uppercase text-xs">Nos Partenaires</span>
+                                <span className="text-amber-600 font-bold tracking-widest uppercase text-xs">Nos Solutions</span>
                             </div>
                             <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
                                 Une expertise adaptée <br />

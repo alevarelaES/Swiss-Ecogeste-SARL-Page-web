@@ -19,7 +19,7 @@ const Footer = () => {
                                 alt="Swiss Ecogeste Logo"
                                 className="h-10 w-auto group-hover:scale-105 transition-transform"
                             />
-                            <span className="text-xl font-black tracking-tighter">Swiss Ecogeste</span>
+                            <span className="text-xl font-black tracking-tighter">Swiss Ecogestes</span>
                         </Link>
                         <p className="text-gray-500 text-sm leading-relaxed mb-8">
                             Votre partenaire expert pour la transition énergétique en Suisse Romande. <br /> Solutions durables et accompagnement sur-mesure.
@@ -43,20 +43,20 @@ const Footer = () => {
                         <div>
                             <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Nos Services</h4>
                             <ul className="space-y-4 text-[13px] font-bold text-gray-400/80">
-                                <li><Link to="/villa" className="hover:text-[var(--primary)] transition-colors">Visite Villa</Link></li>
-                                <li><Link to="/gerance" className="hover:text-[var(--primary)] transition-colors">Gérances (IDC)</Link></li>
-                                <li><Link to="/entreprise" className="hover:text-[var(--primary)] transition-colors">Entreprises</Link></li>
-                                <li><Link to="/equiwatt" className="hover:text-[var(--primary)] transition-colors">Subventions Equiwatt</Link></li>
+                                <li><Link to="/services/villa" className="hover:text-[var(--primary)] transition-colors">Propriétaires</Link></li>
+                                <li><Link to="/services/gerance" className="hover:text-[var(--primary)] transition-colors">Gérances (IDC)</Link></li>
+                                <li><Link to="/services/entreprise" className="hover:text-[var(--primary)] transition-colors">Entreprises</Link></li>
+                                <li><Link to="/services/communes" className="hover:text-[var(--primary)] transition-colors">Communes</Link></li>
                             </ul>
                         </div>
 
                         {/* Column 2: Entreprise */}
                         <div>
-                            <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Swiss Ecogeste</h4>
+                            <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Swiss Ecogestes</h4>
                             <ul className="space-y-4 text-[13px] font-bold text-gray-400/80">
-                                <li><Link to="/entreprise" className="hover:text-[var(--primary)] transition-colors">À propos</Link></li>
-                                <li><Link to="/equipe" className="hover:text-[var(--primary)] transition-colors">Notre équipe</Link></li>
-                                <li><Link to="/conseils" className="hover:text-[var(--primary)] transition-colors">Le Journal</Link></li>
+                                <li><Link to="/#about" className="hover:text-[var(--primary)] transition-colors">À propos</Link></li>
+                                <li><Link to="/team" className="hover:text-[var(--primary)] transition-colors">Notre équipe</Link></li>
+                                <li><Link to="/conseils" className="hover:text-[var(--primary)] transition-colors">Actualités</Link></li>
                                 <li><Link to="/contact" className="hover:text-[var(--primary)] transition-colors">Contact</Link></li>
                             </ul>
                         </div>
@@ -78,7 +78,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                     {/* Copyright */}
                     <p className="text-[13px] font-bold text-gray-400/80 order-2 md:order-1">
-                        © 2026 Swiss Ecogeste - Tous droits réservés
+                        © 2026 Swiss Ecogestes - Tous droits réservés
                     </p>
 
                     {/* Legal Links (centered in reference) */}

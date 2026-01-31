@@ -90,7 +90,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
     };
 
     return (
-        <section id="contact" className={`${compact ? 'py-12 md:pb-32 md:pt-4' : 'py-20 md:py-32'} bg-white relative overflow-hidden`}>
+        <section id="contact" className={`${compact ? 'py-8 md:pb-20 md:pt-4' : 'py-10 md:py-16'} bg-white relative overflow-hidden`}>
             {/* Cool Abstract Background Shapes */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
 
@@ -136,7 +136,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                         <label className="text-sm font-bold text-[#0f1f1a] uppercase tracking-wide">Vous êtes</label>
                                         <div className="flex flex-wrap gap-3">
                                             {/* Updated options: Villa, Entreprise, Gérance/Régie */}
-                                            {['Villa', 'Entreprise', 'Gérance/Régie'].map((type) => (
+                                            {['Villa', 'Entreprise', 'Gérance/Régie', 'Propriétaire', 'Autre'].map((type) => (
                                                 <button
                                                     key={type}
                                                     type="button"
@@ -154,7 +154,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
 
                                     <div className="space-y-2">
                                         <div className="flex justify-between items-center">
-                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Prénom & Nom</label>
+                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">Nom, Prénom</label>
                                             {errors.fullName && <span className="text-[10px] text-red-500 font-medium">{errors.fullName}</span>}
                                         </div>
                                         <input

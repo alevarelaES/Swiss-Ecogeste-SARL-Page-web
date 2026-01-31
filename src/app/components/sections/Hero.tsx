@@ -15,20 +15,34 @@ const slides = [
     {
         img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070',
         title: 'La transition énergétique simple et rentable',
-        sub: 'Swiss Ecogestes accompagne les propriétaires et entreprises vers une autonomie durable avec des solutions d’audit et de rénovation haute performance.',
-        features: ['Audits CECB', 'Pompes à chaleur', 'Solaire Photovoltaïque']
+        sub: "Swiss Ecogestes accompagne les propriétaires de villas vers une autonomie durable avec des solutions d'audit et de rénovation haute performance.",
+        features: ['Audits CECB', 'Pompes à chaleur', 'Solaire Photovoltaïque'],
+        buttonText: 'Solutions pour Villas',
+        buttonLink: '/services/villa'
     },
     {
-        img: 'https://images.unsplash.com/photo-1759398430338-8057876edf61?q=80&w=1920',
-        title: 'Optimisez votre budget énergétique',
-        sub: 'Réduisez vos charges jusqu’à 60% grâce à nos stratégies d’optimisation personnalisées et aux subventions cantonales disponibles.',
-        features: ['Subventions maximales', 'Rentabilité garantie', 'Accompagnement A-Z']
+        img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070',
+        title: 'Partenaire des régies immobilières',
+        sub: 'Valorisez votre parc immobilier et anticipez les obligations légales avec nos audits IDC et stratégies de rénovation.',
+        features: ['Calcul IDC', 'Audit de Parc', 'Subventions'],
+        buttonText: 'Solutions pour Régies',
+        buttonLink: '/services/gerance'
     },
     {
-        img: 'https://images.unsplash.com/photo-1764515296584-cdf00acebe3b?q=80&w=1920',
-        title: 'Valorisez votre patrimoine immobilier',
-        sub: 'Une maison bien isolée et équipée est un actif qui prend de la valeur. Anticipez les normes de demain dès aujourd’hui.',
-        features: ['Valeur immobilière', 'Zéro Émission', 'Confort Thermique']
+        img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070',
+        title: 'Performance énergétique industrielle',
+        sub: "Réduisez vos coûts d'exploitation et conformez-vous aux nouvelles exigences légales avec nos audits grands consommateurs.",
+        features: ['Audit Grands Consommateurs', 'Optimisation Process', 'Exemption taxe CO2'],
+        buttonText: 'Solutions pour Entreprises',
+        buttonLink: '/services/entreprise'
+    },
+    {
+        img: 'https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=2070',
+        title: 'Accompagnement des collectivités',
+        sub: 'Swiss Ecogestes soutient les communes et services industriels dans leur stratégie de transition énergétique territoriale.',
+        features: ['Audits Territoriaux', 'Sensibilisation Citoyenne', 'Programmes Subventionnés'],
+        buttonText: 'Solutions pour Communes',
+        buttonLink: '/services/communes'
     }
 ];
 
@@ -92,15 +106,15 @@ const Hero = () => {
                                         transition={{ duration: 0.5, delay: 0.5 }}
                                         className="flex flex-col sm:flex-row items-start gap-4"
                                     >
-                                        <Button asChild className="h-14 px-8 text-lg font-bold bg-[var(--primary)] hover:bg-amber-600 text-white rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all hover:scale-105 active:scale-95">
+                                        <Button asChild className="h-14 px-8 text-lg font-bold bg-[var(--primary)] hover:bg-[#1a4d3e] text-white rounded-xl transition-all hover:scale-105 active:scale-95">
                                             <Link to="/contact">
                                                 Lancer mon projet
                                                 <ArrowRight className="ml-2 w-5 h-5" />
                                             </Link>
                                         </Button>
                                         <Button asChild variant="outline" className="h-14 px-8 text-lg font-bold bg-white/10 hover:bg-white/20 text-white border-white/20 rounded-xl backdrop-blur-md transition-all hover:scale-105 active:scale-95">
-                                            <Link to="/services">
-                                                Découvrir nos solutions
+                                            <Link to={slide.buttonLink}>
+                                                {slide.buttonText}
                                             </Link>
                                         </Button>
                                     </motion.div>

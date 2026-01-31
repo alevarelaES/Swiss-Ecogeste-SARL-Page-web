@@ -1,32 +1,28 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
-import { Map, Users, Banknote, BarChart3, ArrowRight, Landmark, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
 
 const CommunesPage = () => {
     const services = [
         {
-            icon: Map,
             title: "Audits Territoriaux",
             description: "Analyse complète du parc immobilier communal et planification de la transition énergétique à l'échelle du quartier.",
             image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000"
         },
         {
-            icon: Users,
             title: "Sensibilisation Citoyenne",
             description: "Campagnes d'information et ateliers participatifs pour engager vos habitants dans la démarche écologique.",
             image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2000"
         },
         {
-            icon: Banknote,
             title: "Programmes Subventionnés",
             description: "Mise en place et gestion de programmes d'aide communaux, alignés avec les subventions cantonales et fédérales.",
             image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2000"
         },
         {
-            icon: BarChart3,
             title: "Impact & Reporting",
             description: "Mesure précise des économies d'énergie et de la réduction de CO2 pour votre bilan de législature.",
             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000"
@@ -50,8 +46,8 @@ const CommunesPage = () => {
                 <Reveal>
                     <div className="flex flex-col md:flex-row gap-12 items-center mb-20">
                         <div className="md:w-1/2">
-                            <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm flex items-center gap-2">
-                                <Landmark size={18} /> Villes & Services Industriels
+                            <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">
+                                Villes & Services Industriels
                             </span>
                             <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-2 mb-6">Un partenaire pour atteindre vos objectifs climatiques</h1>
                             <p className="text-gray-600 text-lg leading-relaxed mb-8">
@@ -93,9 +89,6 @@ const CommunesPage = () => {
 
                                 {/* Content */}
                                 <div className="p-8 flex-grow flex flex-col">
-                                    <div className="w-16 h-16 bg-[var(--primary)]/10 text-[var(--primary)] rounded-md flex items-center justify-center mb-6 -mt-16 relative z-10 shadow-lg bg-white border-4 border-white">
-                                        <service.icon className="w-8 h-8" />
-                                    </div>
                                     <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
                                     <p className="text-gray-600 leading-relaxed flex-grow">
                                         {service.description}

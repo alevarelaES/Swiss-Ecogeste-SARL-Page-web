@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -8,6 +8,8 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false); // For mobile dropdown
+    const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false); // For tablet/desktop dropdown
+    const dropdownRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
     const isHome = location.pathname === '/';
 
@@ -16,8 +18,44 @@ const Navbar = () => {
             setIsScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll);
+        // Check scroll position on mount
+        handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Close menus when navigation occurs and reset scroll state
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+        setIsDesktopServicesOpen(false);
+        setIsServicesOpen(false);
+
+        // Force scroll to top on the home page, then update navbar state
+        if (location.pathname === '/') {
+            window.scrollTo(0, 0);
+            // Small delay to ensure scroll has happened before checking
+            setTimeout(() => {
+                setIsScrolled(window.scrollY > 50);
+            }, 50);
+        } else {
+            setIsScrolled(window.scrollY > 50);
+        }
+    }, [location]);
+
+    // Handle clicking outside of desktop dropdown
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDesktopServicesOpen(false);
+            }
+        };
+
+        if (isDesktopServicesOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isDesktopServicesOpen]);
 
     const serviceLinks = [
         { name: 'Régies & Immeubles', path: '/services/gerance' },
@@ -27,29 +65,35 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || !isHome ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || !isHome ? 'bg-white/85 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <Link to="/" className="flex items-center gap-3">
                     <img
                         src="/Logo/Logo_EcoGeste_Sans_Fond.png"
-                        alt="Swiss Ecogeste Logo"
+                        alt="Swiss Ecogestes Logo"
                         className="h-14 md:h-20 w-auto drop-shadow-lg hover:scale-105 transition-transform duration-300"
                     />
                     <span className={`text-xl font-bold tracking-tight ${isScrolled || !isHome ? 'text-[var(--primary)]' : 'text-white'}`}>
-                        Swiss Ecogeste
+                        Swiss Ecogestes
                     </span>
                 </Link>
 
                 {/* Desktop Menu */}
                 <div className={`hidden md:flex items-center gap-8 font-medium ${isScrolled || !isHome ? 'text-gray-700' : 'text-white/90'}`}>
                     {/* Services Dropdown Group */}
-                    <div className="relative group cursor-pointer h-full flex items-center">
+                    <div
+                        ref={dropdownRef}
+                        className="relative group cursor-pointer h-full flex items-center"
+                        onMouseEnter={() => setIsDesktopServicesOpen(true)}
+                        onMouseLeave={() => setIsDesktopServicesOpen(false)}
+                        onClick={() => setIsDesktopServicesOpen(!isDesktopServicesOpen)}
+                    >
                         <span className={`flex items-center gap-1 hover:text-amber-400 transition-colors ${location.pathname.startsWith('/services') ? 'text-amber-500' : ''}`}>
-                            Nos Solutions <ChevronDown size={16} />
+                            Nos Solutions <ChevronDown size={16} className={`transition-transform duration-200 ${isDesktopServicesOpen ? 'rotate-180' : ''}`} />
                         </span>
 
                         {/* Dropdown Content */}
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[240px]">
+                        <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-200 min-w-[240px] ${isDesktopServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
                             <div className="bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden py-2 flex flex-col">
                                 {serviceLinks.map((link) => (
                                     <Link
@@ -64,8 +108,12 @@ const Navbar = () => {
                         </div>
                     </div>
 
+                    <Link to="/services" className={`hover:text-amber-400 transition-colors ${location.pathname === '/services' ? 'text-amber-500' : ''}`}>
+                        Services
+                    </Link>
+
                     <Link to="/conseils" className={`hover:text-amber-400 transition-colors ${location.pathname === '/conseils' ? 'text-amber-500' : ''}`}>
-                        Ressources
+                        Actualités
                     </Link>
 
                     <Link to="/team" className={`hover:text-amber-400 transition-colors px-3 py-1 rounded-full border border-transparent hover:border-amber-400/30 ${location.pathname === '/team' ? 'text-amber-500 bg-amber-50 border-amber-200' : ''}`}>
@@ -131,11 +179,19 @@ const Navbar = () => {
                         </div>
 
                         <Link
+                            to="/services"
+                            className="text-gray-800 text-lg font-medium text-left border-b border-gray-50 pb-2"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Services
+                        </Link>
+
+                        <Link
                             to="/conseils"
                             className="text-gray-800 text-lg font-medium text-left border-b border-gray-50 pb-2"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Ressources
+                            Actualités
                         </Link>
 
                         <Link

@@ -66,7 +66,7 @@ const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: strin
 
 const StatsSection = () => {
     return (
-        <section className="relative py-16 sm:py-20 md:py-28 w-full overflow-hidden bg-[#2a7f55]">
+        <section className="relative py-8 sm:py-10 md:py-12 w-full overflow-hidden bg-[#2a7f55]">
             {/* Background Gradient & Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)] via-[#226d48] to-[#1a5236]"></div>
 

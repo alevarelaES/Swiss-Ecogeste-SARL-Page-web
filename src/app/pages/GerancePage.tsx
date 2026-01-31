@@ -1,26 +1,23 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
-import { Calculator, BarChart3, ArrowRight, Building, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
 
 const GerancePage = () => {
     const services = [
         {
-            icon: Calculator,
             title: "Calcul IDC",
             description: "Calcul de l'Indice de Dépense de Chaleur obligatoire. Suivi annuel et optimisation pour éviter les sanctions.",
             image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800"
         },
         {
-            icon: Building,
             title: "Audit de Parc",
             description: "Analyse globale de portefeuilles immobiliers. Identification des objets prioritaires pour la rénovation.",
             image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800"
         },
         {
-            icon: BarChart3,
             title: "Subventions",
             description: "Gestion complète des demandes de subventions (Programme Bâtiments, etc.) pour vos travaux de rénovation.",
             image: "https://images.unsplash.com/photo-1759398430338-8057876edf61?q=80&w=800"
@@ -84,9 +81,6 @@ const GerancePage = () => {
 
                                 {/* Content */}
                                 <div className="p-8 text-center">
-                                    <div className="mx-auto w-16 h-16 bg-[var(--primary)]/10 text-[var(--primary)] rounded-md flex items-center justify-center mb-6 -mt-16 relative z-10 shadow-lg bg-white border-4 border-white">
-                                        <service.icon size={32} />
-                                    </div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
                                     <p className="text-gray-600 text-sm leading-relaxed">
                                         {service.description}
@@ -102,4 +96,3 @@ const GerancePage = () => {
 };
 
 export default GerancePage;
-

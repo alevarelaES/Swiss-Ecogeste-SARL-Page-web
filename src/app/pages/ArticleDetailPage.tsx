@@ -152,22 +152,6 @@ const ArticleDetailPage = () => {
                     </Reveal>
                 </div>
             </main>
-
-            {/* FULL WIDTH CTA COMPACT */}
-            <section className="bg-[var(--primary)] py-16 px-6 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-[0.03] rounded-full -mr-32 -mt-32"></div>
-                <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-                    <div className="text-center md:text-left">
-                        <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">Audit gratuit de votre installation</h2>
-                        <p className="text-white/80 text-lg font-medium">Découvrez vos subventions réelles avec un expert.</p>
-                    </div>
-                    <Link to="/contact">
-                        <Button size="lg" className="bg-white text-[var(--primary)] hover:bg-gray-100 font-black px-12 py-7 h-auto rounded-full shadow-xl transition-all hover:scale-105 active:scale-95 text-lg">
-                            Prendre Rendez-vous
-                        </Button>
-                    </Link>
-                </div>
-            </section>
         </div>
     );
 };

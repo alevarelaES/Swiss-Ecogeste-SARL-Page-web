@@ -16,11 +16,11 @@ const partners: Partner[] = [
 ];
 
 const PartnerLogo = ({ partner }: { partner: Partner }) => (
-    <div className="mx-8 md:mx-16 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 select-none">
+    <div className="mx-8 md:mx-16 flex items-center justify-center select-none group">
         <img
             src={`/partners/${partner.logo}`}
             alt={partner.name}
-            className="h-16 md:h-20 w-auto object-contain max-w-[180px] md:max-w-[220px] pointer-events-none"
+            className="h-16 md:h-20 w-auto object-contain max-w-[180px] md:max-w-[220px] filter transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-md"
             onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
@@ -33,7 +33,7 @@ const PartnerLogo = ({ partner }: { partner: Partner }) => (
     </div>
 );
 
-const Partners = () => {
+const Partners = ({ sectionTitle }: { sectionTitle?: string }) => {
     // Configuration: loop for infinite scroll, dragFree for "momentum" scrolling (hyper scroll)
     const [emblaRef] = useEmblaCarousel(
         { loop: true, dragFree: true },
@@ -48,20 +48,25 @@ const Partners = () => {
     );
 
     return (
-        <section id="partners" className="py-12 md:py-16 lg:py-20 bg-[var(--primary)]/5 border-y border-gray-100 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 text-center mb-12">
+        <section id="partners" className="py-8 md:py-10 bg-[#f0f4f2] border-y border-gray-200/60 overflow-hidden relative">
+            {/* Background decoration for better section definition */}
+            <div className="absolute inset-0 opacity-40 pointer-events-none">
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+            </div>
+            <div className="max-w-7xl mx-auto px-6 text-center mb-16 relative z-10">
                 <div className="flex flex-col items-center gap-3">
-                    <span className="h-1 w-12 bg-[#1b5e39] rounded-md"></span>
-                    <h3 className="text-[#1b5e39] font-bold text-lg tracking-[0.2em] uppercase">
-                        Ils nous font confiance et recommandent nos services
+                    <span className="h-1.5 w-12 bg-amber-500 rounded-full"></span>
+                    <h3 className="text-[#1b5e39] font-black text-xl tracking-[0.1em] uppercase">
+                        {sectionTitle || "Ils nous font confiance et recommandent nos services"}
                     </h3>
                 </div>
             </div>
 
             <div className="relative">
-                {/* Fade Gradients */}
-                <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+                {/* Fade Gradients for the carousel */}
+                <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#f0f4f2] via-[#f0f4f2]/80 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#f0f4f2] via-[#f0f4f2]/80 to-transparent z-10 pointer-events-none"></div>
 
                 {/* Embla Carousel Container */}
                 <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>

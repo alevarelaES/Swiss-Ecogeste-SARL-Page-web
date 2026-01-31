@@ -10,7 +10,7 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
 
     return (
         <Reveal delay={service.delay}>
-            <Link to={`/service/${service.id}`} className="block h-full">
+            <Link to={service.link} className="block h-full">
                 <motion.div
                     className="group bg-white h-full flex flex-col border border-gray-100 hover:border-amber-400 hover:shadow-2xl transition-all duration-300"
                     whileHover="hover"
@@ -68,7 +68,7 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
 
 const Services = () => {
     return (
-        <section id="services" className="relative py-16 md:py-20 lg:py-24 bg-white overflow-hidden">
+        <section id="services" className="relative py-8 md:py-10 lg:py-12 bg-white overflow-hidden">
             {/* Background Image (Parallax) */}
             <div
                 className="absolute inset-0 bg-fixed bg-cover bg-center grayscale opacity-40"

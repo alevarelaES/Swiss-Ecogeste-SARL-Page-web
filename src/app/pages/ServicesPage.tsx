@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { Home, Building2, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from "../components/ui/button";
@@ -43,7 +44,7 @@ const ServicesPage = () => {
                 "Monitoring énergétique en temps réel",
                 "Stratégie de décarbonation"
             ],
-            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800"
+            image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800"
         }
     ];
 
@@ -71,9 +72,6 @@ const ServicesPage = () => {
                         <Reveal key={index} delay={index * 0.1}>
                             <div className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center`}>
                                 <div className="md:w-1/2">
-                                    <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
-                                        <service.icon className="w-8 h-8 text-[var(--primary)]" />
-                                    </div>
                                     <h2 className="text-3xl font-bold text-gray-900 mb-4">{service.title}</h2>
                                     <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                                         {service.description}
@@ -86,8 +84,10 @@ const ServicesPage = () => {
                                             </li>
                                         ))}
                                     </ul>
-                                    <Button className="bg-[var(--primary)] hover:bg-green-700 text-white rounded-md px-8 group">
-                                        Demander un devis <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    <Button asChild className="bg-[var(--primary)] hover:bg-green-700 text-white rounded-md px-8 group">
+                                        <Link to="/contact">
+                                            Demander un devis <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        </Link>
                                     </Button>
                                 </div>
                                 <div className="md:w-1/2 w-full">

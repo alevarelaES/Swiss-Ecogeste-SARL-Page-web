@@ -33,9 +33,9 @@ const Home = () => {
             />
             <div className="bg-white">
                 <Hero />
+                <About />
                 <StatsSection />
                 <ClientTypeSection />
-                <About />
                 <ArticlesSection />
                 <Partners />
                 <ContactSection compact />
