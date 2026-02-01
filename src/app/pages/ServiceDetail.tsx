@@ -2,11 +2,16 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
-import { services } from '../data/services';
+import { getServices } from '../data/services';
 import Reveal from '../components/animations/Reveal';
+import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const ServiceDetail = () => {
     const { id } = useParams<{ id: string }>();
+    const { t, i18n } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
+    const services = getServices(i18n.language);
     const service = services.find(s => s.id === id);
 
     useEffect(() => {
@@ -17,9 +22,9 @@ const ServiceDetail = () => {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">Service non trouvé</h2>
-                    <Link to="/" className="text-green-600 hover:text-green-700 font-medium">
-                        Retour à l'accueil
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('service_detail.not_found')}</h2>
+                    <Link to={getLocalizedPath('/')} className="text-green-600 hover:text-green-700 font-medium">
+                        {t('service_detail.back_home')}
                     </Link>
                 </div>
             </div>
@@ -39,9 +44,9 @@ const ServiceDetail = () => {
                 <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
                 <div className="relative z-10 h-full flex flex-col justify-center max-w-7xl mx-auto px-6 pt-20">
-                    <Link to="/#services" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors width-fit">
+                    <Link to={getLocalizedPath('/#services')} className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors width-fit">
                         <ArrowLeft size={20} />
-                        <span className="font-medium">Retour aux services</span>
+                        <span className="font-medium">{t('service_detail.back_services')}</span>
                     </Link>
 
                     <motion.div
@@ -70,18 +75,18 @@ const ServiceDetail = () => {
                     {/* Main Content */}
                     <div>
                         <Reveal>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6">Description Complète</h2>
+                            <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('service_detail.full_description')}</h2>
                             <p className="text-gray-600 text-lg leading-relaxed mb-8">
                                 {service.fullDescription}
                             </p>
 
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">Ce que nous proposons :</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('service_detail.what_we_offer')}</h3>
                             <ul className="space-y-4 mb-12">
                                 {[1, 2, 3].map((item) => (
                                     <li key={item} className="flex items-start gap-3">
                                         <CheckCircle className="text-green-600 mt-1 flex-shrink-0" size={20} />
                                         <span className="text-gray-600">
-                                            Point clé ou avantage spécifique lié à {service.title} pour garantir une performance optimale.
+                                            {t('service_detail.placeholder_point', { title: service.title })}
                                         </span>
                                     </li>
                                 ))}
@@ -91,15 +96,15 @@ const ServiceDetail = () => {
 
                     {/* Sidebar / CTA */}
                     <div className="bg-gray-50 p-8 rounded-2xl h-fit sticky top-24">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Intéressé ?</h3>
+                        <h3 className="text-xl font-bold text-gray-900 mb-4">{t('service_detail.interested')}</h3>
                         <p className="text-gray-500 mb-6 text-sm">
-                            Contactez nos experts pour obtenir un devis personnalisé.
+                            {t('service_detail.contact_experts')}
                         </p>
                         <Link
-                            to="/contact"
+                            to={getLocalizedPath('/contact')}
                             className="block w-full bg-green-600 text-white text-center font-bold py-4 rounded-xl hover:bg-green-700 transition-colors shadow-lg shadow-green-600/20"
                         >
-                            Demander un Devis
+                            {t('service_detail.request_quote')}
                         </Link>
                     </div>
                 </div>

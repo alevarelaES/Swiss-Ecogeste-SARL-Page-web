@@ -10,43 +10,15 @@ import {
     CarouselItem,
     CarouselDots
 } from "../ui/carousel";
-
-const slides = [
-    {
-        img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070',
-        title: 'La transition énergétique simple et rentable',
-        sub: "Swiss Ecogestes accompagne les propriétaires de villas vers une autonomie durable avec des solutions d'audit et de rénovation haute performance.",
-        features: ['Audits CECB', 'Pompes à chaleur', 'Solaire Photovoltaïque'],
-        buttonText: 'Solutions pour Villas',
-        buttonLink: '/services/villa'
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070',
-        title: 'Partenaire des régies immobilières',
-        sub: 'Valorisez votre parc immobilier et anticipez les obligations légales avec nos audits IDC et stratégies de rénovation.',
-        features: ['Calcul IDC', 'Audit de Parc', 'Subventions'],
-        buttonText: 'Solutions pour Régies',
-        buttonLink: '/services/gerance'
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070',
-        title: 'Performance énergétique industrielle',
-        sub: "Réduisez vos coûts d'exploitation et conformez-vous aux nouvelles exigences légales avec nos audits grands consommateurs.",
-        features: ['Audit Grands Consommateurs', 'Optimisation Process', 'Exemption taxe CO2'],
-        buttonText: 'Solutions pour Entreprises',
-        buttonLink: '/services/entreprise'
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=2070',
-        title: 'Accompagnement des collectivités',
-        sub: 'Swiss Ecogestes soutient les communes et services industriels dans leur stratégie de transition énergétique territoriale.',
-        features: ['Audits Territoriaux', 'Sensibilisation Citoyenne', 'Programmes Subventionnés'],
-        buttonText: 'Solutions pour Communes',
-        buttonLink: '/services/communes'
-    }
-];
+import { useTranslation } from 'react-i18next';
+import { getHeroSlides } from '../../data/heroSlides';
+import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 
 const Hero = () => {
+    const { t, i18n } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
+    const heroSlides = getHeroSlides(i18n.language);
+
     return (
         <section className="relative h-screen w-full overflow-hidden bg-gray-950">
             <Carousel
@@ -55,7 +27,7 @@ const Hero = () => {
                 className="w-full h-full"
             >
                 <CarouselContent className="h-full">
-                    {slides.map((slide, index) => (
+                    {heroSlides.map((slide, index) => (
                         <CarouselItem key={index} className="relative h-screen w-full flex items-center">
                             {/* Background with advanced overlay */}
                             <div className="absolute inset-0">
@@ -107,13 +79,13 @@ const Hero = () => {
                                         className="flex flex-col sm:flex-row items-start gap-4"
                                     >
                                         <Button asChild className="h-14 px-8 text-lg font-bold bg-[var(--primary)] hover:bg-[#1a4d3e] text-white rounded-xl transition-all hover:scale-105 active:scale-95">
-                                            <Link to="/contact">
-                                                Lancer mon projet
+                                            <Link to={getLocalizedPath('/contact')}>
+                                                {t('buttons.start_project')}
                                                 <ArrowRight className="ml-2 w-5 h-5" />
                                             </Link>
                                         </Button>
                                         <Button asChild variant="outline" className="h-14 px-8 text-lg font-bold bg-white/10 hover:bg-white/20 text-white border-white/20 rounded-xl backdrop-blur-md transition-all hover:scale-105 active:scale-95">
-                                            <Link to={slide.buttonLink}>
+                                            <Link to={getLocalizedPath(slide.buttonLink)}>
                                                 {slide.buttonText}
                                             </Link>
                                         </Button>

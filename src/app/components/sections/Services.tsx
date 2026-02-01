@@ -3,10 +3,11 @@ import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Reveal from '../animations/Reveal';
-import { services } from '../../data/services';
+import { getServices } from '../../data/services';
 import { BACKGROUND_IMAGES } from '../../config/images';
+import { useTranslation } from 'react-i18next';
 
-const ServiceCard = ({ service }: { service: typeof services[0] }) => {
+const ServiceCard = ({ service }: { service: any }) => {
 
     return (
         <Reveal delay={service.delay}>
@@ -67,6 +68,9 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
 };
 
 const Services = () => {
+    const { i18n } = useTranslation();
+    const services = getServices(i18n.language);
+
     return (
         <section id="services" className="relative py-8 md:py-10 lg:py-12 bg-white overflow-hidden">
             {/* Background Image (Parallax) */}

@@ -1,39 +1,7 @@
 import React from 'react';
 import { motion, useInView } from 'motion/react';
-import { Leaf, Building2, Zap, Users } from 'lucide-react';
-
-const stats = [
-    {
-        id: 1,
-        value: 50,
-        prefix: "Jusqu'à ",
-        suffix: "%",
-        label: "De Subventions",
-        icon: Zap,
-    },
-    {
-        id: 2,
-        value: 20,
-        prefix: "10 à ",
-        suffix: "%",
-        label: "D'économies d'énergie",
-        icon: Leaf,
-    },
-    {
-        id: 3,
-        value: 2,
-        prefix: "≈ ",
-        suffix: " ans",
-        label: "Retour sur investissement",
-        icon: Users, // Or another icon representing time/money overlap? Button/Clock? keeping Users for now or swapping
-    },
-    {
-        id: 4,
-        text: "Reconnus",
-        label: "Partenaires Institutionnels",
-        icon: Building2,
-    }
-];
+import { getStats, getStatsContent } from '../../data/statsData';
+import { useTranslation } from 'react-i18next';
 
 const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: string, suffix: string }) => {
     const ref = React.useRef(null);
@@ -65,6 +33,10 @@ const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: strin
 }
 
 const StatsSection = () => {
+    const { i18n } = useTranslation();
+    const stats = getStats(i18n.language);
+    const content = getStatsContent(i18n.language);
+
     return (
         <section className="relative py-8 sm:py-10 md:py-12 w-full overflow-hidden bg-[#2a7f55]">
             {/* Background Gradient & Pattern */}
@@ -89,7 +61,7 @@ const StatsSection = () => {
                             className="flex items-center justify-center md:justify-start gap-3 mb-4"
                         >
                             <span className="h-px w-10 bg-amber-400"></span>
-                            <span className="text-amber-400 font-bold tracking-widest uppercase text-sm">Performance Durable</span>
+                            <span className="text-amber-400 font-bold tracking-widest uppercase text-sm">{content.label}</span>
                         </motion.div>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
@@ -97,7 +69,7 @@ const StatsSection = () => {
                             viewport={{ once: true }}
                             className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-black text-white leading-tight"
                         >
-                            L'impact de nos actions
+                            {content.title}
                         </motion.h2>
                     </div>
                     <motion.div
@@ -107,7 +79,7 @@ const StatsSection = () => {
                         transition={{ delay: 0.2 }}
                         className="text-white/80 font-medium text-lg max-w-md text-right hidden md:block" // Hidden on mobile for cleaner look, or adapt
                     >
-                        Des résultats mesurables pour votre portefeuille et pour l'environnement suisse.
+                        {content.description}
                     </motion.div>
                 </div>
 
@@ -119,20 +91,20 @@ const StatsSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15 + 0.3 }}
-                            className={`flex flex-col justify-between items-center text-center lg:px-8 ${index !== stats.length - 1 ? 'lg:border-r border-white/10' : ''}`}
+                            className={`flex flex-col justify-start items-center lg:items-start text-center lg:text-left lg:px-8 h-full ${index !== stats.length - 1 ? 'lg:border-r border-white/10' : ''}`}
                         >
-                            <div className="mb-6">
+                            <div className="mb-4 lg:mb-6">
                                 <stat.icon size={32} className="text-amber-400 opacity-90" strokeWidth={1.5} />
                             </div>
                             <div>
-                                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 tracking-tight">
+                                <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 tracking-tight break-words w-full">
                                     {stat.value ? (
-                                        <Counter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+                                        <Counter value={stat.value} prefix={stat.prefix || ""} suffix={stat.suffix || ""} />
                                     ) : (
                                         <span>{stat.text}</span>
                                     )}
                                 </div>
-                                <p className="text-white/70 font-medium text-sm lg:text-base uppercase tracking-wider">
+                                <p className="text-white/70 font-medium text-sm lg:text-base uppercase tracking-wider leading-snug">
                                     {stat.label}
                                 </p>
                             </div>

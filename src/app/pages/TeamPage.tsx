@@ -4,94 +4,113 @@ import SEO from '../components/SEO';
 import Team from '../components/sections/Team';
 import Reveal from '../components/animations/Reveal';
 
+import { useTranslation } from 'react-i18next';
+
 const TeamPage = () => {
+    const { t } = useTranslation('common');
+
     return (
-        <div className="pt-32 pb-24">
+        <div className="pt-24 pb-12">
             <SEO
-                title="Notre Équipe d'Experts"
-                description="Rencontrez l'équipe de Swiss Ecogestes. Des experts passionnés par la transition énergétique et l'innovation durable."
+                title={t('team_page.seo_title')}
+                description={t('team_page.seo_desc')}
                 canonical="/equipe"
             />
-            <div className="max-w-7xl mx-auto px-6">
-                <Reveal>
-                    <div className="text-center mb-16">
-                        <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">À propos de nous</span>
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-6">L'expertise au service de la planète</h1>
-                        <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-                            Basée à Lausanne, Swiss Ecogestes réunit des ingénieurs et spécialistes dédiés à l'optimisation des infrastructures énergétiques suisses. Notre mission est d'accélérer la transition vers des modèles plus sobres et efficaces.
-                        </p>
-                    </div>
-                </Reveal>
+            {/* Intro Section - Full Width with Background */}
+            <div className="w-full bg-slate-50 py-12 mb-8">
+                <div className="max-w-4xl mx-auto px-6">
+                    <Reveal>
+                        <div className="text-center">
+                            <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">{t('team_page.header_label')}</span>
+                            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-6">{t('team_page.header_title')}</h1>
+                            <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
+                                {t('team_page.intro')}
+                            </p>
+                        </div>
+                    </Reveal>
+                </div>
             </div>
+
+            {/* Fading Line Separator - Added as requested */}
+            <div className="h-px w-full max-w-2xl mx-auto bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60 mb-8"></div>
+
+            {/* Team Grid - Reduced spacing */}
             <Team />
 
-            <div className="max-w-7xl mx-auto px-6 mt-20">
-                <Reveal>
-                    <div className="bg-gray-50 rounded-2xl p-8 md:p-12">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6">Nos Engagements & Valeurs</h2>
+            {/* Values Section - Light Design with Subtle Gold Accents */}
+            <div className="w-full bg-white py-12 mt-8 relative overflow-hidden">
+                {/* Abstract subtle background - very faint */}
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--primary)]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    <Reveal>
+                        <div className="text-center max-w-3xl mx-auto mb-12">
+                            {/* The "Fading Line" requested by user - Gold Accent */}
+                            <div className="h-px w-full max-w-2xl mx-auto bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60 mb-8"></div>
+
+                            <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('team_page.values_title')}</h2>
                             <p className="text-gray-600 text-lg leading-relaxed">
-                                Au-delà de l'expertise technique, nous apportons une sécurité et une tranquillité d'esprit à tous nos partenaires.
+                                {t('team_page.values_intro')}
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
                             {/* Value 1 */}
-                            <div className="flex flex-col items-center text-center">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100">
-                                    <ShieldCheck size={24} />
+                            <div className="flex flex-col items-center text-center group">
+                                <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
+                                    <ShieldCheck size={26} />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Partenaire de Confiance</h3>
-                                <p className="text-gray-600">Reconnu par la direction de l'énergie et les programmes cantonaux officiels.</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--primary)] transition-colors">{t('why_us.items.confiance.title')}</h3>
+                                <p className="text-gray-500 leading-relaxed text-sm group-hover:text-gray-600 transition-colors">{t('why_us.items.confiance.desc')}</p>
                             </div>
 
                             {/* Value 2 */}
-                            <div className="flex flex-col items-center text-center">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100">
-                                    <Scale size={24} />
+                            <div className="flex flex-col items-center text-center group">
+                                <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
+                                    <Scale size={26} />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Neutralité Commerciale</h3>
-                                <p className="text-gray-600">Conseils objectifs sans conflit d'intérêt. Nous ne vendons pas de matériel.</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--primary)] transition-colors">{t('why_us.items.neutrality.title')}</h3>
+                                <p className="text-gray-500 leading-relaxed text-sm group-hover:text-gray-600 transition-colors">{t('why_us.items.neutrality.desc')}</p>
                             </div>
 
                             {/* Value 3 */}
-                            <div className="flex flex-col items-center text-center">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100">
-                                    <Database size={24} />
+                            <div className="flex flex-col items-center text-center group">
+                                <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
+                                    <Database size={26} />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Protection des Données</h3>
-                                <p className="text-gray-600">Données hébergées en Suisse et traitées avec la plus stricte confidentialité.</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--primary)] transition-colors">{t('why_us.items.data.title')}</h3>
+                                <p className="text-gray-500 leading-relaxed text-sm group-hover:text-gray-600 transition-colors">{t('why_us.items.data.desc')}</p>
                             </div>
 
                             {/* Value 4 */}
-                            <div className="flex flex-col items-center text-center">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100">
-                                    <FileCheck size={24} />
+                            <div className="flex flex-col items-center text-center group">
+                                <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
+                                    <FileCheck size={26} />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Cadre Légal Maîtrisé</h3>
-                                <p className="text-gray-600">Veille juridique constante (MoPEC, IDC) pour garantir votre conformité.</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--primary)] transition-colors">{t('why_us.items.legal.title')}</h3>
+                                <p className="text-gray-500 leading-relaxed text-sm group-hover:text-gray-600 transition-colors">{t('why_us.items.legal.desc')}</p>
                             </div>
 
                             {/* Value 5 */}
-                            <div className="flex flex-col items-center text-center">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100">
-                                    <Award size={24} />
+                            <div className="flex flex-col items-center text-center group">
+                                <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
+                                    <Award size={26} />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Processus Qualité</h3>
-                                <p className="text-gray-600">Rigueur méthodologique suisse, de l'audit jusqu'à la réception des travaux.</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--primary)] transition-colors">{t('why_us.items.quality.title')}</h3>
+                                <p className="text-gray-500 leading-relaxed text-sm group-hover:text-gray-600 transition-colors">{t('why_us.items.quality.desc')}</p>
                             </div>
 
                             {/* Value 6 */}
-                            <div className="flex flex-col items-center text-center">
-                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100">
-                                    <Users size={24} />
+                            <div className="flex flex-col items-center text-center group">
+                                <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-[var(--primary)] shadow-sm mb-4 border border-gray-100 group-hover:bg-white group-hover:scale-105 transition-all duration-300">
+                                    <Users size={26} />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">Approche Humaine</h3>
-                                <p className="text-gray-600">Pédagogie et accompagnement personnalisé pour chaque projet.</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--primary)] transition-colors">{t('why_us.items.human.title')}</h3>
+                                <p className="text-gray-500 leading-relaxed text-sm group-hover:text-gray-600 transition-colors">{t('why_us.items.human.desc')}</p>
                             </div>
                         </div>
-                    </div>
-                </Reveal>
+                    </Reveal>
+                </div>
             </div>
         </div>
     );

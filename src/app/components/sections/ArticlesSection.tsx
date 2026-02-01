@@ -3,9 +3,15 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { articles } from '../../data/articles';
+import { getArticles } from '../../data/articles';
+import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 
 const ArticlesSection = () => {
+    const { t, i18n } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
+    const articles = getArticles(i18n.language);
+
     return (
         <section id="articles" className="py-8 md:py-10 lg:py-12 bg-white">
             <div className="max-w-7xl mx-auto px-6">
@@ -17,7 +23,7 @@ const ArticlesSection = () => {
                             viewport={{ once: true }}
                             className="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block"
                         >
-                            Blog & Actualités
+                            {t('blog.label')}
                         </motion.span>
                         <motion.h2
                             initial={{ opacity: 0, y: 10 }}
@@ -26,11 +32,11 @@ const ArticlesSection = () => {
                             transition={{ delay: 0.1 }}
                             className="text-3xl md:text-4xl font-bold text-[var(--primary)]"
                         >
-                            Dernières Publications
+                            {t('blog.title')}
                         </motion.h2>
                     </div>
-                    <Link to="/conseils" className="hidden md:flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
-                        Voir tous les articles <ArrowRight size={20} className="ml-2" />
+                    <Link to={getLocalizedPath('/conseils')} className="hidden md:flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
+                        {t('blog.view_all')} <ArrowRight size={20} className="ml-2" />
                     </Link>
                 </div>
 
@@ -44,8 +50,8 @@ const ArticlesSection = () => {
                             transition={{ delay: index * 0.1 }}
                         >
                             <Link
-                                to={`/conseils/${article.slug}`}
-                                state={{ from: '/#articles' }}
+                                to={getLocalizedPath(`/conseils/${article.slug}`)}
+                                state={{ from: getLocalizedPath('/#articles') }}
                                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col h-full border border-gray-100"
                             >
                                 <div className="relative h-56 overflow-hidden">
@@ -68,7 +74,7 @@ const ArticlesSection = () => {
                                         {article.excerpt}
                                     </p>
                                     <div className="text-[var(--primary)] font-black text-xs uppercase tracking-[0.2em] flex items-center mt-auto opacity-70 group-hover:opacity-100 transition-all">
-                                        LIRE LA SUITE <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                                        {t('blog.read_more')} <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
                                     </div>
                                 </div>
                             </Link>
@@ -77,8 +83,8 @@ const ArticlesSection = () => {
                 </div>
 
                 <div className="mt-12 md:hidden text-center">
-                    <Link to="/conseils" className="inline-flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
-                        Voir tous les articles <ArrowRight size={20} className="ml-2" />
+                    <Link to={getLocalizedPath('/conseils')} className="inline-flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
+                        {t('blog.view_all')} <ArrowRight size={20} className="ml-2" />
                     </Link>
                 </div>
             </div>

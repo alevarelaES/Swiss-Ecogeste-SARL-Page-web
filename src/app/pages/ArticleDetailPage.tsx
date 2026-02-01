@@ -1,18 +1,29 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
-import { articles } from '../data/articles';
+import { getArticles, articlesFr, articlesEn, articlesDe } from '../data/articles';
 import SEO from '../components/SEO';
 import { ArrowLeft, Calendar, Facebook, Linkedin, ChevronRight, User, Link as LinkIcon, Check, Sparkles } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import Reveal from '../components/animations/Reveal';
+import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const ArticleDetailPage = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const [copied, setCopied] = useState(false);
-    const article = articles.find(a => a.slug === slug);
+    const { t, i18n } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
+
+    // Logic to find article even if language changes (slugs might differ)
+    const allArticles = [...articlesFr, ...articlesEn, ...articlesDe];
+    const foundBySlug = allArticles.find(a => a.slug === slug);
+    const validId = foundBySlug ? foundBySlug.id : null;
+
+    const currentLangArticles = getArticles(i18n.language);
+    const article = currentLangArticles.find(a => a.id === validId) || currentLangArticles.find(a => a.slug === slug);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -63,14 +74,14 @@ const ArticleDetailPage = () => {
                             className="inline-flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-[var(--primary)] transition-colors group"
                         >
                             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-                            <span>Retour</span>
+                            <span>{t('buttons.back')}</span>
                         </button>
 
                         {/* Breadcrumb */}
                         <nav className="flex items-center gap-2 text-xs text-gray-400 font-bold uppercase tracking-wider">
-                            <Link to="/" className="hover:text-gray-900 transition-colors">Accueil</Link>
+                            <Link to={getLocalizedPath('/')} className="hover:text-gray-900 transition-colors">{t('nav.home')}</Link>
                             <ChevronRight size={10} strokeWidth={4} />
-                            <Link to="/conseils" className="hover:text-gray-900 transition-colors">Le Journal</Link>
+                            <Link to={getLocalizedPath('/conseils')} className="hover:text-gray-900 transition-colors">{t('blog.journal')}</Link>
                             <ChevronRight size={10} strokeWidth={4} />
                             <span className="text-[var(--primary)] font-black">{article.category}</span>
                         </nav>
@@ -90,7 +101,7 @@ const ArticleDetailPage = () => {
                                         <User size={18} className="text-[var(--primary)]" />
                                     </div>
                                     <div className="text-left text-sm">
-                                        <p className="font-bold text-gray-900">Expert Swiss Ecogeste</p>
+                                        <p className="font-bold text-gray-900">{t('blog.expert')}</p>
                                         <p className="text-gray-500 font-medium">{article.date}</p>
                                     </div>
                                 </div>
@@ -113,7 +124,7 @@ const ArticleDetailPage = () => {
             </header>
 
             <main className="bg-gray-100 py-12 lg:py-16">
-                <div className="max-w-3xl mx-auto">
+                <div className="max-w-3xl mx-auto px-6">
                     <Reveal delay={0.3}>
                         <article
                             className="prose prose-lg prose-slate max-w-none 
@@ -132,7 +143,7 @@ const ArticleDetailPage = () => {
 
                         {/* SHARE SECTION CENTERED BOTTOM */}
                         <div className="mt-16 pt-12 border-t border-gray-100">
-                            <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-400 mb-6 text-center">Partager l'article</h3>
+                            <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-400 mb-6 text-center">{t('blog.share')}</h3>
                             <div className="flex justify-center gap-3 mb-6">
                                 <a href={shareLinks.x} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-900 border border-gray-100 hover:bg-black hover:text-white hover:border-black transition-all shadow-sm">
                                     <XIcon />
@@ -145,7 +156,7 @@ const ArticleDetailPage = () => {
                                 </a>
                                 <button onClick={handleCopyLink} className={`px-4 h-10 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-wider transition-all border ${copied ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-gray-50 text-gray-600 border-gray-100 hover:border-gray-300'}`}>
                                     {copied ? <Check size={14} strokeWidth={3} /> : <LinkIcon size={14} strokeWidth={3} />}
-                                    {copied ? "Copié !" : "Copier"}
+                                    {copied ? t('blog.copied') : t('blog.copy')}
                                 </button>
                             </div>
                         </div>

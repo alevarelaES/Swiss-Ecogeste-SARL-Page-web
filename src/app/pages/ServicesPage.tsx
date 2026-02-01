@@ -4,46 +4,33 @@ import SEO from '../components/SEO';
 import { Home, Building2, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import Reveal from '../components/animations/Reveal';
+import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const ServicesPage = () => {
+    const { t } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
+
     const detailedServices = [
         {
-            title: "Pour les Particuliers",
+            title: t('services_page.particuliers.title'),
             icon: Home,
-            description: "Améliorez le confort de votre foyer tout en réduisant vos factures énergétiques. Nous vous guidons pas à pas.",
-            features: [
-                "Audit énergétique CECB",
-                "Assainissement de l'enveloppe thermique",
-                "Remplacement de système de chauffage",
-                "Installation de panneaux photovoltaïques",
-                "Gestion des demandes de subventions"
-            ],
+            description: t('services_page.particuliers.description'),
+            features: t('services_page.particuliers.features', { returnObjects: true }) as string[],
             image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
         },
         {
-            title: "Pour les Gérances",
+            title: t('services_page.gerances.title'),
             icon: Building2,
-            description: "Valorisez votre patrimoine immobilier et simplifiez la gestion des charges pour vos locataires.",
-            features: [
-                "Audit de parc immobilier (CECB Plus)",
-                "Contrat de performance énergétique",
-                "Bornes de recharge pour véhicules électriques",
-                "Développement de regroupements d'autoconsommateurs (RCP)",
-                "Planification thermique à long terme"
-            ],
+            description: t('services_page.gerances.description'),
+            features: t('services_page.gerances.features', { returnObjects: true }) as string[],
             image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800"
         },
         {
-            title: "Pour les Entreprises",
+            title: t('services_page.entreprises.title'),
             icon: Zap,
-            description: "Engagez votre entreprise dans la durabilité tout en optimisant vos flux opérationnels.",
-            features: [
-                "Convention d'objectifs (Grands Consommateurs)",
-                "Optimisation de l'air comprimé et du froid",
-                "Éclairage intelligent et LED haut rendement",
-                "Monitoring énergétique en temps réel",
-                "Stratégie de décarbonation"
-            ],
+            description: t('services_page.entreprises.description'),
+            features: t('services_page.entreprises.features', { returnObjects: true }) as string[],
             image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800"
         }
     ];
@@ -51,18 +38,18 @@ const ServicesPage = () => {
     return (
         <div className="pt-32 pb-24">
             <SEO
-                title="Nos Services Énergétiques"
-                description="Découvrez nos solutions sur mesure pour particuliers, gérances et entreprises : audits CECB, rénovations, solaire et optimisation énergétique."
+                title={t('services_page.seo_title')}
+                description={t('services_page.seo_desc')}
                 canonical="/services"
             />
 
             <div className="max-w-7xl mx-auto px-6">
                 <Reveal>
                     <div className="text-center mb-20">
-                        <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">Expertise & Solutions</span>
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-6">Nos services à 360°</h1>
+                        <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">{t('services_page.label')}</span>
+                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-6">{t('services_page.title')}</h1>
                         <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-                            De l'audit initial à la mise en œuvre finale, nous fournissons l'expertise technique nécessaire pour transformer votre consommation énergétique.
+                            {t('services_page.intro')}
                         </p>
                     </div>
                 </Reveal>
@@ -85,8 +72,8 @@ const ServicesPage = () => {
                                         ))}
                                     </ul>
                                     <Button asChild className="bg-[var(--primary)] hover:bg-green-700 text-white rounded-md px-8 group">
-                                        <Link to="/contact">
-                                            Demander un devis <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        <Link to={getLocalizedPath('/contact')}>
+                                            {t('services_page.cta_quote')} <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </Button>
                                 </div>

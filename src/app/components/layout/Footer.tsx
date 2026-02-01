@@ -3,68 +3,74 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Linkedin, Instagram, Mail, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../../hooks/useLocalizedPath';
+import { BRAND_IMAGES } from '../../config/images';
 
 const Footer = () => {
+    const { t } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
+
     return (
-        <footer className="bg-gray-50 text-gray-900 pt-16 sm:pt-20 md:pt-24 pb-8 sm:pb-12 font-sans overflow-hidden border-t border-gray-100">
+        <footer className="bg-gray-50 text-gray-900 pt-10 sm:pt-12 md:pt-16 pb-6 sm:pb-8 font-sans overflow-hidden border-t border-gray-100">
             <div className="max-w-7xl mx-auto px-6">
                 {/* TOP SECTION: COLUMNS */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16 mb-12 md:mb-20 border-b border-gray-200 pb-12 md:pb-20">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8 md:mb-12 border-b border-gray-200 pb-8 md:pb-12">
 
                     {/* COMPANY INFO (4 columns) */}
                     <div className="md:col-span-4 max-w-sm">
-                        <Link to="/" className="flex items-center gap-2 mb-6 group">
+                        <Link to={getLocalizedPath('/')} className="flex items-center gap-2 mb-4 group">
                             <img
-                                src="/Logo/Logo_EcoGeste_Sans_Fond.png"
+                                src={BRAND_IMAGES.logo}
                                 alt="Swiss Ecogeste Logo"
-                                className="h-10 w-auto group-hover:scale-105 transition-transform"
+                                className="h-8 w-auto group-hover:scale-105 transition-transform"
                             />
-                            <span className="text-xl font-black tracking-tighter">Swiss Ecogestes</span>
+                            <span className="text-lg font-black tracking-tighter">{t('common.swissecogestes')}</span>
                         </Link>
-                        <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                            Votre partenaire expert pour la transition énergétique en Suisse Romande. <br /> Solutions durables et accompagnement sur-mesure.
+                        <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                            {t('footer.slogan')}
                         </p>
 
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <a href="mailto:info@swissecogestes.ch" className="flex items-center gap-3 text-sm text-gray-500 hover:text-[var(--primary)] transition-colors">
                                 <Mail size={16} strokeWidth={2.5} className="text-gray-400" />
                                 info@swissecogestes.ch
                             </a>
                             <div className="flex items-start gap-3 text-sm text-gray-500">
                                 <MapPin size={16} strokeWidth={2.5} className="text-gray-400 mt-1 shrink-0" />
-                                <span>Présence sur les cantons de <br /> <span className="font-bold text-gray-700">Vaud et Genève</span></span>
+                                <span>{t('footer.presence')} <br /> <span className="font-bold text-gray-700">Vaud & Genève</span></span>
                             </div>
                         </div>
                     </div>
 
                     {/* LINKS COLUMNS (8 columns) */}
-                    <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12 text-left">
+                    <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 text-left">
                         {/* Column 1: Services */}
                         <div>
-                            <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Nos Services</h4>
-                            <ul className="space-y-4 text-[13px] font-bold text-gray-400/80">
-                                <li><Link to="/services/villa" className="hover:text-[var(--primary)] transition-colors">Propriétaires</Link></li>
-                                <li><Link to="/services/gerance" className="hover:text-[var(--primary)] transition-colors">Gérances (IDC)</Link></li>
-                                <li><Link to="/services/entreprise" className="hover:text-[var(--primary)] transition-colors">Entreprises</Link></li>
-                                <li><Link to="/services/communes" className="hover:text-[var(--primary)] transition-colors">Communes</Link></li>
+                            <h4 className="text-xs font-black uppercase tracking-widest text-gray-900 mb-4">{t('footer.services')}</h4>
+                            <ul className="space-y-2 text-[13px] font-bold text-gray-400/80">
+                                <li><Link to={getLocalizedPath('/services/villa')} className="hover:text-[var(--primary)] transition-colors">{t('nav.villa')}</Link></li>
+                                <li><Link to={getLocalizedPath('/services/gerance')} className="hover:text-[var(--primary)] transition-colors">{t('nav.gerance')}</Link></li>
+                                <li><Link to={getLocalizedPath('/services/entreprise')} className="hover:text-[var(--primary)] transition-colors">{t('nav.entreprise')}</Link></li>
+                                <li><Link to={getLocalizedPath('/services/communes')} className="hover:text-[var(--primary)] transition-colors">{t('nav.communes')}</Link></li>
                             </ul>
                         </div>
 
                         {/* Column 2: Entreprise */}
                         <div>
-                            <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Swiss Ecogestes</h4>
-                            <ul className="space-y-4 text-[13px] font-bold text-gray-400/80">
-                                <li><Link to="/#about" className="hover:text-[var(--primary)] transition-colors">À propos</Link></li>
-                                <li><Link to="/team" className="hover:text-[var(--primary)] transition-colors">Notre équipe</Link></li>
-                                <li><Link to="/conseils" className="hover:text-[var(--primary)] transition-colors">Actualités</Link></li>
-                                <li><Link to="/contact" className="hover:text-[var(--primary)] transition-colors">Contact</Link></li>
+                            <h4 className="text-xs font-black uppercase tracking-widest text-gray-900 mb-4">{t('footer.company')}</h4>
+                            <ul className="space-y-2 text-[13px] font-bold text-gray-400/80">
+                                <li><Link to={getLocalizedPath('/#about')} className="hover:text-[var(--primary)] transition-colors">{t('nav.about')}</Link></li>
+                                <li><Link to={getLocalizedPath('/team')} className="hover:text-[var(--primary)] transition-colors">{t('footer.team')}</Link></li>
+                                <li><Link to={getLocalizedPath('/conseils')} className="hover:text-[var(--primary)] transition-colors">{t('footer.blog')}</Link></li>
+                                <li><Link to={getLocalizedPath('/contact')} className="hover:text-[var(--primary)] transition-colors">{t('nav.contact')}</Link></li>
                             </ul>
                         </div>
 
                         {/* Column 3: Partenaires Officiels */}
                         <div>
-                            <h4 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6">Partenaires</h4>
-                            <ul className="space-y-4 text-[13px] font-bold text-gray-400/80">
+                            <h4 className="text-xs font-black uppercase tracking-widest text-gray-900 mb-4">{t('footer.partners')}</h4>
+                            <ul className="space-y-2 text-[13px] font-bold text-gray-400/80">
                                 <li className="hover:text-[var(--primary)] cursor-default">SIG Éco21</li>
                                 <li className="hover:text-[var(--primary)] cursor-default">Suisse Énergie</li>
                                 <li className="hover:text-[var(--primary)] cursor-default transition-colors">Chauffez Renouvelable</li>
@@ -75,20 +81,20 @@ const Footer = () => {
                 </div>
 
                 {/* BOTTOM SECTION: COPYRIGHT AND SOCIALS */}
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                     {/* Copyright */}
-                    <p className="text-[13px] font-bold text-gray-400/80 order-2 md:order-1">
-                        © 2026 Swiss Ecogestes - Tous droits réservés
+                    <p className="text-[12px] font-bold text-gray-400/80 order-2 md:order-1">
+                        © 2026 {t('common.swissecogestes')} - {t('footer.rights')}
                     </p>
 
                     {/* Legal Links (centered in reference) */}
-                    <div className="flex flex-wrap justify-center gap-8 text-[13px] font-bold text-gray-400/80 order-3 md:order-2">
-                        <Link to="/" className="hover:text-[var(--primary)] transition-colors">Mentions Légales</Link>
-                        <Link to="/" className="hover:text-[var(--primary)] transition-colors">Confidentialité</Link>
-                        <Link to="/" className="hover:text-[var(--primary)] transition-colors">Cookie Policy</Link>
+                    <div className="flex flex-wrap justify-center gap-6 text-[12px] font-bold text-gray-400/80 order-3 md:order-2">
+                        <Link to={getLocalizedPath('/mentions-legales')} className="hover:text-[var(--primary)] transition-colors">{t('footer.mentions')}</Link>
+                        <Link to={getLocalizedPath('/confidentialite')} className="hover:text-[var(--primary)] transition-colors">{t('footer.privacy')}</Link>
+                        <Link to={getLocalizedPath('/cookies')} className="hover:text-[var(--primary)] transition-colors">{t('footer.cookies')}</Link>
                     </div>
 
-                    <div className="flex items-center gap-6 order-1 md:order-3">
+                    <div className="flex items-center gap-4 order-1 md:order-3">
                         <motion.a
                             whileHover={{ y: -3, scale: 1.1 }}
                             href="https://www.linkedin.com/company/swissecogestes/"
@@ -96,7 +102,7 @@ const Footer = () => {
                             rel="noopener noreferrer"
                             className="text-[#0077b5] transition-colors"
                         >
-                            <Linkedin size={22} fill="currentColor" strokeWidth={0} />
+                            <Linkedin size={20} fill="currentColor" strokeWidth={0} />
                         </motion.a>
                         <motion.a
                             whileHover={{ y: -3, scale: 1.1 }}
@@ -105,7 +111,7 @@ const Footer = () => {
                             rel="noopener noreferrer"
                             className="text-[#E4405F] transition-colors"
                         >
-                            <Instagram size={22} />
+                            <Instagram size={20} />
                         </motion.a>
                     </div>
                 </div>

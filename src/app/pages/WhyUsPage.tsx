@@ -4,56 +4,61 @@ import Reveal from '../components/animations/Reveal';
 import { ShieldCheck, FileCheck, Scale, Award, Database, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "../components/ui/button";
+import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const WhyUsPage = () => {
+    const { t } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
+
     const reasons = [
         {
             icon: ShieldCheck,
-            title: "Partenaire de confiance",
-            description: "Nous collaborons étroitement avec la DIREN (Direction de l'énergie), les SIG et les programmes cantonaux pour garantir la conformité de chaque projet."
+            title: t('why_us.items.confiance.title'),
+            description: t('why_us.items.confiance.desc')
         },
         {
             icon: FileCheck,
-            title: "Respect du Cadre Légal",
-            description: "Une veille juridique constante pour vous assurer que toutes les installations respectent les dernières normes fédérales et cantonales (MoPEC, IDC, etc.)."
+            title: t('why_us.items.legal.title'),
+            description: t('why_us.items.legal.desc')
         },
         {
             icon: Database,
-            title: "Protection des Données",
-            description: "Vos données énergétiques sont sensibles. Nous les traitons avec la plus stricte confidentialité, hébergées en Suisse et sécurisées."
+            title: t('why_us.items.data.title'),
+            description: t('why_us.items.data.desc')
         },
         {
             icon: Scale,
-            title: "Neutralité Commerciale",
-            description: "Nous ne vendons pas de matériel. Nos recommandations sont basées uniquement sur VOTRE intérêt et la performance technique, sans conflit d'intérêt."
+            title: t('why_us.items.neutrality.title'),
+            description: t('why_us.items.neutrality.desc')
         },
         {
             icon: Award,
-            title: "Processus Qualité",
-            description: "Chaque audit et chaque chantier suit un processus qualité rigoureux, de la première visite jusqu'à la réception finale des travaux."
+            title: t('why_us.items.quality.title'),
+            description: t('why_us.items.quality.desc')
         },
         {
             icon: Users,
-            title: "Approche Humaine",
-            description: "Parce que la transition énergétique est avant tout une aventure humaine, nous privilégions l'écoute, la pédagogie et l'accompagnement personnalisé."
+            title: t('why_us.items.human.title'),
+            description: t('why_us.items.human.desc')
         }
     ];
 
     return (
         <div className="pt-32 pb-24 bg-gray-50/50">
             <SEO
-                title="Pourquoi Choisir Swiss Ecogestes | Expertise & Confiance"
-                description="Découvrez nos valeurs : neutralité commerciale, expertise certifiée, gestion administrative complète et protection de vos données."
+                title={t('why_us.seo_title')}
+                description={t('why_us.seo_desc')}
                 canonical="/pourquoi"
             />
 
             <div className="max-w-7xl mx-auto px-6">
                 <Reveal>
                     <div className="text-center max-w-3xl mx-auto mb-20">
-                        <span className="text-[var(--primary)] font-bold tracking-widest uppercase text-sm mb-4 block">Nos Engagements</span>
-                        <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">Expertise, Neutralité et Confiance.</h1>
+                        <span className="text-[var(--primary)] font-bold tracking-widest uppercase text-sm mb-4 block">{t('why_us.label')}</span>
+                        <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">{t('why_us.title')}</h1>
                         <p className="text-xl text-gray-600 leading-relaxed">
-                            Swiss Ecogestes a été fondée sur une conviction simple : la transition énergétique doit être transparente, simple et rentable pour tous.
+                            {t('why_us.intro')}
                         </p>
                     </div>
                 </Reveal>
@@ -81,13 +86,13 @@ const WhyUsPage = () => {
                         <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full -ml-20 -mb-20"></div>
 
                         <div className="relative z-10 max-w-2xl mx-auto">
-                            <h2 className="text-3xl font-bold mb-6">Prêt à travailler avec un partenaire de confiance ?</h2>
+                            <h2 className="text-3xl font-bold mb-6">{t('why_us.cta_title')}</h2>
                             <p className="text-white/80 text-lg mb-8">
-                                Discutons de vos besoins et voyons comment nous pouvons vous aider à atteindre vos objectifs.
+                                {t('why_us.cta_desc')}
                             </p>
-                            <Link to="/contact">
+                            <Link to={getLocalizedPath('/contact')}>
                                 <Button size="lg" className="bg-white text-[var(--primary)] hover:bg-gray-100 font-bold px-8 py-6 rounded-full text-lg shadow-xl">
-                                    Prendre contact
+                                    {t('why_us.cta_button')}
                                 </Button>
                             </Link>
                         </div>

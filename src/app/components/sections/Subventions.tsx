@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Bike, Refrigerator, Sun, Building } from 'lucide-react';
 import Reveal from '../animations/Reveal';
+import { useTranslation } from 'react-i18next';
+import { getSubventionsContent } from '../../data/subventionsContent';
 
-const SubventionCard = ({ icon: Icon, title, description, delay }: { icon: any, title: string, description: string, delay: number }) => (
+const SubventionCard = ({ icon: Icon, title, description, delay, buttonText }: { icon: any, title: string, description: string, delay: number, buttonText: string }) => (
     <Reveal delay={delay}>
         <div className="bg-white p-8 rounded-lg border-b-4 border-amber-400 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all h-full flex flex-col items-center text-center">
             <div className="w-16 h-16 bg-amber-50 rounded-lg flex items-center justify-center mb-6">
@@ -12,13 +13,16 @@ const SubventionCard = ({ icon: Icon, title, description, delay }: { icon: any, 
             <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
             <p className="text-gray-500 text-sm mb-6 flex-grow">{description}</p>
             <a href="#contact" className="inline-block bg-green-500 hover:bg-amber-500 text-white px-6 py-2 rounded-md text-sm font-bold transition-colors">
-                Formulaire
+                {buttonText}
             </a>
         </div>
     </Reveal>
 );
 
 const Subventions = () => {
+    const { i18n } = useTranslation();
+    const subventionsContent = getSubventionsContent(i18n.language);
+
     return (
         <section className="py-16 relative bg-gray-200 overflow-hidden">
             {/* Decorative circles background */}
@@ -30,39 +34,25 @@ const Subventions = () => {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <Reveal>
                     <div className="text-center mb-12">
-                        <span className="text-amber-500 font-bold tracking-wider uppercase text-lg bg-amber-50 px-4 py-2 rounded-md inline-block">Subventions</span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-3 mb-4">Demande de subvention en ligne</h2>
+                        <span className="text-amber-500 font-bold tracking-wider uppercase text-lg bg-amber-50 px-4 py-2 rounded-md inline-block">{subventionsContent.sectionLabel}</span>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-3 mb-4">{subventionsContent.title}</h2>
                         <p className="text-gray-900 font-medium text-lg max-w-3xl mx-auto">
-                            Pour vous encourager à diminuer votre consommation d’énergie, nous vous aidons à obtenir des aides pour vos projets durables.
+                            {subventionsContent.description}
                         </p>
                     </div>
                 </Reveal>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    <SubventionCard
-                        delay={0.1}
-                        icon={Bike}
-                        title="Mobilité douce"
-                        description="Pour scooter, vélo électrique, batterie."
-                    />
-                    <SubventionCard
-                        delay={0.2}
-                        icon={Refrigerator}
-                        title="Électroménager"
-                        description="20% du prix d'achat d'un appareil efficient."
-                    />
-                    <SubventionCard
-                        delay={0.3}
-                        icon={Sun}
-                        title="Solaire thermique"
-                        description="Ajoutez une subvention à celle de l'État de Vaud."
-                    />
-                    <SubventionCard
-                        delay={0.4}
-                        icon={Building}
-                        title="Rénovation"
-                        description="25% sur une rénovation énergétique certifiée."
-                    />
+                    {subventionsContent.items.map((item, index) => (
+                        <SubventionCard
+                            key={index}
+                            delay={item.delay}
+                            icon={item.icon}
+                            title={item.title}
+                            description={item.description}
+                            buttonText={subventionsContent.buttonText}
+                        />
+                    ))}
                 </div>
             </div>
         </section>

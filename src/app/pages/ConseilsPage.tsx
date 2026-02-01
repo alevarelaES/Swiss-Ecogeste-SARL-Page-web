@@ -1,29 +1,35 @@
-import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
-import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
-import { Button } from "../components/ui/button";
+import { Calendar, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { articles } from '../data/articles';
+import { getArticles } from '../data/articles';
+import { getConseilsPageContent } from '../data/conseilsPageContent';
+import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const ConseilsPage = () => {
+    const { i18n } = useTranslation();
+    const { getLocalizedPath } = useLocalizedPath();
+    const content = getConseilsPageContent(i18n.language);
+    const articles = getArticles(i18n.language);
+
     return (
         <div className="pt-32 pb-24">
             <SEO
-                title="Actualités & Ressources | Swiss Ecogestes"
-                description="Retrouvez nos derniers articles, guides et actualités sur la transition énergétique, le solaire et les économies d'énergie en Suisse."
-                canonical="/conseils"
+                title={content.seo.title}
+                description={content.seo.description}
+                canonical={content.seo.canonical}
             />
 
             <div className="max-w-7xl mx-auto px-6">
                 <Reveal>
                     <div className="text-center mb-20">
-                        <span className="text-[var(--primary)] font-bold tracking-widest uppercase text-xs">Le Journal de l'Énergie</span>
+                        <span className="text-[var(--primary)] font-bold tracking-widest uppercase text-xs">{content.sectionLabel}</span>
                         <h1 className="text-5xl md:text-7xl font-black text-gray-900 mt-4 mb-6 tracking-tight">
-                            Actualités & <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">Ressources</span>
+                            {content.title} <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">{content.titleHighlight}</span>
                         </h1>
                         <p className="text-gray-500 max-w-2xl mx-auto text-xl font-light leading-relaxed">
-                            Décrypter la transition énergétique. Des guides pratiques, des analyses de marché et les dernières actualités sur les subventions.
+                            {content.description}
                         </p>
                     </div>
                 </Reveal>
@@ -31,7 +37,7 @@ const ConseilsPage = () => {
                 <div className="grid md:grid-cols-3 gap-10">
                     {articles.map((article, index) => (
                         <Reveal key={index} delay={index * 0.1}>
-                            <Link to={`/conseils/${article.slug}`} className="group block h-full">
+                            <Link to={getLocalizedPath(`/conseils/${article.slug}`)} className="group block h-full">
                                 <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col border border-gray-100/50">
                                     <div className="h-64 overflow-hidden relative">
                                         <div
@@ -57,7 +63,7 @@ const ConseilsPage = () => {
                                         </p>
                                         <div className="mt-auto pt-6 border-t border-gray-50 flex items-center justify-between">
                                             <div className="text-[var(--primary)] font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
-                                                Lire l'article <ArrowRight size={16} />
+                                                {content.readMoreText} <ArrowRight size={16} />
                                             </div>
                                         </div>
                                     </div>

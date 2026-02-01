@@ -1,11 +1,14 @@
-import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
 import { Zap, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const EquiwattPage = () => {
+    const { i18n } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
     return (
         <div className="pt-32 pb-24">
             <SEO
@@ -49,7 +52,7 @@ const EquiwattPage = () => {
                                 </li>
                             </ul>
                             <div className="mt-8">
-                                <Link to="/contact">
+                                <Link to={getLocalizedPath('/contact')}>
                                     <Button size="lg" className="bg-[var(--primary)] hover:bg-[#1a4d3e] text-white rounded-md">
                                         Vérifier mon éligibilité <ArrowRight className="ml-2 w-4 h-4" />
                                     </Button>
@@ -79,7 +82,7 @@ const EquiwattPage = () => {
                         <p className="text-gray-600 max-w-2xl mx-auto mb-8">
                             Swiss Ecogestes vous accompagne dans toutes les démarches administratives pour obtenir vos subventions Équiwatt.
                         </p>
-                        <Link to="/contact">
+                        <Link to={getLocalizedPath('/contact')}>
                             <Button size="lg" variant="outline" className="border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white rounded-md bg-white">
                                 Contactez un expert Équiwatt
                             </Button>

@@ -33,7 +33,12 @@ const PartnerLogo = ({ partner }: { partner: Partner }) => (
     </div>
 );
 
+import { useTranslation } from 'react-i18next';
+
+// ... (existing helper components)
+
 const Partners = ({ sectionTitle }: { sectionTitle?: string }) => {
+    const { t } = useTranslation('common');
     // Configuration: loop for infinite scroll, dragFree for "momentum" scrolling (hyper scroll)
     const [emblaRef] = useEmblaCarousel(
         { loop: true, dragFree: true },
@@ -58,7 +63,7 @@ const Partners = ({ sectionTitle }: { sectionTitle?: string }) => {
                 <div className="flex flex-col items-center gap-3">
                     <span className="h-1.5 w-12 bg-amber-500 rounded-full"></span>
                     <h3 className="text-[#1b5e39] font-black text-xl tracking-[0.1em] uppercase">
-                        {sectionTitle || "Ils nous font confiance et recommandent nos services"}
+                        {sectionTitle || t('partners.title')}
                     </h3>
                 </div>
             </div>

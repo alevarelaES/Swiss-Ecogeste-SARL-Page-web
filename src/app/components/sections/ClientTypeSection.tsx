@@ -3,43 +3,13 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
-
-const clients = [
-    {
-        id: 'regies',
-        title: 'Régies & Immeubles',
-        subtitle: 'Gestionnaires',
-        description: 'Valorisez votre parc immobilier et réduisez les charges locatives.',
-        link: '/services/gerance',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800'
-    },
-    {
-        id: 'villas',
-        title: 'Propriétaires de Villas',
-        subtitle: 'Particuliers',
-        description: 'Rénovez votre bien et profitez des subventions cantonales.',
-        link: '/services/villa',
-        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800'
-    },
-    {
-        id: 'entreprises',
-        title: 'Entreprises & PME',
-        subtitle: 'Professionnels',
-        description: 'Optimisez votre consommation et respectez les cadres légaux (PAKE).',
-        link: '/services/entreprise',
-        image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=800'
-    },
-    {
-        id: 'communes',
-        title: 'Communes & GRD',
-        subtitle: 'Collectivités',
-        description: 'Accompagnez vos citoyens et atteignez vos objectifs climatiques.',
-        link: '/services/communes',
-        image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=800'
-    }
-];
+import { useTranslation } from 'react-i18next';
+import { getClientTypes } from '../../data/clientTypes';
 
 const ClientTypeSection = () => {
+    const { t, i18n } = useTranslation('common');
+    const clientTypes = getClientTypes(i18n.language);
+
     return (
         <section id="nos-solutions" className="py-10 md:py-12 bg-gray-100 bg-[url('https://www.transparenttextures.com/patterns/gray-lines.png')] bg-fixed">
             <div className="max-w-7xl mx-auto px-6">
@@ -48,21 +18,20 @@ const ClientTypeSection = () => {
                         <div className="max-w-2xl">
                             <div className="flex items-center gap-4 mb-4">
                                 <span className="h-[2px] w-12 bg-amber-500"></span>
-                                <span className="text-amber-600 font-bold tracking-widest uppercase text-xs">Nos Solutions</span>
+                                <span className="text-amber-600 font-bold tracking-widest uppercase text-xs">{t('client_types.label')}</span>
                             </div>
                             <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
-                                Une expertise adaptée <br />
-                                à <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">chaque acteur</span>
+                                {t('client_types.title_prefix')} {t('client_types.title_connector')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">{t('client_types.title_highlight')}</span>
                             </h2>
                         </div>
                         <p className="text-gray-600 font-medium text-lg leading-relaxed max-w-md text-right md:text-right hidden md:block">
-                            Des solutions techniques et financières sur mesure pour chaque type de bâtiment.
+                            {t('client_types.description')}
                         </p>
                     </div>
                 </Reveal>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {clients.map((client, index) => (
+                    {clientTypes.map((client, index) => (
                         <Reveal key={client.id} delay={index * 0.1}>
                             <Link to={client.link} className="block h-full group">
                                 <div className="bg-white hover:shadow-2xl transition-all duration-300 h-full flex flex-col group-hover:-translate-y-2">
@@ -92,7 +61,7 @@ const ClientTypeSection = () => {
                                         </p>
 
                                         <div className="mt-auto border text-gray-400 border-gray-200 px-6 py-3 text-xs font-bold uppercase tracking-widest flex items-center justify-between group-hover:bg-[var(--primary)] group-hover:border-[var(--primary)] group-hover:text-white transition-all">
-                                            Explorer
+                                            {t('buttons.explore')}
                                             <ArrowRight size={14} />
                                         </div>
                                     </div>

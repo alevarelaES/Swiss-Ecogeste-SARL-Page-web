@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 interface ClientTypePageProps {
     title: string;
@@ -15,6 +16,7 @@ interface ClientTypePageProps {
 }
 
 const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, features, imageSrc, seoTitle, seoDescription }) => {
+    const { getLocalizedPath } = useLocalizedPath();
     return (
         <>
             <SEO
@@ -42,10 +44,10 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                             </p>
                             <div className="flex gap-4">
                                 <Button asChild className="bg-[var(--primary)] hover:bg-[#0b2e24] text-white px-8 h-12 rounded-md shadow-lg shadow-green-900/20">
-                                    <Link to="/contact">Demander un devis</Link>
+                                    <Link to={getLocalizedPath('/contact')}>Demander un devis</Link>
                                 </Button>
                                 <Button asChild variant="outline" className="text-[var(--primary)] border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white px-8 h-12 rounded-md">
-                                    <Link to="/services">Tous nos services</Link>
+                                    <Link to={getLocalizedPath('/services')}>Tous nos services</Link>
                                 </Button>
                             </div>
                         </motion.div>
@@ -102,7 +104,7 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                             Contactez-nous dès aujourd'hui pour une analyse personnalisée et découvrez comment nous pouvons vous aider à économiser.
                         </p>
                         <Button asChild className="bg-amber-400 hover:bg-amber-500 text-[var(--primary)] font-bold px-8 h-12 rounded-md relative z-10">
-                            <Link to="/contact">Prendre rendez-vous <ArrowRight className="ml-2 w-5 h-5" /></Link>
+                            <Link to={getLocalizedPath('/contact')}>Prendre rendez-vous <ArrowRight className="ml-2 w-5 h-5" /></Link>
                         </Button>
                     </div>
 

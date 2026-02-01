@@ -53,7 +53,7 @@ export const TEAM_IMAGES = {
 // LOGOS ET ASSETS DE MARQUE
 // ========================================
 export const BRAND_IMAGES = {
-    logo: "/logo.svg",
+    logo: "/Logo/Logo_EcoGeste_Sans_Fond.png",
     // Ajouter d'autres logos partenaires ici
 };
 

@@ -1,15 +1,12 @@
 import React from 'react';
 import Reveal from '../animations/Reveal';
-
-const teamMembers = [
-    { name: 'Mohammad SALMAN', role: 'Conseiller en énergie', initials: 'MS', color: 'from-[var(--primary)] to-emerald-600', items: ['Expert "Chauffez renouvelable"', 'Concessionnaire IDC Genève', 'Expert éclairage SIG', 'Conseiller villa/entreprises'] },
-    { name: 'Reem Al AYDI', role: 'Conseillère en énergie', initials: 'RA', color: 'from-[var(--primary)] to-emerald-600', items: ['Experte "Chauffez renouvelable"', 'Concessionnaire IDC Genève', 'Conseillère villa/TPE/PME'] },
-    { name: 'Thibault CASIER', role: 'Conseiller en énergie', initials: 'TC', color: 'from-[var(--primary)] to-emerald-600', items: ['Conseiller entreprises TPE/PME', 'Conseiller Ecologement'] },
-    { name: 'Daniel BADOUX', role: 'Conseiller en énergie', initials: 'DB', color: 'from-[var(--primary)] to-emerald-600', items: ['Conseiller entreprises TPE/PME', 'Conseiller Ecologement'] },
-    { name: 'Patrick CASIMIRUS', role: 'Conseiller en énergie', initials: 'PC', color: 'from-[var(--primary)] to-emerald-600', items: ['Conseiller entreprises TPE/PME', 'Conseiller Ecologement'] },
-];
+import { useTranslation } from 'react-i18next';
+import { getTeamMembers } from '../../data/teamMembers';
 
 const Team = () => {
+    const { t, i18n } = useTranslation('common');
+    const teamMembers = getTeamMembers(i18n.language);
+
     return (
         <section id="team" className="py-8 relative overflow-hidden">
             {/* Nature background from original index.html */}
@@ -24,8 +21,8 @@ const Team = () => {
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 <Reveal>
                     <div className="text-center mb-12">
-                        <span className="text-amber-500 font-bold tracking-wider uppercase text-lg bg-amber-50 px-4 py-2 rounded-md inline-block">Notre Équipe</span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-3 mb-4">Experts à votre écoute</h2>
+                        <span className="text-amber-500 font-bold tracking-wider uppercase text-lg bg-amber-50 px-4 py-2 rounded-md inline-block">{t('team.label')}</span>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-3 mb-4">{t('team.title')}</h2>
                     </div>
                 </Reveal>
 
