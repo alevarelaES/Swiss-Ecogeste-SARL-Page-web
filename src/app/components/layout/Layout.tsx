@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -9,15 +9,31 @@ interface LayoutProps {
     children: React.ReactNode;
 }
 
+// Helper to get path without language prefix
+const getPathWithoutLang = (path: string) => {
+    const langPrefixes = ['/fr', '/en', '/de'];
+    for (const prefix of langPrefixes) {
+        if (path === prefix || path.startsWith(prefix + '/')) {
+            return path.slice(prefix.length) || '/';
+        }
+    }
+    return path;
+};
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { pathname, hash } = useLocation();
+    const prevPathRef = useRef<string>(getPathWithoutLang(pathname));
 
-    // Scroll to top on route change, but respect hash navigation
+    // Scroll to top on route change, but respect hash navigation and language switches
     useEffect(() => {
-        // If there's a hash, let the target page handle the scrolling
-        if (!hash) {
+        const currentPathWithoutLang = getPathWithoutLang(pathname);
+        
+        // Only scroll to top if the actual page changed (not just language prefix)
+        if (!hash && currentPathWithoutLang !== prevPathRef.current) {
             window.scrollTo(0, 0);
         }
+        
+        prevPathRef.current = currentPathWithoutLang;
     }, [pathname, hash]);
 
     // Don't show CTA banner on contact page (already there) or home page (has its own contact section)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import Autoplay from "embla-carousel-autoplay";
 import { ArrowRight, Leaf, Shield, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,38 +11,45 @@ import {
     CarouselDots
 } from "../ui/carousel";
 import { useTranslation } from 'react-i18next';
-import { getHeroSlides } from '../../data/heroSlides';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
+import { getHeroSlides } from '../../data/heroSlides';
 
 const Hero = () => {
     const { t, i18n } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
     const heroSlides = getHeroSlides(i18n.language);
 
+    const images = [
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070',
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070',
+        'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070',
+        'https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=2070'
+    ];
+
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-gray-950">
+        <section className="relative h-screen w-full overflow-hidden bg-gray-950 select-none">
             <Carousel
                 opts={{ loop: true }}
                 plugins={[Autoplay({ delay: 7000, stopOnInteraction: false })]}
-                className="w-full h-full"
+                className="w-full h-full select-none"
             >
-                <CarouselContent className="h-full">
-                    {heroSlides.map((slide, index) => (
-                        <CarouselItem key={index} className="relative h-screen w-full flex items-center">
+                <CarouselContent className="h-full select-none">
+                    {Array.isArray(heroSlides) && heroSlides.map((slide, index) => (
+                        <CarouselItem key={index} className="relative h-screen w-full flex items-center select-none">
                             {/* Background with advanced overlay */}
                             <div className="absolute inset-0">
                                 <div
                                     className="absolute inset-0 bg-cover bg-center brightness-[0.85]"
-                                    style={{ backgroundImage: `url(${slide.img})` }}
+                                    style={{ backgroundImage: `url(${images[index]})` }}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-r from-gray-950/80 via-gray-900/50 to-transparent" />
                             </div>
 
-                            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-24 sm:pt-28 md:pt-20">
-                                <div className="max-w-3xl text-left">
+                            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-24 sm:pt-28 md:pt-20 select-none">
+                                <div className="max-w-3xl text-left select-none">
                                     <motion.h1
                                         initial={{ opacity: 0, y: 30 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
+                                        animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.8, delay: 0.1 }}
                                         className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 sm:mb-8 leading-[1.05] tracking-tight drop-shadow-lg"
                                     >
@@ -51,7 +58,7 @@ const Hero = () => {
 
                                     <motion.p
                                         initial={{ opacity: 0, y: 30 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
+                                        animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.8, delay: 0.2 }}
                                         className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-10 leading-relaxed max-w-xl drop-shadow-md"
                                     >
@@ -61,7 +68,7 @@ const Hero = () => {
                                     {/* Features Display restored */}
                                     <motion.div
                                         initial={{ opacity: 0 }}
-                                        whileInView={{ opacity: 1 }}
+                                        animate={{ opacity: 1 }}
                                         transition={{ delay: 0.4 }}
                                         className="hidden md:flex gap-6 mb-12 border-l-2 border-[var(--primary)] pl-6"
                                     >
@@ -74,7 +81,7 @@ const Hero = () => {
 
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
+                                        animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: 0.5 }}
                                         className="flex flex-col sm:flex-row items-start gap-4"
                                     >

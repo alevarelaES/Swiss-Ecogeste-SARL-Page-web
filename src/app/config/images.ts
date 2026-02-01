@@ -31,11 +31,31 @@ export const SERVICE_IMAGES = {
 };
 
 // ========================================
+// IMAGES POUR LA PAGE "NOS SERVICES" (détaillée)
+// ========================================
+export const SERVICES_PAGE_IMAGES = {
+    // Particuliers / Villas - Belle villa résidentielle
+    villa: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+    
+    // Régies & Immeubles - Immeubles résidentiels
+    gerance: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
+    
+    // Entreprises - Bureaux modernes / environnement professionnel
+    entreprise: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
+    
+    // Communes - Vue aérienne de ville / urbanisme
+    communes: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1200&auto=format&fit=crop",
+};
+
+// ========================================
 // IMAGES DE FOND DES SECTIONS
 // ========================================
 export const BACKGROUND_IMAGES = {
     // Section "À Propos" - Image de fond
     about: "/images/image_fond_section_Propos.png",
+    
+    // Image principale de la section À Propos (bureau/équipe)
+    aboutMain: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1000&auto=format&fit=crop",
 
     // Section Services - Image de bureau/architecture
     services: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop",

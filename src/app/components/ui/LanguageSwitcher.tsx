@@ -40,6 +40,9 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
     }, []);
 
     const changeLanguage = (lng: string) => {
+        // Store current scroll position
+        const scrollY = window.scrollY;
+        
         // Construct new path
         const pathParts = location.pathname.split('/').filter(Boolean);
         let newPath = '';
@@ -58,8 +61,15 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
         }
 
         // Navigate first to change the URL - App.tsx will handle language sync
-        navigate(newPath);
+        navigate(newPath, { replace: true });
         setIsOpen(false);
+        
+        // Restore scroll position after navigation with requestAnimationFrame for better timing
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                window.scrollTo(0, scrollY);
+            });
+        });
     };
 
     // Mobile View: Inline buttons

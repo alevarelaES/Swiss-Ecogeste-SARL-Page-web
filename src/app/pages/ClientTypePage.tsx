@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
@@ -28,11 +27,7 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
 
                     {/* Hero Section */}
                     <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
+                        <div>
                             <span className="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block">
                                 Nos Solutions
                             </span>
@@ -50,14 +45,9 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                                     <Link to={getLocalizedPath('/services')}>Tous nos services</Link>
                                 </Button>
                             </div>
-                        </motion.div>
+                        </div>
 
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative"
-                        >
+                        <div className="relative">
                             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                                 {/* Placeholder for now, can use generate_image if needed later */}
                                 <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
@@ -68,7 +58,7 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                             {/* Decorative element */}
                             <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-amber-400 rounded-md blur-2xl opacity-40 -z-10"></div>
                             <div className="absolute -top-6 -right-6 w-32 h-32 bg-[var(--primary)] rounded-md blur-3xl opacity-20 -z-10"></div>
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* Features / Benefits */}
@@ -76,12 +66,8 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                         <h2 className="text-3xl font-bold text-[var(--primary)] text-center mb-12">Pourquoi choisir Swiss Ecogestes ?</h2>
                         <div className="grid md:grid-cols-3 gap-8">
                             {features.map((feature, index) => (
-                                <motion.div
+                                <div
                                     key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
                                     className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
                                 >
                                     <div className="w-12 h-12 bg-green-50 rounded-md flex items-center justify-center text-[var(--primary)] mb-6">
@@ -89,7 +75,7 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                                     </div>
                                     <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.split(':')[0]}</h3>
                                     <p className="text-gray-600">{feature.split(':')[1] || feature}</p>
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
                     </div>

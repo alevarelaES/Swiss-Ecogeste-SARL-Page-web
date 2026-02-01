@@ -1,7 +1,8 @@
 import React from 'react';
-import { motion, useInView } from 'motion/react';
-import { getStats, getStatsContent } from '../../data/statsData';
+import { useInView } from 'motion/react';
 import { useTranslation } from 'react-i18next';
+import { getIcon } from '../../utils/iconMapper';
+import { getStats, getStatsContent } from '../../data/statsData';
 
 const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: string, suffix: string }) => {
     const ref = React.useRef(null);
@@ -33,9 +34,18 @@ const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: strin
 }
 
 const StatsSection = () => {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const stats = getStats(i18n.language);
-    const content = getStatsContent(i18n.language);
+    const statsContent = getStatsContent(i18n.language);
+    const stats_old = t('stats', { returnObjects: true, defaultValue: [] }) as Array<{
+        id: number;
+        value?: number;
+        text?: string;
+        prefix?: string;
+        suffix?: string;
+        label: string;
+        icon_name: string;
+    }>;
 
     return (
         <section className="relative py-8 sm:py-10 md:py-12 w-full overflow-hidden bg-[#2a7f55]">
@@ -54,47 +64,29 @@ const StatsSection = () => {
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 md:mb-20 gap-6 md:gap-8 border-b border-white/20 pb-6 md:pb-8">
                     <div className="max-w-2xl text-center md:text-left">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="flex items-center justify-center md:justify-start gap-3 mb-4"
-                        >
+                        <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
                             <span className="h-px w-10 bg-amber-400"></span>
-                            <span className="text-amber-400 font-bold tracking-widest uppercase text-sm">{content.label}</span>
-                        </motion.div>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-black text-white leading-tight"
-                        >
-                            {content.title}
-                        </motion.h2>
+                            <span className="text-amber-400 font-bold tracking-widest uppercase text-sm">{statsContent.label}</span>
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-black text-white leading-tight">
+                            {statsContent.title}
+                        </h2>
                     </div>
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-white/80 font-medium text-lg max-w-md text-right hidden md:block" // Hidden on mobile for cleaner look, or adapt
-                    >
-                        {content.description}
-                    </motion.div>
+                    <div className="text-white/80 font-medium text-lg max-w-md text-right hidden md:block">
+                        {statsContent.description}
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
-                    {stats.map((stat, index) => (
-                        <motion.div
+                    {stats.map((stat, index) => {
+                        const IconComponent = stat.icon;
+                        return (
+                        <div
                             key={stat.id}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.15 + 0.3 }}
                             className={`flex flex-col justify-start items-center lg:items-start text-center lg:text-left lg:px-8 h-full ${index !== stats.length - 1 ? 'lg:border-r border-white/10' : ''}`}
                         >
                             <div className="mb-4 lg:mb-6">
-                                <stat.icon size={32} className="text-amber-400 opacity-90" strokeWidth={1.5} />
+                                <IconComponent size={32} className="text-amber-400 opacity-90" strokeWidth={1.5} />
                             </div>
                             <div>
                                 <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 tracking-tight break-words w-full">
@@ -108,8 +100,8 @@ const StatsSection = () => {
                                     {stat.label}
                                 </p>
                             </div>
-                        </motion.div>
-                    ))}
+                        </div>
+                    )})}
                 </div>
             </div>
         </section>

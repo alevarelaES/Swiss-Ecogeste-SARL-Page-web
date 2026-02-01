@@ -1,4 +1,4 @@
-{
+﻿{
     "nav": {
         "home": "Startseite",
         "services": "Dienstleistungen",
@@ -291,5 +291,20 @@
                 }
             }
         }
+    },
+    "search": {
+        "open": "Suche öffnen",
+        "placeholder": "Artikel, Dienstleistungen, Seiten suchen...",
+        "suggestions": "Vorschläge",
+        "searching": "Suche läuft...",
+        "no_results": "Keine Ergebnisse gefunden",
+        "try_different": "Versuchen Sie andere Schlüsselwörter",
+        "result": "Ergebnis",
+        "results": "Ergebnisse",
+        "close": "Schließen",
+        "powered_by": "Lokale Suche",
+        "article": "Artikel",
+        "service": "Dienstleistung",
+        "page": "Seite"
     }
 }

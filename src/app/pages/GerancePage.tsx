@@ -8,8 +8,10 @@ import { getGerancePageContent } from '../data/gerancePageContent';
 import { useTranslation } from 'react-i18next';
 import ServiceCard from '../components/ui/ServiceCard';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
+import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
 const GerancePage = () => {
+    useSearchHighlight();
     const { i18n, t } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
     const content = getGerancePageContent(i18n.language);

@@ -1,18 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { Button } from "../ui/button";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 import { BRAND_IMAGES } from '../../config/images';
+import SearchModal from '../sections/SearchModal';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false); // For mobile dropdown
     const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false); // For tablet/desktop dropdown
+    const [isSearchOpen, setIsSearchOpen] = useState(false); // For search modal
     const dropdownRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
     const { getLocalizedPath } = useLocalizedPath();
@@ -155,7 +157,16 @@ const Navbar = () => {
                         <Link to={getLocalizedPath('/contact')}>{t('nav.contact')}</Link>
                     </Button>
 
-                    <div className="pl-2 border-l border-white/20 ml-2">
+                    <div className="flex items-center gap-3 pl-2 border-l border-white/20 ml-2">
+                        {/* Search Button */}
+                        <button
+                            onClick={() => setIsSearchOpen(true)}
+                            className={`p-2 rounded-full transition-all hover:bg-white/10 ${isScrolled || !isHome ? 'hover:bg-gray-100' : ''}`}
+                            aria-label={t('search.open') || 'Ouvrir la recherche'}
+                        >
+                            <Search size={20} className={isScrolled || !isHome ? 'text-gray-700' : 'text-white/90'} />
+                        </button>
+
                         <LanguageSwitcher isScrolled={isScrolled} isHome={isHome} />
                     </div>
                 </div>
@@ -301,6 +312,9 @@ const Navbar = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Search Modal */}
+            <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </nav>
     );
 };

@@ -8,9 +8,11 @@ import { Button } from "../components/ui/button";
 import Reveal from '../components/animations/Reveal';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
+import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
 const ArticleDetailPage = () => {
     const { slug } = useParams();
+    useSearchHighlight();
     const navigate = useNavigate();
     const location = useLocation();
     const [copied, setCopied] = useState(false);

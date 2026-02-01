@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { getServices } from '../data/services';
 import Reveal from '../components/animations/Reveal';
@@ -49,11 +48,7 @@ const ServiceDetail = () => {
                         <span className="font-medium">{t('service_detail.back_services')}</span>
                     </Link>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                    >
+                    <div>
                         <div className="flex items-center gap-4 mb-6">
                             <div className="p-3 bg-white/10 backdrop-blur-md rounded-xl text-amber-400">
                                 <Icon size={40} />
@@ -65,7 +60,7 @@ const ServiceDetail = () => {
                         <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
                             {service.title}
                         </h1>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
 

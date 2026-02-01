@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
 import { Linkedin, Instagram, Mail, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
@@ -95,24 +94,22 @@ const Footer = () => {
                     </div>
 
                     <div className="flex items-center gap-4 order-1 md:order-3">
-                        <motion.a
-                            whileHover={{ y: -3, scale: 1.1 }}
+                        <a
                             href="https://www.linkedin.com/company/swissecogestes/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[#0077b5] transition-colors"
+                            className="text-[#0077b5] transition-all hover:-translate-y-1 hover:scale-110 inline-block"
                         >
                             <Linkedin size={20} fill="currentColor" strokeWidth={0} />
-                        </motion.a>
-                        <motion.a
-                            whileHover={{ y: -3, scale: 1.1 }}
+                        </a>
+                        <a
                             href="https://www.instagram.com/swissecogestes/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[#E4405F] transition-colors"
+                            className="text-[#E4405F] transition-all hover:-translate-y-1 hover:scale-110 inline-block"
                         >
                             <Instagram size={20} />
-                        </motion.a>
+                        </a>
                     </div>
                 </div>
             </div>

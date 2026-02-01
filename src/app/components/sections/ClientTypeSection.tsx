@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
@@ -9,6 +8,13 @@ import { getClientTypes } from '../../data/clientTypes';
 const ClientTypeSection = () => {
     const { t, i18n } = useTranslation('common');
     const clientTypes = getClientTypes(i18n.language);
+
+    const images = [
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
+        'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=800',
+        'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=800'
+    ];
 
     return (
         <section id="nos-solutions" className="py-10 md:py-12 bg-gray-100 bg-[url('https://www.transparenttextures.com/patterns/gray-lines.png')] bg-fixed">
@@ -38,7 +44,7 @@ const ClientTypeSection = () => {
                                     {/* Image Top */}
                                     <div className="h-56 overflow-hidden relative">
                                         <img
-                                            src={client.image}
+                                            src={images[index]}
                                             alt={client.title}
                                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                         />

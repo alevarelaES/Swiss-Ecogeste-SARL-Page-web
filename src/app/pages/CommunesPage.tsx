@@ -8,8 +8,10 @@ import { getCommunesPageContent } from '../data/communesPageContent';
 import { useTranslation } from 'react-i18next';
 import ServiceCard from '../components/ui/ServiceCard';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
+import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
 const CommunesPage = () => {
+    useSearchHighlight();
     const { i18n, t } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
     const content = getCommunesPageContent(i18n.language);

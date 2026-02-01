@@ -4,8 +4,16 @@ import { useTranslation } from 'react-i18next';
 import { getTeamMembers } from '../../data/teamMembers';
 
 const Team = () => {
-    const { t, i18n } = useTranslation('common');
+    const { t, i18n } = useTranslation();
     const teamMembers = getTeamMembers(i18n.language);
+    
+    const colors = [
+        'from-[var(--primary)] to-emerald-600',
+        'from-[var(--primary)] to-emerald-600',
+        'from-[var(--primary)] to-emerald-600',
+        'from-[var(--primary)] to-emerald-600',
+        'from-[var(--primary)] to-emerald-600'
+    ];
 
     return (
         <section id="team" className="py-8 relative overflow-hidden">
@@ -30,7 +38,7 @@ const Team = () => {
                     {teamMembers.map((member, index) => (
                         <Reveal key={index} delay={index * 0.05}>
                             <div className="bg-white/90 backdrop-blur-sm border border-[var(--primary)]/20 p-6 rounded-lg shadow-sm hover:shadow-lg hover:border-amber-400 transition-all h-full text-left">
-                                <div className={`w-12 h-12 bg-gradient-to-br ${member.color} text-white rounded-md flex items-center justify-center text-xl font-bold mb-4 shadow-md`}>
+                                <div className={`w-12 h-12 bg-gradient-to-br ${colors[index]} text-white rounded-md flex items-center justify-center text-xl font-bold mb-4 shadow-md`}>
                                     {member.initials}
                                 </div>
                                 <h3 className="font-bold text-gray-900">{member.name}</h3>

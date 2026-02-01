@@ -303,5 +303,20 @@
                 }
             }
         }
+    },
+    "search": {
+        "open": "Open search",
+        "placeholder": "Search for articles, services, pages...",
+        "suggestions": "Suggestions",
+        "searching": "Searching...",
+        "no_results": "No results found",
+        "try_different": "Try different keywords",
+        "result": "result",
+        "results": "results",
+        "close": "Close",
+        "powered_by": "Local search",
+        "article": "Article",
+        "service": "Service",
+        "page": "Page"
     }
 }

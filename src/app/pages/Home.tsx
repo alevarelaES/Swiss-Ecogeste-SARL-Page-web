@@ -11,8 +11,10 @@ import ContactSection from '../components/sections/ContactSection';
 import StatsSection from '../components/sections/StatsSection';
 import ArticlesSection from '../components/sections/ArticlesSection';
 import ClientTypeSection from '../components/sections/ClientTypeSection';
+import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
 const Home = () => {
+    useSearchHighlight();
     const { hash } = useLocation();
 
     React.useEffect(() => {

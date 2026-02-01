@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
 import { getSubventionsContent } from '../../data/subventionsContent';

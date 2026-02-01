@@ -8,8 +8,10 @@ import { getEntreprisePageContent } from '../data/entreprisePageContent';
 import { useTranslation } from 'react-i18next';
 import ServiceCard from '../components/ui/ServiceCard';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
+import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
 const EntreprisePage = () => {
+    useSearchHighlight();
     const { i18n, t } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
     const content = getEntreprisePageContent(i18n.language);

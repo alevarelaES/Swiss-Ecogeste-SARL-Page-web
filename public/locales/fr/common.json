@@ -1,4 +1,4 @@
-{
+﻿{
     "nav": {
         "home": "Accueil",
         "services": "Nos Solutions",
@@ -118,6 +118,11 @@
         "success": "Message envoyé avec succès ! Nous vous recontacterons bientôt.",
         "error": "Une erreur est survenue. Veuillez réessayer.",
         "quote": "\"L'énergie la moins chère est celle que l'on ne consomme pas. Ensemble, valorisons votre patrimoine.\""
+    },
+    "about": {
+        "cta_text": "Découvrir notre ADN",
+        "cta_link": "/team",
+        "quote": "\"L'énergie la plus propre est celle que l'on ne consomme pas\""
     },
     "contact_page": {
         "seo_title": "Contactez-nous | Swiss Ecogestes",
@@ -305,5 +310,20 @@
                 }
             }
         }
+    },
+    "search": {
+        "open": "Ouvrir la recherche",
+        "placeholder": "Rechercher des articles, services, pages...",
+        "suggestions": "Suggestions",
+        "searching": "Recherche en cours...",
+        "no_results": "Aucun résultat trouvé",
+        "try_different": "Essayez avec des mots-clés différents",
+        "result": "résultat",
+        "results": "résultats",
+        "close": "Fermer",
+        "powered_by": "Recherche locale",
+        "article": "Article",
+        "service": "Service",
+        "page": "Page"
     }
 }

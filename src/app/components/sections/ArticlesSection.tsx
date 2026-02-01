@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { motion } from 'motion/react';
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getArticles } from '../../data/articles';
@@ -17,23 +16,12 @@ const ArticlesSection = () => {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex justify-between items-end mb-8">
                     <div>
-                        <motion.span
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block"
-                        >
+                        <span className="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block">
                             {t('blog.label')}
-                        </motion.span>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-3xl md:text-4xl font-bold text-[var(--primary)]"
-                        >
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-[var(--primary)]">
                             {t('blog.title')}
-                        </motion.h2>
+                        </h2>
                     </div>
                     <Link to={getLocalizedPath('/conseils')} className="hidden md:flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
                         {t('blog.view_all')} <ArrowRight size={20} className="ml-2" />
@@ -42,13 +30,7 @@ const ArticlesSection = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
                     {articles.map((article, index) => (
-                        <motion.div
-                            key={article.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                        >
+                        <div key={article.id}>
                             <Link
                                 to={getLocalizedPath(`/conseils/${article.slug}`)}
                                 state={{ from: getLocalizedPath('/#articles') }}
@@ -78,7 +60,7 @@ const ArticlesSection = () => {
                                     </div>
                                 </div>
                             </Link>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 

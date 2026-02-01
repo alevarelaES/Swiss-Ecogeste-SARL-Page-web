@@ -29,17 +29,19 @@ const WhyChooseUs = () => {
                         {/* Grid Side */}
                         <div className="md:w-2/3 w-full">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-                                {whyChooseUsContent.reasons.map((item, idx) => (
+                                {whyChooseUsContent.reasons.map((item, idx) => {
+                                    const IconComponent = item.icon;
+                                    return (
                                     <div key={idx} className="flex flex-col items-start">
                                         <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-[var(--primary)] mb-5">
-                                            <item.icon size={24} strokeWidth={2} />
+                                            <IconComponent size={24} strokeWidth={2} />
                                         </div>
                                         <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                                         <p className="text-gray-600 leading-relaxed font-medium text-sm">
                                             {item.description}
                                         </p>
                                     </div>
-                                ))}
+                                )})}
                             </div>
                         </div>
                     </div>

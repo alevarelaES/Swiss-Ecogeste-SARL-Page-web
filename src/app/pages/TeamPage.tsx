@@ -3,10 +3,11 @@ import { ShieldCheck, Scale, Database, FileCheck, Award, Users } from 'lucide-re
 import SEO from '../components/SEO';
 import Team from '../components/sections/Team';
 import Reveal from '../components/animations/Reveal';
-
 import { useTranslation } from 'react-i18next';
+import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
 const TeamPage = () => {
+    useSearchHighlight();
     const { t } = useTranslation('common');
 
     return (

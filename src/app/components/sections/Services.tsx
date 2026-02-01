@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Reveal from '../animations/Reveal';
@@ -12,21 +11,12 @@ const ServiceCard = ({ service }: { service: any }) => {
     return (
         <Reveal delay={service.delay}>
             <Link to={service.link} className="block h-full">
-                <motion.div
-                    className="group bg-white h-full flex flex-col border border-gray-100 hover:border-amber-400 hover:shadow-2xl transition-all duration-300"
-                    whileHover="hover"
-                    initial="initial"
-                >
+                <div className="group bg-white h-full flex flex-col border border-gray-100 hover:border-amber-400 hover:shadow-2xl transition-all duration-300">
                     {/* Image Section - Fixed Aspect Ratio */}
                     <div className="relative h-48 overflow-hidden bg-gray-100">
-                        <motion.div
-                            className="absolute inset-0 bg-cover bg-center"
+                        <div
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                             style={{ backgroundImage: `url(${service.image})` }}
-                            variants={{
-                                initial: { scale: 1 },
-                                hover: { scale: 1.05 }
-                            }}
-                            transition={{ duration: 0.5 }}
                         />
                         {/* Overlay to ensure text readability if needed, though mostly using clear images */}
                         <div className="absolute inset-0 bg-gray-900/10 group-hover:bg-gray-900/0 transition-colors" />
@@ -61,7 +51,7 @@ const ServiceCard = ({ service }: { service: any }) => {
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </Link>
         </Reveal>
     );
