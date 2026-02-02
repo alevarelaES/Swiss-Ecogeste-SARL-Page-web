@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getArticles } from '../../data/articles';
@@ -29,19 +28,19 @@ const ArticlesSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-                    {articles.map((article, index) => (
+                    {articles.map((article) => (
                         <div key={article.id}>
                             <Link
                                 to={getLocalizedPath(`/conseils/${article.slug}`)}
                                 state={{ from: getLocalizedPath('/#articles') }}
-                                className="bg-white rounded-none overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col h-full border border-gray-100"
+                                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col h-full border border-gray-100"
                             >
                                 <div className="relative h-56 overflow-hidden">
                                     <div
                                         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                         style={{ backgroundImage: `url(${article.imageUrl})` }}
                                     />
-                                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-1.5 rounded-none text-[10px] font-black uppercase tracking-widest text-[var(--primary)] flex items-center gap-1.5 z-10 shadow-sm">
+                                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-[var(--primary)] flex items-center gap-1.5 z-10 shadow-sm">
                                         <Tag size={12} /> {article.category}
                                     </div>
                                 </div>

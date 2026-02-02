@@ -1,0 +1,307 @@
+{
+    "nav": {
+        "home": "Home",
+        "services": "Our Solutions",
+        "about": "Team",
+        "contact": "Contact",
+        "projects": "Projects",
+        "villa": "Villas & Houses",
+        "entreprise": "Companies",
+        "gerance": "Real Estate & Buildings",
+        "communes": "Municipalities & DSOs",
+        "journal": "News",
+        "our_services": "Our Services",
+        "choose_language": "Choose language"
+    },
+    "footer": {
+        "rights": "All rights reserved.",
+        "slogan": "Your expert partner for energy transition in French-speaking Switzerland. Sustainable solutions and tailored support.",
+        "presence": "Presence in the cantons of",
+        "services": "Our Services",
+        "company": "Company",
+        "team": "Our Team",
+        "blog": "News",
+        "mentions": "Legal Mentions",
+        "privacy": "Privacy Policy",
+        "cookies": "Cookie Policy",
+        "partners": "Partners",
+        "links": {
+            "mentions": "Legal Mentions",
+            "privacy": "Privacy Policy",
+            "cookies": "Cookies"
+        },
+        "contact": {
+            "title": "Contact",
+            "address": "Address",
+            "phone": "Phone",
+            "email": "Email"
+        }
+    },
+    "buttons": {
+        "contact_us": "Contact Us",
+        "learn_more": "Learn More",
+        "read_more": "Read More",
+        "back": "Back",
+        "start_project": "Start my project",
+        "explore": "Explore",
+        "close": "Close"
+    },
+    "team": {
+        "label": "Our Team",
+        "title": "Experts at your service"
+    },
+    "team_page": {
+        "seo_title": "Our Expert Team",
+        "seo_desc": "Meet the Swiss Ecogestes team. Experts passionate about energy transition and sustainable innovation.",
+        "header_label": "Our Team",
+        "header_title": "Expertise at the service of the planet",
+        "intro": "Based in Lausanne, Swiss Ecogestes brings together engineers and specialists dedicated to optimizing Swiss energy infrastructures. Our mission is to accelerate the transition towards more sober and efficient models.",
+        "values_title": "Our Commitments & Values",
+        "values_intro": "Beyond technical expertise, we provide security and peace of mind to all our partners."
+    },
+    "client_types": {
+        "label": "Our Solutions",
+        "title_prefix": "Expertise adapted",
+        "title_connector": "to",
+        "title_highlight": "every actor",
+        "description": "Tailor-made technical and financial solutions for every type of building."
+    },
+    "common": {
+        "swissecogestes": "Swiss Ecogestes"
+    },
+    "blog": {
+        "label": "Blog & News",
+        "title": "Latest Publications",
+        "view_all": "View all articles",
+        "read_more": "READ MORE",
+        "journal": "The Journal",
+        "share": "Share article",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "expert": "Swiss Ecogeste Expert"
+    },
+    "service_detail": {
+        "not_found": "Service not found",
+        "back_home": "Back to home",
+        "back_services": "Back to services",
+        "full_description": "Full Description",
+        "what_we_offer": "What we offer:",
+        "placeholder_point": "Key point or specific benefit related to {{title}} to ensure optimal performance.",
+        "interested": "Interested?",
+        "contact_experts": "Contact our experts to get a personalized quote.",
+        "request_quote": "Request a Quote"
+    },
+    "partners": {
+        "title": "They trust us and recommend our services"
+    },
+    "contact_section": {
+        "tag": "Contact",
+        "title": "Let's talk about your project.",
+        "subtitle": "Fill out this form to receive a free estimate of your potential savings.",
+        "you_are": "You are",
+        "types": {
+            "villa": "Villa",
+            "entreprise": "Company",
+            "regie": "Real Estate",
+            "proprio": "Owner",
+            "other": "Other"
+        },
+        "name": "Name, Surname",
+        "email": "Email",
+        "phone": "Phone (Optional)",
+        "message": "Message",
+        "placeholder_message": "How can we help you?",
+        "submit": "Send my request",
+        "sending": "Sending...",
+        "success": "Message sent successfully! We will contact you soon.",
+        "error": "An error occurred. Please try again.",
+        "quote": "\"The cheapest energy is the one we don't consume. Together, let's enhance your assets.\""
+    },
+    "contact_page": {
+        "seo_title": "Contact Us | Swiss Ecogestes",
+        "seo_description": "Need advice or a quote? Contact Swiss Ecogestes for your energy transition project in Switzerland.",
+        "title": "Ready to take the first step?",
+        "description": "Whether you are at the beginning of your reflection or already ready for work, our experts will answer you within 48h."
+    },
+    "services_page": {
+        "seo_title": "Our Energy Services",
+        "seo_desc": "Discover our tailored solutions for individuals, real estate managers, and companies: CECB audits, renovations, solar, and energy optimization.",
+        "label": "Expertise & Solutions",
+        "title": "360° Services",
+        "intro": "From initial audit to final implementation, we provide the technical expertise needed to transform your energy consumption.",
+        "particuliers": {
+            "title": "For Individuals",
+            "description": "Improve your home's comfort while reducing energy bills. We guide you step by step.",
+            "features": [
+                "CECB Energy Audit",
+                "Thermal Envelope Renovation",
+                "Heating System Replacement",
+                "Photovoltaic Panel Installation",
+                "Subsidy Application Management"
+            ]
+        },
+        "gerances": {
+            "title": "For Real Estate Managers",
+            "description": "Enhance your real estate assets and simplify charge management for your tenants.",
+            "features": [
+                "Real Estate Portfolio Audit (CECB Plus)",
+                "Energy Performance Contract",
+                "Electric Vehicle Charging Stations",
+                "Development of Self-Consumption Groups (RCP)",
+                "Long-term Thermal Planning"
+            ]
+        },
+        "entreprises": {
+            "title": "For Companies",
+            "description": "Commit your company to sustainability while optimizing operational flows.",
+            "features": [
+                "Target Agreements (Large Consumers)",
+                "Compressed Air and Cooling Optimization",
+                "Smart Lighting and High-Efficiency LED",
+                "Real-time Energy Monitoring",
+                "Decarbonization Strategy"
+            ]
+        },
+        "cta_quote": "Request a Quote"
+    },
+    "services_overview": {
+        "seo_title": "Our Services | Swiss Ecogestes Overview",
+        "seo_desc": "Complete list of our audit, energy consulting, and support services for individuals, companies, and communities.",
+        "label": "Catalog",
+        "title": "Our Services",
+        "intro": "An overview of our solutions to reduce your consumption and enhance your assets.",
+        "available_title": "Available Services",
+        "upcoming_title": "Coming Soon",
+        "details": "Details",
+        "items": {
+            "eco_logement": "Eco-housing Program",
+            "pake": "Company Energy Audits (PAKE)",
+            "audits_villa": "Villa Audits & CECB",
+            "visites_sig": "SIG / eco21 Visits",
+            "idc": "Geneva IDC Calculation",
+            "sensibilisation": "Environmental Awareness",
+            "chauffage": "Renewable Heating Transition"
+        },
+        "upcoming": {
+            "amu": "AMU (Usage Assistance)",
+            "cecb_plus": "CECB Plus Audit (Official Certification)"
+        }
+    },
+    "why_us": {
+        "seo_title": "Why Choose Swiss Ecogestes | Expertise & Trust",
+        "seo_desc": "Discover our values: commercial neutrality, certified expertise, complete administrative management, and data protection.",
+        "label": "Our Commitments",
+        "title": "Expertise, Neutrality, and Trust.",
+        "intro": "Swiss Ecogestes was founded on a simple conviction: energy transition must be transparent, simple, and profitable for everyone.",
+        "cta_title": "Ready to work with a trusted partner?",
+        "cta_desc": "Let's discuss your needs and see how we can help you achieve your goals.",
+        "cta_button": "Get in touch",
+        "items": {
+            "confiance": {
+                "title": "Trusted Partner",
+                "desc": "We work closely with DIREN (Energy Directorate), SIG, and cantonal programs to ensure compliance for every project."
+            },
+            "legal": {
+                "title": "Respect related to Legal Framework",
+                "desc": "Constant legal monitoring to ensure all installations comply with the latest federal and cantonal standards (MoPEC, IDC, etc.)."
+            },
+            "data": {
+                "title": "Data Protection",
+                "desc": "Your energy data is sensitive. We treat it with the strictest confidentiality, hosted in Switzerland and secured."
+            },
+            "neutrality": {
+                "title": "Commercial Neutrality",
+                "desc": "We do not sell equipment. Our recommendations are based solely on YOUR interest and technical performance, without conflict of interest."
+            },
+            "quality": {
+                "title": "Quality Process",
+                "desc": "Every audit and worksite follows a rigorous quality process, from the first visit to the final acceptance of works."
+            },
+            "human": {
+                "title": "Human Approach",
+                "desc": "Because energy transition is primarily a human adventure, we prioritize listening, pedagogy, and personalized support."
+            }
+        }
+    },
+    "cta_banner": {
+        "title": "Free Installation Audit",
+        "subtitle": "Discover your real subsidies with an expert.",
+        "button": "Book an Appointment"
+    },
+    "legal": {
+        "mentions": {
+            "seo_title": "Legal Notice | Swiss Ecogestes",
+            "seo_desc": "Legal notice, company information, and terms of use for the Swiss Ecogestes website.",
+            "title": "Legal Notice",
+            "last_updated": "Last updated",
+            "sections": {
+                "editor": {
+                    "title": "Site Publisher",
+                    "content": [
+                        "Swiss Ecogestes SARL",
+                        "Address: [Full Address]",
+                        "Phone: [Number]",
+                        "Email: info@swissecogestes.ch",
+                        "IDE: [IDE Number]"
+                    ]
+                },
+                "director": {
+                    "title": "Publication Director",
+                    "content": [
+                        "[Responsible Name]"
+                    ]
+                },
+                "hosting": {
+                    "title": "Hosting",
+                    "content": [
+                        "This site is hosted by [Host Name]",
+                        "Address: [Host Address]"
+                    ]
+                }
+            }
+        },
+        "privacy": {
+            "seo_title": "Privacy Policy | Swiss Ecogestes",
+            "seo_desc": "Our personal data protection and privacy policy.",
+            "title": "Privacy Policy",
+            "sections": {
+                "collection": {
+                    "title": "Data Collection",
+                    "content": [
+                        "We collect information you provide via our contact forms.",
+                        "[Full text to be provided by client]"
+                    ]
+                },
+                "usage": {
+                    "title": "Data Usage",
+                    "content": [
+                        "Your data is used to respond to your requests.",
+                        "[Full text to be provided by client]"
+                    ]
+                }
+            }
+        },
+        "cookies": {
+            "seo_title": "Cookie Policy | Swiss Ecogestes",
+            "seo_desc": "Information about cookie usage on our site.",
+            "label": "Cookie Management",
+            "title": "Cookie Policy",
+            "sections": {
+                "what_is": {
+                    "title": "What is a cookie?",
+                    "content": [
+                        "A cookie is a small text file placed on your computer.",
+                        "[Full text to be provided by client]"
+                    ]
+                },
+                "preferences": {
+                    "title": "Preference Management",
+                    "content": [
+                        "You can change your preferences at any time via our management panel.",
+                        "[Full text to be provided by client]"
+                    ]
+                }
+            }
+        }
+    }
+}
