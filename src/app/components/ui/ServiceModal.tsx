@@ -41,12 +41,15 @@ const ServiceModal = ({ isOpen, onClose, service, t, i18n }: ServiceModalProps) 
                             className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden relative flex flex-col md:flex-row max-h-[90vh]"
                         >
                             {/* Close Button */}
-                            <button
+                            <Button
+                                variant="flat"
+                                size="icon"
+                                rounded="full"
                                 onClick={onClose}
-                                className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-md rounded-full hover:bg-white transition-colors text-gray-800 shadow-sm"
+                                className="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-md hover:bg-white transition-colors text-gray-800 shadow-sm"
                             >
                                 <X size={20} />
-                            </button>
+                            </Button>
 
                             {/* Left Side: Image & Blur Effect */}
                             <div className="md:w-2/5 relative h-48 md:h-auto overflow-hidden">
@@ -87,15 +90,16 @@ const ServiceModal = ({ isOpen, onClose, service, t, i18n }: ServiceModalProps) 
                                 )}
 
                                 <div className="mt-auto pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
-                                    <Button asChild className="flex-1 bg-[var(--primary)] hover:bg-[#1a4d3e] text-white rounded-lg py-6 text-lg shadow-lg shadow-green-900/20 transition-all hover:-translate-y-0.5">
+                                    <Button asChild variant="default" rounded="lg" className="flex-1 h-auto py-6 text-lg shadow-lg shadow-green-900/20 transition-all hover:-translate-y-0.5">
                                         <Link to={getLocalizedPath('/contact')} onClick={onClose}>
                                             {t('buttons.contact_us') || 'Nous contacter'} <ArrowRight className="ml-2 w-5 h-5" />
                                         </Link>
                                     </Button>
                                     <Button
                                         variant="outline"
+                                        rounded="lg"
                                         onClick={onClose}
-                                        className="sm:w-auto py-6 text-gray-500 hover:text-gray-700 hover:bg-gray-50 border-gray-200"
+                                        className="sm:w-auto h-auto py-6 text-gray-500 hover:text-gray-700 hover:bg-gray-50 border-gray-200"
                                     >
                                         {t('buttons.close') === 'buttons.close' ? (i18n.language === 'en' ? 'Close' : i18n.language === 'de' ? 'Schließen' : 'Fermer') : t('buttons.close')}
                                     </Button>

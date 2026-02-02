@@ -18,7 +18,7 @@ const About = () => {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <div className="bg-white/40 backdrop-blur-md p-4 sm:p-6 md:p-10 rounded-2xl border border-white/50 text-left w-full">
+                    <div className="bg-white p-6 sm:p-8 md:p-12 rounded-2xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] text-left w-full">
                         <Reveal>
                             <span className="inline-block text-[var(--primary)] font-bold tracking-widest uppercase text-xs bg-[var(--primary)]/10 px-4 py-2 rounded-md mb-4">{aboutContent.sectionLabel}</span>
                             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mt-4 mb-6 sm:mb-8 leading-tight">{aboutContent.title}</h2>

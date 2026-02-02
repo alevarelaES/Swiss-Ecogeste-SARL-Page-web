@@ -1,11 +1,8 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
-import Services from '../components/sections/Services';
-import Team from '../components/sections/Team';
-import Subventions from '../components/sections/Subventions';
 import Partners from '../components/sections/Partners';
 import ContactSection from '../components/sections/ContactSection';
 import StatsSection from '../components/sections/StatsSection';

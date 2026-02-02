@@ -1,77 +1,91 @@
+import { useMemo, useState } from 'react';
 import SEO from '../components/SEO';
-import Reveal from '../components/animations/Reveal';
-import { Calendar, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { getArticles } from '../data/articles';
 import { getConseilsPageContent } from '../data/conseilsPageContent';
 import { useTranslation } from 'react-i18next';
-import { useLocalizedPath } from '../hooks/useLocalizedPath';
+import GalleryCard from '../components/ui/GalleryCard';
+import { Button } from '../components/ui/button';
 
 const ConseilsPage = () => {
-    const { i18n } = useTranslation();
-    const { getLocalizedPath } = useLocalizedPath();
+    const { i18n, t } = useTranslation('common');
     const content = getConseilsPageContent(i18n.language);
-    const articles = getArticles(i18n.language);
+    const allArticles = getArticles(i18n.language);
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
+    // Dynamic categories from article data
+    const categories = useMemo(() => {
+        const uniqueCategories = Array.from(new Set(allArticles.map(a => a.category)));
+        return [
+            { id: 'All', label: t('blog.nav.featured', 'À la une') },
+            ...uniqueCategories.map(cat => ({ id: cat, label: cat }))
+        ];
+    }, [allArticles, t]);
+
+    // Filter logic
+    const filteredArticles = useMemo(() => {
+        if (selectedCategory === 'All') return allArticles;
+        return allArticles.filter(article => article.category === selectedCategory);
+    }, [allArticles, selectedCategory]);
 
     return (
-        <div className="pt-32 pb-24">
+        <div className="min-h-screen bg-gray-100 font-sans text-gray-900">
             <SEO
                 title={content.seo.title}
                 description={content.seo.description}
                 canonical={content.seo.canonical}
             />
 
-            <div className="max-w-7xl mx-auto px-6">
-                <Reveal>
-                    <div className="text-center mb-20">
-                        <span className="text-[var(--primary)] font-bold tracking-widest uppercase text-xs">{content.sectionLabel}</span>
-                        <h1 className="text-5xl md:text-7xl font-black text-gray-900 mt-4 mb-6 tracking-tight">
-                            {content.title} <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">{content.titleHighlight}</span>
-                        </h1>
-                        <p className="text-gray-500 max-w-2xl mx-auto text-xl font-light leading-relaxed">
-                            {content.description}
-                        </p>
-                    </div>
-                </Reveal>
-
-                <div className="grid md:grid-cols-3 gap-10">
-                    {articles.map((article, index) => (
-                        <Reveal key={index} delay={index * 0.1}>
-                            <Link to={getLocalizedPath(`/conseils/${article.slug}`)} className="group block h-full">
-                                <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col border border-gray-100/50">
-                                    <div className="h-64 overflow-hidden relative">
-                                        <div
-                                            className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-out"
-                                            style={{ backgroundImage: `url(${article.imageUrl})` }}
-                                        />
-                                        <div className="absolute top-4 left-4">
-                                            <span className="bg-white/90 backdrop-blur-sm text-[var(--primary)] text-xs font-bold px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wide">
-                                                {article.category}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="p-8 flex-grow flex flex-col">
-                                        <div className="text-gray-400 text-xs font-medium mb-3 flex items-center gap-2">
-                                            <Calendar size={12} className="text-[var(--primary)]" />
-                                            {article.date}
-                                        </div>
-                                        <h2 className="text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-[var(--primary)] transition-colors">
-                                            {article.title}
-                                        </h2>
-                                        <p className="text-gray-600 mb-6 text-sm leading-relaxed line-clamp-3 font-light">
-                                            {article.excerpt}
-                                        </p>
-                                        <div className="mt-auto pt-6 border-t border-gray-50 flex items-center justify-between">
-                                            <div className="text-[var(--primary)] font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
-                                                {content.readMoreText} <ArrowRight size={16} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </Reveal>
-                    ))}
+            {/* COMPACT HEADER SECTION */}
+            <div className="pt-32 pb-12 px-6 bg-white border-b border-gray-100">
+                <div className="max-w-7xl mx-auto text-center md:text-left">
+                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4 font-sans uppercase">
+                        {content.title}
+                    </h1>
+                    <p className="text-lg md:text-xl text-gray-500 max-w-2xl font-medium leading-relaxed">
+                        {content.description}
+                    </p>
                 </div>
+            </div>
+
+            {/* FILTERS TABS - STICKY, MINIMALIST & CLEAN */}
+            <div className="sticky top-[72px] z-30 bg-white/90 backdrop-blur-xl border-b border-gray-200 px-6">
+                <div className="max-w-7xl mx-auto flex py-1 overflow-x-auto no-scrollbar relative z-10">
+                    <nav className="flex gap-8 whitespace-nowrap px-2">
+                        {categories.map((cat) => (
+                            <Button
+                                key={cat.id}
+                                variant="flat"
+                                size="none"
+                                onClick={() => setSelectedCategory(cat.id)}
+                                className={`relative py-5 text-[10px] font-bold tracking-[0.2em] uppercase transition-all
+                                    ${selectedCategory === cat.id
+                                        ? 'text-[var(--primary)]'
+                                        : 'text-gray-400 hover:text-gray-900'
+                                    }`}
+                            >
+                                {cat.label}
+                                {selectedCategory === cat.id && (
+                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[var(--primary)] rounded-full" />
+                                )}
+                            </Button>
+                        ))}
+                    </nav>
+                </div>
+            </div>
+
+            {/* CONTENT GRID - Uniform 3-column flow */}
+            <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+                {filteredArticles.length > 0 ? (
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                        {filteredArticles.map((article) => (
+                            <GalleryCard key={article.id} article={article} variant="standard" />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-20 bg-white rounded-none border border-dashed border-gray-200">
+                        <p className="text-gray-400 font-medium">Aucun article trouvé dans cette catégorie.</p>
+                    </div>
+                )}
             </div>
         </div>
     );

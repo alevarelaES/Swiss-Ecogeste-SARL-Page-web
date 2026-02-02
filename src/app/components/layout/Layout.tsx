@@ -27,17 +27,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     // Scroll to top on route change, but respect hash navigation and language switches
     useEffect(() => {
         const currentPathWithoutLang = getPathWithoutLang(pathname);
-        
+
         // Only scroll to top if the actual page changed (not just language prefix)
         if (!hash && currentPathWithoutLang !== prevPathRef.current) {
             window.scrollTo(0, 0);
         }
-        
+
         prevPathRef.current = currentPathWithoutLang;
     }, [pathname, hash]);
 
     // Don't show CTA banner on contact page (already there) or home page (has its own contact section)
-    const hideCTABanner = pathname === '/contact' || pathname === '/';
+    const currentPathWithoutLang = getPathWithoutLang(pathname);
+    const hideCTABanner = currentPathWithoutLang === '/contact' || currentPathWithoutLang === '/';
 
     return (
         <div className="min-h-screen font-sans text-gray-900 bg-white selection:bg-green-100 selection:text-green-900 flex flex-col">

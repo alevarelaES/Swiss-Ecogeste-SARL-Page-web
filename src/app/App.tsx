@@ -9,14 +9,11 @@ import ServicesPage from './pages/ServicesPage';
 import TeamPage from './pages/TeamPage';
 import ContactPage from './pages/ContactPage';
 import ConseilsPage from './pages/ConseilsPage';
-import ServiceDetail from './pages/ServiceDetail';
 import ArticleDetailPage from './pages/ArticleDetailPage';
-import EquiwattPage from './pages/EquiwattPage';
 import VillaPage from './pages/VillaPage';
 import EntreprisePage from './pages/EntreprisePage';
 import GerancePage from './pages/GerancePage';
 import CommunesPage from './pages/CommunesPage';
-import ServicesOverviewPage from './pages/ServicesOverviewPage';
 import MentionsLegalesPage from './pages/MentionsLegalesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
@@ -77,14 +74,12 @@ export default function App() {
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/conseils" element={<ConseilsPage />} />
                   <Route path="/conseils/:slug" element={<ArticleDetailPage />} />
-                  <Route path="/service/:id" element={<ServiceDetail />} />
 
-                  {/* New Routes */}
+                  {/* Service Specific Routes */}
                   <Route path="/services/villa" element={<VillaPage />} />
                   <Route path="/services/entreprise" element={<EntreprisePage />} />
                   <Route path="/services/gerance" element={<GerancePage />} />
                   <Route path="/services/communes" element={<CommunesPage />} />
-                  <Route path="/prestations" element={<ServicesOverviewPage />} />
 
                   {/* Legal Routes */}
                   <Route path="/mentions-legales" element={<MentionsLegalesPage />} />

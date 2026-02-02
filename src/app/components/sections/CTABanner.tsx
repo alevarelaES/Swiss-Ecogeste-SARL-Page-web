@@ -37,7 +37,7 @@ const CTABanner = ({
                     </div>
                     <Button
                         asChild
-                        className="bg-white hover:bg-gray-100 text-[#1b5e39] font-bold px-8 py-6 h-auto rounded-full transition-all hover:scale-105 shadow-lg text-base"
+                        className="bg-white hover:bg-gray-100 text-[#1b5e39] font-bold px-8 h-14 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg text-base"
                     >
                         <Link to={buttonLink}>{displayButtonText}</Link>
                     </Button>

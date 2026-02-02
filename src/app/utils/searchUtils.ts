@@ -86,12 +86,12 @@ export function searchAllContent(query: string, language: string = 'fr'): Search
     servicePages.forEach(page => {
         const titleMatch = page.content.title.toLowerCase().includes(normalizedQuery);
         const descriptionMatch = page.content.description.toLowerCase().includes(normalizedQuery);
-        
+
         // Recherche dans les sous-services
         let servicesMatch = false;
         if (page.content.services) {
-            servicesMatch = page.content.services.some(s => 
-                s.title.toLowerCase().includes(normalizedQuery) || 
+            servicesMatch = page.content.services.some(s =>
+                s.title.toLowerCase().includes(normalizedQuery) ||
                 s.description.toLowerCase().includes(normalizedQuery)
             );
         }

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { Button } from "../ui/button";
+import { cn } from '../ui/utils';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
@@ -18,7 +19,9 @@ const Navbar = () => {
     const dropdownRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
     const { getLocalizedPath } = useLocalizedPath();
-    const isHome = location.pathname === getLocalizedPath('/') || location.pathname === '/';
+    const normalizedPathname = location.pathname.replace(/\/$/, '') || '/';
+    const localizedHome = getLocalizedPath('/').replace(/\/$/, '') || '/';
+    const isHome = normalizedPathname === localizedHome || normalizedPathname === '/';
     const { t } = useTranslation('common');
 
     useEffect(() => {
@@ -95,8 +98,8 @@ const Navbar = () => {
             )}
 
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center relative z-10">
-                <Link 
-                    to={getLocalizedPath('/')} 
+                <Link
+                    to={getLocalizedPath('/')}
                     className="flex items-center gap-3 relative z-[60]"
                     onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -159,21 +162,30 @@ const Navbar = () => {
 
                     <div className="flex items-center gap-3 pl-2 border-l border-white/20 ml-2">
                         {/* Search Button */}
-                        <button
+                        <Button
+                            variant="flat"
+                            size="icon"
+                            rounded="full"
                             onClick={() => setIsSearchOpen(true)}
-                            className={`p-2 rounded-full transition-all hover:bg-white/10 ${isScrolled || !isHome ? 'hover:bg-gray-100' : ''}`}
+                            className={cn(
+                                "transition-all hover:bg-white/10",
+                                (isScrolled || !isHome) && "hover:bg-gray-100"
+                            )}
                             aria-label={t('search.open') || 'Ouvrir la recherche'}
                         >
                             <Search size={20} className={isScrolled || !isHome ? 'text-gray-700' : 'text-white/90'} />
-                        </button>
+                        </Button>
 
                         <LanguageSwitcher isScrolled={isScrolled} isHome={isHome} />
                     </div>
                 </div>
 
                 {/* Mobile Toggle - Now lg:hidden */}
-                <button
-                    className="lg:hidden p-2 rounded-full transition-colors relative z-[60] active:scale-95"
+                <Button
+                    variant="flat"
+                    size="none"
+                    rounded="full"
+                    className="lg:hidden p-2 transition-colors relative z-[60] active:scale-95"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     aria-label={isMobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
                     aria-expanded={isMobileMenuOpen}
@@ -201,7 +213,7 @@ const Navbar = () => {
                             </motion.div>
                         )}
                     </AnimatePresence>
-                </button>
+                </Button>
             </div>
 
             {/* Premium Mobile Menu Overlay */}
@@ -217,26 +229,35 @@ const Navbar = () => {
                         onClick={(e) => e.target === e.currentTarget && setIsMobileMenuOpen(false)}
                     >
                         {/* Close Button - Top Right */}
-                        <button
+                        <Button
+                            variant="flat"
+                            size="none"
+                            rounded="full"
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="absolute top-8 right-8 p-2 rounded-full hover:bg-gray-100 active:bg-gray-200 transition-colors z-[60]"
+                            className="absolute top-8 right-8 p-2 hover:bg-gray-100 active:bg-gray-200 transition-colors z-[60]"
                             aria-label="Fermer le menu"
                         >
                             <X size={28} className="text-gray-900" />
-                        </button>
+                        </Button>
 
                         <div className="flex flex-col h-full max-w-lg mx-auto w-full">
                             {/* Navigation Links */}
                             <nav className="flex flex-col gap-4">
                                 {/* Services Accordion */}
                                 <div className="flex flex-col gap-2">
-                                    <button
+                                    <Button
+                                        variant="flat"
+                                        size="none"
+                                        rounded="none"
                                         onClick={() => setIsServicesOpen(!isServicesOpen)}
                                         className="flex justify-between items-center text-gray-900 text-3xl font-black tracking-tighter text-left w-full group py-2"
                                     >
-                                        <span className={isServicesOpen ? 'text-[var(--primary)]' : ''}>{t('nav.services')}</span>
-                                        <ChevronDown size={28} className={`transition-transform duration-300 text-gray-300 ${isServicesOpen ? 'rotate-180 text-[var(--primary)]' : ''}`} />
-                                    </button>
+                                        <span className={cn(isServicesOpen && 'text-[var(--primary)]')}>{t('nav.services')}</span>
+                                        <ChevronDown size={28} className={cn(
+                                            "transition-transform duration-300 text-gray-300",
+                                            isServicesOpen && 'rotate-180 text-[var(--primary)]'
+                                        )} />
+                                    </Button>
 
                                     <AnimatePresence mode="wait">
                                         {isServicesOpen && (

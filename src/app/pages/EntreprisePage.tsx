@@ -3,7 +3,7 @@ import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from "../components/ui/button";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getEntreprisePageContent } from '../data/entreprisePageContent';
 import { useTranslation } from 'react-i18next';
 import ServiceCard from '../components/ui/ServiceCard';
@@ -16,6 +16,9 @@ const EntreprisePage = () => {
     const { getLocalizedPath } = useLocalizedPath();
     const content = getEntreprisePageContent(i18n.language);
 
+    const location = useLocation();
+    const backLinkPath = location.state?.from === 'services' ? '/services' : '/#nos-solutions';
+
     return (
         <div className="pt-32 pb-24">
             <SEO
@@ -26,7 +29,7 @@ const EntreprisePage = () => {
 
             <div className="max-w-7xl mx-auto px-6">
                 {/* Back Link */}
-                <Link to={getLocalizedPath('/#nos-solutions')} className="inline-flex items-center text-gray-400 hover:text-[var(--primary)] transition-colors mb-8 font-medium">
+                <Link to={getLocalizedPath(backLinkPath)} className="inline-flex items-center text-gray-400 hover:text-[var(--primary)] transition-colors mb-8 font-medium">
                     <ArrowLeft size={16} className="mr-2" /> {content.backLink}
                 </Link>
 

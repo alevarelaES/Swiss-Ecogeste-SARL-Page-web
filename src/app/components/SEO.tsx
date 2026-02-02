@@ -14,7 +14,7 @@ const SEO: React.FC<SEOProps> = ({
     description,
     canonical,
     ogType = 'website',
-    ogImage = 'https://swissecogestes.ch/og-image.jpg' // Example fallback
+    ogImage = '/Logo/Logo_EcoGeste_Avec_Fond.jpeg'
 }) => {
     const fullTitle = `${title} | Swiss Ecogestes`;
     const siteUrl = 'https://swissecogestes.ch'; // Replace with actual domain

@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Reveal from '../animations/Reveal';
@@ -10,7 +9,7 @@ const ServiceCard = ({ service }: { service: any }) => {
 
     return (
         <Reveal delay={service.delay}>
-            <Link to={service.link} className="block h-full">
+            <Link to={service.link} state={{ from: 'home' }} className="block h-full">
                 <div className="group bg-white h-full flex flex-col border border-gray-100 hover:border-amber-400 hover:shadow-2xl transition-all duration-300">
                     {/* Image Section - Fixed Aspect Ratio */}
                     <div className="relative h-48 overflow-hidden bg-gray-100">
@@ -111,4 +110,3 @@ const Services = () => {
 };
 
 export default Services;
-

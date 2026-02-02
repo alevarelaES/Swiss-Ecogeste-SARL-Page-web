@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
-import { Button } from "../components/ui/button";
-import Reveal from '../components/animations/Reveal';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { useLocalizedPath } from '../hooks/useLocalizedPath';
 import { getServices } from '../data/services';
 import { SERVICES_PAGE_IMAGES } from '../config/images';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
+import { ServiceCard } from '../components/services/ServiceCard';
+import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const ServicesPage = () => {
+    const { scrollY } = useScroll();
+    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+
     useSearchHighlight();
     const { t, i18n } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
@@ -21,70 +22,77 @@ const ServicesPage = () => {
         description: service.description,
         features: service.features,
         image: SERVICES_PAGE_IMAGES[service.id as keyof typeof SERVICES_PAGE_IMAGES],
-        link: service.link
+        link: getLocalizedPath(service.link)
     }));
 
     return (
-        <div className="pt-32 pb-24">
+        <div className="min-h-screen bg-[#fdfdfd] overflow-x-hidden">
             <SEO
                 title={t('services_page.seo_title')}
                 description={t('services_page.seo_desc')}
                 canonical="/services"
             />
 
-            <div className="max-w-7xl mx-auto px-6">
-                <Reveal>
-                    <div className="text-center mb-20">
-                        <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">{t('services_page.label')}</span>
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-6">{t('services_page.title')}</h1>
-                        <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+            {/* Premium Hero Section */}
+            <div className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-[var(--primary)]">
+                {/* Abstract Background Shapes */}
+                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.1))]" />
+                    <motion.div
+                        style={{ y: y1 }}
+                        className="absolute -top-[20%] -right-[20%] w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl"
+                    />
+                    <motion.div
+                        style={{ y: useTransform(scrollY, [0, 500], [0, -150]) }}
+                        className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl"
+                    />
+                </div>
+
+                <div className="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                        <span className="inline-block py-1 px-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium tracking-wide mb-6">
+                            {t('services_page.label', 'NOS EXPERTISES')}
+                        </span>
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                            {t('services_page.title')}
+                        </h1>
+                        <p className="tex-lg md:text-2xl text-white/80 max-w-2xl mx-auto font-light leading-relaxed">
                             {t('services_page.intro')}
                         </p>
-                    </div>
-                </Reveal>
+                    </motion.div>
+                </div>
 
-                <div className="space-y-24">
-                    {detailedServices.map((service, index) => (
-                        <Reveal key={index} delay={index * 0.1}>
-                            <div className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center`}>
-                                <div className="md:w-1/2">
-                                    <h2 className="text-3xl font-bold text-gray-900 mb-4">{service.title}</h2>
-                                    <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                                        {service.description}
-                                    </p>
-                                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                                        {service.features.map((feat, i) => (
-                                            <li key={i} className="flex items-start gap-2 text-gray-700 bg-gray-50 p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                                                <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
-                                                <span className="text-sm font-medium">{feat}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <div className="flex flex-wrap gap-4">
-                                        <Button asChild className="bg-[var(--primary)] hover:bg-green-700 text-white rounded-md px-8 group shadow-lg shadow-green-900/20 hover:shadow-green-900/40 transition-all duration-300">
-                                            <Link to={getLocalizedPath(service.link)}>
-                                                {t('buttons.learn_more') || "En savoir plus"} <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                            </Link>
-                                        </Button>
-                                    </div>
-                                </div>
-                                <div className="md:w-1/2 w-full">
-                                    <div className="rounded-xl overflow-hidden shadow-2xl aspect-[4/3] relative group">
-                                        <div
-                                            className="absolute inset-0 bg-cover bg-center"
-                                            style={{ backgroundImage: `url(${service.image})` }}
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent transition-colors duration-500" />
-                                    </div>
-                                </div>
-                            </div>
-                        </Reveal>
-                    ))}
+                {/* Curved divider at bottom */}
+                <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
+                    <svg className="relative block w-[calc(100%+1.3px)] h-[60px] md:h-[120px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-[#fdfdfd]"></path>
+                    </svg>
                 </div>
             </div>
+
+            {/* Services List Section */}
+            <div className="max-w-7xl mx-auto px-6 py-24 md:py-32 space-y-32">
+                {detailedServices.map((service, index) => (
+                    <ServiceCard
+                        key={index}
+                        index={index}
+                        title={service.title}
+                        description={service.description}
+                        features={service.features}
+                        image={service.image}
+                        link={service.link}
+                        learnMoreText={t('buttons.learn_more')}
+                    />
+                ))}
+            </div>
+
+            {/* CTA / Bottom Section Section could go here, but taking it simple for now to focus on services */}
         </div>
     );
 };
 
 export default ServicesPage;
-

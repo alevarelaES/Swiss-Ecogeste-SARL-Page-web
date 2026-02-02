@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Linkedin, Instagram, ArrowRight, Phone } from 'lucide-react';
 import { Button } from "../ui/button";
+import { cn } from '../ui/utils';
 import Reveal from '../animations/Reveal';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
@@ -135,17 +136,22 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                         <label className="text-sm font-bold text-[#0f1f1a] uppercase tracking-wide">{t('contact_section.you_are')}</label>
                                         <div className="flex flex-wrap gap-3">
                                             {clientRequestTypes.map((type) => (
-                                                <button
+                                                <Button
                                                     key={type.value}
                                                     type="button"
+                                                    variant={currentType === type.value ? 'default' : 'outline'}
+                                                    size="sm"
+                                                    rounded="full"
                                                     onClick={() => setCurrentType(type.value)}
-                                                    className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentType === type.value
-                                                        ? 'bg-[#1b5e39] text-white shadow-lg shadow-[#1b5e39]/20 transform scale-105'
-                                                        : 'bg-white text-gray-600 hover:bg-gray-50 border border-transparent hover:border-gray-200'
-                                                        }`}
+                                                    className={cn(
+                                                        "px-6 py-2.5 transition-all duration-300",
+                                                        currentType === type.value
+                                                            ? 'bg-[#1b5e39] text-white shadow-lg shadow-[#1b5e39]/20 transform scale-105'
+                                                            : 'bg-white text-gray-600 hover:bg-gray-50 border-gray-200'
+                                                    )}
                                                 >
                                                     {type.label}
-                                                </button>
+                                                </Button>
                                             ))}
                                         </div>
                                     </div>
@@ -218,8 +224,11 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
 
                                     <Button
                                         type="submit"
+                                        variant="dark"
+                                        size="lg"
+                                        rounded="none"
                                         disabled={isSubmitting}
-                                        className="w-full h-14 bg-[#1b5e39] hover:bg-[#144a2d] text-white rounded-xl text-lg font-bold shadow-xl shadow-[#1b5e39]/20 transition-all hover:-translate-y-1 group disabled:opacity-70 disabled:hover:translate-y-0"
+                                        className="w-full h-14 bg-[#1b5e39] hover:bg-[#144a2d] text-white text-lg font-bold shadow-xl shadow-[#1b5e39]/20 transition-all hover:-translate-y-1 group disabled:opacity-70 disabled:hover:translate-y-0"
                                     >
                                         <span>{isSubmitting ? t('contact_section.sending') : t('contact_section.submit')}</span>
                                         {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />}

@@ -263,8 +263,10 @@ function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
       {...props}
     >
       {scrollSnaps.map((_, index) => (
-        <button
+        <Button
           key={index}
+          variant="flat"
+          size="none"
           className={cn(
             "h-1.5 rounded-md transition-all duration-300",
             index === selectedIndex
