@@ -85,13 +85,13 @@ const Hero = () => {
                                         transition={{ duration: 0.5, delay: 0.5 }}
                                         className="flex flex-col sm:flex-row items-start gap-4"
                                     >
-                                        <Button asChild className="h-14 px-8 text-lg font-bold bg-[var(--primary)] hover:bg-[#1a4d3e] text-white rounded-xl transition-all hover:scale-105 active:scale-95">
+                                        <Button asChild className="h-14 px-8 text-lg font-bold bg-[var(--primary)] hover:bg-[#1a4d3e] text-white rounded-lg transition-all hover:scale-105 active:scale-95 shadow-lg">
                                             <Link to={getLocalizedPath('/contact')}>
                                                 {t('buttons.start_project')}
                                                 <ArrowRight className="ml-2 w-5 h-5" />
                                             </Link>
                                         </Button>
-                                        <Button asChild variant="outline" className="h-14 px-8 text-lg font-bold bg-white/10 hover:bg-white/20 text-white border-white/20 rounded-xl backdrop-blur-md transition-all hover:scale-105 active:scale-95">
+                                        <Button asChild variant="outline" className="h-14 px-8 text-lg font-bold bg-white/10 hover:bg-white/20 text-white border-white/20 rounded-lg backdrop-blur-md transition-all hover:scale-105 active:scale-95 shadow-lg">
                                             <Link to={getLocalizedPath(slide.buttonLink)}>
                                                 {slide.buttonText}
                                             </Link>

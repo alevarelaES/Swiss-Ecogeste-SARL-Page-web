@@ -3,8 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Button } from './button';
-import { cn } from './utils';
 
 interface LanguageSwitcherProps {
     isScrolled?: boolean;
@@ -44,7 +42,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
     const changeLanguage = (lng: string) => {
         // Store current scroll position
         const scrollY = window.scrollY;
-
+        
         // Construct new path
         const pathParts = location.pathname.split('/').filter(Boolean);
         let newPath = '';
@@ -65,7 +63,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
         // Navigate first to change the URL - App.tsx will handle language sync
         navigate(newPath, { replace: true });
         setIsOpen(false);
-
+        
         // Restore scroll position after navigation with requestAnimationFrame for better timing
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
@@ -81,21 +79,16 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
                 {languages.map((lang) => {
                     const isActive = i18n.language.startsWith(lang.code);
                     return (
-                        <Button
+                        <button
                             key={lang.code}
-                            variant="flat"
-                            size="none"
-                            rounded="default"
                             onClick={() => changeLanguage(lang.code)}
-                            className={cn(
-                                "px-3 py-1.5 text-sm font-medium transition-all duration-200",
-                                isActive
+                            className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ${isActive
                                     ? 'bg-white text-[var(--primary)] shadow-sm'
                                     : 'text-gray-500 hover:text-gray-900 hover:bg-white/50'
-                            )}
+                                }`}
                         >
                             {lang.label}
-                        </Button>
+                        </button>
                     );
                 })}
             </div>
@@ -108,27 +101,17 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
 
     return (
         <div className="relative" ref={dropdownRef}>
-            <Button
-                variant="flat"
-                size="none"
-                rounded="full"
+            <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={cn(
-                    "flex items-center gap-1.5 px-3 py-1.5 transition-all duration-300",
-                    textColor,
-                    hoverColor
-                )}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-300 ${textColor} ${hoverColor}`}
                 aria-label="Select Language"
             >
                 <Globe className="w-4 h-4 opacity-80" />
                 <span className="font-medium text-sm pt-0.5">{currentLang.label}</span>
                 <ChevronDown
-                    className={cn(
-                        "w-3.5 h-3.5 opacity-70 transition-transform duration-300",
-                        isOpen ? 'rotate-180' : ''
-                    )}
+                    className={`w-3.5 h-3.5 opacity-70 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                 />
-            </Button>
+            </button>
 
             <AnimatePresence>
                 {isOpen && (
@@ -140,23 +123,16 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
                         className="absolute right-0 top-full mt-2 w-40 bg-white rounded-xl shadow-xl ring-1 ring-black/5 overflow-hidden py-1 z-50 origin-top-right"
                     >
                         {languages.map((lang) => (
-                            <Button
+                            <button
                                 key={lang.code}
-                                variant="flat"
-                                size="none"
-                                rounded="none"
                                 onClick={() => changeLanguage(lang.code)}
-                                className={cn(
-                                    "w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-gray-50 transition-colors",
-                                    i18n.language.startsWith(lang.code) ? 'text-[var(--primary)] font-bold bg-green-50/50' : 'text-gray-600 font-medium'
-                                )}
+                                className={`w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-gray-50 transition-colors
+                                    ${i18n.language.startsWith(lang.code) ? 'text-[var(--primary)] font-bold bg-green-50/50' : 'text-gray-600 font-medium'}
+                                `}
                             >
-                                <span className={cn(
-                                    "w-1.5 h-1.5 rounded-full",
-                                    i18n.language.startsWith(lang.code) ? 'bg-[var(--primary)]' : 'bg-transparent'
-                                )} />
+                                <span className={`w-1.5 h-1.5 rounded-full ${i18n.language.startsWith(lang.code) ? 'bg-[var(--primary)]' : 'bg-transparent'}`} />
                                 {lang.name}
-                            </Button>
+                            </button>
                         ))}
                     </motion.div>
                 )}

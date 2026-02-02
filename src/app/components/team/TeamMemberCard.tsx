@@ -24,7 +24,7 @@ export const TeamMemberCard = ({ name, role, initials, items, index, image }: Te
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group relative bg-[#fdfdfd] border border-gray-100 rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500 h-full flex flex-col"
+            className="group relative bg-[#fdfdfd] border border-gray-100 rounded-none overflow-hidden hover:shadow-2xl transition-all duration-500 h-full flex flex-col"
         >
             {/* Top accent bar */}
             <div className={`h-2 w-full bg-gradient-to-r ${selectedGradient}`} />
@@ -38,7 +38,7 @@ export const TeamMemberCard = ({ name, role, initials, items, index, image }: Te
                 {/* Header: Photo/Initials & Name */}
                 <div className="flex items-start gap-5 mb-6">
                     <div className={`
-                        w-20 h-20 shrink-0 rounded-2xl bg-gradient-to-br ${selectedGradient} 
+                        w-20 h-20 shrink-0 rounded-none bg-gradient-to-br ${selectedGradient} 
                         flex items-center justify-center text-white text-2xl font-bold tracking-wider 
                         shadow-lg shadow-green-900/20 group-hover:shadow-green-900/30 
                         transform group-hover:scale-105 transition-all duration-500 overflow-hidden relative

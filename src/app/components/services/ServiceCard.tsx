@@ -87,7 +87,7 @@ export const ServiceCard = ({
                             transition={{ delay: 0.4 + (i * 0.1), duration: 0.4 }}
                             className="flex items-center gap-3 text-gray-700 font-medium"
                         >
-                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--secondary)] flex items-center justify-center text-[var(--primary)]">
+                            <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-[var(--secondary)] flex items-center justify-center text-[var(--primary)]">
                                 <CheckCircle2 className="w-4 h-4" />
                             </span>
                             {feature}
@@ -103,7 +103,7 @@ export const ServiceCard = ({
                 >
                     <Button
                         asChild
-                        className="bg-[var(--primary)] text-white hover:bg-[var(--primary)]/90 h-12 px-8 rounded-full text-base transition-all duration-300 shadow-lg shadow-[var(--primary)]/25 hover:shadow-[var(--primary)]/40 hover:-translate-y-1"
+                        className="bg-[var(--primary)] text-white hover:bg-[var(--primary)]/90 h-12 px-8 rounded-lg text-base transition-all duration-300 shadow-lg shadow-[var(--primary)]/25 hover:shadow-[var(--primary)]/40 hover:-translate-y-1"
                     >
                         <Link to={link} state={{ from: 'services' }}>
                             {learnMoreText}

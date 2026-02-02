@@ -141,7 +141,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                                     type="button"
                                                     variant={currentType === type.value ? 'default' : 'outline'}
                                                     size="sm"
-                                                    rounded="full"
+                                                    rounded="lg"
                                                     onClick={() => setCurrentType(type.value)}
                                                     className={cn(
                                                         "px-6 py-2.5 transition-all duration-300",
@@ -166,7 +166,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                             name="fullName"
                                             value={formData.fullName}
                                             onChange={handleChange}
-                                            className={`w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm ${errors.fullName ? 'ring-1 ring-red-500' : ''}`}
+                                            className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.fullName ? 'ring-1 ring-red-500' : ''}`}
                                             placeholder="Jean Dupont"
                                         />
                                     </div>
@@ -182,7 +182,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                                 name="email"
                                                 value={formData.email}
                                                 onChange={handleChange}
-                                                className={`w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm ${errors.email ? 'ring-1 ring-red-500' : ''}`}
+                                                className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.email ? 'ring-1 ring-red-500' : ''}`}
                                                 placeholder="jean.dupont@email.com"
                                             />
                                         </div>
@@ -200,7 +200,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                                     name="phone"
                                                     value={formData.phone}
                                                     onChange={handlePhoneChange}
-                                                    className={`w-full bg-white border-0 rounded-xl pl-12 pr-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm ${errors.phone ? 'ring-1 ring-red-500' : ''}`}
+                                                    className={`w-full bg-white border border-gray-200 rounded-none pl-12 pr-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.phone ? 'ring-1 ring-red-500' : ''}`}
                                                     placeholder="+41 79 000 00 00"
                                                 />
                                             </div>
@@ -217,7 +217,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                             name="message"
                                             value={formData.message}
                                             onChange={handleChange}
-                                            className={`w-full bg-white border-0 rounded-xl px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-sm resize-none ${errors.message ? 'ring-1 ring-red-500' : ''}`}
+                                            className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md resize-none ${errors.message ? 'ring-1 ring-red-500' : ''}`}
                                             placeholder={t('contact_section.placeholder_message')}
                                         ></textarea>
                                     </div>
@@ -226,7 +226,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                         type="submit"
                                         variant="dark"
                                         size="lg"
-                                        rounded="none"
+                                        rounded="lg"
                                         disabled={isSubmitting}
                                         className="w-full h-14 bg-[#1b5e39] hover:bg-[#144a2d] text-white text-lg font-bold shadow-xl shadow-[#1b5e39]/20 transition-all hover:-translate-y-1 group disabled:opacity-70 disabled:hover:translate-y-0"
                                     >

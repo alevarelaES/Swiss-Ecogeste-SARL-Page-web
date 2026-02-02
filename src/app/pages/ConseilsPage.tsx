@@ -65,7 +65,7 @@ const ConseilsPage = () => {
                             >
                                 {cat.label}
                                 {selectedCategory === cat.id && (
-                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[var(--primary)] rounded-full" />
+                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[var(--primary)] rounded-none" />
                                 )}
                             </Button>
                         ))}

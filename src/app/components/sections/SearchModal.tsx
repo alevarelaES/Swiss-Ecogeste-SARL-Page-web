@@ -148,7 +148,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                         className="fixed inset-x-4 top-[10vh] md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-3xl z-[101] max-h-[80vh] overflow-hidden"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh]">
+                        <div className="bg-white rounded-none shadow-2xl overflow-hidden flex flex-col max-h-[80vh]">
                             {/* Header avec barre de recherche */}
                             <div className="p-6 pb-4 border-b border-gray-100">
                                 <div className="flex items-center gap-4">

@@ -16,17 +16,17 @@ const GalleryCard = ({ article }: GalleryCardProps) => {
     return (
         <Link
             to={getLocalizedPath(`/conseils/${article.slug}`)}
-            className="flex flex-col h-full bg-white group hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden"
+            className="flex flex-col h-full bg-white group shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden rounded-none hover:-translate-y-1"
         >
             {/* Image Section */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-64 overflow-hidden rounded-none">
                 <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                     style={{ backgroundImage: `url(${article.imageUrl})` }}
                 />
 
                 {/* Category Tag */}
-                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-[var(--primary)] flex items-center gap-1.5 z-10 shadow-sm">
+                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-[var(--primary)] flex items-center gap-1.5 z-10 shadow-sm rounded-none border border-gray-100">
                     <Tag size={12} /> {article.category}
                 </div>
             </div>

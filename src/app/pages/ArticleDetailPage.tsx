@@ -58,7 +58,7 @@ const ArticleDetailPage = () => {
             <SEO title={article.title} description={article.excerpt} canonical={`/conseils/${article.slug}`} ogImage={article.imageUrl} />
 
             {/* HEADER AVEC TOUCHE DE COULEUR SUBTILE */}
-            <header className="pt-32 pb-12 lg:pb-16 bg-[#f8faf9] border-b border-gray-100">
+            <header className="pt-32 pb-12 lg:pb-16 bg-gray-100 border-b border-gray-200 shadow-sm">
                 <div className="max-w-7xl mx-auto px-6">
                     {/* Navigation Row: Back Button + Breadcrumb */}
                     <div className="flex items-center justify-between mb-8">
@@ -91,14 +91,14 @@ const ArticleDetailPage = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                         <div>
                             <Reveal>
-                                <div className="inline-flex items-center gap-2 bg-green-50 text-[var(--primary)] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
+                                <div className="inline-flex items-center gap-2 bg-green-50 text-[var(--primary)] px-3 py-1 rounded-none text-[10px] font-black uppercase tracking-widest mb-6 border border-green-100/50">
                                     <Sparkles size={12} /> {article.category}
                                 </div>
                                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] mb-8 tracking-tight">
                                     {article.title}
                                 </h1>
                                 <div className="flex items-center gap-3 mb-8 lg:mb-0">
-                                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-green-100 shadow-sm">
+                                    <div className="w-10 h-10 rounded-none bg-white flex items-center justify-center border border-green-100 shadow-sm">
                                         <User size={18} className="text-[var(--primary)]" />
                                     </div>
                                     <div className="text-left text-sm">
@@ -111,12 +111,12 @@ const ArticleDetailPage = () => {
 
                         <div>
                             <Reveal delay={0.2}>
-                                <div className="rounded-2xl overflow-hidden shadow-xl aspect-video relative group">
+                                <div className="rounded-none overflow-hidden shadow-xl aspect-video relative group border border-gray-100">
                                     <div
                                         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                         style={{ backgroundImage: `url(${article.imageUrl})` }}
                                     />
-                                    <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl"></div>
+                                    <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-none"></div>
                                 </div>
                             </Reveal>
                         </div>
@@ -124,7 +124,7 @@ const ArticleDetailPage = () => {
                 </div>
             </header>
 
-            <main className="bg-gray-100 py-12 lg:py-16">
+            <main className="bg-white py-12 lg:py-16">
                 <div className="max-w-3xl mx-auto px-6">
                     <Reveal delay={0.3}>
                         <article
@@ -146,16 +146,16 @@ const ArticleDetailPage = () => {
                         <div className="mt-16 pt-12 border-t border-gray-100">
                             <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-400 mb-6 text-center">{t('blog.share')}</h3>
                             <div className="flex justify-center gap-3 mb-6">
-                                <a href={shareLinks.x} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-900 border border-gray-100 hover:bg-black hover:text-white hover:border-black transition-all shadow-sm">
+                                <a href={shareLinks.x} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-none flex items-center justify-center text-gray-900 border border-gray-100 hover:bg-black hover:text-white hover:border-black transition-all shadow-sm">
                                     <XIcon />
                                 </a>
-                                <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-[#0077b5] border border-gray-100 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all shadow-sm">
+                                <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-none flex items-center justify-center text-[#0077b5] border border-gray-100 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all shadow-sm">
                                     <Linkedin size={16} fill="currentColor" strokeWidth={0} />
                                 </a>
-                                <a href={shareLinks.meta} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-[#1877F2] border border-gray-100 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all shadow-sm">
+                                <a href={shareLinks.meta} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-none flex items-center justify-center text-[#1877F2] border border-gray-100 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all shadow-sm">
                                     <Facebook size={16} fill="currentColor" strokeWidth={0} />
                                 </a>
-                                <button onClick={handleCopyLink} className={`px-4 h-10 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-wider transition-all border ${copied ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-gray-50 text-gray-600 border-gray-100 hover:border-gray-300'}`}>
+                                <button onClick={handleCopyLink} className={`px-4 h-10 rounded-none flex items-center gap-2 text-[10px] font-black uppercase tracking-wider transition-all border ${copied ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-gray-50 text-gray-600 border-gray-100 hover:border-gray-300'}`}>
                                     {copied ? <Check size={14} strokeWidth={3} /> : <LinkIcon size={14} strokeWidth={3} />}
                                     {copied ? t('blog.copied') : t('blog.copy')}
                                 </button>

@@ -97,7 +97,7 @@ export function ArticleDetailPageSanity() {
                 {t('common.back')}
               </button>
               
-              <span className="inline-block px-4 py-1 bg-primary text-white rounded-full text-sm font-semibold mb-4">
+              <span className="inline-block px-4 py-1 bg-primary text-white rounded-none text-sm font-semibold mb-4 border border-white/20">
                 {article.category[currentLang]}
               </span>
               
@@ -143,7 +143,7 @@ export function ArticleDetailPageSanity() {
                     {article.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded-none text-sm border border-gray-200"
                       >
                         #{tag}
                       </span>

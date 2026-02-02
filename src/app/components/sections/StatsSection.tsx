@@ -57,8 +57,8 @@ const StatsSection = () => {
                 <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="absolute top-0 left-0 w-full h-[300px] text-white/20 fill-current transform -scale-y-100">
                     <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
                 </svg>
-                <div className="absolute -right-20 -bottom-40 w-96 h-96 bg-white/10 rounded-md blur-3xl"></div>
-                <div className="absolute -left-20 top-20 w-72 h-72 bg-amber-400/10 rounded-md blur-3xl"></div>
+                <div className="absolute -right-20 -bottom-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+                <div className="absolute -left-20 top-20 w-72 h-72 bg-amber-400/10 rounded-full blur-3xl"></div>
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">

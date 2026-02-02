@@ -15,10 +15,10 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
     return (
         <Link
             to={getLocalizedPath(`/conseils/${article.slug}`)}
-            className="group flex flex-col h-full bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+            className="group flex flex-col h-full bg-white border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden rounded-none hover:-translate-y-1"
         >
             {/* Image Section */}
-            <div className="relative h-52 overflow-hidden bg-gray-100">
+            <div className="relative h-56 overflow-hidden bg-gray-100 rounded-none">
                 <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                     style={{ backgroundImage: `url(${article.imageUrl})` }}
@@ -26,7 +26,7 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
 
                 {/* Category Overlay */}
                 <div className="absolute bottom-4 left-4">
-                    <span className="bg-[var(--primary)] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">
+                    <span className="bg-[var(--primary)] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest rounded-none border border-white/20">
                         {article.category}
                     </span>
                 </div>
