@@ -6,6 +6,7 @@ build/
 # Fichiers de configuration sensibles
 .env
 .env.local
+env
 
 # Fichiers système
 .DS_Store
