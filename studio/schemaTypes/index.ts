@@ -3,21 +3,27 @@ import { teamMember } from './teamMember'
 import { article } from './article'
 import { settings } from './settings'
 import { heroSlide } from './heroSlide'
-import { stat } from './stat'
-import { whyChooseUs } from './whyChooseUs'
-import { aboutPage } from './aboutPage'
 import { clientType } from './clientType'
-import { pageContent } from './pageContent'
+import { teamPage } from './teamPage'
+import { contactPage } from './contactPage'
+import { localeString } from './localeString'
+import { localeText } from './localeText'
+import { homePage } from './homePage'
+import { blogPage } from './blogPage'
+import { footer } from './footer'
 
 export const schemaTypes = [
-  service,
+  localeString,
+  localeText,
+  homePage, // Page 1
+  service,  // Page 2 (Unified)
+  teamPage, // Page 3
   teamMember,
+  blogPage, // Page 4
   article,
-  settings,
+  contactPage, // Page 5
+  footer,   // Global
+  settings, // Global
   heroSlide,
-  stat,
-  whyChooseUs,
-  aboutPage,
   clientType,
-  pageContent,
 ]
