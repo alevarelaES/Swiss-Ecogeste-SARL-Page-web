@@ -52,7 +52,7 @@ export const SERVICES_PAGE_IMAGES = {
 // ========================================
 export const BACKGROUND_IMAGES = {
     // Section "À Propos" - Image de fond
-    about: "/images/image_fond_section_Propos.png",
+    about: "/images/fond_a_propos_de_nosu_swiss_ecogestes.png",
     
     // Image principale de la section À Propos (bureau/équipe)
     aboutMain: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1000&auto=format&fit=crop",
