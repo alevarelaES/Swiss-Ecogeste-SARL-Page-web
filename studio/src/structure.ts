@@ -4,142 +4,134 @@ export const structure = (S: StructureBuilder) =>
     S.list()
         .title('Gestion du Site Swiss Ecogestes')
         .items([
-            // 1. Page d'Accueil
+            // 1. HOME
             S.listItem()
-                .id('home-page-item') // Explicit ID to break cache
                 .title("Page d'Accueil")
+                .id('home-page-root')
                 .icon(() => '🏠')
                 .child(
                     S.document()
                         .schemaType('homePage')
                         .documentId('homePage')
-                        .title('Contenu Page d\'Accueil')
+                        .title('Éditer l\'Accueil')
                 ),
 
             S.divider(),
 
-            // 2. Services
+            // 2. SERVICES
             S.listItem()
-                .id('services-item')
-                .title('Nos Services')
+                .title('Page Services')
+                .id('services-page-root')
                 .icon(() => '🛠️')
                 .child(
-                    S.documentList()
-                        .title('Liste des Services')
-                        .schemaType('service')
-                        .filter('_type == "service"')
-                        .id('services-list')
+                    S.list()
+                        .title('Gestion des Services')
+                        .items([
+                            S.listItem()
+                                .title('Page Services (Liste & Hero)')
+                                .child(
+                                    S.document()
+                                        .schemaType('servicesPage')
+                                        .documentId('servicesPage')
+                                        .title('Éditer la Page Services')
+                                ),
+                            S.divider(),
+                            S.documentTypeListItem('service')
+                                .title('Tous les Services (Fiches Compètes)')
+                                .id('all-services-list'),
+                        ])
                 ),
 
             S.divider(),
 
-            // 3. Page Équipe
+            // 3. ABOUT (On Home or separate?) Prompt said 'aboutPage.ts'.
             S.listItem()
-                .id('team-page-item')
+                .title('Page À Propos')
+                .id('about-page-root')
+                .icon(() => 'ℹ️')
+                .child(
+                    S.document()
+                        .schemaType('aboutPage')
+                        .documentId('aboutPage')
+                        .title('Éditer À Propos')
+                ),
+
+            S.divider(),
+
+            // 4. TEAM
+            S.listItem()
                 .title('Page Équipe')
+                .id('team-page-root')
                 .icon(() => '👥')
                 .child(
                     S.list()
-                        .title('Gestion Page Équipe')
-                        .id('team-page-list')
+                        .title('Gestion Équipe')
                         .items([
                             S.listItem()
-                                .id('team-content-item')
-                                .title('Contenu & En-tête')
+                                .title('Page Équipe (Hero & Recrutement)')
                                 .child(
                                     S.document()
                                         .schemaType('teamPage')
                                         .documentId('teamPage')
-                                        .title('Contenu Page Équipe')
+                                        .title('Éditer la Page Équipe')
                                 ),
+                            S.divider(),
                             S.documentTypeListItem('teamMember')
-                                .id('team-members-list')
-                                .title('Membres de l\'équipe'),
+                                .title('Membres de l\'équipe')
+                                .id('all-team-members'),
                         ])
                 ),
 
             S.divider(),
 
-            // 4. Page Conseils (Blog)
+            // 5. BLOG
             S.listItem()
-                .id('blog-page-item')
                 .title('Page Conseils (Blog)')
+                .id('blog-page-root')
                 .icon(() => '📰')
                 .child(
                     S.list()
-                        .title('Gestion Blog')
-                        .id('blog-page-list')
+                        .title('Gestion du Blog')
                         .items([
                             S.listItem()
-                                .id('blog-config-item')
-                                .title('En-tête & Configuration Page')
+                                .title('Configuration Page Blog')
                                 .child(
                                     S.document()
                                         .schemaType('blogPage')
                                         .documentId('blogPage')
-                                        .title('Config Page Blog')
+                                        .title('En-tête & Paramètres')
                                 ),
                             S.documentTypeListItem('article')
-                                .id('articles-list')
-                                .title('Articles'),
+                                .title('Tous les Articles')
+                                .id('all-articles'),
                         ])
                 ),
 
             S.divider(),
 
-            // 5. Page Contact
+            // 6. CONTACT
             S.listItem()
-                .id('contact-page-item')
                 .title('Page Contact')
+                .id('contact-page-root')
                 .icon(() => '📞')
                 .child(
                     S.document()
                         .schemaType('contactPage')
                         .documentId('contactPage')
-                        .title('Contenu Page Contact')
+                        .title('Éditer Page Contact')
                 ),
 
             S.divider(),
 
-            // 6. Pied de Page & Paramètres
+            // 7. SETTINGS / FOOTER
             S.listItem()
-                .id('settings-item')
-                .title('Footer & Contact Global')
+                .title('Paramètres & Footer')
+                .id('settings-root')
                 .icon(() => '⚙️')
                 .child(
-                    S.list()
-                        .title('Configuration / Footer')
-                        .id('settings-list')
-                        .items([
-                            S.listItem()
-                                .id('footer-item')
-                                .title('Pied de Page (Footer)')
-                                .child(
-                                    S.document()
-                                        .schemaType('footer')
-                                        .documentId('footer')
-                                        .title('Pied de Page')
-                                ),
-                            S.listItem()
-                                .id('general-settings-item')
-                                .title('Paramètres Généraux')
-                                .child(
-                                    S.document()
-                                        .schemaType('settings')
-                                        .documentId('settings')
-                                        .title('Configuration Générale')
-                                ),
-                        ])
+                    S.document()
+                        .schemaType('settings')
+                        .documentId('settings')
+                        .title('Global & Footer')
                 ),
-
-            S.divider(),
-
-            // 7. Types de Clients & Hero (Listes de support)
-            S.documentTypeListItem('clientType')
-                .id('client-types-list')
-                .title('Types de Clients (Solutions)'),
-
-            S.documentTypeListItem('heroSlide')
-                .id('hero-slides-list')
-                .title('Carrousel Accueil'),
         ])

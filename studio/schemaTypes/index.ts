@@ -10,20 +10,29 @@ import { localeString } from './localeString'
 import { localeText } from './localeText'
 import { homePage } from './homePage'
 import { blogPage } from './blogPage'
-import { footer } from './footer'
+import { servicesPage } from './servicesPage'
+import { aboutPage } from './aboutPage'
 
 export const schemaTypes = [
+  // Types globaux
   localeString,
   localeText,
-  homePage, // Page 1
-  service,  // Page 2 (Unified)
-  teamPage, // Page 3
+
+  // Pages (Singletons)
+  homePage,
+  servicesPage,
+  aboutPage,
+  teamPage,
+  blogPage,
+  contactPage,
+  settings, // Footer & Config
+
+  // Documents de contenu (Collections)
+  service,
   teamMember,
-  blogPage, // Page 4
   article,
-  contactPage, // Page 5
-  footer,   // Global
-  settings, // Global
-  heroSlide,
-  clientType,
+  clientType, // Used in Home Solutions
+
+  // Legacy / Support (si encore utilisés, sinon à supprimer)
+  heroSlide, // Maintenant intégré dans homePage mais peut rester si besoin de migration
 ]

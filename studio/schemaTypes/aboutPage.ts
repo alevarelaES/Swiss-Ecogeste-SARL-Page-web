@@ -1,140 +1,78 @@
-import { defineType, defineField, defineArrayMember } from 'sanity'
-import { DocumentIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 
 export const aboutPage = defineType({
   name: 'aboutPage',
-  title: 'About Page',
+  title: 'Page À Propos (Accueil)',
+  // Note: The prompt implies aboutPage is a page. 
+  // In `aboutContent.ts` it seems to be an "About Us" section ON the homepage or a separate page? 
+  // User Prompt: "Réécris aboutPage.ts".
+  // `aboutContent.ts` has `sectionLabel`, `title`, `paragraph1`...
   type: 'document',
-  icon: DocumentIcon,
+  groups: [
+    { name: 'content', title: 'Contenu' },
+    { name: 'values', title: 'Valeurs' },
+    { name: 'media', title: 'Média' }
+  ],
   fields: [
     defineField({
       name: 'sectionLabel',
-      title: 'Section Label',
-      type: 'object',
-      fields: [
-        { name: 'fr', type: 'string', title: 'Français' },
-        { name: 'en', type: 'string', title: 'English' },
-        { name: 'de', type: 'string', title: 'Deutsch' },
-      ],
+      title: 'Label de Section',
+      type: 'localeString',
+      group: 'content'
     }),
     defineField({
       name: 'title',
-      title: 'Title',
-      type: 'object',
-      fields: [
-        { name: 'fr', type: 'string', title: 'Français' },
-        { name: 'en', type: 'string', title: 'English' },
-        { name: 'de', type: 'string', title: 'Deutsch' },
-      ],
-      validation: (rule) => rule.required(),
+      title: 'Titre Principal',
+      type: 'localeString',
+      group: 'content'
     }),
     defineField({
-      name: 'paragraph1',
-      title: 'First Paragraph',
-      type: 'object',
-      fields: [
-        { name: 'fr', type: 'text', title: 'Français' },
-        { name: 'en', type: 'text', title: 'English' },
-        { name: 'de', type: 'text', title: 'Deutsch' },
-      ],
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'paragraph2',
-      title: 'Second Paragraph',
-      type: 'object',
-      fields: [
-        { name: 'fr', type: 'text', title: 'Français' },
-        { name: 'en', type: 'text', title: 'English' },
-        { name: 'de', type: 'text', title: 'Deutsch' },
-      ],
-      validation: (rule) => rule.required(),
+      name: 'paragraphs',
+      title: 'Paragraphes',
+      type: 'array',
+      group: 'content',
+      of: [{ type: 'localeText' }]
     }),
     defineField({
       name: 'values',
-      title: 'Values',
+      title: 'Valeurs Clés',
       type: 'array',
+      group: 'values',
       of: [
-        defineArrayMember({
+        {
           type: 'object',
           fields: [
-            defineField({
-              name: 'title',
-              title: 'Title',
-              type: 'object',
-              fields: [
-                { name: 'fr', type: 'string', title: 'Français' },
-                { name: 'en', type: 'string', title: 'English' },
-                { name: 'de', type: 'string', title: 'Deutsch' },
-              ],
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: 'subtitle',
-              title: 'Subtitle',
-              type: 'object',
-              fields: [
-                { name: 'fr', type: 'string', title: 'Français' },
-                { name: 'en', type: 'string', title: 'English' },
-                { name: 'de', type: 'string', title: 'Deutsch' },
-              ],
-              validation: (rule) => rule.required(),
-            }),
-          ],
-          preview: {
-            select: {
-              title: 'title.fr',
-              subtitle: 'subtitle.fr',
-            },
-          },
-        }),
-      ],
-      validation: (rule) => rule.required().min(3).max(3),
+            defineField({ name: 'title', title: 'Titre', type: 'localeString' }),
+            defineField({ name: 'subtitle', title: 'Sous-titre', type: 'localeString' }),
+          ]
+        }
+      ]
     }),
     defineField({
-      name: 'ctaText',
-      title: 'CTA Text',
+      name: 'cta',
+      title: 'Bouton d\'appel à l\'action',
       type: 'object',
+      group: 'content',
       fields: [
-        { name: 'fr', type: 'string', title: 'Français' },
-        { name: 'en', type: 'string', title: 'English' },
-        { name: 'de', type: 'string', title: 'Deutsch' },
-      ],
-    }),
-    defineField({
-      name: 'ctaLink',
-      title: 'CTA Link',
-      type: 'string',
-      description: 'Internal path (e.g., /team)',
+        defineField({ name: 'text', title: 'Texte', type: 'localeString' }),
+        defineField({ name: 'link', title: 'Lien', type: 'string' }),
+      ]
     }),
     defineField({
       name: 'quote',
-      title: 'Quote',
-      type: 'object',
-      fields: [
-        { name: 'fr', type: 'text', title: 'Français' },
-        { name: 'en', type: 'text', title: 'English' },
-        { name: 'de', type: 'text', title: 'Deutsch' },
-      ],
+      title: 'Citation',
+      type: 'localeText',
+      group: 'content'
     }),
     defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
+      group: 'media',
+      options: { hotspot: true }
+    })
   ],
   preview: {
-    select: {
-      title: 'title.fr',
-    },
-    prepare({ title }) {
-      return {
-        title: title || 'About Page',
-        subtitle: 'Singleton',
-      }
-    },
-  },
+    prepare() { return { title: 'Section À Propos' } }
+  }
 })

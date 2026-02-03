@@ -4,87 +4,72 @@ export const teamPage = defineType({
     name: 'teamPage',
     title: 'Page Équipe',
     type: 'document',
+    groups: [
+        { name: 'hero', title: 'Hero' },
+        { name: 'members', title: 'Membres' },
+        { name: 'recruitment', title: 'Recrutement' },
+        { name: 'seo', title: 'SEO' }
+    ],
     fields: [
+        // --- SEO ---
+        defineField({
+            name: 'seo',
+            title: 'SEO',
+            type: 'object',
+            group: 'seo',
+            fields: [
+                defineField({ name: 'title', title: 'Titre SEO', type: 'localeString' }),
+                defineField({ name: 'description', title: 'Description SEO', type: 'localeText' }),
+            ]
+        }),
+
+        // --- HERO ---
         defineField({
             name: 'hero',
             title: 'Haut de Page (Hero)',
             type: 'object',
+            group: 'hero',
             fields: [
-                defineField({
-                    name: 'label',
-                    title: 'Étiquette (Petit titre)',
-                    type: 'localeString',
-                }),
-                defineField({
-                    name: 'title',
-                    title: 'Titre Principal',
-                    type: 'localeString',
-                }),
-                defineField({
-                    name: 'intro',
-                    title: 'Texte d\'Introduction',
-                    type: 'localeText',
-                }),
+                defineField({ name: 'label', title: 'Étiquette', type: 'localeString' }),
+                defineField({ name: 'title', title: 'Titre', type: 'localeString' }),
+                defineField({ name: 'intro', title: 'Introduction', type: 'localeText' }),
+                defineField({ name: 'image', title: 'Image de fond', type: 'image', options: { hotspot: true } }),
             ],
         }),
+
+        // --- MEMBERS SECTION ---
         defineField({
-            name: 'values',
-            title: 'Section Nos Valeurs',
+            name: 'membersSection',
+            title: 'Section Membres',
             type: 'object',
+            group: 'members',
             fields: [
+                defineField({ name: 'title', title: 'Titre de Section', type: 'localeString' }),
+                defineField({ name: 'description', title: 'Description', type: 'localeText' }),
                 defineField({
-                    name: 'title',
-                    title: 'Titre de la Section',
-                    type: 'localeString',
-                }),
-                defineField({
-                    name: 'intro',
-                    title: 'Introduction des Valeurs',
-                    type: 'localeText',
-                }),
-                defineField({
-                    name: 'list',
-                    title: 'Liste des Valeurs',
+                    name: 'membersList',
+                    title: 'Liste des Membres',
                     type: 'array',
-                    of: [
-                        {
-                            type: 'object',
-                            fields: [
-                                defineField({
-                                    name: 'icon',
-                                    title: 'Nom de l\'icône (Lucide)',
-                                    type: 'string',
-                                }),
-                                defineField({
-                                    name: 'title',
-                                    title: 'Titre',
-                                    type: 'localeString',
-                                }),
-                                defineField({
-                                    name: 'description',
-                                    title: 'Description',
-                                    type: 'localeText',
-                                }),
-                            ],
-                            preview: {
-                                select: {
-                                    title: 'title.fr',
-                                    subtitle: 'description.fr',
-                                    icon: 'icon',
-                                },
-                                prepare({ title, subtitle, icon }) {
-                                    return {
-                                        title: title || 'Valeur sans titre',
-                                        subtitle: subtitle,
-                                        media: icon // Using icon string might not show image, but text is fine
-                                    }
-                                }
-                            }
-                        },
-                    ],
+                    of: [{ type: 'reference', to: [{ type: 'teamMember' }] }],
+                    description: 'Ajoutez et ordonnez les membres de l\'équipe.'
                 }),
             ],
         }),
+
+        // --- RECRUITMENT SECTION ---
+        defineField({
+            name: 'recruitmentSection',
+            title: 'Section Recrutement',
+            type: 'object',
+            group: 'recruitment',
+            fields: [
+                defineField({ name: 'title', title: 'Titre', type: 'localeString' }),
+                defineField({ name: 'text', title: 'Texte', type: 'localeText' }),
+                defineField({ name: 'ctaText', title: 'Texte Bouton', type: 'localeString' }),
+                defineField({ name: 'ctaLink', title: 'Lien Bouton', type: 'string' }),
+                defineField({ name: 'image', title: 'Image', type: 'image', options: { hotspot: true } }),
+            ]
+        })
     ],
     preview: {
         select: {
