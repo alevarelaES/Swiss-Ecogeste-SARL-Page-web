@@ -102,17 +102,17 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
 
     return (
         <section id="contact" className={`${compact ? 'py-8 md:pb-20 md:pt-4' : 'py-10 md:py-16'} bg-white relative overflow-hidden`}>
-            {/* Cool Abstract Background Shapes */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <svg className="absolute -top-[10%] -left-[10%] w-[50%] h-[60%] text-[#1b5e39]/5" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="currentColor" d="M42.7,-73.2C55.9,-67.1,67.6,-57.6,76.1,-46.1C84.6,-34.6,89.9,-21.1,89.2,-7.9C88.5,5.3,81.8,18.2,73.1,29.4C64.4,40.6,53.7,50.1,42.1,58.3C30.5,66.5,18,73.4,4.2,76.2C-9.6,79,-20.9,77.7,-31.6,72.6C-42.3,67.5,-52.4,58.6,-61,48.1C-69.6,37.6,-76.7,25.5,-79.8,12.4C-82.9,-0.7,-82,-9.5,-76.3,-19.9C-70.6,-30.3,-60.1,-42.3,-48.5,-50C-36.9,-57.7,-24.2,-61.1,-11.7,-63.9C0.8,-66.7,13.3,-68.9,29.5,-71.3L42.7,-73.2Z" transform="translate(100 100)" />
-                </svg>
-                <svg className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[70%] text-[#4ade80]/10" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="currentColor" d="M37.5,-64.4C49.6,-58.3,61.1,-50.7,69.5,-40.4C77.9,-30.1,83.2,-17.1,83.8,-3.8C84.4,9.5,80.3,23.1,72.7,34.7C65.1,46.3,54,55.9,41.9,62.8C29.8,69.7,16.7,73.9,3.1,76.4C-10.5,78.9,-24.6,79.7,-36.8,75C-49,70.3,-59.3,60.1,-66.4,48.1C-73.5,36.1,-77.4,22.3,-78.3,8.3C-79.2,-5.7,-77.1,-19.9,-69.6,-32.1C-62.1,-44.3,-49.2,-54.5,-35.8,-61.1C-22.4,-67.7,-8.5,-70.7,3.9,-71.9C16.3,-73.1,30.3,-72.5,41.5,-67.2L37.5,-64.4Z" transform="translate(100 100)" />
-                </svg>
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMS0xdjM4aDM4VjFIMXoiIGZpbGw9IiMxYjVlMzkiIGZpbGwtb3BhY2l0eT0iMC4wMyIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
-                <div className="absolute top-[20%] right-[15%] w-32 h-32 rounded-full border-4 border-[#1b5e39]/5 opacity-60"></div>
-                <div className="absolute bottom-[20%] left-[8%] w-24 h-24 rounded-full border-2 border-dashed border-[#1b5e39]/10 rotate-45"></div>
+            {/* Clean Abstract Background */}
+            <div className="absolute inset-0 pointer-events-none">
+                {/* Subtle Dot Grid Pattern */}
+                <div className="absolute inset-0 opacity-[0.03]" style={{
+                    backgroundImage: 'radial-gradient(#1b5e39 1px, transparent 1px)',
+                    backgroundSize: '32px 32px'
+                }}></div>
+
+                {/* Soft Ambient Glows */}
+                <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[500px] h-[500px] sm:w-[800px] sm:h-[800px] bg-[#1b5e39]/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-[#4ade80]/10 rounded-full blur-3xl"></div>
             </div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 <Reveal>

@@ -1,52 +1,58 @@
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
 import { getTeamMembers } from '../../data/teamMembers';
+import { TeamMemberCard } from '../team/TeamMemberCard';
 
 const Team = () => {
     const { t, i18n } = useTranslation();
     const teamMembers = getTeamMembers(i18n.language);
-    
-    const colors = [
-        'from-[var(--primary)] to-emerald-600',
-        'from-[var(--primary)] to-emerald-600',
-        'from-[var(--primary)] to-emerald-600',
-        'from-[var(--primary)] to-emerald-600',
-        'from-[var(--primary)] to-emerald-600'
-    ];
 
     return (
         <section id="team" className="py-8 relative overflow-hidden">
-            {/* Nature background from original index.html */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 via-white to-[var(--primary)]/5"></div>
+            {/* Premium Abstract Background - Consistent with Contact Section */}
+            <div className="absolute inset-0 pointer-events-none">
+                {/* Subtle Dot Grid Pattern */}
+                <div className="absolute inset-0 opacity-[0.03]" style={{
+                    backgroundImage: 'radial-gradient(#1b5e39 1px, transparent 1px)',
+                    backgroundSize: '32px 32px'
+                }}></div>
 
-            {/* Decorative leaf SVG from original */}
-            <svg className="absolute bottom-0 right-10 w-48 h-48 opacity-[0.06] text-[var(--primary)]" viewBox="0 0 100 100">
-                <path d="M50 10 C50 10, 75 35, 50 70 C50 70, 45 65, 45 60 L45 35 C45 35, 25 35, 50 10 Z" fill="currentColor" />
-                <path d="M50 70 C50 70, 52 85, 50 95" stroke="currentColor" strokeWidth="2" fill="none" />
-            </svg>
+                {/* Soft Ambient Glows */}
+                <div className="absolute top-0 left-0 -translate-y-1/4 -translate-x-1/4 w-[500px] h-[500px] sm:w-[800px] sm:h-[800px] bg-[#1b5e39]/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 translate-y-1/4 translate-x-1/4 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-[#4ade80]/10 rounded-full blur-3xl"></div>
+            </div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
+
+                {/* Executive Header Layout */}
                 <Reveal>
-                    <div className="text-center mb-12">
-                        <span className="text-amber-500 font-bold tracking-wider uppercase text-lg bg-amber-50 px-4 py-2 rounded-md inline-block">{t('team.label')}</span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-3 mb-4">{t('team.title')}</h2>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 pb-8 border-b border-gray-200">
+                        <div className="max-w-2xl">
+                            <span className="text-[#1b5e39] font-bold tracking-widest uppercase text-xs mb-3 block">
+                                {t('team.label')}
+                            </span>
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
+                                {t('team.title')}
+                            </h2>
+                        </div>
+                        <div className="max-w-md text-gray-600 text-lg leading-relaxed md:text-right pb-1">
+                            <p>{t('team.description') || "Nos experts certifiés s'engagent à optimiser votre consommation énergétique avec précision et intégrité."}</p>
+                        </div>
                     </div>
                 </Reveal>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Grid Layout - More breathable */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                     {teamMembers.map((member, index) => (
-                        <Reveal key={index} delay={index * 0.05}>
-                            <div className="bg-white/90 backdrop-blur-sm border border-[var(--primary)]/20 p-6 rounded-lg shadow-sm hover:shadow-lg hover:border-amber-400 transition-all h-full text-left">
-                                <div className={`w-12 h-12 bg-gradient-to-br ${colors[index]} text-white rounded-md flex items-center justify-center text-xl font-bold mb-4 shadow-md`}>
-                                    {member.initials}
-                                </div>
-                                <h3 className="font-bold text-gray-900">{member.name}</h3>
-                                <p className="text-amber-500 text-sm font-semibold mb-4">{member.role}</p>
-                                <ul className="text-xs text-gray-500 space-y-1">
-                                    {member.items.map((item, i) => (
-                                        <li key={i}>• {item}</li>
-                                    ))}
-                                </ul>
+                        <Reveal key={index} delay={index * 0.1}>
+                            <div className="h-full">
+                                <TeamMemberCard
+                                    name={member.name}
+                                    role={member.role}
+                                    initials={member.initials}
+                                    items={member.items}
+                                    index={index}
+                                />
                             </div>
                         </Reveal>
                     ))}
@@ -57,4 +63,3 @@ const Team = () => {
 };
 
 export default Team;
-

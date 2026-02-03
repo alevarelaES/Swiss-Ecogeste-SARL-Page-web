@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'motion/react';
-import { CheckCircle2, Quote } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 interface TeamMemberCardProps {
     name: string;
@@ -15,71 +15,70 @@ export const TeamMemberCard = ({ name, role, initials, items, index, image }: Te
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-    // Keep consistent brand primary for now for elegance
-    const selectedGradient = 'from-[#1b5e39] to-[#0f3521]';
-
     return (
         <motion.div
             ref={ref}
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group relative bg-[#fdfdfd] border border-gray-100 rounded-none overflow-hidden hover:shadow-2xl transition-all duration-500 h-full flex flex-col"
+            className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 flex flex-col h-full"
         >
-            {/* Top accent bar */}
-            <div className={`h-2 w-full bg-gradient-to-r ${selectedGradient}`} />
+            {/* Top decorative accent */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#1b5e39] via-[#4ade80] to-[#1b5e39] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            <div className="p-6 flex flex-col h-full relative">
-                {/* Subtle Background Pattern */}
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                    <Quote size={80} />
-                </div>
+            <div className="p-8 flex flex-col h-full relative z-10">
 
-                {/* Header: Photo/Initials & Name */}
-                <div className="flex items-start gap-5 mb-6">
-                    <div className={`
-                        w-20 h-20 shrink-0 rounded-none bg-gradient-to-br ${selectedGradient} 
-                        flex items-center justify-center text-white text-2xl font-bold tracking-wider 
-                        shadow-lg shadow-green-900/20 group-hover:shadow-green-900/30 
-                        transform group-hover:scale-105 transition-all duration-500 overflow-hidden relative
-                    `}>
+                {/* Avatar / Image Section */}
+                <div className="mb-6 flex justify-center">
+                    <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-500 ring-4 ring-gray-50 group-hover:ring-[#e8f5e9]">
                         {image ? (
                             <img
                                 src={image}
                                 alt={name}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                             />
                         ) : (
-                            <span>{initials}</span>
+                            <div className="w-full h-full bg-[#f4f7f5] flex items-center justify-center relative overflow-hidden group-hover:bg-[#1b5e39] transition-colors duration-500">
+                                <span className="text-3xl font-bold text-[#1b5e39] tracking-wider z-10 group-hover:text-white transition-colors duration-500">
+                                    {initials}
+                                </span>
+                                {/* Subtle decorative bg circle */}
+                                <div className="absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-[#1b5e39]/5 group-hover:bg-white/10 transition-colors duration-500"></div>
+                            </div>
                         )}
-                    </div>
-                    <div className="flex-1 pt-1">
-                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-[var(--primary)] transition-colors duration-300">
-                            {name}
-                        </h3>
-                        <p className="text-amber-600 font-medium text-sm uppercase tracking-wide mt-1">
-                            {role}
-                        </p>
-                        <div className="h-0.5 w-12 bg-gray-200 mt-3 group-hover:w-full group-hover:bg-[var(--secondary)] transition-all duration-500" />
                     </div>
                 </div>
 
-                {/* Content: Expertise Items */}
+                {/* Info Section */}
+                <div className="text-center mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#1b5e39] transition-colors duration-300 mb-1">
+                        {name}
+                    </h3>
+                    <p className="text-sm font-semibold text-amber-600 uppercase tracking-widest">
+                        {role}
+                    </p>
+                </div>
+
+                {/* Divider */}
+                <div className="w-12 h-px bg-gray-200 mx-auto mb-6 group-hover:w-24 group-hover:bg-[#1b5e39]/30 transition-all duration-500"></div>
+
+                {/* Expertise List */}
                 <div className="flex-grow">
-                    {/* <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Expertise</h4> */}
-                    <ul className="space-y-3">
+                    <ul className="space-y-2.5 text-left">
                         {items.map((item, i) => (
-                            <li key={i} className="flex items-start gap-3 text-gray-600 text-sm group-hover:text-gray-900 transition-colors duration-300">
-                                <CheckCircle2 className="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" />
-                                <span className="leading-snug">{item}</span>
+                            <li key={i} className="flex items-start gap-3 text-sm text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
+                                <CheckCircle2 className="w-4 h-4 text-[#4ade80] shrink-0 mt-0.5" />
+                                <span className="leading-relaxed">{item}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
 
-                {/* Bottom decorative interaction */}
-                <div className="absolute bottom-0 left-0 w-0 h-1 bg-amber-400 group-hover:w-full transition-all duration-700 ease-in-out" />
+                {/* Optional Social/Contact placeholders (Future proofing) */}
+                {/* <div className="mt-6 pt-4 border-t border-gray-50 flex justify-center gap-4 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <button className="text-gray-400 hover:text-[#0077b5] transition-colors"><Linkedin size={18} /></button>
+                </div> */}
             </div>
+
+            {/* Background Hover Effect */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#f4f7f5]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
         </motion.div>
     );
 };
