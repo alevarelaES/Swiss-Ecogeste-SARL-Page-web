@@ -1,8 +1,0 @@
-# Sanity Configuration
-VITE_SANITY_PROJECT_ID=btjdqrld
-VITE_SANITY_DATASET=production
-VITE_SANITY_API_VERSION=2024-01-01
-
-# Token pour la migration (à ne JAMAIS commiter sur Git!)
-# Remplacez VOTRE_TOKEN_ICI par le token que vous venez de créer
-SANITY_WRITE_TOKEN=skQa942pGRCkAzGnPQTqXAskUly7GWsUKGmARChPbbiv30ziG1g3Qo1q8qbTk63SLHZ89fRFnSYSTeg3X763WhTMkgjfIvYAvYdc4xFHQqt3e3zS6AUCDqyuk1lsF4inix2wXS0cezrlp99whNAnNtV7p7VDJ99zu5frPhky3RAZkoLNNOYA

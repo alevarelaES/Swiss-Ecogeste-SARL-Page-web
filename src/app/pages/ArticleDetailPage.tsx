@@ -8,6 +8,7 @@ import Reveal from '../components/animations/Reveal';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
+import DOMPurify from 'dompurify';
 
 const ArticleDetailPage = () => {
     const { slug } = useParams();
@@ -139,7 +140,7 @@ const ArticleDetailPage = () => {
                             [&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:top-[0.6em] [&_ul>li]:before:w-2 [&_ul>li]:before:h-2 [&_ul>li]:before:bg-[var(--primary)] [&_ul>li]:before:rounded-full
                             [&_a]:text-[var(--primary)] [&_a]:font-bold [&_a]:no-underline hover:text-[#1a4d3e] transition-colors
                             "
-                            dangerouslySetInnerHTML={{ __html: article.content || '' }}
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content || '') }}
                         />
 
                         {/* SHARE SECTION CENTERED BOTTOM */}

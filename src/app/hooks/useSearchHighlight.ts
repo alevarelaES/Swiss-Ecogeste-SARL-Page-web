@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
 export const useSearchHighlight = () => {
     const location = useLocation();
@@ -90,7 +91,7 @@ const highlightInElement = (element: Element, term: string) => {
         const newHTML = text.replace(regex, '<mark class="search-highlight-pulse">$1</mark>');
         
         const span = document.createElement('span');
-        span.innerHTML = newHTML;
+        span.innerHTML = DOMPurify.sanitize(newHTML);
         node.parentNode?.replaceChild(span, node);
     });
 };
