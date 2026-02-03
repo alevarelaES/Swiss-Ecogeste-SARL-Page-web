@@ -57,7 +57,9 @@
         "header_title": "Expertise at the service of the planet",
         "intro": "Based in Lausanne, Swiss Ecogestes brings together engineers and specialists dedicated to optimizing Swiss energy infrastructures. Our mission is to accelerate the transition towards more sober and efficient models.",
         "values_title": "Our Commitments & Values",
-        "values_intro": "Beyond technical expertise, we provide security and peace of mind to all our partners."
+        "values_intro": "Beyond technical expertise, we provide security and peace of mind to all our partners.",
+        "team_title": "Our Team",
+        "team_subtitle": "A dedicated team of experts passionate about energy transition."
     },
     "client_types": {
         "label": "Our Solutions",
@@ -68,6 +70,13 @@
     },
     "common": {
         "swissecogestes": "Swiss Ecogestes"
+    },
+    "cookie_banner": {
+        "title": "Privacy & Cookies",
+        "text": "We use cookies to improve your experience and analyze our traffic. By continuing, you agree to our use of cookies.",
+        "accept": "Accept",
+        "decline": "Decline",
+        "policy": "Learn more"
     },
     "blog": {
         "label": "Blog & News",

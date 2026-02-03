@@ -1,5 +1,4 @@
 import SEO from '../components/SEO';
-import { motion, useScroll, useTransform } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { getServices } from '../data/services';
 import { SERVICES_PAGE_IMAGES } from '../config/images';
@@ -8,9 +7,6 @@ import { ServiceCard } from '../components/services/ServiceCard';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const ServicesPage = () => {
-    const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-
     useSearchHighlight();
     const { t, i18n } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
@@ -38,32 +34,20 @@ const ServicesPage = () => {
                 {/* Abstract Background Shapes */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.1))]" />
-                    <motion.div
-                        style={{ y: y1 }}
-                        className="absolute -top-[20%] -right-[20%] w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl"
-                    />
-                    <motion.div
-                        style={{ y: useTransform(scrollY, [0, 500], [0, -150]) }}
-                        className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl"
-                    />
+                    <div className="absolute -top-[20%] -right-[20%] w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl" />
+                    <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl" />
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        <span className="inline-block py-1 px-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium tracking-wide mb-6">
-                            {t('services_page.label', 'NOS EXPERTISES')}
-                        </span>
+                    <div>
+                        {/* Badge Removed */}
                         <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
                             {t('services_page.title')}
                         </h1>
                         <p className="tex-lg md:text-2xl text-white/80 max-w-2xl mx-auto font-light leading-relaxed">
                             {t('services_page.intro')}
                         </p>
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* Curved divider at bottom */}

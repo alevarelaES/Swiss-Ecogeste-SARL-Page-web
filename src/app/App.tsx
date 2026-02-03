@@ -17,6 +17,7 @@ import CommunesPage from './pages/CommunesPage';
 import MentionsLegalesPage from './pages/MentionsLegalesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
+import { GoogleAnalytics } from './components/analytics/GoogleAnalytics';
 
 // Wrapper component to handle language detection and redirection
 const LanguageWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -59,6 +60,7 @@ export default function App() {
     <HelmetProvider>
       <Toaster position="bottom-right" richColors />
       <Router>
+        <GoogleAnalytics />
         <Routes>
           {/* Root redirect */}
           <Route path="/" element={<RootRedirect />} />

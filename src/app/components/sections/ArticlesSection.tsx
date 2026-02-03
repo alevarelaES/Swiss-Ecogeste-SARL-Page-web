@@ -14,11 +14,14 @@ const ArticlesSection = () => {
         <section id="articles" className="py-8 md:py-10 lg:py-12 bg-white">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex justify-between items-end mb-8">
-                    <div>
-                        <span className="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block">
-                            {t('blog.label')}
-                        </span>
-                        <h2 className="text-3xl md:text-4xl font-bold text-[var(--primary)]">
+                    <div className="max-w-2xl">
+                        <div className="flex items-center gap-4 mb-4">
+                            <span className="h-[2px] w-12 bg-amber-500"></span>
+                            <span className="text-amber-600 font-bold tracking-widest uppercase text-xs">
+                                {t('blog.label')}
+                            </span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
                             {t('blog.title')}
                         </h2>
                     </div>

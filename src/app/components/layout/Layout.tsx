@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
+import { CookieBanner } from '../ui/CookieBanner';
+
 import CTABanner from '../sections/CTABanner';
 
 interface LayoutProps {
@@ -48,6 +50,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </main>
             {!hideCTABanner && <CTABanner />}
             <Footer />
+            <CookieBanner />
             <ScrollToTop />
         </div>
     );

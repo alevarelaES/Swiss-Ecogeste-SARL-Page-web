@@ -4,6 +4,7 @@ export interface TeamMember {
     initials: string;
     color: string;
     items: string[];
+    image?: string;
 }
 
 const teamMembersFr: TeamMember[] = [
@@ -175,6 +176,19 @@ const teamMembersDe: TeamMember[] = [
 ];
 
 export const getTeamMembers = (lang: string): TeamMember[] => {
-    if (lang === 'de') return teamMembersDe;
-    return lang === 'en' ? teamMembersEn : teamMembersFr;
+    const members = lang === 'de' ? teamMembersDe : (lang === 'en' ? teamMembersEn : teamMembersFr);
+
+    // Add generic premium placeholder images
+    const images = [
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Salman
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Reem
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Thibault
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Daniel
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"  // Patrick (New)
+    ];
+
+    return members.map((member, index) => ({
+        ...member,
+        image: images[index % images.length]
+    }));
 };
