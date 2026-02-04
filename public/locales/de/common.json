@@ -259,7 +259,7 @@
                 "credits": {
                     "title": "Impressum & Credits",
                     "content": [
-                        "Diese Website wurde von Alexandre Varela Tavares entworfen und entwickelt."
+                        "Diese Website wurde von <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a> entworfen und entwickelt."
                     ]
                 }
             }

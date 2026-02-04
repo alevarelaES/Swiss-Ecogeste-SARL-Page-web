@@ -274,7 +274,7 @@
                 "credits": {
                     "title": "Crédits",
                     "content": [
-                        "Ce site internet a été conçu et réalisé par Alexandre Varela Tavares."
+                        "Ce site internet a été conçu et réalisé par <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a>."
                     ]
                 }
             }

@@ -82,9 +82,7 @@ const Footer = () => {
                     <p className="text-[12px] font-bold text-gray-400/80 order-2 md:order-1">
                         © 2026 {t('common.swissecogestes')} - {t('footer.rights')}
                         <span className="block mt-1 sm:inline sm:mt-0 sm:ml-4">
-                            <a href="#" className="hover:text-[var(--primary)] transition-colors">
-                                {t('footer.credit')}
-                            </a>
+                            Site conçu & réalisé par <a href="http://alexandre-varela.ch/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary)] transition-colors underline underline-offset-2">Alexandre Varela Tavares</a>
                         </span>
                     </p>
 

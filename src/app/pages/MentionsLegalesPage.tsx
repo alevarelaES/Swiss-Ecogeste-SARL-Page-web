@@ -29,7 +29,7 @@ const MentionsLegalesPage = () => {
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">{section.title}</h2>
                                 <div className="space-y-4 text-gray-600 leading-relaxed">
                                     {section.content.map((paragraph, pIndex) => (
-                                        <p key={pIndex}>{paragraph}</p>
+                                        <p key={pIndex} dangerouslySetInnerHTML={{ __html: paragraph }} />
                                     ))}
                                 </div>
                             </div>

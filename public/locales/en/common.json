@@ -271,7 +271,7 @@
                 "credits": {
                     "title": "Credits",
                     "content": [
-                        "This website was designed and developed by Alexandre Varela Tavares."
+                        "This website was designed and developed by <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a>."
                     ]
                 }
             }
