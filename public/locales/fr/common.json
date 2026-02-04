@@ -30,6 +30,7 @@
             "privacy": "Confidentialité",
             "cookies": "Cookies"
         },
+        "credit": "Site conçu & réalisé par Alexandre Varela Tavares",
         "contact": {
             "title": "Contact",
             "address": "Adresse",
@@ -268,6 +269,12 @@
                     "content": [
                         "Ce site est hébergé par [Nom de l'hébergeur]",
                         "Adresse : [Adresse de l'hébergeur]"
+                    ]
+                },
+                "credits": {
+                    "title": "Crédits",
+                    "content": [
+                        "Ce site internet a été conçu et réalisé par Alexandre Varela Tavares."
                     ]
                 }
             }

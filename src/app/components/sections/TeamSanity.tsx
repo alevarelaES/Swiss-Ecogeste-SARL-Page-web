@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getTeamMembers } from '../../sanity/client'
-import { getImageUrl } from '../../sanity/image'
-import { TeamMember } from '../../sanity/types'
+import { getTeamMembers } from '../../../sanity/client'
+import { getImageUrl } from '../../../sanity/image'
+import { TeamMember } from '../../../sanity/types'
 import { TeamMemberCard } from '../team/TeamMemberCard'
 import Reveal from '../animations/Reveal'
 
@@ -11,15 +11,15 @@ export function TeamSanity() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([])
   const [loading, setLoading] = useState(true)
 
-  const currentLang = i18n.language as 'fr' | 'en'
+  const currentLang = (i18n.language.split('-')[0] as 'fr' | 'en' | 'de') || 'fr'
 
   useEffect(() => {
     getTeamMembers()
-      .then((data) => {
+      .then((data: TeamMember[]) => {
         setTeamMembers(data)
         setLoading(false)
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error('Error fetching team members:', err)
         setLoading(false)
       })
@@ -86,10 +86,8 @@ export function TeamSanity() {
               <div className="h-full">
                 <TeamMemberCard
                   name={member.name}
-                  role={member.role[currentLang]}
-                  initials={member.initials}
-                  items={member.items[currentLang]}
-                  index={index}
+                  role={member.role[currentLang] || member.role['fr']}
+                  items={member.items[currentLang] || member.items['fr']}
                   image={member.photo ? getImageUrl(member.photo, 400, 400) : undefined}
                 />
               </div>

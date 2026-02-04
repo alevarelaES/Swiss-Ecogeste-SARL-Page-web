@@ -8,6 +8,7 @@ import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 import { BRAND_IMAGES } from '../../config/images';
 import SearchModal from '../sections/SearchModal';
+import NavLink from './NavLink';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -95,8 +96,8 @@ const Navbar = () => {
             )}
 
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center relative z-10">
-                <Link 
-                    to={getLocalizedPath('/')} 
+                <Link
+                    to={getLocalizedPath('/')}
                     className="flex items-center gap-3 relative z-[60]"
                     onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -141,17 +142,18 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <Link to={getLocalizedPath('/services')} className={`hover:text-amber-400 transition-colors ${location.pathname === getLocalizedPath('/services') ? 'text-amber-500' : ''}`}>
+
+                    <NavLink to={getLocalizedPath('/services')}>
                         {t('nav.our_services')}
-                    </Link>
+                    </NavLink>
 
-                    <Link to={getLocalizedPath('/conseils')} className={`hover:text-amber-400 transition-colors ${location.pathname === getLocalizedPath('/conseils') ? 'text-amber-500' : ''}`}>
+                    <NavLink to={getLocalizedPath('/conseils')}>
                         {t('nav.journal')}
-                    </Link>
+                    </NavLink>
 
-                    <Link to={getLocalizedPath('/team')} className={`hover:text-amber-400 transition-colors px-3 py-1 rounded-lg border border-transparent hover:border-amber-400/30 ${location.pathname === getLocalizedPath('/team') ? 'text-amber-500 bg-amber-50 border-amber-200' : ''}`}>
+                    <NavLink to={getLocalizedPath('/team')}>
                         {t('nav.about')}
-                    </Link>
+                    </NavLink>
 
                     <Button asChild className="bg-[var(--primary)] hover:bg-[#0b2e24] text-white rounded-lg px-6 transition-colors shadow-lg shadow-green-900/20">
                         <Link to={getLocalizedPath('/contact')}>{t('nav.contact')}</Link>

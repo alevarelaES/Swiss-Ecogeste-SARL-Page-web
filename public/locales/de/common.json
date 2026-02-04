@@ -23,7 +23,8 @@
         "mentions": "Impressum",
         "privacy": "Datenschutz",
         "cookies": "Cookie-Richtlinie",
-        "partners": "Partner"
+        "partners": "Partner",
+        "credit": "Website entworfen & entwickelt von Alexandre Varela Tavares"
     },
     "buttons": {
         "contact_us": "Kontaktieren Sie uns",
@@ -253,6 +254,12 @@
                     "content": [
                         "Diese Website wird gehostet von [Name des Hosters]",
                         "Adresse: [Adresse des Hosters]"
+                    ]
+                },
+                "credits": {
+                    "title": "Impressum & Credits",
+                    "content": [
+                        "Diese Website wurde von Alexandre Varela Tavares entworfen und entwickelt."
                     ]
                 }
             }

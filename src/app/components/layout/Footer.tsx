@@ -1,5 +1,3 @@
-
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin, Instagram, Mail, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -81,9 +79,13 @@ const Footer = () => {
 
                 {/* BOTTOM SECTION: COPYRIGHT AND SOCIALS */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                    {/* Copyright */}
                     <p className="text-[12px] font-bold text-gray-400/80 order-2 md:order-1">
                         © 2026 {t('common.swissecogestes')} - {t('footer.rights')}
+                        <span className="block mt-1 sm:inline sm:mt-0 sm:ml-4">
+                            <a href="#" className="hover:text-[var(--primary)] transition-colors">
+                                {t('footer.credit')}
+                            </a>
+                        </span>
                     </p>
 
                     {/* Legal Links (centered in reference) */}

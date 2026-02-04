@@ -1,4 +1,3 @@
-import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
 import { useTranslation } from 'react-i18next';

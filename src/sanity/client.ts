@@ -1,10 +1,18 @@
 import { createClient } from '@sanity/client'
 
+// Helper to get environment variables across Vite and Node
+const getEnvVar = (name: string) => {
+  if (typeof process !== 'undefined' && process.env[name]) return process.env[name];
+  // @ts-ignore
+  if (import.meta.env && import.meta.env[name]) return import.meta.env[name];
+  return undefined;
+};
+
 // Configuration du client Sanity
 const config = {
-  projectId: process.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
-  dataset: process.env.VITE_SANITY_DATASET || 'production',
-  apiVersion: process.env.VITE_SANITY_API_VERSION || '2024-01-01',
+  projectId: getEnvVar('VITE_SANITY_PROJECT_ID') || 'btjdqrld',
+  dataset: getEnvVar('VITE_SANITY_DATASET') || 'production',
+  apiVersion: getEnvVar('VITE_SANITY_API_VERSION') || '2024-01-01',
   useCdn: true, // Set to false for fresh data
 }
 
@@ -13,7 +21,7 @@ export const client = createClient(config)
 // Client avec token d'écriture pour la migration
 export const writeClient = createClient({
   ...config,
-  token: process.env.SANITY_WRITE_TOKEN,
+  token: getEnvVar('SANITY_WRITE_TOKEN'),
   useCdn: false,
 })
 

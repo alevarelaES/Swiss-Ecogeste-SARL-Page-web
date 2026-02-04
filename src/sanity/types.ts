@@ -3,21 +3,25 @@
 export interface LocalizedString {
   fr: string
   en: string
+  de: string
 }
 
 export interface LocalizedText {
   fr: string
   en: string
+  de: string
 }
 
 export interface LocalizedArray {
   fr: string[]
   en: string[]
+  de: string[]
 }
 
 export interface LocalizedPortableText {
   fr: any[]
   en: any[]
+  de: any[]
 }
 
 export interface SanityImage {

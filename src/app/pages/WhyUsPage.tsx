@@ -1,4 +1,3 @@
-import React from 'react';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
 import { ShieldCheck, FileCheck, Scale, Award, Database, Users } from 'lucide-react';

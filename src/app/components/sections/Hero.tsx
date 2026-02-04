@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'motion/react';
 import Autoplay from "embla-carousel-autoplay";
-import { ArrowRight, Leaf, Shield, Zap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "../ui/button";
 import {

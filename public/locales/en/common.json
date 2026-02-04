@@ -30,6 +30,7 @@
             "privacy": "Privacy Policy",
             "cookies": "Cookies"
         },
+        "credit": "Site designed & developed by Alexandre Varela Tavares",
         "contact": {
             "title": "Contact",
             "address": "Address",
@@ -265,6 +266,12 @@
                     "content": [
                         "This site is hosted by [Host Name]",
                         "Address: [Host Address]"
+                    ]
+                },
+                "credits": {
+                    "title": "Credits",
+                    "content": [
+                        "This website was designed and developed by Alexandre Varela Tavares."
                     ]
                 }
             }
