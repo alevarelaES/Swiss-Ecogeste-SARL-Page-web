@@ -10,7 +10,7 @@ const TeamPage = () => {
     const { t } = useTranslation('common');
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="bg-slate-50">
             <SEO
                 title={t('team_page.seo_title')}
                 description={t('team_page.seo_desc')}
@@ -24,7 +24,7 @@ const TeamPage = () => {
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#4ade80]/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4"></div>
             </div>
 
-            <div className="relative z-10 pt-32 pb-24">
+            <div className="relative z-10 pt-20 pb-0">
 
                 {/* Intro Section - Compact & Gradient */}
                 <div className="relative pb-16 pt-12 overflow-hidden">
@@ -40,7 +40,7 @@ const TeamPage = () => {
                                     {t('team_page.header_title')}
                                 </h1>
                                 <div className="w-20 h-1 bg-amber-400 mx-auto rounded-full mb-6"></div>
-                                <div className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
+                                <div className="text-gray-600 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto">
                                     <p>{t('team_page.intro')}</p>
                                 </div>
                             </div>
@@ -49,13 +49,13 @@ const TeamPage = () => {
                 </div>
 
                 {/* Team Section - Contrasted Background */}
-                <div className="relative py-16 bg-gradient-to-b from-[#F0F4F2] to-slate-50 border-y border-gray-200">
+                <div className="relative py-16 pb-20 bg-gradient-to-b from-[#F0F4F2] to-slate-50 border-t border-gray-200">
                     <div className="max-w-7xl mx-auto px-6 relative z-10">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-3">
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
                                 {t('team_page.team_title') || 'Notre Équipe'}
                             </h2>
-                            <p className="text-gray-500 max-w-lg mx-auto">
+                            <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                                 {t('team_page.team_subtitle') || 'Une équipe dédiée d\'experts passionnés par la transition énergétique.'}
                             </p>
                         </div>
@@ -64,17 +64,23 @@ const TeamPage = () => {
                 </div>
 
                 {/* Values Section - Split Layout Compact */}
-                <div className="relative py-20 bg-white">
-                    <div className="max-w-7xl mx-auto px-6">
+                <div className="relative py-10 md:py-12 bg-cover bg-center overflow-hidden -mb-1" style={{ backgroundImage: `url('/images/fond_values_section.png')` }}>
+                    {/* Stronger overlay to tone down background (85% white) */}
+                    <div className="absolute inset-0 bg-white/85"></div>
+                    {/* Yellow accent touches */}
+                    <div className="absolute top-10 right-10 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl"></div>
+                    <div className="absolute bottom-10 left-10 w-24 h-24 bg-amber-500/8 rounded-full blur-xl"></div>
+
+                    <div className="max-w-7xl mx-auto px-6 relative z-10">
                         <Reveal>
                             <div className="grid lg:grid-cols-12 gap-12">
                                 {/* Left: Sticky Title */}
                                 <div className="lg:col-span-4 lg:sticky lg:top-24 h-fit">
-                                    <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-4">
+                                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-6">
                                         {t('team_page.values_title')}
                                     </h2>
-                                    <div className="w-12 h-1 bg-amber-400 mb-6"></div>
-                                    <p className="text-gray-600 leading-relaxed mb-6 text-sm md:text-base">
+                                    <div className="w-20 h-1.5 bg-amber-400 mb-8 rounded-full"></div>
+                                    <p className="text-gray-600 leading-relaxed mb-8 text-lg md:text-xl font-medium">
                                         {t('team_page.values_intro')}
                                     </p>
                                 </div>
@@ -90,16 +96,16 @@ const TeamPage = () => {
                                             { icon: Award, key: 'quality' },
                                             { icon: Users, key: 'human' }
                                         ].map((item, idx) => (
-                                            <div key={idx} className="group p-6 bg-white border border-gray-100 rounded-xl hover:border-[#1b5e39]/30 hover:shadow-md transition-all duration-300">
+                                            <div key={idx} className="group p-6 bg-white border border-[#1b5e39]/20 rounded-xl hover:shadow-md transition-all duration-300">
                                                 <div className="flex items-start gap-4">
                                                     <div className="w-10 h-10 bg-[#1b5e39]/5 rounded-lg flex items-center justify-center text-[#1b5e39] group-hover:bg-[#1b5e39] group-hover:text-white transition-colors duration-300 shrink-0">
                                                         <item.icon size={20} strokeWidth={2} />
                                                     </div>
                                                     <div>
-                                                        <h3 className="text-lg font-bold text-gray-900 mb-1">
+                                                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
                                                             {t(`why_us.items.${item.key}.title`)}
                                                         </h3>
-                                                        <p className="text-gray-500 text-sm leading-relaxed">
+                                                        <p className="text-gray-600 text-base md:text-lg leading-relaxed">
                                                             {t(`why_us.items.${item.key}.desc`)}
                                                         </p>
                                                     </div>

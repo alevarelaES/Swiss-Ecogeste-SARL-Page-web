@@ -21,8 +21,8 @@ const About = () => {
                 <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     <div className="relative bg-white/60 backdrop-blur-md p-4 sm:p-6 md:p-10 rounded-none border border-white/50 text-left w-full shadow-xl">
                         {/* Coins décoratifs jaunes */}
-                        <div className="absolute top-4 right-4 w-8 h-[1px] bg-amber-500 opacity-60"></div>
-                        <div className="absolute top-4 right-4 w-[1px] h-8 bg-amber-500 opacity-60"></div>
+                        <div className="absolute top-4 right-4 w-8 h-[1px] bg-amber-500 opacity-60 hidden sm:block"></div>
+                        <div className="absolute top-4 right-4 w-[1px] h-8 bg-amber-500 opacity-60 hidden sm:block"></div>
                         <div className="absolute bottom-4 left-4 w-8 h-[1px] bg-amber-500 opacity-60"></div>
                         <div className="absolute bottom-4 left-4 w-[1px] h-8 bg-amber-500 opacity-60"></div>
 
@@ -74,7 +74,7 @@ const About = () => {
                                 <div className="absolute top-3 right-3 w-[1px] h-6 bg-amber-500 opacity-60"></div>
                                 <div className="absolute bottom-3 left-3 w-6 h-[1px] bg-amber-500 opacity-60"></div>
                                 <div className="absolute bottom-3 left-3 w-[1px] h-6 bg-amber-500 opacity-60"></div>
-                                
+
                                 <p className="text-gray-900 font-semibold text-sm italic leading-relaxed">{aboutContent.quote}</p>
                             </div>
                         </Reveal>

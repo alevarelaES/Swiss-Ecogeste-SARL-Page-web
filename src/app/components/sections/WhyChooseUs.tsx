@@ -7,11 +7,21 @@ const WhyChooseUs = () => {
     const whyChooseUsContent = getWhyChooseUsContent(i18n.language);
 
     return (
-        <section className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="py-10 md:py-12 bg-gradient-to-br from-white via-[#f8fdf9] to-[#f0f9f4] relative overflow-hidden">
+            {/* Subtle Dot Grid Pattern */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+                backgroundImage: 'radial-gradient(#1b5e39 1px, transparent 1px)',
+                backgroundSize: '32px 32px'
+            }}></div>
+
+            {/* Soft Ambient Glows */}
+            <div className="absolute top-0 left-0 -translate-y-1/4 -translate-x-1/4 w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] bg-[#1b5e39]/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 translate-y-1/4 translate-x-1/4 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-[#4ade80]/8 rounded-full blur-3xl"></div>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <Reveal>
                     {/* Header - Centered & Stacked */}
-                    <div className="max-w-3xl mx-auto text-center mb-16">
+                    <div className="max-w-3xl mx-auto text-center mb-10">
                         <div className="flex items-center justify-center gap-3 mb-4">
                             <span className="h-px w-10 bg-amber-400"></span>
                             <span className="text-amber-400 font-bold tracking-widest uppercase text-sm">

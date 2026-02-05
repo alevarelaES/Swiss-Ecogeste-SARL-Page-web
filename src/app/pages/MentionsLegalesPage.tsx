@@ -1,6 +1,7 @@
+import { useTranslation } from 'react-i18next';
+import { BackButton } from '../components/navigation/BackButton';
 import SEO from '../components/SEO';
 import Reveal from '../components/animations/Reveal';
-import { useTranslation } from 'react-i18next';
 
 const MentionsLegalesPage = () => {
     const { t } = useTranslation('common');
@@ -14,6 +15,10 @@ const MentionsLegalesPage = () => {
             />
 
             <div className="max-w-4xl mx-auto px-6">
+                <Reveal>
+                    <BackButton />
+                </Reveal>
+
                 <Reveal>
                     <div className="mb-12">
                         <span className="text-[var(--primary)] font-bold tracking-wider uppercase text-sm">Informations Légales</span>

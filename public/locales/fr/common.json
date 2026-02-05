@@ -72,7 +72,8 @@
         "description": "Des solutions techniques et financières sur mesure pour chaque type de bâtiment."
     },
     "common": {
-        "swissecogestes": "Swiss Ecogestes"
+        "swissecogestes": "Swiss Ecogestes",
+        "back": "Retour"
     },
     "cookie_banner": {
         "title": "Confidentialité & Cookies",

@@ -1,7 +1,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-size: 16px;
+  --font-size: 14px;
+  /* Base size for laptops and smaller screens */
   --background: #fdfdfd;
   --foreground: #0f1f1a;
   /* Darker green-black for text */
@@ -79,6 +80,13 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* Large desktop screens (1920px and above) - Increase base font size for better readability */
+@media (min-width: 1920px) {
+  :root {
+    --font-size: 16px;
+  }
 }
 
 @theme inline {
