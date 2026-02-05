@@ -1,6 +1,5 @@
-import React from 'react'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import { getImageUrl } from '../../sanity/image'
+import { getImageUrl } from '../../../sanity/image'
 
 // Configuration des composants Portable Text
 const portableTextComponents: PortableTextComponents = {

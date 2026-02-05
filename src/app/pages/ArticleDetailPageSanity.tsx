@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
@@ -7,7 +7,7 @@ import { getArticleBySlug } from '../../sanity/client'
 import { getImageUrl } from '../../sanity/image'
 import { Article } from '../../sanity/types'
 import { PortableTextRenderer } from '../components/ui/PortableTextRenderer'
-import { Reveal } from '../components/animations/Reveal'
+import Reveal from '../components/animations/Reveal'
 
 export function ArticleDetailPageSanity() {
   const { slug } = useParams<{ slug: string }>()
@@ -17,13 +17,13 @@ export function ArticleDetailPageSanity() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const currentLang = i18n.language as 'fr' | 'en'
+  const currentLang = (i18n.language.split('-')[0] || 'fr') as 'fr' | 'en' | 'de'
 
   useEffect(() => {
     if (!slug) return
 
     getArticleBySlug(slug)
-      .then((data) => {
+      .then((data: Article | null) => {
         if (!data) {
           setError('Article not found')
         } else {
@@ -31,7 +31,7 @@ export function ArticleDetailPageSanity() {
         }
         setLoading(false)
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error('Error fetching article:', err)
         setError('Failed to load article')
         setLoading(false)
