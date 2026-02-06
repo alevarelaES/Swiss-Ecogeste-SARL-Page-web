@@ -1,0 +1,6 @@
+export { default as Footer } from './Footer'
+export { default as Layout } from './Layout'
+export { default as Navbar } from './Navbar'
+export { default as NavLink } from './NavLink'
+export { default as ScrollToTop } from './ScrollToTop'
+export { ClientTypePageTemplate } from './ClientTypePageTemplate'

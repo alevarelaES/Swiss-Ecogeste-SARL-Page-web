@@ -1,32 +1,33 @@
 import { createClient } from '@sanity/client'
+import type { Article, Service, Settings, TeamMember } from './types'
 
-// Helper to get environment variables across Vite and Node
-const getEnvVar = (name: string) => {
-  if (typeof process !== 'undefined' && process.env[name]) return process.env[name];
-  // @ts-ignore
-  if (import.meta.env && import.meta.env[name]) return import.meta.env[name];
-  return undefined;
-};
+type EnvValue = string | undefined
 
-// Configuration du client Sanity
+const getEnvVar = (name: string): EnvValue => {
+  if (typeof process !== 'undefined' && process.env[name]) return process.env[name]
+
+  const viteEnv = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env
+  if (viteEnv && viteEnv[name]) return viteEnv[name]
+
+  return undefined
+}
+
 const config = {
   projectId: getEnvVar('VITE_SANITY_PROJECT_ID') || 'btjdqrld',
   dataset: getEnvVar('VITE_SANITY_DATASET') || 'production',
   apiVersion: getEnvVar('VITE_SANITY_API_VERSION') || '2024-01-01',
-  useCdn: true, // Set to false for fresh data
+  useCdn: true,
 }
 
 export const client = createClient(config)
 
-// Client avec token d'écriture pour la migration
 export const writeClient = createClient({
   ...config,
   token: getEnvVar('SANITY_WRITE_TOKEN'),
   useCdn: false,
 })
 
-// Helper pour récupérer les services
-export async function getServices() {
+export async function getServices(): Promise<Service[]> {
   return client.fetch(`
     *[_type == "service"] | order(number asc) {
       _id,
@@ -48,8 +49,7 @@ export async function getServices() {
   `)
 }
 
-// Helper pour récupérer les membres de l'équipe
-export async function getTeamMembers() {
+export async function getTeamMembers(): Promise<TeamMember[]> {
   return client.fetch(`
     *[_type == "teamMember"] | order(order asc) {
       _id,
@@ -69,8 +69,7 @@ export async function getTeamMembers() {
   `)
 }
 
-// Helper pour récupérer les articles
-export async function getArticles() {
+export async function getArticles(): Promise<Article[]> {
   return client.fetch(`
     *[_type == "article"] | order(publishedAt desc) {
       _id,
@@ -91,8 +90,7 @@ export async function getArticles() {
   `)
 }
 
-// Helper pour récupérer un article par slug
-export async function getArticleBySlug(slug: string) {
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
   return client.fetch(
     `
     *[_type == "article" && slug.current == $slug][0] {
@@ -116,8 +114,7 @@ export async function getArticleBySlug(slug: string) {
   )
 }
 
-// Helper pour récupérer les paramètres du site
-export async function getSettings() {
+export async function getSettings(): Promise<Settings | null> {
   return client.fetch(`
     *[_type == "settings"][0] {
       _id,

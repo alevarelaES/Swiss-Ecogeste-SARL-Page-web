@@ -4,9 +4,16 @@ import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from "../ui/button";
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import ServiceCard from '../ui/ServiceCard';
+import ClientTypeServiceCard from '../services/ClientTypeServiceCard';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 import { useSearchHighlight } from '../../hooks/useSearchHighlight';
+
+interface ClientTypeService {
+    title: string;
+    description: string;
+    image: string;
+    features?: string[];
+}
 
 interface ClientTypePageTemplateProps {
     content: {
@@ -18,7 +25,7 @@ interface ClientTypePageTemplateProps {
         buttonText: string;
         buttonLink: string;
         heroImage: string;
-        services: any[];
+        services: ClientTypeService[];
     };
 }
 
@@ -74,7 +81,7 @@ export const ClientTypePageTemplate = ({ content }: ClientTypePageTemplateProps)
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
                     {content.services.map((service, index) => (
                         <Reveal key={index} delay={0.1 * (index + 1)}>
-                            <ServiceCard service={service} t={t} />
+                            <ClientTypeServiceCard service={service} t={t} />
                         </Reveal>
                     ))}
                 </div>

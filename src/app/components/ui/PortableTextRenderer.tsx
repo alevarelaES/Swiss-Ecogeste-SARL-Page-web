@@ -1,4 +1,5 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react'
+import type { PortableTextBlock } from '@portabletext/types'
 import { getImageUrl } from '../../../sanity/image'
 
 // Configuration des composants Portable Text
@@ -61,7 +62,7 @@ const portableTextComponents: PortableTextComponents = {
 }
 
 interface PortableTextRendererProps {
-  value: any[]
+  value: PortableTextBlock[]
   className?: string
 }
 

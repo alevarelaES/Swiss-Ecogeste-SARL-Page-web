@@ -1,6 +1,6 @@
-import React from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
+import { useTranslation } from 'react-i18next';
 
 interface Partner {
     name: string;
@@ -32,8 +32,6 @@ const PartnerLogo = ({ partner }: { partner: Partner }) => (
         </span>
     </div>
 );
-
-import { useTranslation } from 'react-i18next';
 
 // ... (existing helper components)
 

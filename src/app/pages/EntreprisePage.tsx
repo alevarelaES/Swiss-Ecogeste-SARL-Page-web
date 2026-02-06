@@ -1,4 +1,4 @@
-import { ClientTypePageTemplate } from '../components/layout/ClientTypePageTemplate';
+import { ClientTypePageTemplate } from '../components/layout';
 import { getEntreprisePageContent } from '../data/entreprisePageContent';
 import { useTranslation } from 'react-i18next';
 

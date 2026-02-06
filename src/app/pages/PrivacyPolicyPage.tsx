@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { BackButton } from '../components/navigation/BackButton';
-import SEO from '../components/SEO';
-import Reveal from '../components/animations/Reveal';
+import { BackButton } from '../components/navigation';
+import { SEO } from '../components';
+import { Reveal } from '../components/animations';
 
 const PrivacyPolicyPage = () => {
     const { t } = useTranslation('common');

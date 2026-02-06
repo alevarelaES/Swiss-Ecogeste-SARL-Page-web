@@ -1,60 +1,8 @@
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import Reveal from '../animations/Reveal';
 import { getServices } from '../../data/services';
 import { BACKGROUND_IMAGES } from '../../config/images';
 import { useTranslation } from 'react-i18next';
-
-const ServiceCard = ({ service }: { service: any }) => {
-
-    return (
-        <Reveal delay={service.delay}>
-            <Link to={service.link} className="block h-full">
-                <div className="group bg-white h-full flex flex-col border border-gray-100 hover:border-amber-400 hover:shadow-2xl transition-all duration-300">
-                    {/* Image Section - Fixed Aspect Ratio */}
-                    <div className="relative h-48 overflow-hidden bg-gray-100">
-                        <div
-                            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                            style={{ backgroundImage: `url(${service.image})` }}
-                        />
-                        {/* Overlay to ensure text readability if needed, though mostly using clear images */}
-                        <div className="absolute inset-0 bg-gray-900/10 group-hover:bg-gray-900/0 transition-colors" />
-
-                        {/* Number - Large Subtle Watermark Bottom Left */}
-                        <span className="absolute -bottom-8 -left-2 text-9xl font-black text-white/10 group-hover:text-amber-500/10 transition-colors duration-500 select-none z-10 leading-none">
-                            {service.number}
-                        </span>
-                    </div>
-
-                    {/* Content Section */}
-                    <div className="p-6 flex flex-col flex-grow bg-white relative">
-                        {/* Title with Brand Color Highlight */}
-                        <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">
-                            {service.title}
-                        </h3>
-
-                        {/* Subtitle / Category */}
-                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--primary)] mb-3 block">
-                            {service.subtitle}
-                        </span>
-
-                        <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow font-medium line-clamp-3">
-                            {service.description}
-                        </p>
-
-                        {/* Bottom Action Area - Outline Button Style */}
-                        <div className="mt-auto">
-                            <div className="w-full border border-gray-200 py-3 px-4 flex items-center justify-between text-gray-700 font-bold text-xs uppercase tracking-wider hover:bg-amber-500 hover:border-amber-500 hover:text-white transition-all duration-300">
-                                <span>Explorer</span>
-                                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </Link>
-        </Reveal>
-    );
-};
+import { ServiceGridCard } from '../services/ServiceGridCard';
 
 const Services = () => {
     const { i18n } = useTranslation();
@@ -99,8 +47,17 @@ const Services = () => {
 
                 {/* Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {services.map((service, index) => (
-                        <ServiceCard key={index} service={service} />
+                    {services.map((service) => (
+                        <Reveal key={service.id} delay={service.delay}>
+                            <ServiceGridCard
+                                number={service.number}
+                                title={service.title}
+                                subtitle={service.subtitle}
+                                description={service.description}
+                                image={service.image}
+                                link={service.link}
+                            />
+                        </Reveal>
                     ))}
                 </div>
 

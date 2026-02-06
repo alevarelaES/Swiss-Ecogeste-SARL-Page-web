@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
-import SEO from '../components/SEO';
+import { SEO } from '../components';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 interface ClientTypePageProps {

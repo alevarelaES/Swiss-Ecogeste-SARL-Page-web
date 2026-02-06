@@ -3,9 +3,8 @@ import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
-import { CookieBanner } from '../ui/CookieBanner';
-
-import CTABanner from '../sections/CTABanner';
+import { CookieBanner } from '../ui';
+import { CTABanner } from '../sections';
 
 interface LayoutProps {
     children: React.ReactNode;

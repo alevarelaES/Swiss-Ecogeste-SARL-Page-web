@@ -1,4 +1,4 @@
-// Types TypeScript pour les données Sanity
+import type { PortableTextBlock } from '@portabletext/types'
 
 export interface LocalizedString {
   fr: string
@@ -19,9 +19,9 @@ export interface LocalizedArray {
 }
 
 export interface LocalizedPortableText {
-  fr: any[]
-  en: any[]
-  de: any[]
+  fr: PortableTextBlock[]
+  en: PortableTextBlock[]
+  de: PortableTextBlock[]
 }
 
 export interface SanityImage {

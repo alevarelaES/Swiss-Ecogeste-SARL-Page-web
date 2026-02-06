@@ -1,4 +1,4 @@
-import { ClientTypePageTemplate } from '../components/layout/ClientTypePageTemplate';
+import { ClientTypePageTemplate } from '../components/layout';
 import { getVillaPageContent } from '../data/villaPageContent';
 import { useTranslation } from 'react-i18next';
 

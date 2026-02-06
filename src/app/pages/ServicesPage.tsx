@@ -1,9 +1,9 @@
-import SEO from '../components/SEO';
+import { SEO } from '../components';
 import { useTranslation } from 'react-i18next';
 import { getServices } from '../data/services';
 import { SERVICES_PAGE_IMAGES } from '../config/images';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
-import { ServiceCard } from '../components/services/ServiceCard';
+import { ServiceCard } from '../components/services';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
 const ServicesPage = () => {

@@ -7,6 +7,7 @@
     "build": "vite build",
     "dev": "vite",
     "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
     "studio": "cd studio && npm run dev",
     "migrate": "npx tsx scripts/migrate-to-sanity.ts",
     "migrate:pages": "npx tsx scripts/migrate-pages-to-sanity.ts",

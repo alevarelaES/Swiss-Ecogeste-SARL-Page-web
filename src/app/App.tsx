@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useParams, useLocatio
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import Layout from './components/layout/Layout';
+import { Layout } from './components/layout';
 import Home from './pages/Home';
 import ServicesPage from './pages/ServicesPage';
 import TeamPage from './pages/TeamPage';
@@ -17,7 +17,7 @@ import CommunesPage from './pages/CommunesPage';
 import MentionsLegalesPage from './pages/MentionsLegalesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
-import { GoogleAnalytics } from './components/analytics/GoogleAnalytics';
+import { GoogleAnalytics } from './components';
 
 // Wrapper component to handle language detection and redirection
 const LanguageWrapper = ({ children }: { children: React.ReactNode }) => {

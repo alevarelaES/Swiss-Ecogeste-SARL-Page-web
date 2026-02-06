@@ -1,5 +1,5 @@
-import SEO from '../components/SEO';
-import Reveal from '../components/animations/Reveal';
+import { SEO } from '../components';
+import { Reveal } from '../components/animations';
 import { ShieldCheck, FileCheck, Scale, Award, Database, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "../components/ui/button";

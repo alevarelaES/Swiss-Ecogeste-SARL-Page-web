@@ -1,7 +1,6 @@
 import React from 'react';
 import { useInView } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { getIcon } from '../../utils/iconMapper';
 import { getStats, getStatsContent } from '../../data/statsData';
 
 const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: string, suffix: string }) => {
@@ -34,18 +33,9 @@ const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: strin
 }
 
 const StatsSection = () => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const stats = getStats(i18n.language);
     const statsContent = getStatsContent(i18n.language);
-    const stats_old = t('stats', { returnObjects: true, defaultValue: [] }) as Array<{
-        id: number;
-        value?: number;
-        text?: string;
-        prefix?: string;
-        suffix?: string;
-        label: string;
-        icon_name: string;
-    }>;
 
     return (
         <section className="relative py-8 sm:py-10 md:py-12 w-full overflow-hidden bg-[#2a7f55]">

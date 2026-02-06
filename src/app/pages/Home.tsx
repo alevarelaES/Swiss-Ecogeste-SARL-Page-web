@@ -1,13 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import SEO from '../components/SEO';
-import Hero from '../components/sections/Hero';
-import About from '../components/sections/About';
-import Partners from '../components/sections/Partners';
-import ContactSection from '../components/sections/ContactSection';
-import StatsSection from '../components/sections/StatsSection';
-import ArticlesSection from '../components/sections/ArticlesSection';
-import ClientTypeSection from '../components/sections/ClientTypeSection';
+import { SEO } from '../components';
+import { Hero, About, Partners, ContactSection, StatsSection, ArticlesSection, ClientTypeSection } from '../components/sections';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
 const Home = () => {

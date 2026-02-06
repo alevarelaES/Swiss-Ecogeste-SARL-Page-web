@@ -1,7 +1,7 @@
 import { ShieldCheck, Scale, Database, FileCheck, Award, Users } from 'lucide-react';
-import SEO from '../components/SEO';
-import Team from '../components/sections/Team';
-import Reveal from '../components/animations/Reveal';
+import { SEO } from '../components';
+import { Team } from '../components/sections';
+import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
 

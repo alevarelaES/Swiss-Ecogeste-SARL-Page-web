@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { getArticles, articlesFr, articlesEn, articlesDe } from '../data/articles';
-import SEO from '../components/SEO';
+import { SEO } from '../components';
 import { ArrowLeft, Facebook, Linkedin, ChevronRight, User, Link as LinkIcon, Check, Sparkles } from 'lucide-react';
-import Reveal from '../components/animations/Reveal';
+import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';

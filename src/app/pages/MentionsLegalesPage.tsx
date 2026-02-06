@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { BackButton } from '../components/navigation/BackButton';
-import SEO from '../components/SEO';
-import Reveal from '../components/animations/Reveal';
+import { BackButton } from '../components/navigation';
+import { SEO } from '../components';
+import { Reveal } from '../components/animations';
+import DOMPurify from 'dompurify';
 
 const MentionsLegalesPage = () => {
     const { t } = useTranslation('common');
@@ -34,7 +35,15 @@ const MentionsLegalesPage = () => {
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">{section.title}</h2>
                                 <div className="space-y-4 text-gray-600 leading-relaxed">
                                     {section.content.map((paragraph, pIndex) => (
-                                        <p key={pIndex} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                                        <p
+                                            key={pIndex}
+                                            dangerouslySetInnerHTML={{
+                                                __html: DOMPurify.sanitize(paragraph, {
+                                                    ALLOWED_TAGS: ['strong', 'em', 'br', 'a'],
+                                                    ALLOWED_ATTR: ['href', 'target', 'rel']
+                                                })
+                                            }}
+                                        />
                                     ))}
                                 </div>
                             </div>

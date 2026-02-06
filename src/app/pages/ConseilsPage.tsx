@@ -1,10 +1,9 @@
 import { useMemo, useState } from 'react';
-import SEO from '../components/SEO';
+import { SEO } from '../components';
 import { getArticles } from '../data/articles';
 import { getConseilsPageContent } from '../data/conseilsPageContent';
 import { useTranslation } from 'react-i18next';
-import GalleryCard from '../components/ui/GalleryCard';
-import { Button } from '../components/ui/button';
+import { GalleryCard, Button } from '../components/ui';
 
 const ConseilsPage = () => {
     const { i18n, t } = useTranslation('common');
