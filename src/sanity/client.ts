@@ -118,13 +118,15 @@ export async function getSettings(): Promise<Settings | null> {
   return client.fetch(`
     *[_type == "settings"][0] {
       _id,
-      siteName,
+      siteTitle,
       siteDescription,
-      phone,
-      email,
-      address,
+      footerInfo,
+      contactInfo,
       socialMedia,
-      businessHours,
+      socialLinks[] {
+        platform,
+        url
+      },
       logo {
         asset->{ _id, url },
         alt

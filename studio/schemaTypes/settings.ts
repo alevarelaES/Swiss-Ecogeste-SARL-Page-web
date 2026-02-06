@@ -2,52 +2,74 @@ import { defineField, defineType } from 'sanity'
 
 export const settings = defineType({
   name: 'settings',
-  title: 'Paramètres & Footer',
+  title: 'Parametres & Footer',
   type: 'document',
   groups: [
-    { name: 'general', title: 'Général' },
-    { name: 'footer', title: 'Pied de Page' },
-    { name: 'social', title: 'Réseaux Sociaux' }
+    { name: 'general', title: 'General' },
+    { name: 'footer', title: 'Pied de page' },
+    { name: 'social', title: 'Reseaux sociaux' },
   ],
   fields: [
-    // --- GENERAL ---
     defineField({
       name: 'siteTitle',
-      title: 'Titre du Site',
+      title: 'Titre du site',
       type: 'localeString',
-      group: 'general'
+      group: 'general',
     }),
-
-    // --- FOOTER INFO ---
+    defineField({
+      name: 'siteDescription',
+      title: 'Description du site',
+      type: 'localeText',
+      group: 'general',
+    }),
+    defineField({
+      name: 'logo',
+      title: 'Logo principal',
+      type: 'image',
+      group: 'general',
+    }),
+    defineField({
+      name: 'favicon',
+      title: 'Favicon',
+      type: 'image',
+      group: 'general',
+    }),
     defineField({
       name: 'footerInfo',
-      title: 'Contenu du Pied de Page',
+      title: 'Contenu du pied de page',
       type: 'object',
       group: 'footer',
       fields: [
-        defineField({ name: 'logo', title: 'Logo Footer', type: 'image' }),
         defineField({ name: 'slogan', title: 'Slogan / Description', type: 'localeText' }),
         defineField({ name: 'copyright', title: 'Copyright', type: 'localeString' }),
-      ]
+      ],
     }),
-
-    // --- CONTACT ---
     defineField({
       name: 'contactInfo',
-      title: 'Coordonnées de Contact',
+      title: 'Coordonnees de contact',
       type: 'object',
       group: 'footer',
       fields: [
         defineField({ name: 'address', title: 'Adresse', type: 'string' }),
         defineField({ name: 'email', title: 'Email', type: 'string' }),
-        defineField({ name: 'phone', title: 'Téléphone', type: 'string' }),
-      ]
+        defineField({ name: 'phone', title: 'Telephone', type: 'string' }),
+      ],
     }),
-
-    // --- SOCIAL LABELS ---
+    defineField({
+      name: 'socialMedia',
+      title: 'Liens sociaux',
+      type: 'object',
+      group: 'social',
+      fields: [
+        defineField({ name: 'linkedin', title: 'LinkedIn', type: 'url' }),
+        defineField({ name: 'instagram', title: 'Instagram', type: 'url' }),
+        defineField({ name: 'facebook', title: 'Facebook', type: 'url' }),
+        defineField({ name: 'twitter', title: 'X / Twitter', type: 'url' }),
+      ],
+    }),
     defineField({
       name: 'socialLinks',
-      title: 'Réseaux Sociaux',
+      title: 'Liens sociaux (legacy)',
       type: 'array',
       group: 'social',
       of: [
@@ -56,13 +78,14 @@ export const settings = defineType({
           fields: [
             defineField({ name: 'platform', title: 'Plateforme', type: 'string' }),
             defineField({ name: 'url', title: 'URL', type: 'url' }),
-            defineField({ name: 'icon', title: 'Icône (Lucide)', type: 'string' }),
-          ]
-        }
-      ]
-    })
+          ],
+        },
+      ],
+    }),
   ],
   preview: {
-    prepare() { return { title: 'Paramètres & Footer' } }
-  }
+    prepare() {
+      return { title: 'Parametres & Footer' }
+    },
+  },
 })

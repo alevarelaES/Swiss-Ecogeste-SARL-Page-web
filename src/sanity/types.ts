@@ -78,23 +78,27 @@ export interface Article {
 
 export interface Settings {
   _id: string
-  siteName: LocalizedString
+  siteTitle?: LocalizedString
   siteDescription: LocalizedText
-  phone: string
-  email: string
-  address: {
-    street: string
-    postalCode: string
-    city: string
-    country: string
+  footerInfo?: {
+    slogan?: LocalizedText
+    copyright?: LocalizedString
   }
-  socialMedia: {
+  contactInfo?: {
+    address?: string
+    email?: string
+    phone?: string
+  }
+  socialMedia?: {
     linkedin?: string
     twitter?: string
     facebook?: string
     instagram?: string
   }
-  businessHours: LocalizedText
+  socialLinks?: Array<{
+    platform?: string
+    url?: string
+  }>
   logo?: SanityImage
   favicon?: {
     asset: {
