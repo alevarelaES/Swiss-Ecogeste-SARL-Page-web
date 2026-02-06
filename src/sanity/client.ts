@@ -1,33 +1,24 @@
 import { createClient } from '@sanity/client'
-import type { Article, Service, Settings, TeamMember } from './types'
 
-type EnvValue = string | undefined
-
-const getEnvVar = (name: string): EnvValue => {
-  if (typeof process !== 'undefined' && process.env[name]) return process.env[name]
-
-  const viteEnv = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env
-  if (viteEnv && viteEnv[name]) return viteEnv[name]
-
-  return undefined
-}
-
+// Configuration du client Sanity
 const config = {
-  projectId: getEnvVar('VITE_SANITY_PROJECT_ID') || 'btjdqrld',
-  dataset: getEnvVar('VITE_SANITY_DATASET') || 'production',
-  apiVersion: getEnvVar('VITE_SANITY_API_VERSION') || '2024-01-01',
-  useCdn: true,
+  projectId: process.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
+  dataset: process.env.VITE_SANITY_DATASET || 'production',
+  apiVersion: process.env.VITE_SANITY_API_VERSION || '2024-01-01',
+  useCdn: true, // Set to false for fresh data
 }
 
 export const client = createClient(config)
 
+// Client avec token d'écriture pour la migration
 export const writeClient = createClient({
   ...config,
-  token: getEnvVar('SANITY_WRITE_TOKEN'),
+  token: process.env.SANITY_WRITE_TOKEN,
   useCdn: false,
 })
 
-export async function getServices(): Promise<Service[]> {
+// Helper pour récupérer les services
+export async function getServices() {
   return client.fetch(`
     *[_type == "service"] | order(number asc) {
       _id,
@@ -49,7 +40,8 @@ export async function getServices(): Promise<Service[]> {
   `)
 }
 
-export async function getTeamMembers(): Promise<TeamMember[]> {
+// Helper pour récupérer les membres de l'équipe
+export async function getTeamMembers() {
   return client.fetch(`
     *[_type == "teamMember"] | order(order asc) {
       _id,
@@ -69,7 +61,8 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
   `)
 }
 
-export async function getArticles(): Promise<Article[]> {
+// Helper pour récupérer les articles
+export async function getArticles() {
   return client.fetch(`
     *[_type == "article"] | order(publishedAt desc) {
       _id,
@@ -90,7 +83,8 @@ export async function getArticles(): Promise<Article[]> {
   `)
 }
 
-export async function getArticleBySlug(slug: string): Promise<Article | null> {
+// Helper pour récupérer un article par slug
+export async function getArticleBySlug(slug: string) {
   return client.fetch(
     `
     *[_type == "article" && slug.current == $slug][0] {
@@ -114,19 +108,18 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   )
 }
 
-export async function getSettings(): Promise<Settings | null> {
+// Helper pour récupérer les paramètres du site
+export async function getSettings() {
   return client.fetch(`
     *[_type == "settings"][0] {
       _id,
-      siteTitle,
+      siteName,
       siteDescription,
-      footerInfo,
-      contactInfo,
+      phone,
+      email,
+      address,
       socialMedia,
-      socialLinks[] {
-        platform,
-        url
-      },
+      businessHours,
       logo {
         asset->{ _id, url },
         alt
