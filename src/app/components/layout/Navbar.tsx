@@ -143,8 +143,8 @@ const Navbar = () => {
                     </div>
 
 
-                    <NavLink to={getLocalizedPath('/services')}>
-                        {t('nav.our_services')}
+                    <NavLink to={getLocalizedPath('/resultats')}>
+                        {t('nav.resultats')}
                     </NavLink>
 
                     <NavLink to={getLocalizedPath('/conseils')}>
@@ -271,7 +271,7 @@ const Navbar = () => {
                                 </div>
 
                                 {[
-                                    { to: '/services', label: t('nav.our_services') },
+                                    { to: '/resultats', label: t('nav.resultats') },
                                     { to: '/conseils', label: t('nav.journal') },
                                     { to: '/team', label: t('nav.about') }
                                 ].map((item, idx) => (

@@ -2,9 +2,9 @@ import { createClient } from '@sanity/client'
 
 // Configuration du client Sanity
 const config = {
-  projectId: process.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
-  dataset: process.env.VITE_SANITY_DATASET || 'production',
-  apiVersion: process.env.VITE_SANITY_API_VERSION || '2024-01-01',
+  projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
+  dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
+  apiVersion: import.meta.env.VITE_SANITY_API_VERSION || '2024-01-01',
   useCdn: true, // Set to false for fresh data
 }
 
@@ -13,7 +13,7 @@ export const client = createClient(config)
 // Client avec token d'écriture pour la migration
 export const writeClient = createClient({
   ...config,
-  token: process.env.SANITY_WRITE_TOKEN,
+  token: import.meta.env.VITE_SANITY_WRITE_TOKEN,
   useCdn: false,
 })
 
