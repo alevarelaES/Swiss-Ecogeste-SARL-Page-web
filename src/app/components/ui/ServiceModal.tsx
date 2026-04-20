@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+﻿import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from "../ui/button";
 import { Link } from 'react-router-dom';
@@ -68,7 +68,7 @@ const ServiceModal = ({ isOpen, onClose, service, t, i18n }: ServiceModalProps) 
                                 <div className="mb-6">
                                     <h3 className="text-3xl font-bold text-gray-900 mb-2">{service.title}</h3>
                                     <div className="w-20 h-1.5 bg-[var(--primary)] rounded-full mb-6"></div>
-                                    <p className="text-gray-600 text-lg leading-relaxed">
+                                    <p className="text-gray-800 text-lg leading-relaxed">
                                         {service.description}
                                     </p>
                                 </div>
@@ -99,7 +99,7 @@ const ServiceModal = ({ isOpen, onClose, service, t, i18n }: ServiceModalProps) 
                                         variant="outline"
                                         rounded="lg"
                                         onClick={onClose}
-                                        className="sm:w-auto h-auto py-6 text-gray-500 hover:text-gray-700 hover:bg-gray-50 border-gray-200"
+                                        className="sm:w-auto h-auto py-6 text-gray-700 hover:text-gray-700 hover:bg-gray-50 border-gray-200"
                                     >
                                         {t('buttons.close') === 'buttons.close' ? (i18n.language === 'en' ? 'Close' : i18n.language === 'de' ? 'Schließen' : 'Fermer') : t('buttons.close')}
                                     </Button>

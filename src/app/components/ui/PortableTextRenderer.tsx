@@ -1,4 +1,4 @@
-import { PortableText, PortableTextComponents } from '@portabletext/react'
+﻿import { PortableText, PortableTextComponents } from '@portabletext/react'
 import type { PortableTextBlock } from '@portabletext/types'
 import { getImageUrl } from '../../../sanity/image'
 
@@ -10,7 +10,7 @@ const portableTextComponents: PortableTextComponents = {
     h3: ({ children }) => <h3 className="text-2xl font-bold mt-4 mb-2">{children}</h3>,
     normal: ({ children }) => <p className="mb-4 leading-relaxed text-gray-700">{children}</p>,
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-primary pl-4 italic my-6 text-gray-600">
+      <blockquote className="border-l-4 border-primary pl-4 italic my-6 text-gray-800">
         {children}
       </blockquote>
     ),
@@ -46,7 +46,7 @@ const portableTextComponents: PortableTextComponents = {
             className="rounded-lg w-full"
           />
           {value.caption && (
-            <figcaption className="text-sm text-gray-600 mt-2 text-center italic">
+            <figcaption className="text-sm text-gray-800 mt-2 text-center italic">
               {value.caption}
             </figcaption>
           )}

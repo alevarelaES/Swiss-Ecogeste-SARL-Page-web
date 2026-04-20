@@ -1,4 +1,4 @@
-import { CheckCircle2 } from 'lucide-react';
+﻿import { CheckCircle2 } from 'lucide-react';
 
 interface TeamMemberCardProps {
     name: string;
@@ -44,10 +44,10 @@ export const TeamMemberCard = ({ name, role, items, image }: TeamMemberCardProps
 
                 {/* Expertise/Tags */}
                 <div className="flex-grow">
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Expertise</p>
+                    <p className="text-xs font-semibold text-gray-800 uppercase tracking-wider mb-3">Expertise</p>
                     <ul className="space-y-2">
                         {items.slice(0, 3).map((item, i) => ( // Limit to 3 items for cleanliness
-                            <li key={i} className="flex items-start gap-2.5 text-[13px] text-gray-600 leading-relaxed">
+                            <li key={i} className="flex items-start gap-2.5 text-[13px] text-gray-800 leading-relaxed">
                                 <CheckCircle2 className="w-4 h-4 text-[#1b5e39]/60 shrink-0 mt-0.5" />
                                 <span>{item}</span>
                             </li>

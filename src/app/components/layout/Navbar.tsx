@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ChevronDown, Search } from 'lucide-react';
@@ -258,7 +258,7 @@ const Navbar = () => {
                                                     >
                                                         <Link
                                                             to={link.path}
-                                                            className="text-gray-500 text-xl font-bold py-1 block hover:text-[var(--primary)] transition-colors"
+                                                            className="text-gray-700 text-xl font-bold py-1 block hover:text-[var(--primary)] transition-colors"
                                                             onClick={() => setIsMobileMenuOpen(false)}
                                                         >
                                                             {link.name}
@@ -300,7 +300,7 @@ const Navbar = () => {
                                 className="mt-auto flex flex-col gap-10 pt-10 border-t border-gray-100"
                             >
                                 <div className="flex flex-col gap-4">
-                                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{t('nav.choose_language')}</p>
+                                    <p className="text-[10px] font-black text-gray-800 uppercase tracking-[0.2em]">{t('nav.choose_language')}</p>
                                     <LanguageSwitcher mobile={true} />
                                 </div>
 

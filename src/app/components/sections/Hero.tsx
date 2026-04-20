@@ -71,7 +71,7 @@ const Hero = () => {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.7, delay: 0.2 }}
-                                        className="text-base sm:text-lg md:text-xl text-white/85 mb-5 leading-relaxed drop-shadow-md"
+                                        className="text-base sm:text-lg md:text-xl text-white/95 mb-5 leading-relaxed drop-shadow-md"
                                     >
                                         {slide.sub}
                                     </motion.p>
@@ -81,7 +81,7 @@ const Hero = () => {
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.7, delay: 0.28 }}
-                                            className="hidden md:block text-sm text-white/60 mb-5 leading-relaxed"
+                                            className="hidden md:block text-base text-white/90 mb-5 leading-relaxed drop-shadow-md"
                                         >
                                             {slide.description}
                                         </motion.p>
@@ -94,10 +94,10 @@ const Hero = () => {
                                         className="hidden md:flex flex-wrap items-center gap-x-5 gap-y-2 mb-8 border-l-2 border-[var(--primary)] pl-4"
                                     >
                                         {slide.featuresLabel && (
-                                            <span className="w-full text-white/55 text-xs italic mb-1">{slide.featuresLabel}</span>
+                                            <span className="w-full text-white/80 text-sm italic mb-1">{slide.featuresLabel}</span>
                                         )}
                                         {slide.features.map((feature, fIdx) => (
-                                            <div key={fIdx} className="flex items-center gap-1.5 text-white/85 text-sm font-medium">
+                                            <div key={fIdx} className="flex items-center gap-1.5 text-white/95 text-base font-medium">
                                                 <CheckCircle2 size={13} className="text-[var(--primary)] shrink-0" />
                                                 {feature}
                                             </div>

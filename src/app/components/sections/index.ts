@@ -1,4 +1,5 @@
 export { default as About } from './About'
+export { default as ProcessSection } from './ProcessSection'
 export { default as ArticlesSection } from './ArticlesSection'
 export { default as ClientTypeSection } from './ClientTypeSection'
 export { default as ContactSection } from './ContactSection'

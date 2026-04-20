@@ -1,4 +1,4 @@
-import { SEO } from '../components';
+﻿import { SEO } from '../components';
 import { Reveal } from '../components/animations';
 import { ShieldCheck, FileCheck, Scale, Award, Database, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -56,7 +56,7 @@ const WhyUsPage = () => {
                     <div className="text-center max-w-3xl mx-auto mb-20">
                         <span className="text-[var(--primary)] font-bold tracking-widest uppercase text-sm mb-4 block">{t('why_us.label')}</span>
                         <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">{t('why_us.title')}</h1>
-                        <p className="text-xl text-gray-600 leading-relaxed">
+                        <p className="text-xl text-gray-800 leading-relaxed">
                             {t('why_us.intro')}
                         </p>
                     </div>
@@ -70,7 +70,7 @@ const WhyUsPage = () => {
                                     <item.icon size={28} />
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                                <p className="text-gray-600 leading-relaxed">
+                                <p className="text-gray-800 leading-relaxed">
                                     {item.description}
                                 </p>
                             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { SEO } from '../components';
-import { Hero, About, Partners, ContactSection, StatsSection, ArticlesSection, ClientTypeSection } from '../components/sections';
+import { Hero, About, Partners, ContactSection, StatsSection, ArticlesSection, ClientTypeSection, ProcessSection } from '../components/sections';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
 const Home = () => {
@@ -28,6 +28,7 @@ const Home = () => {
                 <Hero />
                 <About />
                 <StatsSection />
+                <ProcessSection />
                 <ClientTypeSection />
                 <ArticlesSection />
                 <Partners />

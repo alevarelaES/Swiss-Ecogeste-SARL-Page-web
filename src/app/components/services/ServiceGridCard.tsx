@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react'
+﻿import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 interface ServiceGridCardProps {
@@ -41,7 +41,7 @@ export function ServiceGridCard({
           <span className="text-xs font-bold uppercase tracking-wider text-[var(--primary)] mb-3 block">
             {subtitle}
           </span>
-          <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow font-medium line-clamp-3">
+          <p className="text-gray-700 text-base leading-relaxed mb-6 flex-grow font-medium line-clamp-3">
             {description}
           </p>
           <div className="mt-auto">

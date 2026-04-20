@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+﻿import { useMemo, useState } from 'react';
 import { SEO } from '../components';
 import { getArticles } from '../data/articles';
 import { getConseilsPageContent } from '../data/conseilsPageContent';
@@ -40,7 +40,7 @@ const ConseilsPage = () => {
                     <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4 font-sans uppercase">
                         {content.title}
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-500 max-w-2xl font-medium leading-relaxed">
+                    <p className="text-lg md:text-xl text-gray-700 max-w-2xl font-medium leading-relaxed">
                         {content.description}
                     </p>
                 </div>
@@ -59,7 +59,7 @@ const ConseilsPage = () => {
                                 className={`relative py-5 text-[10px] font-bold tracking-[0.2em] uppercase transition-all
                                     ${selectedCategory === cat.id
                                         ? 'text-[var(--primary)]'
-                                        : 'text-gray-400 hover:text-gray-900'
+                                        : 'text-gray-800 hover:text-gray-900'
                                     }`}
                             >
                                 {cat.label}
@@ -82,7 +82,7 @@ const ConseilsPage = () => {
                     </div>
                 ) : (
                     <div className="text-center py-20 bg-white rounded-none border border-dashed border-gray-200">
-                        <p className="text-gray-400 font-medium">Aucun article trouvé dans cette catégorie.</p>
+                        <p className="text-gray-800 font-medium">Aucun article trouvé dans cette catégorie.</p>
                     </div>
                 )}
             </div>

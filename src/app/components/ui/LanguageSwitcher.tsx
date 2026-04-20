@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Globe } from 'lucide-react';
@@ -84,7 +84,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
                             onClick={() => changeLanguage(lang.code)}
                             className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ${isActive
                                     ? 'bg-white text-[var(--primary)] shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-900 hover:bg-white/50'
+                                    : 'text-gray-700 hover:text-gray-900 hover:bg-white/50'
                                 }`}
                         >
                             {lang.label}
@@ -127,7 +127,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled = true, 
                                 key={lang.code}
                                 onClick={() => changeLanguage(lang.code)}
                                 className={`w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-gray-50 transition-colors
-                                    ${i18n.language.startsWith(lang.code) ? 'text-[var(--primary)] font-bold bg-green-50/50' : 'text-gray-600 font-medium'}
+                                    ${i18n.language.startsWith(lang.code) ? 'text-[var(--primary)] font-bold bg-green-50/50' : 'text-gray-800 font-medium'}
                                 `}
                             >
                                 <span className={`w-1.5 h-1.5 rounded-full ${i18n.language.startsWith(lang.code) ? 'bg-[var(--primary)]' : 'bg-transparent'}`} />

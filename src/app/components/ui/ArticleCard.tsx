@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar, User } from 'lucide-react';
+﻿import { ArrowRight, Calendar, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Article } from '../../data/articles';
 import { useTranslation } from 'react-i18next';
@@ -36,11 +36,11 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
             <div className="p-6 flex flex-col flex-grow">
                 {/* Meta Row */}
                 <div className="flex items-center gap-4 mb-4">
-                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-gray-800 uppercase tracking-wider">
                         <Calendar size={12} className="text-[var(--primary)]" />
                         {article.date}
                     </div>
-                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-gray-800 uppercase tracking-wider">
                         <User size={12} className="text-[var(--primary)]" />
                         Expert
                     </div>
@@ -52,7 +52,7 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
+                <p className="text-gray-700 text-base leading-relaxed mb-6 line-clamp-3">
                     {article.excerpt}
                 </p>
 

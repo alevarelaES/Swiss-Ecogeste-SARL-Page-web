@@ -1,7 +1,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-size: 14.4px;
+  --font-size: 15.5px;
   /* Base size for laptops and smaller screens */
   --background: #fdfdfd;
   --foreground: #0f1f1a;

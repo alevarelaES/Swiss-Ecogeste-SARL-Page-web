@@ -1,4 +1,4 @@
-import Reveal from '../animations/Reveal';
+﻿import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
 import { getWhyChooseUsContent } from '../../data/whyChooseUsContent';
 
@@ -35,7 +35,7 @@ const WhyChooseUs = () => {
                                 {whyChooseUsContent.titleHighlight}
                             </span>
                         </h2>
-                        <p className="text-gray-600 font-medium text-xl leading-relaxed max-w-2xl mx-auto">
+                        <p className="text-gray-800 font-medium text-xl leading-relaxed max-w-2xl mx-auto">
                             {whyChooseUsContent.description}
                         </p>
                     </div>
@@ -51,7 +51,7 @@ const WhyChooseUs = () => {
                                             <IconComponent size={32} strokeWidth={1.5} />
                                         </div>
                                         <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                                        <p className="text-gray-500 leading-relaxed font-medium text-sm">
+                                        <p className="text-gray-700 leading-relaxed font-medium text-sm">
                                             {item.description}
                                         </p>
                                     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Mail, MapPin, Linkedin, Instagram, ArrowRight, Phone } from 'lucide-react';
 import { Button } from "../ui/button";
 import { cn } from '../ui/utils';
@@ -6,10 +6,21 @@ import Reveal from '../animations/Reveal';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import DOMPurify from 'dompurify';
+import { getContactPage } from '../../../sanity/client';
+
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1974&auto=format&fit=crop";
 
 const ContactSection = ({ compact = false }: { compact?: boolean }) => {
     const { t } = useTranslation('common');
     const [currentType, setCurrentType] = useState('Villa');
+    const [contactImage, setContactImage] = useState(FALLBACK_IMAGE);
+
+    useEffect(() => {
+        getContactPage().then((data) => {
+            const url = data?.formSection?.image?.asset?.url;
+            if (url) setContactImage(url);
+        }).catch(() => {});
+    }, []);
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -164,7 +175,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0f1f1a] mb-6 tracking-tight font-sans">
                                     {t('contact_section.title')}
                                 </h2>
-                                <p className="text-gray-600 mb-10 text-lg leading-relaxed">
+                                <p className="text-gray-800 mb-10 text-lg leading-relaxed">
                                     {t('contact_section.subtitle')}
                                 </p>
 
@@ -184,7 +195,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                                         "px-6 py-2.5 transition-all duration-300",
                                                         currentType === type.value
                                                             ? 'bg-[#1b5e39] text-white shadow-lg shadow-[#1b5e39]/20 transform scale-105'
-                                                            : 'bg-white text-gray-600 hover:bg-gray-50 border-gray-200'
+                                                            : 'bg-white text-gray-800 hover:bg-gray-50 border-gray-200'
                                                     )}
                                                 >
                                                     {type.label}
@@ -203,7 +214,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                             name="fullName"
                                             value={formData.fullName}
                                             onChange={handleChange}
-                                            className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.fullName ? 'ring-1 ring-red-500' : ''}`}
+                                            className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-700 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.fullName ? 'ring-1 ring-red-500' : ''}`}
                                             placeholder="Jean Dupont"
                                         />
                                     </div>
@@ -219,7 +230,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                                 name="email"
                                                 value={formData.email}
                                                 onChange={handleChange}
-                                                className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.email ? 'ring-1 ring-red-500' : ''}`}
+                                                className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-700 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.email ? 'ring-1 ring-red-500' : ''}`}
                                                 placeholder="jean.dupont@email.com"
                                             />
                                         </div>
@@ -229,7 +240,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                                 {errors.phone && <span className="text-[10px] text-red-500 font-medium">{errors.phone}</span>}
                                             </div>
                                             <div className="relative">
-                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-800">
                                                     <Phone size={16} />
                                                 </div>
                                                 <input
@@ -237,7 +248,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                                     name="phone"
                                                     value={formData.phone}
                                                     onChange={handlePhoneChange}
-                                                    className={`w-full bg-white border border-gray-200 rounded-none pl-12 pr-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.phone ? 'ring-1 ring-red-500' : ''}`}
+                                                    className={`w-full bg-white border border-gray-200 rounded-none pl-12 pr-5 py-4 text-[#0f1f1a] placeholder:text-gray-700 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md ${errors.phone ? 'ring-1 ring-red-500' : ''}`}
                                                     placeholder="+41 79 000 00 00"
                                                 />
                                             </div>
@@ -254,7 +265,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                             name="message"
                                             value={formData.message}
                                             onChange={handleChange}
-                                            className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-400 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md resize-none ${errors.message ? 'ring-1 ring-red-500' : ''}`}
+                                            className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-700 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md resize-none ${errors.message ? 'ring-1 ring-red-500' : ''}`}
                                             placeholder={t('contact_section.placeholder_message')}
                                         ></textarea>
                                     </div>
@@ -277,8 +288,8 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                         {/* Image Side */}
                         <div className="hidden lg:block lg:w-1/2 relative lg:min-h-full overflow-hidden">
                             <img
-                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
-                                alt="Experte Swiss Ecogestes"
+                                src={contactImage}
+                                alt="Swiss Ecogestes"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-[#1b5e39]/80 mix-blend-multiply opacity-60"></div>
@@ -298,7 +309,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                     </div>
 
                     {/* INFO ROW - Updated: No Container, Simple & Clean */}
-                    <div className="flex flex-col md:flex-row justify-center items-center gap-12 text-gray-600">
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-12 text-gray-800">
                         <a href="mailto:info@swissecogestes.ch" className="flex items-center gap-4 group transition-colors">
                             <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39] group-hover:bg-[#e8f5e9] transition-colors">
                                 <Mail size={18} />

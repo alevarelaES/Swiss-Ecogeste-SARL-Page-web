@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, X, FileText, Wrench, FileSearch, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -110,7 +110,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
             case 'page':
                 return <FileSearch size={18} className="text-purple-500" />;
             default:
-                return <FileText size={18} className="text-gray-500" />;
+                return <FileText size={18} className="text-gray-700" />;
         }
     };
 
@@ -153,7 +153,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                             <div className="p-6 pb-4 border-b border-gray-100">
                                 <div className="flex items-center gap-4">
                                     <div className="flex-1 relative">
-                                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={22} />
+                                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-800" size={22} />
                                         <input
                                             ref={inputRef}
                                             type="text"
@@ -176,7 +176,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                                 {/* Suggestions */}
                                 {!query && (
                                     <div className="mt-4">
-                                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                                        <p className="text-xs font-semibold text-gray-800 uppercase tracking-wider mb-3">
                                             {t('search.suggestions') || 'Suggestions'}
                                         </p>
                                         <div className="flex flex-wrap gap-2">
@@ -199,7 +199,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                                 {isSearching && (
                                     <div className="p-8 text-center">
                                         <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--primary)]"></div>
-                                        <p className="mt-4 text-gray-500">{t('search.searching') || 'Recherche en cours...'}</p>
+                                        <p className="mt-4 text-gray-700">{t('search.searching') || 'Recherche en cours...'}</p>
                                     </div>
                                 )}
 
@@ -209,7 +209,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                                         <p className="text-lg font-semibold text-gray-700 mb-2">
                                             {t('search.no_results') || 'Aucun résultat trouvé'}
                                         </p>
-                                        <p className="text-gray-500 mb-6">
+                                        <p className="text-gray-700 mb-6">
                                             {t('search.try_different') || 'Essayez avec des mots-clés différents'}
                                         </p>
                                         <button
@@ -229,7 +229,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
 
                                 {!isSearching && results.length > 0 && (
                                     <div className="p-4">
-                                        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
+                                        <p className="text-xs font-semibold text-gray-800 uppercase tracking-wider mb-3 px-2">
                                             {results.length} {results.length === 1 ? (t('search.result') || 'résultat') : (t('search.results') || 'résultats')}
                                         </p>
                                         <div className="space-y-2">
@@ -267,7 +267,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                                                                 </h3>
                                                                 <ArrowRight size={18} className="flex-shrink-0 text-gray-300 group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all" />
                                                             </div>
-                                                            <p className="text-sm text-gray-600 line-clamp-2 mb-2">
+                                                            <p className="text-sm text-gray-800 line-clamp-2 mb-2">
                                                                 {highlightText(result.description, query)}
                                                             </p>
                                                             <div className="flex items-center gap-2">
@@ -275,7 +275,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                                                                     {badge.label}
                                                                 </span>
                                                                 {result.category && (
-                                                                    <span className="text-xs text-gray-400">• {result.category}</span>
+                                                                    <span className="text-xs text-gray-800">• {result.category}</span>
                                                                 )}
                                                             </div>
                                                         </div>
@@ -289,7 +289,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
 
                             {/* Footer */}
                             <div className="p-4 border-t border-gray-100 bg-gray-50">
-                                <div className="flex items-center justify-between text-xs text-gray-500">
+                                <div className="flex items-center justify-between text-xs text-gray-700">
                                     <div className="flex items-center gap-4">
                                         <span className="flex items-center gap-1">
                                             <kbd className="px-2 py-1 bg-white border border-gray-200 rounded text-[10px] font-mono">ESC</kbd>

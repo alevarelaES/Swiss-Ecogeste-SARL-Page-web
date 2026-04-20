@@ -1,4 +1,4 @@
-import { SEO } from '../components';
+﻿import { SEO } from '../components';
 import { ContactSection } from '../components/sections';
 import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +16,7 @@ const ContactPage = () => {
             <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
                 <Reveal>
                     <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{t('contact_page.title')}</h1>
-                    <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                    <p className="text-gray-800 max-w-2xl mx-auto text-lg">
                         {t('contact_page.description')}
                     </p>
                 </Reveal>

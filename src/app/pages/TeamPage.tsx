@@ -1,4 +1,4 @@
-import { ShieldCheck, Scale, Database, FileCheck, Award, Users } from 'lucide-react';
+﻿import { ShieldCheck, Scale, Database, FileCheck, Award, Users } from 'lucide-react';
 import { SEO } from '../components';
 import { Team } from '../components/sections';
 import { Reveal } from '../components/animations';
@@ -40,7 +40,7 @@ const TeamPage = () => {
                                     {t('team_page.header_title')}
                                 </h1>
                                 <div className="w-20 h-1 bg-amber-400 mx-auto rounded-full mb-6"></div>
-                                <div className="text-gray-600 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto">
+                                <div className="text-gray-800 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto">
                                     <p>{t('team_page.intro')}</p>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@ const TeamPage = () => {
                             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
                                 {t('team_page.team_title') || 'Notre Équipe'}
                             </h2>
-                            <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                            <p className="text-gray-800 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                                 {t('team_page.team_subtitle') || 'Une équipe dédiée d\'experts passionnés par la transition énergétique.'}
                             </p>
                         </div>
@@ -80,7 +80,7 @@ const TeamPage = () => {
                                         {t('team_page.values_title')}
                                     </h2>
                                     <div className="w-20 h-1.5 bg-amber-400 mb-8 rounded-full"></div>
-                                    <p className="text-gray-600 leading-relaxed mb-8 text-lg md:text-xl font-medium">
+                                    <p className="text-gray-800 leading-relaxed mb-8 text-lg md:text-xl font-medium">
                                         {t('team_page.values_intro')}
                                     </p>
                                 </div>
@@ -105,7 +105,7 @@ const TeamPage = () => {
                                                         <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
                                                             {t(`why_us.items.${item.key}.title`)}
                                                         </h3>
-                                                        <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                                                        <p className="text-gray-800 text-base md:text-lg leading-relaxed">
                                                             {t(`why_us.items.${item.key}.desc`)}
                                                         </p>
                                                     </div>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +29,7 @@ const ClientTypeSection = () => {
                                 {t('client_types.title_prefix')} {t('client_types.title_connector')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">{t('client_types.title_highlight')}</span>
                             </h2>
                         </div>
-                        <p className="text-gray-600 font-medium text-lg leading-relaxed max-w-md text-right md:text-right hidden md:block">
+                        <p className="text-gray-800 font-medium text-lg leading-relaxed max-w-md text-right md:text-right hidden md:block">
                             {t('client_types.description')}
                         </p>
                     </div>
@@ -61,11 +61,11 @@ const ClientTypeSection = () => {
                                             {client.subtitle}
                                         </span>
 
-                                        <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">
+                                        <p className="text-gray-700 text-base leading-relaxed mb-8 flex-grow">
                                             {client.description}
                                         </p>
 
-                                        <div className="mt-auto border text-gray-400 border-gray-200 px-6 py-3 text-xs font-bold uppercase tracking-widest flex items-center justify-between group-hover:bg-[var(--primary)] group-hover:border-[var(--primary)] group-hover:text-white transition-all">
+                                        <div className="mt-auto border text-gray-800 border-gray-200 px-6 py-3 text-xs font-bold uppercase tracking-widest flex items-center justify-between group-hover:bg-[var(--primary)] group-hover:border-[var(--primary)] group-hover:text-white transition-all">
                                             {t('buttons.explore')}
                                             <ArrowRight size={14} />
                                         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from "../components/ui/button";
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                             <h1 className="text-4xl md:text-5xl font-bold text-[var(--primary)] mb-6 leading-tight">
                                 {title}
                             </h1>
-                            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                            <p className="text-lg text-gray-800 mb-8 leading-relaxed">
                                 {description}
                             </p>
                             <div className="flex gap-4">
@@ -50,7 +50,7 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                         <div className="relative">
                             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                                 {/* Placeholder for now, can use generate_image if needed later */}
-                                <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                                <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-800">
                                     {/* In a real app, use the imageSrc prop */}
                                     <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
                                 </div>
@@ -74,7 +74,7 @@ const ClientTypePage: React.FC<ClientTypePageProps> = ({ title, description, fea
                                         <CheckCircle2 size={24} />
                                     </div>
                                     <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.split(':')[0]}</h3>
-                                    <p className="text-gray-600">{feature.split(':')[1] || feature}</p>
+                                    <p className="text-gray-800">{feature.split(':')[1] || feature}</p>
                                 </div>
                             ))}
                         </div>

@@ -108,6 +108,48 @@ export async function getArticleBySlug(slug: string) {
   )
 }
 
+// Helper pour récupérer la page contact
+export async function getContactPage() {
+  return client.fetch(`
+    *[_type == "contactPage"][0] {
+      formSection {
+        image {
+          asset->{ _id, url },
+          hotspot,
+          crop
+        }
+      }
+    }
+  `)
+}
+
+// Helper pour récupérer les partenaires
+export async function getPartners() {
+  return client.fetch(`
+    *[_type == "partner"] | order(order asc) {
+      _id,
+      name,
+      logo {
+        asset->{ _id, url }
+      },
+      url,
+      order
+    }
+  `)
+}
+
+// Helper pour récupérer les étapes du processus
+export async function getProcessSteps(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "processStep"] | order(stepNumber asc) {
+      _id,
+      stepNumber,
+      "title": title.${lang},
+      "description": description.${lang}
+    }
+  `)
+}
+
 // Helper pour récupérer les paramètres du site
 export async function getSettings() {
   return client.fetch(`

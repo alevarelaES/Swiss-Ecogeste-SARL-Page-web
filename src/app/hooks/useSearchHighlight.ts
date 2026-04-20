@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 
@@ -28,7 +28,7 @@ const highlightSearchTerm = (term: string) => {
     if (!cleanTerm || cleanTerm.length < 2) return;
 
     // Sélectionner les conteneurs de texte (éviter header, footer, nav)
-    const containers = document.querySelectorAll('main p, main h1, main h2, main h3, main h4, main h5, main h6, main li, main span, main div.text-gray-600, main div.text-gray-700, main div.text-gray-800, main div.text-gray-900');
+    const containers = document.querySelectorAll('main p, main h1, main h2, main h3, main h4, main h5, main h6, main li, main span, main div.text-gray-800, main div.text-gray-700, main div.text-gray-800, main div.text-gray-900');
     
     let highlightCount = 0;
     const maxHighlights = 15; // Augmenté pour couvrir plus de résultats

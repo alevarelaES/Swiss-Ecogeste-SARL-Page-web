@@ -1,4 +1,4 @@
-
+﻿
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getArticles } from '../../data/articles';
@@ -48,13 +48,13 @@ const ArticlesSection = () => {
                                     </div>
                                 </div>
                                 <div className="p-8 flex flex-col flex-grow">
-                                    <div className="flex items-center gap-4 text-xs text-gray-400 mb-4 font-bold uppercase tracking-tighter">
+                                    <div className="flex items-center gap-4 text-xs text-gray-800 mb-4 font-bold uppercase tracking-tighter">
                                         <span className="flex items-center gap-1.5"><Calendar size={14} className="text-[var(--primary)] opacity-50" /> {article.date}</span>
                                     </div>
                                     <h3 className="text-xl lg:text-2xl font-black text-gray-900 mb-4 line-clamp-2 leading-[1.2] group-hover:text-[var(--primary)] transition-colors">
                                         {article.title}
                                     </h3>
-                                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">
+                                    <p className="text-gray-700 text-base leading-relaxed line-clamp-3 mb-6 flex-grow">
                                         {article.excerpt}
                                     </p>
                                     <div className="text-[var(--primary)] font-black text-xs uppercase tracking-[0.2em] flex items-center mt-auto opacity-70 group-hover:opacity-100 transition-all">

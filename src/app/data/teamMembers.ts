@@ -10,14 +10,17 @@ export interface TeamMember {
 const teamMembersFr: TeamMember[] = [
     {
         name: 'Mohammad SALMAN',
-        role: 'Conseiller en énergie',
+        role: 'Directeur & Conseiller en énergie',
         initials: 'MS',
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             'Expert "Chauffez renouvelable"',
             'Concessionnaire IDC Genève',
             'Expert éclairage SIG',
-            'Conseiller villa/entreprises'
+            'Gestionnaire énergie délégué',
+            'Conseiller PEIK',
+            'Conseiller TPE/PME',
+            'Conseiller villa'
         ]
     },
     {
@@ -38,7 +41,9 @@ const teamMembersFr: TeamMember[] = [
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             'Conseiller entreprises TPE/PME',
-            'Conseiller Ecologement'
+            'Conseiller Ecologement',
+            'Concessionnaire IDC',
+            'Expert "Chauffez renouvelable"'
         ]
     },
     {
@@ -47,8 +52,7 @@ const teamMembersFr: TeamMember[] = [
         initials: 'DB',
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
-            'Conseiller entreprises TPE/PME',
-            'Conseiller Ecologement'
+            'Conseiller entreprises TPE/PME'
         ]
     },
     {
@@ -58,7 +62,9 @@ const teamMembersFr: TeamMember[] = [
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             'Conseiller entreprises TPE/PME',
-            'Conseiller Ecologement'
+            'Conseiller Ecologement',
+            'Concessionnaire IDC',
+            'Expert "Chauffez renouvelable"'
         ]
     }
 ];
@@ -66,14 +72,17 @@ const teamMembersFr: TeamMember[] = [
 const teamMembersEn: TeamMember[] = [
     {
         name: 'Mohammad SALMAN',
-        role: 'Energy Advisor',
+        role: 'Director & Energy Advisor',
         initials: 'MS',
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             '"Renewable Heating" Expert',
             'IDC Geneva Concessionaire',
             'SIG Lighting Expert',
-            'Villa/Business Advisor'
+            'Delegated Energy Manager',
+            'PEIK Advisor',
+            'SME/Small Business Advisor',
+            'Villa Advisor'
         ]
     },
     {
@@ -94,7 +103,9 @@ const teamMembersEn: TeamMember[] = [
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             'SME/Small Business Advisor',
-            'Ecologement Advisor'
+            'Ecologement Advisor',
+            'IDC Concessionaire',
+            '"Renewable Heating" Expert'
         ]
     },
     {
@@ -103,8 +114,7 @@ const teamMembersEn: TeamMember[] = [
         initials: 'DB',
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
-            'SME/Small Business Advisor',
-            'Ecologement Advisor'
+            'SME/Small Business Advisor'
         ]
     },
     {
@@ -114,7 +124,9 @@ const teamMembersEn: TeamMember[] = [
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             'SME/Small Business Advisor',
-            'Ecologement Advisor'
+            'Ecologement Advisor',
+            'IDC Concessionaire',
+            '"Renewable Heating" Expert'
         ]
     }
 ];
@@ -122,14 +134,17 @@ const teamMembersEn: TeamMember[] = [
 const teamMembersDe: TeamMember[] = [
     {
         name: 'Mohammad SALMAN',
-        role: 'Energieberater',
+        role: 'Direktor & Energieberater',
         initials: 'MS',
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             '"Erneuerbar Heizen" Experte',
             'IDC Genf Konzessionär',
             'SIG Beleuchtungs-Experte',
-            'Berater für Villen/Unternehmen'
+            'Delegierter Energiemanager',
+            'PEIK-Berater',
+            'KMU-Berater',
+            'Villen-Berater'
         ]
     },
     {
@@ -150,7 +165,9 @@ const teamMembersDe: TeamMember[] = [
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             'Berater für KMU',
-            'Ecologement Berater'
+            'Ecologement Berater',
+            'IDC Konzessionär',
+            '"Erneuerbar Heizen" Experte'
         ]
     },
     {
@@ -159,8 +176,7 @@ const teamMembersDe: TeamMember[] = [
         initials: 'DB',
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
-            'Berater für KMU',
-            'Ecologement Berater'
+            'Berater für KMU'
         ]
     },
     {
@@ -170,7 +186,9 @@ const teamMembersDe: TeamMember[] = [
         color: 'from-[var(--primary)] to-emerald-600',
         items: [
             'Berater für KMU',
-            'Ecologement Berater'
+            'Ecologement Berater',
+            'IDC Konzessionär',
+            '"Erneuerbar Heizen" Experte'
         ]
     }
 ];

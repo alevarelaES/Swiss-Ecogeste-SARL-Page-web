@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/button'
@@ -36,7 +36,7 @@ const ClientTypeServiceCard = ({ service, t }: ClientTypeServiceCardProps) => {
 
         <div className="p-5 sm:p-8 flex-grow flex flex-col">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-          <div className="text-gray-600 leading-relaxed line-clamp-3 mb-4">{service.description}</div>
+          <div className="text-gray-800 leading-relaxed line-clamp-3 mb-4">{service.description}</div>
 
           <div className="mt-auto flex gap-2">
             <Button

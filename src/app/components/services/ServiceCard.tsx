@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { cn } from '@/app/components/ui/utils';
@@ -61,7 +61,7 @@ export const ServiceCard = ({
                         <div className="h-1.5 w-24 bg-[var(--primary)] mt-4 rounded-full" />
                     </div>
 
-                    <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light">
+                    <p className="text-lg md:text-xl text-gray-800 leading-relaxed font-light">
                         {description}
                     </p>
                 </div>

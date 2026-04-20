@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
@@ -39,7 +39,7 @@ const About = () => {
                             <p className="text-gray-900 text-base md:text-lg leading-relaxed mb-6 font-bold">
                                 {aboutContent.paragraph1}
                             </p>
-                            <p className="text-gray-800 text-sm md:text-base leading-relaxed mb-10 font-medium">
+                            <p className="text-gray-800 text-base leading-relaxed mb-10 font-medium">
                                 {aboutContent.paragraph2}
                             </p>
 
@@ -75,8 +75,8 @@ const About = () => {
                                 <div className="absolute bottom-3 left-3 w-6 h-[1px] bg-amber-500 opacity-60"></div>
                                 <div className="absolute bottom-3 left-3 w-[1px] h-6 bg-amber-500 opacity-60"></div>
 
-                                <p className="text-gray-900 font-semibold text-sm italic leading-relaxed mb-3">"{aboutContent.quote}"</p>
-                                <p className="text-gray-500 text-xs font-bold tracking-wide">{aboutContent.quoteAuthor}</p>
+                                <p className="text-gray-900 font-semibold text-base italic leading-relaxed mb-3">"{aboutContent.quote}"</p>
+                                <p className="text-gray-700 text-xs font-bold tracking-wide">{aboutContent.quoteAuthor}</p>
                             </div>
                         </Reveal>
                     </div>

@@ -1,58 +1,87 @@
+﻿import { useState, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useTranslation } from 'react-i18next';
+import { getPartners } from '../../../sanity/client';
 
 interface Partner {
     name: string;
-    logo: string;
+    logoUrl: string;
+    url?: string;
 }
 
-const partners: Partner[] = [
-    { name: "Canton de Vaud", logo: "Logo_canton_de_Vaud.svg.png" },
-    { name: "Canton de Genève", logo: "Canton_Geneve_Logo.png" },
-    { name: "SIG Éco21", logo: "ECO21_SIG.png" },
-    { name: "Suisse Énergie", logo: "Suisse_Energie.png" },
-    { name: "Chauffez Renouvelable", logo: "Chauffez RENOUVELABLE.png" },
+const FALLBACK_PARTNERS: Partner[] = [
+    { name: "Canton de Vaud", logoUrl: "/partners/Logo_canton_de_Vaud.svg.png" },
+    { name: "Canton de Genève", logoUrl: "/partners/Canton_Geneve_Logo.png" },
+    { name: "SIG Éco21", logoUrl: "/partners/ECO21_SIG.png" },
+    { name: "Suisse Énergie", logoUrl: "/partners/Suisse_Energie.png" },
+    { name: "Chauffez Renouvelable", logoUrl: "/partners/Chauffez RENOUVELABLE.png" },
 ];
 
-const PartnerLogo = ({ partner }: { partner: Partner }) => (
-    <div className="mx-8 md:mx-16 flex items-center justify-center select-none group">
-        <img
-            src={`/partners/${partner.logo}`}
-            alt={partner.name}
-            className="h-16 md:h-20 w-auto object-contain max-w-[180px] md:max-w-[220px] filter transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-md"
-            onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                target.nextElementSibling?.classList.remove('hidden');
-            }}
-        />
-        <span className="hidden font-bold text-gray-400 text-lg border border-dashed border-gray-300 p-4 rounded-lg pointer-events-none whitespace-nowrap">
-            {partner.name}
-        </span>
-    </div>
-);
+const PartnerLogo = ({ partner }: { partner: Partner }) => {
+    const img = (
+        <div className="mx-8 md:mx-16 flex items-center justify-center select-none group">
+            <img
+                src={partner.logoUrl}
+                alt={partner.name}
+                className="h-16 md:h-20 w-auto object-contain max-w-[180px] md:max-w-[220px] filter transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-md"
+                onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.nextElementSibling?.classList.remove('hidden');
+                }}
+            />
+            <span className="hidden font-bold text-gray-800 text-lg border border-dashed border-gray-300 p-4 rounded-lg pointer-events-none whitespace-nowrap">
+                {partner.name}
+            </span>
+        </div>
+    );
 
-// ... (existing helper components)
+    if (partner.url) {
+        return (
+            <a href={partner.url} target="_blank" rel="noopener noreferrer" aria-label={partner.name}>
+                {img}
+            </a>
+        );
+    }
+
+    return img;
+};
 
 const Partners = ({ sectionTitle }: { sectionTitle?: string }) => {
     const { t } = useTranslation('common');
-    // Configuration: loop for infinite scroll, dragFree for "momentum" scrolling (hyper scroll)
+    const [partners, setPartners] = useState<Partner[]>(FALLBACK_PARTNERS);
+
     const [emblaRef] = useEmblaCarousel(
         { loop: true, dragFree: true },
         [
             AutoScroll({
                 playOnInit: true,
-                stopOnInteraction: false, // Continue auto-scroll after user releases
-                speed: 1, // Slow drift speed
-                startDelay: 0 // Resume immediately (no delay)
+                stopOnInteraction: false,
+                speed: 1,
+                startDelay: 0
             })
         ]
     );
 
+    useEffect(() => {
+        getPartners().then((data) => {
+            if (data && data.length > 0) {
+                setPartners(
+                    data.map((p: { name: string; logo?: { asset?: { url: string } }; url?: string }) => ({
+                        name: p.name,
+                        logoUrl: p.logo?.asset?.url ?? '',
+                        url: p.url,
+                    }))
+                );
+            }
+        }).catch(() => {
+            // Keep fallback on error
+        });
+    }, []);
+
     return (
         <section id="partners" className="py-8 md:py-10 bg-[#f0f4f2] border-y border-gray-200/60 overflow-hidden relative">
-            {/* Background decoration for better section definition */}
             <div className="absolute inset-0 opacity-40 pointer-events-none">
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
@@ -67,14 +96,11 @@ const Partners = ({ sectionTitle }: { sectionTitle?: string }) => {
             </div>
 
             <div className="relative">
-                {/* Fade Gradients for the carousel */}
                 <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#f0f4f2] via-[#f0f4f2]/80 to-transparent z-10 pointer-events-none"></div>
                 <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#f0f4f2] via-[#f0f4f2]/80 to-transparent z-10 pointer-events-none"></div>
 
-                {/* Embla Carousel Container */}
                 <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
                     <div className="flex touch-pan-y">
-                        {/* We duplicate the array to ensure enough items for looping on large screens */}
                         {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
                             <div className="flex-[0_0_auto]" key={index}>
                                 <PartnerLogo partner={partner} />

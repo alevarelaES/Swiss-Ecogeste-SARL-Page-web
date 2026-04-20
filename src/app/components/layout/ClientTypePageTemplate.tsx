@@ -1,4 +1,4 @@
-import SEO from '../SEO';
+﻿import SEO from '../SEO';
 import Reveal from '../animations/Reveal';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from "../ui/button";
@@ -46,7 +46,7 @@ export const ClientTypePageTemplate = ({ content }: ClientTypePageTemplateProps)
 
             <div className="max-w-7xl mx-auto px-6">
                 {/* Back Link */}
-                <Link to={getLocalizedPath(backLinkPath)} className="inline-flex items-center text-gray-400 hover:text-[var(--primary)] transition-colors mb-8 font-medium">
+                <Link to={getLocalizedPath(backLinkPath)} className="inline-flex items-center text-gray-800 hover:text-[var(--primary)] transition-colors mb-8 font-medium">
                     <ArrowLeft size={16} className="mr-2" /> {content.backLink}
                 </Link>
 
@@ -56,7 +56,7 @@ export const ClientTypePageTemplate = ({ content }: ClientTypePageTemplateProps)
                         <div className="md:w-1/2">
                             <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">{content.sectionLabel}</span>
                             <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-2 mb-6">{content.title}</h1>
-                            <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                            <p className="text-gray-800 text-lg leading-relaxed mb-8">
                                 {content.description}
                             </p>
                             <Link to={getLocalizedPath(content.buttonLink)}>

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+﻿import { useTranslation } from 'react-i18next';
 import { BackButton } from '../components/navigation';
 import { SEO } from '../components';
 import { Reveal } from '../components/animations';
@@ -24,7 +24,7 @@ const MentionsLegalesPage = () => {
                     <div className="mb-12">
                         <span className="text-[var(--primary)] font-bold tracking-wider uppercase text-sm">Informations Légales</span>
                         <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-2 mb-4">{t('legal.mentions.title')}</h1>
-                        <p className="text-gray-500 text-sm">{t('legal.mentions.last_updated')} : 01 Février 2026</p>
+                        <p className="text-gray-700 text-sm">{t('legal.mentions.last_updated')} : 01 Février 2026</p>
                     </div>
                 </Reveal>
 
@@ -33,7 +33,7 @@ const MentionsLegalesPage = () => {
                         <Reveal key={index} delay={index * 0.1}>
                             <div className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm">
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">{section.title}</h2>
-                                <div className="space-y-4 text-gray-600 leading-relaxed">
+                                <div className="space-y-4 text-gray-800 leading-relaxed">
                                     {section.content.map((paragraph, pIndex) => (
                                         <p
                                             key={pIndex}

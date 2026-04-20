@@ -1,4 +1,4 @@
-
+﻿
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { getArticles, articlesFr, articlesEn, articlesDe } from '../data/articles';
@@ -73,14 +73,14 @@ const ArticleDetailPage = () => {
                                     navigate(-1);
                                 }
                             }}
-                            className="inline-flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-[var(--primary)] transition-colors group"
+                            className="inline-flex items-center gap-2 text-sm font-bold text-gray-800 hover:text-[var(--primary)] transition-colors group"
                         >
                             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
                             <span>{t('buttons.back')}</span>
                         </button>
 
                         {/* Breadcrumb */}
-                        <nav className="flex items-center gap-2 text-xs text-gray-400 font-bold uppercase tracking-wider">
+                        <nav className="flex items-center gap-2 text-xs text-gray-800 font-bold uppercase tracking-wider">
                             <Link to={getLocalizedPath('/')} className="hover:text-gray-900 transition-colors">{t('nav.home')}</Link>
                             <ChevronRight size={10} strokeWidth={4} />
                             <Link to={getLocalizedPath('/conseils')} className="hover:text-gray-900 transition-colors">{t('blog.journal')}</Link>
@@ -104,7 +104,7 @@ const ArticleDetailPage = () => {
                                     </div>
                                     <div className="text-left text-sm">
                                         <p className="font-bold text-gray-900">{t('blog.expert')}</p>
-                                        <p className="text-gray-500 font-medium">{article.date}</p>
+                                        <p className="text-gray-700 font-medium">{article.date}</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -130,11 +130,11 @@ const ArticleDetailPage = () => {
                     <Reveal delay={0.3}>
                         <article
                             className="prose prose-lg prose-slate max-w-none 
-                            [&_p]:text-gray-600 [&_p]:leading-[1.9] [&_p]:mb-8 [&_p]:mt-0 [&_p]:text-lg [&_p]:font-normal
+                            [&_p]:text-gray-800 [&_p]:leading-[1.9] [&_p]:mb-8 [&_p]:mt-0 [&_p]:text-lg [&_p]:font-normal
                             [&_h3]:text-gray-900 [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-3xl [&_h3]:mt-14 [&_h3]:mb-6 [&_h3]:leading-tight
                             [&_h3]:border-l-4 [&_h3]:border-[var(--primary)] [&_h3]:pl-4
                             [&_strong]:text-gray-900 [&_strong]:font-bold
-                            [&_li]:text-lg [&_li]:mb-3 [&_li]:text-gray-600
+                            [&_li]:text-lg [&_li]:mb-3 [&_li]:text-gray-800
                             [&_ul]:list-none [&_ul]:pl-0
                             [&_ul>li]:relative [&_ul>li]:pl-6
                             [&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:top-[0.6em] [&_ul>li]:before:w-2 [&_ul>li]:before:h-2 [&_ul>li]:before:bg-[var(--primary)] [&_ul>li]:before:rounded-full
@@ -145,7 +145,7 @@ const ArticleDetailPage = () => {
 
                         {/* SHARE SECTION CENTERED BOTTOM */}
                         <div className="mt-16 pt-12 border-t border-gray-100">
-                            <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-400 mb-6 text-center">{t('blog.share')}</h3>
+                            <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-gray-800 mb-6 text-center">{t('blog.share')}</h3>
                             <div className="flex justify-center gap-3 mb-6">
                                 <a href={shareLinks.x} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-none flex items-center justify-center text-gray-900 border border-gray-100 hover:bg-black hover:text-white hover:border-black transition-all shadow-sm">
                                     <XIcon />
@@ -156,7 +156,7 @@ const ArticleDetailPage = () => {
                                 <a href={shareLinks.meta} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-50 rounded-none flex items-center justify-center text-[#1877F2] border border-gray-100 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all shadow-sm">
                                     <Facebook size={16} fill="currentColor" strokeWidth={0} />
                                 </a>
-                                <button onClick={handleCopyLink} className={`px-4 h-10 rounded-none flex items-center gap-2 text-[10px] font-black uppercase tracking-wider transition-all border ${copied ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-gray-50 text-gray-600 border-gray-100 hover:border-gray-300'}`}>
+                                <button onClick={handleCopyLink} className={`px-4 h-10 rounded-none flex items-center gap-2 text-[10px] font-black uppercase tracking-wider transition-all border ${copied ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-gray-50 text-gray-800 border-gray-100 hover:border-gray-300'}`}>
                                     {copied ? <Check size={14} strokeWidth={3} /> : <LinkIcon size={14} strokeWidth={3} />}
                                     {copied ? t('blog.copied') : t('blog.copy')}
                                 </button>

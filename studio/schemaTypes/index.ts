@@ -12,6 +12,8 @@ import { homePage } from './homePage'
 import { blogPage } from './blogPage'
 import { servicesPage } from './servicesPage'
 import { aboutPage } from './aboutPage'
+import { partner } from './partner'
+import { processStep } from './processStep'
 
 export const schemaTypes = [
   // Types globaux
@@ -32,6 +34,8 @@ export const schemaTypes = [
   teamMember,
   article,
   clientType, // Used in Home Solutions
+  partner,    // Section partenaires
+  processStep, // Section processus (étapes)
 
   // Legacy / Support (si encore utilisés, sinon à supprimer)
   heroSlide, // Maintenant intégré dans homePage mais peut rester si besoin de migration

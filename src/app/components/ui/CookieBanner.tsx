@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/app/components/ui/button';
@@ -50,13 +50,13 @@ export const CookieBanner = () => {
                                 <h3 className="font-semibold text-gray-900">
                                     {t('cookie_banner.title', 'Confidentialité & Cookies')}
                                 </h3>
-                                <p className="text-sm text-gray-600 leading-relaxed">
+                                <p className="text-base text-gray-800 leading-relaxed">
                                     {t('cookie_banner.text', 'Nous utilisons des cookies pour améliorer votre expérience et analyser notre trafic. Vous pouvez accepter ou refuser leur utilisation.')}
                                 </p>
                             </div>
                             <button
                                 onClick={handleDecline}
-                                className="text-gray-400 hover:text-gray-600 transition-colors shrink-0"
+                                className="text-gray-800 hover:text-gray-800 transition-colors shrink-0"
                             >
                                 <X className="w-5 h-5" />
                                 <span className="sr-only">Close</span>
@@ -80,7 +80,7 @@ export const CookieBanner = () => {
                             <Button
                                 asChild
                                 variant="ghost"
-                                className="text-gray-500 hover:text-[var(--primary)] text-xs font-normal shrink-0"
+                                className="text-gray-700 hover:text-[var(--primary)] text-xs font-normal shrink-0"
                             >
                                 <Link to="/cookies">
                                     {t('cookie_banner.policy', 'En savoir plus')}
