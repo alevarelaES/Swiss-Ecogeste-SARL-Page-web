@@ -10,82 +10,86 @@ export interface AboutContent {
     ctaText: string;
     ctaLink: string;
     quote: string;
+    quoteAuthor: string;
     image: string;
 }
 
 const aboutContentFr: AboutContent = {
-    sectionLabel: 'À propos de nous',
-    title: 'Engagés pour un avenir durable',
-    paragraph1: "Chez Swiss Ecogestes, nous sommes des acteurs de la transition énergétique. L'impact global commence par des actions locales, et nous collaborons étroitement avec les acteurs suisses pour promouvoir l'efficacité énergétique et réduire les déchets.",
-    paragraph2: "Notre engagement se manifeste à travers des audits énergétiques personnalisés, conçus pour optimiser l'utilisation de l'énergie et minimiser les déchets. Nous accompagnons avec des solutions clés en main.",
+    sectionLabel: 'Pourquoi Swiss Ecogestes',
+    title: 'Vous méritez un avis honnête, pas une vente déguisée.',
+    paragraph1: "Notre seul intérêt : que vous économisiez. Pas de matériel à vendre, pas de marges cachées. Juste votre intérêt, en priorité.",
+    paragraph2: "Chez Swiss Ecogestes, nous sommes convaincus que la transition énergétique passe par des actions concrètes, mesurables et rentables. Nous accompagnons propriétaires, entreprises et collectivités avec une approche pragmatique : réduire les consommations, optimiser les installations et générer un impact réel, à la fois économique et environnemental.",
     values: [
         {
-            title: 'Local',
-            subtitle: 'Action suisse'
+            title: 'Neutre',
+            subtitle: 'Recommandations indépendantes, sans intérêt commercial'
         },
         {
-            title: 'Bio',
-            subtitle: 'Écologique'
+            title: 'Proximité',
+            subtitle: 'Expertise terrain, ancrage local en Suisse romande'
         },
         {
-            title: 'Éco',
-            subtitle: 'Économique'
+            title: 'Efficacité',
+            subtitle: 'Actions concrètes, résultats mesurables'
         }
     ],
     ctaText: 'Découvrir notre ADN',
     ctaLink: '/team',
-    quote: '"L\'énergie la plus propre est celle que l\'on ne consomme pas"',
+    quote: "Grâce à Swiss Ecogestes, j'ai pu réduire mes charges et identifier des aides que je ne connaissais pas.",
+    quoteAuthor: 'Marc D. — Propriétaire, Genève',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000'
 };
 
 const aboutContentEn: AboutContent = {
-    sectionLabel: 'About Us',
-    title: 'Committed to a sustainable future',
-    paragraph1: "At Swiss Ecogestes, we are actors in the energy transition. Global impact starts with local actions, and we work closely with Swiss stakeholders to promote energy efficiency and reduce waste.",
-    paragraph2: "Our commitment is demonstrated through personalized energy audits, designed to optimize energy use and minimize waste. We provide turnkey solutions.",
+    sectionLabel: 'Why Swiss Ecogestes',
+    title: 'You deserve honest advice, not a disguised sales pitch.',
+    paragraph1: "Our only interest: your savings. No equipment to sell, no hidden margins. Just your interest, as a priority.",
+    paragraph2: "At Swiss Ecogestes, we believe energy transition happens through concrete, measurable and profitable actions. We support property owners, businesses and municipalities with a pragmatic approach: reducing consumption, optimising installations and generating real impact — both economic and environmental.",
     values: [
         {
-            title: 'Local',
-            subtitle: 'Swiss Action'
+            title: 'Neutral',
+            subtitle: 'Independent recommendations, no commercial interest'
         },
         {
-            title: 'Green',
-            subtitle: 'Ecological'
+            title: 'Proximity',
+            subtitle: 'Field expertise, local presence in French-speaking Switzerland'
         },
         {
-            title: 'Eco',
-            subtitle: 'Economical'
+            title: 'Efficiency',
+            subtitle: 'Concrete actions, measurable results'
         }
     ],
     ctaText: 'Discover our DNA',
     ctaLink: '/team',
-    quote: '"The cleanest energy is the one we do not consume"',
+    quote: "Thanks to Swiss Ecogestes, I was able to reduce my costs and find subsidies I didn't even know existed.",
+    quoteAuthor: 'Marc D. — Property owner, Geneva',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000'
 };
 
 
 const aboutContentDe: AboutContent = {
-    sectionLabel: 'Über uns',
-    title: 'Engagiert für eine nachhaltige Zukunft',
-    paragraph1: "Bei Swiss Ecogestes sind wir Akteure der Energiewende. Globale Wirkung beginnt mit lokalen Maßnahmen, und wir arbeiten eng mit Schweizer Akteuren zusammen, um Energieeffizienz zu fördern und Verschwendung zu reduzieren.",
-    paragraph2: "Unser Engagement zeigt sich in personalisierten Energieaudits, die darauf ausgelegt sind, den Energieverbrauch zu optimieren und Verschwendung zu minimieren. Wir bieten schlüsselfertige Lösungen.",
+    sectionLabel: 'Warum Swiss Ecogestes',
+    title: 'Sie verdienen einen ehrlichen Rat, keinen verdeckten Verkauf.',
+    paragraph1: "Unser einziges Interesse: Ihre Einsparungen. Kein Material zu verkaufen, keine versteckten Margen. Nur Ihr Interesse, als Priorität.",
+    paragraph2: "Bei Swiss Ecogestes sind wir überzeugt, dass die Energiewende durch konkrete, messbare und rentable Maßnahmen gelingt. Wir begleiten Eigentümer, Unternehmen und Gemeinden mit einem pragmatischen Ansatz: Verbrauch senken, Anlagen optimieren und echte Wirkung erzielen — wirtschaftlich und ökologisch.",
     values: [
         {
-            title: 'Lokal',
-            subtitle: 'Schweizer Aktion'
+            title: 'Neutral',
+            subtitle: 'Unabhängige Empfehlungen, kein kommerzielles Interesse'
         },
         {
-            title: 'Bio',
-            subtitle: 'Ökologisch'
+            title: 'Nähe',
+            subtitle: 'Vor-Ort-Expertise, lokale Präsenz in der Westschweiz'
         },
         {
-            title: 'Öko',
-            subtitle: 'Wirtschaftlich'
+            title: 'Effizienz',
+            subtitle: 'Konkrete Maßnahmen, messbare Ergebnisse'
         }
     ],
     ctaText: 'Entdecken Sie unsere DNA',
     ctaLink: '/team',
-    quote: '"Die sauberste Energie ist die, die wir nicht verbrauchen"',
+    quote: "Dank Swiss Ecogestes konnte ich meine Kosten senken und Fördermittel finden, von denen ich nichts wusste.",
+    quoteAuthor: 'Marc D. — Eigentümer, Genf',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000'
 };
 
