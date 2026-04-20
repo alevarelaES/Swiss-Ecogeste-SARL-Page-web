@@ -36,7 +36,7 @@ const About = () => {
                             <h2 className="text-3xl md:text-5xl font-black text-gray-900 mt-4 mb-6 sm:mb-8 leading-tight">
                                 {aboutContent.title}
                             </h2>
-                            <p className="text-gray-800 text-sm md:text-base leading-relaxed mb-6 font-medium">
+                            <p className="text-gray-900 text-base md:text-lg leading-relaxed mb-6 font-bold">
                                 {aboutContent.paragraph1}
                             </p>
                             <p className="text-gray-800 text-sm md:text-base leading-relaxed mb-10 font-medium">
@@ -75,7 +75,8 @@ const About = () => {
                                 <div className="absolute bottom-3 left-3 w-6 h-[1px] bg-amber-500 opacity-60"></div>
                                 <div className="absolute bottom-3 left-3 w-[1px] h-6 bg-amber-500 opacity-60"></div>
 
-                                <p className="text-gray-900 font-semibold text-sm italic leading-relaxed">{aboutContent.quote}</p>
+                                <p className="text-gray-900 font-semibold text-sm italic leading-relaxed mb-3">"{aboutContent.quote}"</p>
+                                <p className="text-gray-500 text-xs font-bold tracking-wide">{aboutContent.quoteAuthor}</p>
                             </div>
                         </Reveal>
                     </div>
