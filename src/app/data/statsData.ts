@@ -122,21 +122,21 @@ export interface StatsContent {
 }
 
 const statsContentFr: StatsContent = {
-    label: "Performance Durable",
-    title: "L'impact de nos actions",
+    label: "Chiffres Clés",
+    title: "Performance, résultats et impact concrets",
     description: "Des résultats mesurables pour votre portefeuille et pour l'environnement suisse."
 };
 
 const statsContentEn: StatsContent = {
-    label: "Sustainable Performance",
-    title: "The impact of our actions",
+    label: "Key Figures",
+    title: "Performance, results and concrete impact",
     description: "Measurable results for your wallet and for the Swiss environment."
 };
 
 
 const statsContentDe: StatsContent = {
-    label: "Nachhaltige Leistung",
-    title: "Die Wirkung unseres Handelns",
+    label: "Kennzahlen",
+    title: "Leistung, Ergebnisse und konkreter Impact",
     description: "Messbare Ergebnisse für Ihren Geldbeutel und für die Schweizer Umwelt."
 };
 

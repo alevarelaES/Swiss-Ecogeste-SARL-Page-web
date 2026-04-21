@@ -53,15 +53,29 @@
         "title": "Experts at your service"
     },
     "team_page": {
-        "seo_title": "Our Expert Team",
-        "seo_desc": "Meet the Swiss Ecogestes team. Experts passionate about energy transition and sustainable innovation.",
-        "header_label": "Our Team",
-        "header_title": "Expertise at the service of the planet",
-        "intro": "Based in Lausanne, Swiss Ecogestes brings together engineers and specialists dedicated to optimizing Swiss energy infrastructures. Our mission is to accelerate the transition towards more sober and efficient models.",
-        "values_title": "Our Commitments & Values",
-        "values_intro": "Beyond technical expertise, we provide security and peace of mind to all our partners.",
+        "seo_title": "About Swiss Ecogestes | Our team & mission",
+        "seo_desc": "Discover Swiss Ecogestes: our mission, our team of experts and our commitment to energy transition in French-speaking Switzerland.",
+        "header_label": "About us",
+        "header_title": "A concrete approach to energy transition",
+        "intro": "At Swiss Ecogestes, we believe energy transition happens through concrete, measurable and profitable actions. We support property owners, agencies, businesses and municipalities with a pragmatic approach: reducing consumption, optimising installations and generating real impact.",
+        "mission_label": "Our mission",
+        "mission_title": "Your interest, our only priority.",
+        "mission_text": "No equipment to sell, no hidden margins. Swiss Ecogestes is an independent advisory firm: we analyse your situation, identify achievable savings and maximise your subsidies — with no conflict of interest.",
+        "mission_text2": "Our approach combines field expertise, mastery of cantonal programmes (SIG Éco21, SuisseEnergie, Chauffez Renouvelable, OCEN) and personal support at every stage of your project.",
+        "presence_label": "Our presence",
+        "presence_title": "Active in Vaud and Geneva",
+        "presence_text": "We operate primarily in the cantons of Vaud and Geneva, with in-depth knowledge of local requirements, cantonal subsidy programmes and institutional stakeholders.",
+        "stat_experts": "Dedicated experts",
+        "stat_cantons": "Cantons covered",
+        "stat_partners": "Institutional partners",
+        "stat_approach": "Neutral & independent",
+        "photo_label": "Our team",
+        "photo_title": "Committed experts in the field",
+        "photo_subtitle": "Together, we guide every client towards concrete and sustainable solutions.",
         "team_title": "Our Team",
-        "team_subtitle": "A dedicated team of experts passionate about energy transition."
+        "team_subtitle": "Five experts passionate about energy transition, at your service in French-speaking Switzerland.",
+        "values_title": "Our Commitments & Values",
+        "values_intro": "Beyond technical expertise, we provide security and peace of mind to all our partners."
     },
     "client_types": {
         "label": "Our Solutions",
@@ -126,7 +140,9 @@
         "sending": "Sending...",
         "success": "Message sent successfully! We will contact you soon.",
         "error": "An error occurred. Please try again.",
-        "quote": "\"The cheapest energy is the one we don't consume. Together, let's enhance your assets.\""
+        "quote": "\"The cheapest energy is the one we don't consume. Together, let's enhance your assets.\"",
+        "rdv_cta": "Discover your real savings with a free audit",
+        "rdv_button": "Book an appointment"
     },
     "contact_page": {
         "seo_title": "Contact Us | Swiss Ecogestes",
@@ -250,23 +266,39 @@
                     "title": "Site Publisher",
                     "content": [
                         "Swiss Ecogestes SARL",
-                        "Address: [Full Address]",
-                        "Phone: [Number]",
+                        "Address: [Full address — to be completed]",
+                        "Phone: [Number — to be completed]",
                         "Email: info@swissecogestes.ch",
-                        "IDE: [IDE Number]"
+                        "IDE: [IDE Number — to be completed]",
+                        "Legal form: Limited liability company (SÀRL), registered in the Commercial Register"
                     ]
                 },
                 "director": {
                     "title": "Publication Director",
                     "content": [
-                        "[Responsible Name]"
+                        "Mohammad SALMAN, Director"
                     ]
                 },
                 "hosting": {
                     "title": "Hosting",
                     "content": [
-                        "This site is hosted by [Host Name]",
-                        "Address: [Host Address]"
+                        "This site will be hosted by Infomaniak Network SA",
+                        "Rue Eugène-Marziano 25, 1227 Les Acacias (Geneva), Switzerland",
+                        "Website: infomaniak.com"
+                    ]
+                },
+                "intellectual_property": {
+                    "title": "Intellectual Property",
+                    "content": [
+                        "All content on this site (texts, images, graphics, logos, icons) is the exclusive property of Swiss Ecogestes SARL or its partners.",
+                        "Any reproduction, distribution or use without prior written authorisation is prohibited."
+                    ]
+                },
+                "liability": {
+                    "title": "Limitation of Liability",
+                    "content": [
+                        "Swiss Ecogestes SARL strives to ensure the accuracy and currency of the information published on this site.",
+                        "We accept no responsibility for direct or indirect damages resulting from access to or use of this site."
                     ]
                 },
                 "credits": {
@@ -282,40 +314,84 @@
             "seo_desc": "Our personal data protection and privacy policy.",
             "title": "Privacy Policy",
             "sections": {
-                "collection": {
-                    "title": "Data Collection",
+                "intro": {
+                    "title": "Introduction",
                     "content": [
-                        "We collect information you provide via our contact forms.",
-                        "[Full text to be provided by client]"
+                        "Swiss Ecogestes SARL ('we') is committed to protecting your personal data.",
+                        "This policy describes how we collect, use and protect your data in accordance with the Swiss Federal Act on Data Protection (FADP) and the General Data Protection Regulation (GDPR)."
+                    ]
+                },
+                "collection": {
+                    "title": "Data Collected",
+                    "content": [
+                        "We only collect data you voluntarily provide via our contact forms: name, email address, phone number (optional) and message.",
+                        "We also collect anonymised browsing data (pages visited, visit duration) using privacy-respecting analytics tools."
                     ]
                 },
                 "usage": {
                     "title": "Data Usage",
                     "content": [
-                        "Your data is used to respond to your requests.",
-                        "[Full text to be provided by client]"
+                        "Your personal data is used solely to respond to your contact and information requests.",
+                        "We do not sell, rent or share your data with third parties for commercial purposes.",
+                        "Your data may be shared with our technical providers (hosting, email delivery) strictly for service delivery purposes."
+                    ]
+                },
+                "retention": {
+                    "title": "Data Retention",
+                    "content": [
+                        "Your data is retained for a maximum of 3 years from your last contact with us.",
+                        "After this period, your data is securely deleted."
+                    ]
+                },
+                "rights": {
+                    "title": "Your Rights",
+                    "content": [
+                        "Under the FADP and GDPR, you have the following rights: access, rectification, deletion, portability and objection to the processing of your data.",
+                        "To exercise these rights, contact us at: info@swissecogestes.ch"
+                    ]
+                },
+                "contact": {
+                    "title": "Contact",
+                    "content": [
+                        "For any questions regarding the protection of your data, please contact us by email at info@swissecogestes.ch"
                     ]
                 }
             }
         },
         "cookies": {
             "seo_title": "Cookie Policy | Swiss Ecogestes",
-            "seo_desc": "Information about cookie usage on our site.",
+            "seo_desc": "Information about cookie usage on the Swiss Ecogestes website.",
             "label": "Cookie Management",
             "title": "Cookie Policy",
             "sections": {
                 "what_is": {
                     "title": "What is a cookie?",
                     "content": [
-                        "A cookie is a small text file placed on your computer.",
-                        "[Full text to be provided by client]"
+                        "A cookie is a small text file placed on your device (computer, tablet, smartphone) when you visit a website.",
+                        "It allows the site to remember your preferences and improve your browsing experience."
+                    ]
+                },
+                "types": {
+                    "title": "Types of cookies used",
+                    "content": [
+                        "Essential cookies: required for the site to function correctly (navigation, security). They cannot be disabled.",
+                        "Preference cookies: remember your language and display choices.",
+                        "Analytics cookies: help us understand how visitors use the site, in an anonymised manner."
+                    ]
+                },
+                "third_party": {
+                    "title": "Third-party cookies",
+                    "content": [
+                        "Our site may use third-party services (Sanity CMS, analytics tools) that may set their own cookies.",
+                        "We have no direct control over these cookies — please refer to the privacy policies of those services."
                     ]
                 },
                 "preferences": {
-                    "title": "Preference Management",
+                    "title": "Managing your preferences",
                     "content": [
-                        "You can change your preferences at any time via our management panel.",
-                        "[Full text to be provided by client]"
+                        "You can change your cookie preferences at any time via your browser settings (settings > privacy).",
+                        "Refusing certain cookies may limit some site functionality.",
+                        "For more information, consult your browser's help guide (Chrome, Firefox, Safari, Edge)."
                     ]
                 }
             }

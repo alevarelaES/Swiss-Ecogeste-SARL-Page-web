@@ -28,7 +28,7 @@ const communesPageContentFr: CommunesPageContent = {
         canonical: '/services/communes'
     },
     backLink: 'Retour',
-    sectionLabel: 'Villes & Services Industriels',
+    sectionLabel: 'Communes & GRD',
     title: 'Un partenaire pour atteindre vos objectifs climatiques',
     description: 'Swiss Ecogestes soutient les collectivités publiques dans la mise en œuvre de leur stratégie énergétique. De l\'audit de bâtiments communaux à l\'animation de la transition auprès des citoyens.',
     buttonText: 'Discuter d\'un partenariat',
@@ -93,7 +93,7 @@ const communesPageContentEn: CommunesPageContent = {
         canonical: '/services/communes'
     },
     backLink: 'Back',
-    sectionLabel: 'Cities & Industrial Services',
+    sectionLabel: 'Municipalities & DSOs',
     title: 'A partner to achieve your climate goals',
     description: 'Swiss Ecogestes supports public authorities in implementing their energy strategy. From communal building audits to transition animation for citizens.',
     buttonText: 'Discuss a partnership',
@@ -159,7 +159,7 @@ const communesPageContentDe: CommunesPageContent = {
         canonical: '/services/communes'
     },
     backLink: 'Zurück',
-    sectionLabel: 'Städte & Industrielle Dienste',
+    sectionLabel: 'Gemeinden & VNB',
     title: 'Ein Partner zur Erreichung Ihrer Klimaziele',
     description: 'Swiss Ecogestes unterstützt öffentliche Körperschaften bei der Umsetzung ihrer Energiestrategie. Von der Prüfung kommunaler Gebäude bis zur Begleitung des Übergangs für die Bürger.',
     buttonText: 'Partnerschaft besprechen',

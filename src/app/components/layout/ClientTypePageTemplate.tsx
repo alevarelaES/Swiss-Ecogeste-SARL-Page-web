@@ -54,8 +54,8 @@ export const ClientTypePageTemplate = ({ content }: ClientTypePageTemplateProps)
                 <Reveal>
                     <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center mb-8 sm:mb-12 md:mb-20">
                         <div className="md:w-1/2">
-                            <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">{content.sectionLabel}</span>
-                            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-2 mb-6">{content.title}</h1>
+                            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-2">{content.sectionLabel}</h1>
+                            <p className="text-lg font-semibold text-gray-600 mb-6">{content.title}</p>
                             <p className="text-gray-800 text-lg leading-relaxed mb-8">
                                 {content.description}
                             </p>

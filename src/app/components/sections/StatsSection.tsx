@@ -10,22 +10,21 @@ const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: strin
 
     React.useEffect(() => {
         if (isInView) {
-            let start = 0;
-            const end = value;
-            const duration = 1000;
-            const increment = end / (duration / 16);
+            const duration = 2500;
+            const startTime = performance.now();
 
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= end) {
-                    setCount(end);
-                    clearInterval(timer);
-                } else {
-                    setCount(Math.floor(start));
-                }
-            }, 16);
+            const tick = (now: number) => {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // ease-out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                setCount(Math.floor(eased * value));
+                if (progress < 1) requestAnimationFrame(tick);
+                else setCount(value);
+            };
 
-            return () => clearInterval(timer);
+            const raf = requestAnimationFrame(tick);
+            return () => cancelAnimationFrame(raf);
         }
     }, [isInView, value]);
 

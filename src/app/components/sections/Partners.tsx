@@ -11,11 +11,12 @@ interface Partner {
 }
 
 const FALLBACK_PARTNERS: Partner[] = [
-    { name: "Canton de Vaud", logoUrl: "/partners/Logo_canton_de_Vaud.svg.png" },
-    { name: "Canton de Genève", logoUrl: "/partners/Canton_Geneve_Logo.png" },
-    { name: "SIG Éco21", logoUrl: "/partners/ECO21_SIG.png" },
-    { name: "Suisse Énergie", logoUrl: "/partners/Suisse_Energie.png" },
-    { name: "Chauffez Renouvelable", logoUrl: "/partners/Chauffez RENOUVELABLE.png" },
+    { name: "Canton de Vaud", logoUrl: "/partners/Logo_canton_de_Vaud.svg.png", url: "https://www.vd.ch" },
+    { name: "Canton de Genève", logoUrl: "/partners/Canton_Geneve_Logo.png", url: "https://www.ge.ch" },
+    { name: "SIG Éco21", logoUrl: "/partners/ECO21_SIG.png", url: "https://eco21.ch" },
+    { name: "Suisse Énergie", logoUrl: "/partners/Suisse_Energie.png", url: "https://www.suisseenergie.ch" },
+    { name: "Chauffez Renouvelable", logoUrl: "/partners/Chauffez RENOUVELABLE.png", url: "https://www.chauffez-renouvelable.ch" },
+    { name: "OCEN", logoUrl: "/partners/OCEN.png", url: "https://www.ge.ch/energie" },
 ];
 
 const PartnerLogo = ({ partner }: { partner: Partner }) => {

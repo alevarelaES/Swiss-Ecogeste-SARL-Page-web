@@ -40,7 +40,7 @@ const MentionsLegalesPage = () => {
                                             dangerouslySetInnerHTML={{
                                                 __html: DOMPurify.sanitize(paragraph, {
                                                     ALLOWED_TAGS: ['strong', 'em', 'br', 'a'],
-                                                    ALLOWED_ATTR: ['href', 'target', 'rel']
+                                                    ALLOWED_ATTR: ['href', 'target', 'rel', 'class']
                                                 })
                                             }}
                                         />

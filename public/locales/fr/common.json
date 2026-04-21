@@ -55,13 +55,27 @@
         "description": "Nos experts certifiés s'engagent à optimiser votre consommation énergétique avec précision et intégrité."
     },
     "team_page": {
-        "seo_title": "Notre Équipe d'Experts",
-        "seo_desc": "Rencontrez l'équipe de Swiss Ecogestes. Des experts passionnés par la transition énergétique et l'innovation durable.",
-        "header_label": "Notre Équipe",
-        "header_title": "L'expertise au service de la planète",
-        "intro": "Basée à Lausanne, Swiss Ecogestes réunit des ingénieurs et spécialistes dédiés à l'optimisation des infrastructures énergétiques suisses. Notre mission est d'accélérer la transition vers des modèles plus sobres et efficaces.",
+        "seo_title": "À propos de Swiss Ecogestes | Notre équipe & mission",
+        "seo_desc": "Découvrez Swiss Ecogestes : notre mission, notre équipe d'experts et notre engagement pour la transition énergétique en Suisse romande.",
+        "header_label": "À propos de nous",
+        "header_title": "Une approche concrète de la transition énergétique",
+        "intro": "Chez Swiss Ecogestes, nous sommes convaincus que la transition énergétique passe par des actions concrètes, mesurables et rentables. Nous accompagnons propriétaires, régies, entreprises et collectivités avec une approche pragmatique : réduire les consommations, optimiser les installations et générer un impact réel.",
+        "mission_label": "Notre mission",
+        "mission_title": "Votre intérêt, notre seule priorité.",
+        "mission_text": "Pas de matériel à vendre, pas de marges cachées. Swiss Ecogestes est un conseil indépendant : nous analysons votre situation, identifions les économies réalisables et maximisons vos subventions — sans conflit d'intérêt.",
+        "mission_text2": "Notre approche combine expertise terrain, maîtrise des programmes cantonaux (SIG Éco21, SuisseEnergie, Chauffez Renouvelable, OCEN) et accompagnement humain à chaque étape de votre projet.",
+        "presence_label": "Notre présence",
+        "presence_title": "Actifs en Vaud et à Genève",
+        "presence_text": "Nous intervenons principalement dans les cantons de Vaud et de Genève, avec une connaissance approfondie des exigences locales, des programmes de subvention cantonaux et des acteurs institutionnels.",
+        "stat_experts": "Experts dédiés",
+        "stat_cantons": "Cantons couverts",
+        "stat_partners": "Partenaires institutionnels",
+        "stat_approach": "Neutre & indépendant",
+        "photo_label": "Notre équipe",
+        "photo_title": "Des experts engagés sur le terrain",
+        "photo_subtitle": "Ensemble, nous accompagnons chaque client vers des solutions concrètes et durables.",
         "team_title": "Notre Équipe",
-        "team_subtitle": "Une équipe dédiée d'experts passionnés par la transition énergétique.",
+        "team_subtitle": "Cinq experts passionnés par la transition énergétique, à votre service en Suisse romande.",
         "values_title": "Nos Engagements & Valeurs",
         "values_intro": "Au-delà de l'expertise technique, nous apportons une sécurité et une tranquillité d'esprit à tous nos partenaires."
     },
@@ -130,7 +144,9 @@
         "sending": "Envoi en cours...",
         "success": "Message envoyé avec succès ! Nous vous recontacterons bientôt.",
         "error": "Une erreur est survenue. Veuillez réessayer.",
-        "quote": "\"L'énergie la moins chère est celle que l'on ne consomme pas. Ensemble, valorisons votre patrimoine.\""
+        "quote": "\"L'énergie la moins chère est celle que l'on ne consomme pas. Ensemble, valorisons votre patrimoine.\"",
+        "rdv_cta": "Découvrez vos économies réelles avec un audit gratuit",
+        "rdv_button": "Prendre RDV"
     },
     "contact_page": {
         "seo_title": "Contactez-nous | Swiss Ecogestes",
@@ -254,23 +270,39 @@
                     "title": "Éditeur du site",
                     "content": [
                         "Swiss Ecogestes SARL",
-                        "Adresse : [Adresse complète]",
-                        "Téléphone : [Numéro]",
+                        "Adresse : [Adresse complète — à compléter]",
+                        "Téléphone : [Numéro — à compléter]",
                         "Email : info@swissecogestes.ch",
-                        "IDE : [Numéro IDE]"
+                        "IDE : [Numéro IDE — à compléter]",
+                        "Forme juridique : Société à responsabilité limitée (SÀRL), inscrite au Registre du Commerce"
                     ]
                 },
                 "director": {
                     "title": "Directeur de la publication",
                     "content": [
-                        "[Nom du responsable]"
+                        "Mohammad SALMAN, Directeur"
                     ]
                 },
                 "hosting": {
                     "title": "Hébergement",
                     "content": [
-                        "Ce site est hébergé par [Nom de l'hébergeur]",
-                        "Adresse : [Adresse de l'hébergeur]"
+                        "Ce site sera hébergé par Infomaniak Network SA",
+                        "Rue Eugène-Marziano 25, 1227 Les Acacias (Genève), Suisse",
+                        "Site web : infomaniak.com"
+                    ]
+                },
+                "intellectual_property": {
+                    "title": "Propriété intellectuelle",
+                    "content": [
+                        "L'ensemble du contenu de ce site (textes, images, graphiques, logos, icônes) est la propriété exclusive de Swiss Ecogestes SARL ou de ses partenaires.",
+                        "Toute reproduction, distribution ou utilisation sans autorisation préalable écrite est interdite."
+                    ]
+                },
+                "liability": {
+                    "title": "Limitation de responsabilité",
+                    "content": [
+                        "Swiss Ecogestes SARL s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site.",
+                        "Nous déclinons toute responsabilité pour les dommages directs ou indirects pouvant résulter de l'accès ou de l'utilisation de ce site."
                     ]
                 },
                 "credits": {
@@ -286,40 +318,84 @@
             "seo_desc": "Notre politique de protection des données personnelles et de confidentialité.",
             "title": "Politique de Confidentialité",
             "sections": {
-                "collection": {
-                    "title": "Collecte des données",
+                "intro": {
+                    "title": "Introduction",
                     "content": [
-                        "Nous collectons les informations que vous nous fournissez via nos formulaires de contact.",
-                        "[Texte complet à fournir par le client]"
+                        "Swiss Ecogestes SARL (ci-après « nous ») attache une grande importance à la protection de vos données personnelles.",
+                        "La présente politique décrit comment nous collectons, utilisons et protégeons vos données conformément à la Loi fédérale sur la protection des données (LPD) et au Règlement Général sur la Protection des Données (RGPD)."
+                    ]
+                },
+                "collection": {
+                    "title": "Données collectées",
+                    "content": [
+                        "Nous collectons uniquement les données que vous nous transmettez volontairement via nos formulaires de contact : nom, prénom, adresse e-mail, numéro de téléphone (optionnel) et message.",
+                        "Nous collectons également des données de navigation anonymisées (pages visitées, durée de visite) via des outils d'analyse respectueux de la vie privée."
                     ]
                 },
                 "usage": {
                     "title": "Utilisation des données",
                     "content": [
-                        "Vos données sont utilisées pour répondre à vos demandes.",
-                        "[Texte complet à fournir par le client]"
+                        "Vos données personnelles sont utilisées exclusivement pour répondre à vos demandes de contact et d'information.",
+                        "Nous ne vendons, ne louons ni ne partageons vos données avec des tiers à des fins commerciales.",
+                        "Vos données peuvent être partagées avec nos prestataires techniques (hébergement, envoi d'emails) dans le strict cadre de l'exécution de nos services."
+                    ]
+                },
+                "retention": {
+                    "title": "Conservation des données",
+                    "content": [
+                        "Vos données sont conservées pendant une durée maximale de 3 ans à compter de votre dernier contact avec nous.",
+                        "À l'expiration de ce délai, vos données sont supprimées de manière sécurisée."
+                    ]
+                },
+                "rights": {
+                    "title": "Vos droits",
+                    "content": [
+                        "Conformément à la LPD et au RGPD, vous disposez des droits suivants : accès, rectification, suppression, portabilité et opposition au traitement de vos données.",
+                        "Pour exercer ces droits, contactez-nous à : info@swissecogestes.ch"
+                    ]
+                },
+                "contact": {
+                    "title": "Contact",
+                    "content": [
+                        "Pour toute question relative à la protection de vos données, vous pouvez nous contacter par email à info@swissecogestes.ch"
                     ]
                 }
             }
         },
         "cookies": {
             "seo_title": "Politique des Cookies | Swiss Ecogestes",
-            "seo_desc": "Informations sur l'utilisation des cookies sur notre site.",
+            "seo_desc": "Informations sur l'utilisation des cookies sur notre site Swiss Ecogestes.",
             "label": "Gestion des Cookies",
             "title": "Politique des Cookies",
             "sections": {
                 "what_is": {
                     "title": "Qu'est-ce qu'un cookie ?",
                     "content": [
-                        "Un cookie est un petit fichier texte déposé sur votre ordinateur.",
-                        "[Texte complet à fournir par le client]"
+                        "Un cookie est un petit fichier texte déposé sur votre appareil (ordinateur, tablette, smartphone) lors de la visite d'un site web.",
+                        "Il permet au site de mémoriser vos préférences et d'améliorer votre expérience de navigation."
+                    ]
+                },
+                "types": {
+                    "title": "Types de cookies utilisés",
+                    "content": [
+                        "Cookies essentiels : nécessaires au bon fonctionnement du site (navigation, sécurité). Ils ne peuvent pas être désactivés.",
+                        "Cookies de préférences : mémorisent vos choix de langue et d'affichage.",
+                        "Cookies analytiques : nous aident à comprendre comment les visiteurs utilisent le site, de façon anonymisée."
+                    ]
+                },
+                "third_party": {
+                    "title": "Cookies tiers",
+                    "content": [
+                        "Notre site peut utiliser des services tiers (Sanity CMS, outils d'analyse) qui peuvent déposer leurs propres cookies.",
+                        "Nous n'avons pas de contrôle direct sur ces cookies — veuillez consulter les politiques de confidentialité de ces services."
                     ]
                 },
                 "preferences": {
-                    "title": "Gestion des préférences",
+                    "title": "Gestion de vos préférences",
                     "content": [
-                        "Vous pouvez à tout moment modifier vos préférences via notre panneau de gestion.",
-                        "[Texte complet à fournir par le client]"
+                        "Vous pouvez à tout moment modifier vos préférences en matière de cookies via votre navigateur (paramètres > confidentialité).",
+                        "Le refus de certains cookies peut limiter certaines fonctionnalités du site.",
+                        "Pour plus d'informations, consultez les guides de votre navigateur (Chrome, Firefox, Safari, Edge)."
                     ]
                 }
             }

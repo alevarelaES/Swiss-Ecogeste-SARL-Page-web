@@ -1,80 +1,170 @@
-﻿import { ShieldCheck, Scale, Database, FileCheck, Award, Users } from 'lucide-react';
+import { ShieldCheck, Scale, Database, FileCheck, Award, Users, MapPin } from 'lucide-react';
 import { SEO } from '../components';
 import { Team } from '../components/sections';
 import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
 
+const GROUP_PHOTO_PLACEHOLDER = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';
+
 const TeamPage = () => {
     useSearchHighlight();
     const { t } = useTranslation('common');
+
+    const stats = [
+        { value: '5', label: t('team_page.stat_experts') },
+        { value: '2', label: t('team_page.stat_cantons') },
+        { value: '6', label: t('team_page.stat_partners') },
+        { value: '100%', label: t('team_page.stat_approach') },
+    ];
 
     return (
         <div className="bg-slate-50">
             <SEO
                 title={t('team_page.seo_title')}
                 description={t('team_page.seo_desc')}
-                canonical="/equipe"
+                canonical="/team"
             />
 
-            {/* Global Decorative Background - Continuous Flow */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden">
-                {/* Subtle Mesh Gradient */}
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#1b5e39]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#4ade80]/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4"></div>
             </div>
 
             <div className="relative z-10 pt-20 pb-0">
 
-                {/* Intro Section - Compact & Gradient */}
+                {/* ── Hero ── */}
                 <div className="relative pb-16 pt-12 overflow-hidden">
-                    {/* Background Pattern */}
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                     <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-[#1b5e39] opacity-10 blur-[100px]"></div>
 
                     <div className="max-w-7xl mx-auto px-6 relative z-10">
                         <Reveal>
                             <div className="max-w-4xl mx-auto text-center">
-                                {/* Removed Badge as requested */}
+                                <span className="inline-block text-[#1b5e39] font-bold tracking-wider text-xs uppercase mb-4 bg-[#e8f5e9] px-4 py-1.5 rounded-full">
+                                    {t('team_page.header_label')}
+                                </span>
                                 <h1 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
                                     {t('team_page.header_title')}
                                 </h1>
                                 <div className="w-20 h-1 bg-amber-400 mx-auto rounded-full mb-6"></div>
-                                <div className="text-gray-800 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto">
-                                    <p>{t('team_page.intro')}</p>
-                                </div>
+                                <p className="text-gray-800 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto">
+                                    {t('team_page.intro')}
+                                </p>
                             </div>
                         </Reveal>
                     </div>
                 </div>
 
-                {/* Team Section - Contrasted Background */}
+                {/* ── Mission & Présence ── */}
+                <div className="relative py-16 bg-white border-t border-gray-100">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="grid lg:grid-cols-2 gap-16 items-start">
+
+                            {/* Mission */}
+                            <Reveal>
+                                <div>
+                                    <span className="text-[#1b5e39] font-bold tracking-wider uppercase text-xs mb-3 block">
+                                        {t('team_page.mission_label')}
+                                    </span>
+                                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                                        {t('team_page.mission_title')}
+                                    </h2>
+                                    <div className="w-12 h-1 bg-amber-400 rounded-full mb-6"></div>
+                                    <p className="text-gray-800 text-lg leading-relaxed mb-4">
+                                        {t('team_page.mission_text')}
+                                    </p>
+                                    <p className="text-gray-700 text-base leading-relaxed">
+                                        {t('team_page.mission_text2')}
+                                    </p>
+                                </div>
+                            </Reveal>
+
+                            {/* Présence + Stats */}
+                            <Reveal delay={0.1}>
+                                <div>
+                                    <span className="text-[#1b5e39] font-bold tracking-wider uppercase text-xs mb-3 block">
+                                        {t('team_page.presence_label')}
+                                    </span>
+                                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                                        {t('team_page.presence_title')}
+                                    </h2>
+                                    <div className="w-12 h-1 bg-amber-400 rounded-full mb-6"></div>
+                                    <div className="flex items-start gap-3 mb-6">
+                                        <MapPin size={20} className="text-[#1b5e39] mt-1 shrink-0" />
+                                        <p className="text-gray-800 text-lg leading-relaxed">
+                                            {t('team_page.presence_text')}
+                                        </p>
+                                    </div>
+
+                                    {/* Key figures */}
+                                    <div className="grid grid-cols-2 gap-4 mt-8">
+                                        {stats.map((stat, i) => (
+                                            <div key={i} className="bg-[#F4F7F5] rounded-xl p-5 border border-[#1b5e39]/10">
+                                                <div className="text-3xl font-black text-[#1b5e39] mb-1">{stat.value}</div>
+                                                <div className="text-sm font-medium text-gray-700 uppercase tracking-wide">{stat.label}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </Reveal>
+                        </div>
+                    </div>
+                </div>
+
+                {/* ── Photo de groupe ── */}
+                <div className="relative h-[420px] md:h-[520px] overflow-hidden">
+                    <img
+                        src={GROUP_PHOTO_PLACEHOLDER}
+                        alt="Équipe Swiss Ecogestes"
+                        className="absolute inset-0 w-full h-full object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-[#0f1f1a]/65"></div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                        <Reveal>
+                            <span className="inline-block text-amber-400 font-bold tracking-widest uppercase text-xs mb-4">
+                                {t('team_page.photo_label')}
+                            </span>
+                            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight max-w-2xl">
+                                {t('team_page.photo_title')}
+                            </h2>
+                            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full mb-4"></div>
+                            <p className="text-white/80 text-lg max-w-xl mx-auto">
+                                {t('team_page.photo_subtitle')}
+                            </p>
+                        </Reveal>
+                    </div>
+                </div>
+
+                {/* ── Notre équipe ── */}
                 <div className="relative py-16 pb-20 bg-gradient-to-b from-[#F0F4F2] to-slate-50 border-t border-gray-200">
                     <div className="max-w-7xl mx-auto px-6 relative z-10">
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
-                                {t('team_page.team_title') || 'Notre Équipe'}
-                            </h2>
-                            <p className="text-gray-800 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                                {t('team_page.team_subtitle') || 'Une équipe dédiée d\'experts passionnés par la transition énergétique.'}
-                            </p>
-                        </div>
+                        <Reveal>
+                            <div className="text-center mb-12">
+                                <span className="inline-block text-[#1b5e39] font-bold tracking-wider text-xs uppercase mb-3 bg-[#e8f5e9] px-4 py-1.5 rounded-full">
+                                    {t('team_page.team_title')}
+                                </span>
+                                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mt-4 mb-4">
+                                    {t('team_page.team_title')}
+                                </h2>
+                                <p className="text-gray-800 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                                    {t('team_page.team_subtitle')}
+                                </p>
+                            </div>
+                        </Reveal>
                         <Team />
                     </div>
                 </div>
 
-                {/* Values Section - Split Layout Compact */}
+                {/* ── Valeurs ── */}
                 <div className="relative py-10 md:py-12 bg-cover bg-center overflow-hidden -mb-1" style={{ backgroundImage: `url('/images/fond_values_section.png')` }}>
-                    {/* Stronger overlay to tone down background (85% white) */}
                     <div className="absolute inset-0 bg-white/85"></div>
-                    {/* Yellow accent touches */}
                     <div className="absolute top-10 right-10 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl"></div>
                     <div className="absolute bottom-10 left-10 w-24 h-24 bg-amber-500/8 rounded-full blur-xl"></div>
 
                     <div className="max-w-7xl mx-auto px-6 relative z-10">
                         <Reveal>
                             <div className="grid lg:grid-cols-12 gap-12">
-                                {/* Left: Sticky Title */}
                                 <div className="lg:col-span-4 lg:sticky lg:top-24 h-fit">
                                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-6">
                                         {t('team_page.values_title')}
@@ -85,7 +175,6 @@ const TeamPage = () => {
                                     </p>
                                 </div>
 
-                                {/* Right: Grid of Cards */}
                                 <div className="lg:col-span-8">
                                     <div className="grid md:grid-cols-2 gap-6">
                                         {[
@@ -118,6 +207,7 @@ const TeamPage = () => {
                         </Reveal>
                     </div>
                 </div>
+
             </div>
         </div>
     );

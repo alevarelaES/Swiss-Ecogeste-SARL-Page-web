@@ -69,7 +69,7 @@ const heroSlidesFr: HeroSlide[] = [
 const heroSlidesEn: HeroSlide[] = [
     {
         isMain: true,
-        label: 'Overview',
+        label: 'Swiss Ecogeste',
         img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2074',
         title: 'Reduce your energy costs and take the right actions.',
         sub: 'Energy audits, strategy and support for property managers, businesses, owners and municipalities in French-speaking Switzerland.',
@@ -122,7 +122,7 @@ const heroSlidesEn: HeroSlide[] = [
 const heroSlidesDe: HeroSlide[] = [
     {
         isMain: true,
-        label: 'Übersicht',
+        label: 'Swiss Ecogeste',
         img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2074',
         title: 'Senken Sie Ihre Energiekosten und ergreifen Sie die richtigen Maßnahmen.',
         sub: 'Energieaudits, Strategie und Begleitung für Immobilienverwaltungen, Unternehmen, Eigentümer und Gemeinden in der Westschweiz.',

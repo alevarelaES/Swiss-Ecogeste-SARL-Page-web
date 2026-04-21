@@ -28,7 +28,7 @@ const entreprisePageContentFr: EntreprisePageContent = {
         canonical: '/services/entreprise'
     },
     backLink: 'Retour',
-    sectionLabel: 'PME & Industries',
+    sectionLabel: 'Entreprises',
     title: 'Performance Énergétique Industrielle',
     description: 'Réduisez vos coûts d\'exploitation et conformez-vous aux nouvelles exigences légales. Swiss Ecogestes accompagne les entreprises dans leur transition vers une production décarbonée et rentable.',
     buttonText: 'Audit pour Entreprise',
@@ -69,7 +69,7 @@ const entreprisePageContentEn: EntreprisePageContent = {
         canonical: '/services/entreprise'
     },
     backLink: 'Back',
-    sectionLabel: 'SMEs & Industries',
+    sectionLabel: 'Companies',
     title: 'Industrial Energy Performance',
     description: 'Reduce operating costs and comply with new legal requirements. Swiss Ecogestes accompanies companies in their transition towards decarbonized and profitable production.',
     buttonText: 'Audit for Business',
@@ -111,7 +111,7 @@ const entreprisePageContentDe: EntreprisePageContent = {
         canonical: '/services/entreprise'
     },
     backLink: 'Zurück',
-    sectionLabel: 'KMU & Industrie',
+    sectionLabel: 'Unternehmen',
     title: 'Industrielle Energieeffizienz',
     description: 'Senken Sie Ihre Betriebskosten und erfüllen Sie neue gesetzliche Anforderungen. Swiss Ecogestes begleitet Unternehmen bei ihrem Übergang zu einer dekarbonisierten und profitablen Produktion.',
     buttonText: 'Audit für Unternehmen',

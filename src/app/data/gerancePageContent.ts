@@ -28,7 +28,7 @@ const gerancePageContentFr: GerancePageContent = {
         canonical: '/services/gerance'
     },
     backLink: 'Retour',
-    sectionLabel: 'Immobilier & Régies',
+    sectionLabel: 'Régies & Immeubles',
     title: 'Gestion Énergétique de Parc',
     description: 'Nous aidons les gérances et propriétaires institutionnels à valoriser leur parc immobilier et à répondre aux obligations légales (IDC, CECB).',
     buttonText: 'Contacter notre pôle Régie',
@@ -81,7 +81,7 @@ const gerancePageContentEn: GerancePageContent = {
         canonical: '/services/gerance'
     },
     backLink: 'Back to choices',
-    sectionLabel: 'Real Estate & Agencies',
+    sectionLabel: 'Real Estate & Buildings',
     title: 'Portfolio Energy Management',
     description: 'We help agencies and institutional owners enhance their property portfolio and meet legal obligations (IDC, CECB).',
     buttonText: 'Contact our Agency Division',
@@ -135,7 +135,7 @@ const gerancePageContentDe: GerancePageContent = {
         canonical: '/services/gerance'
     },
     backLink: 'Zurück zur Auswahl',
-    sectionLabel: 'Immobilien & Verwaltungen',
+    sectionLabel: 'Verwaltung & Gebäude',
     title: 'Energiemanagement für Immobilienparks',
     description: 'Wir helfen Verwaltungen und institutionellen Eigentümern, ihren Immobilienbestand aufzuwerten und gesetzliche Verpflichtungen (IDC, CECB) zu erfüllen.',
     buttonText: 'Kontaktieren Sie unsere Verwaltungsabteilung',

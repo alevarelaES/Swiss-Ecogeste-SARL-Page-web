@@ -41,15 +41,29 @@
         "title": "Experten zu Ihren Diensten"
     },
     "team_page": {
-        "seo_title": "Unser Expertenteam",
-        "seo_desc": "Treffen Sie das Team von Swiss Ecogestes. Experten mit Leidenschaft für die Energiewende und nachhaltige Innovation.",
-        "header_label": "Unser Team",
-        "header_title": "Expertise im Dienste des Planeten",
-        "intro": "Mit Sitz in Lausanne vereint Swiss Ecogestes Ingenieure und Spezialisten, die sich der Optimierung der schweizerischen Energieinfrastrukturen widmen. Unsere Mission ist es, den Übergang zu sparsameren und effizienteren Modellen zu beschleunigen.",
-        "values_title": "Unsere Verpflichtungen & Werte",
-        "values_intro": "Über die technische Expertise hinaus bieten wir all unseren Partnern Sicherheit und Seelenfrieden.",
+        "seo_title": "Über Swiss Ecogestes | Unser Team & Mission",
+        "seo_desc": "Entdecken Sie Swiss Ecogestes: unsere Mission, unser Expertenteam und unser Engagement für die Energiewende in der Westschweiz.",
+        "header_label": "Über uns",
+        "header_title": "Ein konkreter Ansatz zur Energiewende",
+        "intro": "Bei Swiss Ecogestes sind wir überzeugt, dass die Energiewende durch konkrete, messbare und rentable Maßnahmen gelingt. Wir begleiten Eigentümer, Verwaltungen, Unternehmen und Gemeinden mit einem pragmatischen Ansatz: Verbrauch senken, Anlagen optimieren und echte Wirkung erzielen.",
+        "mission_label": "Unsere Mission",
+        "mission_title": "Ihr Interesse, unsere einzige Priorität.",
+        "mission_text": "Kein Material zu verkaufen, keine versteckten Margen. Swiss Ecogestes ist eine unabhängige Beratungsfirma: Wir analysieren Ihre Situation, identifizieren erreichbare Einsparungen und maximieren Ihre Fördergelder — ohne Interessenkonflikt.",
+        "mission_text2": "Unser Ansatz kombiniert Felderfahrung, Kenntnisse kantonaler Programme (SIG Éco21, SuisseEnergie, Chauffez Renouvelable, OCEN) und persönliche Begleitung in jeder Phase Ihres Projekts.",
+        "presence_label": "Unsere Präsenz",
+        "presence_title": "Tätig in Waadt und Genf",
+        "presence_text": "Wir sind hauptsächlich in den Kantonen Waadt und Genf tätig, mit fundiertem Wissen über lokale Anforderungen, kantonale Förderprogramme und institutionelle Akteure.",
+        "stat_experts": "Dedizierte Experten",
+        "stat_cantons": "Abgedeckte Kantone",
+        "stat_partners": "Institutionelle Partner",
+        "stat_approach": "Neutral & unabhängig",
+        "photo_label": "Unser Team",
+        "photo_title": "Engagierte Experten vor Ort",
+        "photo_subtitle": "Gemeinsam begleiten wir jeden Kunden zu konkreten und nachhaltigen Lösungen.",
         "team_title": "Unser Team",
-        "team_subtitle": "Ein engagiertes Team von Experten mit Leidenschaft für die Energiewende."
+        "team_subtitle": "Fünf Experten mit Leidenschaft für die Energiewende, zu Ihren Diensten in der Westschweiz.",
+        "values_title": "Unsere Verpflichtungen & Werte",
+        "values_intro": "Über die technische Expertise hinaus bieten wir all unseren Partnern Sicherheit und Seelenfrieden."
     },
     "client_types": {
         "label": "Unsere Lösungen",
@@ -114,7 +128,9 @@
         "sending": "Wird gesendet...",
         "success": "Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.",
         "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-        "quote": "\"Die billigste Energie ist die, die wir nicht verbrauchen. Lassen Sie uns gemeinsam Ihr Vermögen aufwerten.\""
+        "quote": "\"Die billigste Energie ist die, die wir nicht verbrauchen. Lassen Sie uns gemeinsam Ihr Vermögen aufwerten.\"",
+        "rdv_cta": "Entdecken Sie Ihre realen Einsparungen mit einem kostenlosen Audit",
+        "rdv_button": "Termin vereinbaren"
     },
     "contact_page": {
         "seo_title": "Kontaktieren Sie uns | Swiss Ecogestes",
@@ -238,27 +254,43 @@
                     "title": "Herausgeber",
                     "content": [
                         "Swiss Ecogestes SARL",
-                        "Adresse: [Vollständige Adresse]",
-                        "Telefon: [Nummer]",
+                        "Adresse: [Vollständige Adresse — noch auszufüllen]",
+                        "Telefon: [Nummer — noch auszufüllen]",
                         "E-Mail: info@swissecogestes.ch",
-                        "IDE: [IDE-Nummer]"
+                        "IDE: [IDE-Nummer — noch auszufüllen]",
+                        "Rechtsform: Gesellschaft mit beschränkter Haftung (GmbH), im Handelsregister eingetragen"
                     ]
                 },
                 "director": {
-                    "title": "Veröffentlichungsleiter",
+                    "title": "Verantwortlicher Herausgeber",
                     "content": [
-                        "[Name des Verantwortlichen]"
+                        "Mohammad SALMAN, Direktor"
                     ]
                 },
                 "hosting": {
                     "title": "Hosting",
                     "content": [
-                        "Diese Website wird gehostet von [Name des Hosters]",
-                        "Adresse: [Adresse des Hosters]"
+                        "Diese Website wird gehostet von Infomaniak Network SA",
+                        "Rue Eugène-Marziano 25, 1227 Les Acacias (Genf), Schweiz",
+                        "Website: infomaniak.com"
+                    ]
+                },
+                "intellectual_property": {
+                    "title": "Geistiges Eigentum",
+                    "content": [
+                        "Alle Inhalte dieser Website (Texte, Bilder, Grafiken, Logos, Icons) sind ausschliessliches Eigentum von Swiss Ecogestes SARL oder deren Partnern.",
+                        "Jede Vervielfältigung, Verbreitung oder Nutzung ohne vorherige schriftliche Genehmigung ist verboten."
+                    ]
+                },
+                "liability": {
+                    "title": "Haftungsbeschränkung",
+                    "content": [
+                        "Swiss Ecogestes SARL bemüht sich um die Richtigkeit und Aktualität der auf dieser Website veröffentlichten Informationen.",
+                        "Wir übernehmen keine Haftung für direkte oder indirekte Schäden, die durch den Zugriff auf oder die Nutzung dieser Website entstehen."
                     ]
                 },
                 "credits": {
-                    "title": "Impressum & Credits",
+                    "title": "Credits",
                     "content": [
                         "Diese Website wurde von <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a> entworfen und entwickelt."
                     ]
@@ -270,40 +302,84 @@
             "seo_desc": "Unsere Datenschutz- und Vertraulichkeitspolitik.",
             "title": "Datenschutzerklärung",
             "sections": {
-                "collection": {
-                    "title": "Datenerfassung",
+                "intro": {
+                    "title": "Einleitung",
                     "content": [
-                        "Wir erfassen Informationen, die Sie uns über unsere Kontaktformulare zur Verfügung stellen.",
-                        "[Vollständiger Text vom Kunden bereitzustellen]"
+                        "Swiss Ecogestes SARL (nachfolgend «wir») legt grossen Wert auf den Schutz Ihrer personenbezogenen Daten.",
+                        "Diese Richtlinie beschreibt, wie wir Ihre Daten gemäss dem Schweizer Bundesgesetz über den Datenschutz (DSG) und der Datenschutz-Grundverordnung (DSGVO) erheben, verwenden und schützen."
+                    ]
+                },
+                "collection": {
+                    "title": "Erhobene Daten",
+                    "content": [
+                        "Wir erheben ausschliesslich Daten, die Sie uns freiwillig über unsere Kontaktformulare mitteilen: Name, Vorname, E-Mail-Adresse, Telefonnummer (optional) und Nachricht.",
+                        "Wir erheben auch anonymisierte Navigationsdaten (besuchte Seiten, Besuchsdauer) mit datenschutzfreundlichen Analysetools."
                     ]
                 },
                 "usage": {
-                    "title": "Datennutzung",
+                    "title": "Verwendung der Daten",
                     "content": [
-                        "Ihre Daten werden verwendet, um Ihre Anfragen zu beantworten.",
-                        "[Vollständiger Text vom Kunden bereitzustellen]"
+                        "Ihre personenbezogenen Daten werden ausschliesslich zur Beantwortung Ihrer Kontakt- und Informationsanfragen verwendet.",
+                        "Wir verkaufen, vermieten oder teilen Ihre Daten nicht mit Dritten zu kommerziellen Zwecken.",
+                        "Ihre Daten können mit unseren technischen Dienstleistern (Hosting, E-Mail-Versand) ausschliesslich im Rahmen der Leistungserbringung geteilt werden."
+                    ]
+                },
+                "retention": {
+                    "title": "Datenspeicherung",
+                    "content": [
+                        "Ihre Daten werden maximal 3 Jahre ab Ihrem letzten Kontakt mit uns gespeichert.",
+                        "Nach Ablauf dieser Frist werden Ihre Daten sicher gelöscht."
+                    ]
+                },
+                "rights": {
+                    "title": "Ihre Rechte",
+                    "content": [
+                        "Gemäss DSG und DSGVO haben Sie folgende Rechte: Auskunft, Berichtigung, Löschung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer Daten.",
+                        "Um diese Rechte auszuüben, kontaktieren Sie uns unter: info@swissecogestes.ch"
+                    ]
+                },
+                "contact": {
+                    "title": "Kontakt",
+                    "content": [
+                        "Bei Fragen zum Schutz Ihrer Daten können Sie uns per E-Mail unter info@swissecogestes.ch kontaktieren."
                     ]
                 }
             }
         },
         "cookies": {
             "seo_title": "Cookie-Richtlinie | Swiss Ecogestes",
-            "seo_desc": "Informationen zur Verwendung von Cookies auf unserer Website.",
+            "seo_desc": "Informationen zur Verwendung von Cookies auf der Swiss Ecogestes Website.",
             "label": "Cookie-Verwaltung",
             "title": "Cookie-Richtlinie",
             "sections": {
                 "what_is": {
                     "title": "Was ist ein Cookie?",
                     "content": [
-                        "Ein Cookie ist eine kleine Textdatei, die auf Ihrem Computer gespeichert wird.",
-                        "[Vollständiger Text vom Kunden bereitzustellen]"
+                        "Ein Cookie ist eine kleine Textdatei, die beim Besuch einer Website auf Ihrem Gerät (Computer, Tablet, Smartphone) gespeichert wird.",
+                        "Es ermöglicht der Website, Ihre Präferenzen zu speichern und Ihr Surferlebnis zu verbessern."
+                    ]
+                },
+                "types": {
+                    "title": "Verwendete Cookie-Typen",
+                    "content": [
+                        "Notwendige Cookies: für die korrekte Funktion der Website erforderlich (Navigation, Sicherheit). Sie können nicht deaktiviert werden.",
+                        "Präferenz-Cookies: speichern Ihre Sprach- und Anzeigeeinstellungen.",
+                        "Analyse-Cookies: helfen uns, die Nutzung der Website zu verstehen — in anonymisierter Form."
+                    ]
+                },
+                "third_party": {
+                    "title": "Drittanbieter-Cookies",
+                    "content": [
+                        "Unsere Website kann Dienste von Drittanbietern nutzen (Sanity CMS, Analysetools), die eigene Cookies setzen können.",
+                        "Wir haben keine direkte Kontrolle über diese Cookies — bitte lesen Sie die Datenschutzrichtlinien der jeweiligen Dienste."
                     ]
                 },
                 "preferences": {
-                    "title": "Präferenzverwaltung",
+                    "title": "Verwaltung Ihrer Einstellungen",
                     "content": [
-                        "Sie können Ihre Präferenzen jederzeit über unser Verwaltungs-Panel ändern.",
-                        "[Vollständiger Text vom Kunden bereitzustellen]"
+                        "Sie können Ihre Cookie-Einstellungen jederzeit über Ihre Browser-Einstellungen (Einstellungen > Datenschutz) ändern.",
+                        "Das Ablehnen bestimmter Cookies kann die Funktionalität der Website einschränken.",
+                        "Weitere Informationen finden Sie in der Hilfedokumentation Ihres Browsers (Chrome, Firefox, Safari, Edge)."
                     ]
                 }
             }

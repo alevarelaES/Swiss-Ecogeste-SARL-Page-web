@@ -28,7 +28,7 @@ const villaPageContentFr: VillaPageContent = {
         canonical: '/services/villa'
     },
     backLink: 'Retour',
-    sectionLabel: 'Propriétaires',
+    sectionLabel: 'Villas & Maisons',
     title: 'Expertise Villa',
     description: 'Valorisez votre patrimoine immobilier tout en réduisant votre impact écologique. De l\'audit CECB+ à l\'installation de solutions renouvelables, nous gérons votre transition clé en main.',
     buttonText: 'Lancer mon projet',
@@ -81,7 +81,7 @@ const villaPageContentEn: VillaPageContent = {
         canonical: '/services/villa'
     },
     backLink: 'Back',
-    sectionLabel: 'Owners',
+    sectionLabel: 'Villas & Houses',
     title: 'Villa Expertise',
     description: 'Enhance your real estate assets while reducing your ecological impact. From CECB+ audit to installation of renewable solutions, we manage your transition turnkey.',
     buttonText: 'Start my project',
@@ -135,7 +135,7 @@ const villaPageContentDe: VillaPageContent = {
         canonical: '/services/villa'
     },
     backLink: 'Zurück',
-    sectionLabel: 'Eigentümer',
+    sectionLabel: 'Villen & Häuser',
     title: 'Villa Expertise',
     description: 'Steigern Sie den Wert Ihrer Immobilie und reduzieren Sie gleichzeitig Ihren ökologischen Fußabdruck. Vom CECB+ Audit bis zur Installation erneuerbarer Lösungen managen wir Ihren Übergang schlüsselfertig.',
     buttonText: 'Projekt starten',
