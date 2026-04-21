@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 interface CTABannerProps {
     title?: string;
     subtitle?: string;
+    note?: string;
     buttonText?: string;
     buttonLink?: string;
 }
@@ -12,15 +13,16 @@ interface CTABannerProps {
 const CTABanner = ({
     title,
     subtitle,
+    note,
     buttonText,
     buttonLink = "/contact"
 }: CTABannerProps) => {
     const { t } = useTranslation('common');
 
-    // Use props if provided, otherwise use translation keys
     const displayTitle = title || t('cta_banner.title');
     const displaySubtitle = subtitle || t('cta_banner.subtitle');
     const displayButtonText = buttonText || t('cta_banner.button');
+    const displayNote = note !== undefined ? note : t('cta_banner.note');
 
     return (
         <section className="bg-[#1b5e39] py-16 md:py-20">
@@ -33,6 +35,9 @@ const CTABanner = ({
                         <p className="text-white/70 text-base md:text-lg">
                             {displaySubtitle}
                         </p>
+                        {displayNote && (
+                            <p className="text-white/50 text-xs mt-2 italic">{displayNote}</p>
+                        )}
                     </div>
                     <Button
                         asChild

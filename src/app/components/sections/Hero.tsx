@@ -56,7 +56,7 @@ const Hero = () => {
                                 <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-900/65 to-transparent" />
                             </div>
 
-                            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-24 sm:pt-28 md:pt-20 pb-28 select-none">
+                            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-24 sm:pt-28 md:pt-20 pb-8 md:pb-28 select-none">
                                 <div className="max-w-2xl text-left select-none">
                                     <motion.h1
                                         initial={{ opacity: 0, y: 30 }}
@@ -108,16 +108,16 @@ const Hero = () => {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: 0.45 }}
-                                        className="flex flex-col sm:flex-row items-start gap-4"
+                                        className="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 sm:gap-4"
                                     >
-                                        <Button asChild className="h-14 px-8 text-base font-bold bg-[var(--primary)] hover:bg-[#1a4d3e] text-white rounded-lg transition-all hover:scale-105 active:scale-95 shadow-lg">
+                                        <Button asChild className="h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base font-bold bg-[var(--primary)] hover:bg-[#1a4d3e] text-white rounded-lg transition-all hover:scale-105 active:scale-95 shadow-lg w-full sm:w-auto">
                                             <Link to={getLocalizedPath(slide.buttonLink)}>
                                                 {slide.buttonText}
                                                 <ArrowRight className="ml-2 w-5 h-5" />
                                             </Link>
                                         </Button>
                                         {slide.secondButtonText && slide.secondButtonLink && (
-                                            <Button asChild variant="outline" className="h-14 px-8 text-base font-bold bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-lg backdrop-blur-md transition-all hover:scale-105 active:scale-95 shadow-lg">
+                                            <Button asChild variant="outline" className="h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base font-bold bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-lg backdrop-blur-md transition-all hover:scale-105 active:scale-95 shadow-lg w-full sm:w-auto">
                                                 <Link to={getLocalizedPath(slide.secondButtonLink)}>
                                                     {slide.secondButtonText}
                                                     <ArrowRight className="ml-2 w-4 h-4" />
@@ -132,8 +132,8 @@ const Hero = () => {
                 </CarouselContent>
             </Carousel>
 
-            {/* Sector navigation bar */}
-            <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/50 backdrop-blur-md border-t border-white/10">
+            {/* Sector navigation bar — tablet+ only */}
+            <div className="hidden md:block absolute bottom-0 left-0 right-0 z-30 bg-black/50 backdrop-blur-md border-t border-white/10">
                 <div className="max-w-7xl mx-auto flex">
                     {heroSlides.map((slide, idx) => {
                         const slideIndex = idx;

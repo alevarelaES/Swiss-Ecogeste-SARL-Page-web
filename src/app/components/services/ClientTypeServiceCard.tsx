@@ -11,6 +11,7 @@ export interface ClientTypeServiceCardProps {
     description: string
     image: string
     features?: string[]
+    note?: string
   }
   t: (key: string) => string
 }
@@ -54,6 +55,12 @@ const ClientTypeServiceCard = ({ service, t }: ClientTypeServiceCardProps) => {
               <Link to={getLocalizedPath('/contact')}>{t('buttons.contact_us') || 'Contact'}</Link>
             </Button>
           </div>
+
+          {service.note && (
+            <p className="mt-4 pt-3 border-t border-gray-200 text-xs text-gray-500 italic">
+              {service.note}
+            </p>
+          )}
         </div>
       </div>
 

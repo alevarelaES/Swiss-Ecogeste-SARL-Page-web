@@ -5,7 +5,10 @@
       "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('C:/Users/avarela/Projets/Swiss-Ecogeste-SARL-Page-web/public/locales/en/common.json','utf8'\\)\\); console.log\\('EN OK'\\)\")",
       "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('C:/Users/avarela/Projets/Swiss-Ecogeste-SARL-Page-web/public/locales/de/common.json','utf8'\\)\\); console.log\\('DE OK'\\)\")",
       "Bash(npx tsc *)",
-      "Bash(node -e \"const j=JSON.parse\\(require\\('fs'\\).readFileSync\\('C:/Users/avarela/Projets/Swiss-Ecogeste-SARL-Page-web/public/locales/fr/common.json','utf8'\\)\\); console.log\\(JSON.stringify\\({mission_label: j.team_page.mission_label, mission_title: j.team_page.mission_title, presence_label: j.team_page.presence_label}, null, 2\\)\\)\")"
+      "Bash(node -e \"const j=JSON.parse\\(require\\('fs'\\).readFileSync\\('C:/Users/avarela/Projets/Swiss-Ecogeste-SARL-Page-web/public/locales/fr/common.json','utf8'\\)\\); console.log\\(JSON.stringify\\({mission_label: j.team_page.mission_label, mission_title: j.team_page.mission_title, presence_label: j.team_page.presence_label}, null, 2\\)\\)\")",
+      "Bash(python -c \"import json; d=json.load\\(open\\('C:/Users/41786/Projets/Design Site Vitrine Swiss Ecogestes/public/locales/fr/common.json', encoding='utf-8'\\)\\); print\\(list\\(d.keys\\(\\)\\)\\)\")",
+      "Bash(python -c ' *)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }

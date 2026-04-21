@@ -3,6 +3,7 @@ export interface PageService {
     description: string;
     image: string;
     features?: string[];
+    note?: string;
 }
 
 export interface CommunesPageContent {
@@ -23,64 +24,39 @@ export interface CommunesPageContent {
 
 const communesPageContentFr: CommunesPageContent = {
     seo: {
-        title: 'Services pour Communes & GRD | Transition Énergétique',
-        description: 'Accompagnement des communes et services industriels pour atteindre les objectifs climatiques : audits, sensibilisation et gestion de programmes.',
+        title: 'Services pour Communes & GRD | Stratégie Énergétique Territoriale',
+        description: 'Accompagnement des communes et services industriels pour définir et mettre en œuvre leur stratégie énergétique territoriale.',
         canonical: '/services/communes'
     },
     backLink: 'Retour',
     sectionLabel: 'Communes & GRD',
     title: 'Un partenaire pour atteindre vos objectifs climatiques',
-    description: 'Swiss Ecogestes soutient les collectivités publiques dans la mise en œuvre de leur stratégie énergétique. De l\'audit de bâtiments communaux à l\'animation de la transition auprès des citoyens.',
+    description: 'Nous accompagnons les communes et services industriels dans la définition et la mise en œuvre de stratégies énergétiques territoriales, en combinant analyse technique, planification et mobilisation des acteurs locaux.',
     buttonText: 'Discuter d\'un partenariat',
     buttonLink: '/contact',
     heroImage: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&q=80&w=2000',
     services: [
         {
-            title: 'Audits Territoriaux',
-            description: 'Analyse complète du parc immobilier communal et planification de la transition énergétique à l\'échelle du quartier.',
+            title: 'Audit Général & Plan d\'Action',
+            description: 'Une approche structurée pour définir vos priorités et transformer vos objectifs en actions concrètes.',
             image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000',
             features: [
-                "Bilan énergétique du patrimoine communal",
-                "Planification énergétique territoriale",
-                "Stratégie de rénovation des bâtiments publics",
-                "Développement de réseaux thermiques",
-                "Cartographie des potentiels solaires"
+                'Analyse de vos objectifs énergétiques, climatiques et réglementaires',
+                'Évaluation des potentiels d\'amélioration',
+                'Élaboration d\'un plan d\'action clair et réaliste',
+                'Déploiement progressif des mesures',
+                'Suivi complet'
             ]
         },
         {
-            title: 'Sensibilisation Citoyenne',
-            description: 'Campagnes d\'information et ateliers participatifs pour engager vos habitants dans la démarche écologique.',
+            title: 'Mesures Concrètes',
+            description: 'Des solutions adaptées aux différents publics de votre territoire, pour passer de la stratégie à l\'action.',
             image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2000',
             features: [
-                "Organisation de séances d'information",
-                "Création de supports de communication",
-                "Ateliers pratiques pour les habitants",
-                "Campagnes de sensibilisation écogestes",
-                "Animation de la communauté locale"
-            ]
-        },
-        {
-            title: 'Programmes Subventionnés',
-            description: 'Mise en place et gestion de programmes d\'aide communaux, alignés avec les subventions cantonales et fédérales.',
-            image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2000',
-            features: [
-                "Conception de règlements de subventions",
-                "Gestion administrative des demandes",
-                "Contrôle de conformité des dossiers",
-                "Reporting financier régulier",
-                "Coordination avec les aides cantonales"
-            ]
-        },
-        {
-            title: 'Impact & Reporting',
-            description: 'Mesure précise des économies d\'énergie et de la réduction de CO2 pour votre bilan de législature.',
-            image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000',
-            features: [
-                "Tableaux de bord de suivi énergétique",
-                "Calcul des économies de CO2 réalisées",
-                "Rapports pour le conseil communal",
-                "Indicateurs de performance clés (KPI)",
-                "Communication des résultats aux citoyens"
+                'Bâtiments communaux — audits et rénovation énergétique',
+                'Immeubles et régies — GED, IDC, écologement',
+                'Villas et maisons — visite SIG, audit chauffage, CECB',
+                'Entreprises locales — visite conseil, audit PEIK'
             ]
         }
     ]
@@ -88,130 +64,79 @@ const communesPageContentFr: CommunesPageContent = {
 
 const communesPageContentEn: CommunesPageContent = {
     seo: {
-        title: 'Services for Municipalities & DSOs | Energy Transition',
-        description: 'Support for municipalities and industrial services to achieve climate goals: audits, awareness, and program management.',
+        title: 'Services for Municipalities & DSOs | Territorial Energy Strategy',
+        description: 'Support for municipalities and industrial services to define and implement their territorial energy strategy.',
         canonical: '/services/communes'
     },
     backLink: 'Back',
     sectionLabel: 'Municipalities & DSOs',
     title: 'A partner to achieve your climate goals',
-    description: 'Swiss Ecogestes supports public authorities in implementing their energy strategy. From communal building audits to transition animation for citizens.',
+    description: 'We support municipalities and industrial services in defining and implementing territorial energy strategies, combining technical analysis, planning, and local stakeholder mobilization.',
     buttonText: 'Discuss a partnership',
     buttonLink: '/contact',
     heroImage: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&q=80&w=2000',
     services: [
         {
-            title: 'Territorial Audits',
-            description: 'Complete analysis of the communal real estate portfolio and energy transition planning at the district scale.',
+            title: 'General Audit & Action Plan',
+            description: 'A structured approach to define your priorities and transform your goals into concrete actions.',
             image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000',
             features: [
-                "Energy balance of municipal assets",
-                "Territorial energy planning",
-                "Public building renovation strategy",
-                "Development of thermal networks",
-                "Mapping of solar potentials"
+                'Analysis of your energy, climate and regulatory goals',
+                'Assessment of improvement potentials',
+                'Development of a clear and realistic action plan',
+                'Progressive deployment of measures',
+                'Complete monitoring'
             ]
         },
         {
-            title: 'Citizen Awareness',
-            description: 'Information campaigns and participatory workshops to engage your inhabitants in the ecological process.',
+            title: 'Concrete Measures',
+            description: 'Solutions tailored to the different audiences in your territory, to move from strategy to action.',
             image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2000',
             features: [
-                "Organization of information sessions",
-                "Creation of communication materials",
-                "Practical workshops for residents",
-                "Ecogestures awareness campaigns",
-                "Animation of the local community"
-            ]
-        },
-        {
-            title: 'Subsidized Programs',
-            description: 'Implementation and management of communal aid programs, aligned with cantonal and federal subsidies.',
-            image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2000',
-            features: [
-                "Design of subsidy regulations",
-                "Administrative management of requests",
-                "Compliance check of files",
-                "Regular financial reporting",
-                "Coordination with cantonal aids"
-            ]
-        },
-        {
-            title: 'Impact & Reporting',
-            description: 'Precise measurement of energy savings and CO2 reduction for your legislature balance sheet.',
-            image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000',
-            features: [
-                "Energy monitoring dashboards",
-                "Calculation of achieved CO2 savings",
-                "Reports for the municipal council",
-                "Key Performance Indicators (KPIs)",
-                "Communication of results to citizens"
+                'Municipal buildings — energy audits and renovation',
+                'Buildings & agencies — DEM, IDC, ecohousing',
+                'Villas & houses — SIG visit, heating audit, CECB',
+                'Local businesses — advisory visit, PEIK audit'
             ]
         }
     ]
 };
 
-
 const communesPageContentDe: CommunesPageContent = {
     seo: {
-        title: 'Dienstleistungen für Gemeinden & VNB | Energiewende',
-        description: 'Unterstützung für Gemeinden und industrielle Dienste zur Erreichung der Klimaziele: Audits, Sensibilisierung und Programmmanagement.',
+        title: 'Dienstleistungen für Gemeinden & VNB | Territoriale Energiestrategie',
+        description: 'Unterstützung für Gemeinden und industrielle Dienste bei der Definition und Umsetzung ihrer territorialen Energiestrategie.',
         canonical: '/services/communes'
     },
     backLink: 'Zurück',
     sectionLabel: 'Gemeinden & VNB',
     title: 'Ein Partner zur Erreichung Ihrer Klimaziele',
-    description: 'Swiss Ecogestes unterstützt öffentliche Körperschaften bei der Umsetzung ihrer Energiestrategie. Von der Prüfung kommunaler Gebäude bis zur Begleitung des Übergangs für die Bürger.',
+    description: 'Wir begleiten Gemeinden und industrielle Dienste bei der Definition und Umsetzung territorialer Energiestrategien, durch Kombination von technischer Analyse, Planung und Mobilisierung lokaler Akteure.',
     buttonText: 'Partnerschaft besprechen',
     buttonLink: '/contact',
     heroImage: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&q=80&w=2000',
     services: [
         {
-            title: 'Territoriale Audits',
-            description: 'Vollständige Analyse des kommunalen Immobilienbestands und Planung der Energiewende auf Quartiersebene.',
+            title: 'Allgemeines Audit & Aktionsplan',
+            description: 'Ein strukturierter Ansatz zur Definition Ihrer Prioritäten und zur Umsetzung Ihrer Ziele in konkrete Maßnahmen.',
             image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000',
             features: [
-                "Energiebilanz des Gemeindevermögens",
-                "Territoriale Energieplanung",
-                "Renovierungsstrategie für öffentliche Gebäude",
-                "Entwicklung von Wärmenetzen",
-                "Kartierung von Solarpotenzialen"
+                'Analyse Ihrer Energie-, Klima- und Regulierungsziele',
+                'Bewertung der Verbesserungspotenziale',
+                'Entwicklung eines klaren und realistischen Aktionsplans',
+                'Schrittweise Umsetzung der Maßnahmen',
+                'Vollständiges Monitoring'
             ]
         },
         {
-            title: 'Bürgersensibilisierung',
-            description: 'Informationskampagnen und partizipative Workshops, um Ihre Einwohner in den ökologischen Prozess einzubeziehen.',
+            title: 'Konkrete Maßnahmen',
+            description: 'Auf die verschiedenen Zielgruppen Ihres Gebiets zugeschnittene Lösungen, um von der Strategie zur Aktion zu gelangen.',
             image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2000',
             features: [
-                "Organisation von Informationsveranstaltungen",
-                "Erstellung von Kommunikationsmaterialien",
-                "Praktische Workshops für Einwohner",
-                "Sensibilisierungskampagnen für Ökogesten",
-                "Animation der lokalen Gemeinschaft"
-            ]
-        },
-        {
-            title: 'Subventionierte Programme',
-            description: 'Implementierung und Verwaltung kommunaler Hilfsprogramme, abgestimmt auf kantonale und bundesstaatliche Subventionen.',
-            image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2000',
-            features: [
-                "Konzeption von Subventionsreglementen",
-                "Administrative Verwaltung von Anträgen",
-                "Konformitätsprüfung der Dossiers",
-                "Regelmäßiges Finanzreporting",
-                "Koordination mit kantonalen Beihilfen"
-            ]
-        },
-        {
-            title: 'Wirkung & Berichterstattung',
-            description: 'Präzise Messung von Energieeinsparungen und CO2-Reduktion für Ihre Legislaturbilanz.',
-            image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000',
-            features: [
-                "Dashboards zur Energieüberwachung",
-                "Berechnung der erzielten CO2-Einsparungen",
-                "Berichte für den Gemeinderat",
-                "Leistungskennzahlen (KPIs)",
-                "Kommunikation der Ergebnisse an die Bürger"
+                'Kommunale Gebäude — Energieaudits und Renovierung',
+                'Gebäude & Verwaltungen — GED, IDC, Ökologement',
+                'Villen & Häuser — SIG-Besuch, Heizungsaudit, CECB',
+                'Lokale Unternehmen — Beratungsbesuch, PEIK-Audit'
             ]
         }
     ]

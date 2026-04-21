@@ -1,388 +1,424 @@
 {
-    "nav": {
-        "home": "Startseite",
-        "services": "Dienstleistungen",
-        "about": "Über uns",
-        "resultats": "Ergebnisse",
-        "contact": "Kontakt",
-        "villa": "Villen & Häuser",
-        "entreprise": "Unternehmen",
-        "gerance": "Verwaltung & Gebäude",
-        "communes": "Gemeinden & VNB",
-        "journal": "Aktuelles",
-        "our_services": "Unsere Dienstleistungen",
-        "choose_language": "Sprache wählen"
+  "nav": {
+    "home": "Startseite",
+    "services": "Dienstleistungen",
+    "about": "Über uns",
+    "resultats": "Ergebnisse",
+    "contact": "Kontakt",
+    "villa": "Villen & Häuser",
+    "entreprise": "Unternehmen",
+    "gerance": "Verwaltung & Gebäude",
+    "communes": "Gemeinden & VNB",
+    "journal": "Aktuelles",
+    "our_services": "Unsere Dienstleistungen",
+    "choose_language": "Sprache wählen"
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "slogan": "Ihr Expertenpartner für die Energiewende in der Westschweiz. Nachhaltige Lösungen und maßgeschneiderte Unterstützung.",
+    "presence": "Präsenz in den Kantonen",
+    "services": "Unsere Dienstleistungen",
+    "company": "Unternehmen",
+    "team": "Unser Team",
+    "blog": "Aktuelles",
+    "mentions": "Impressum",
+    "privacy": "Datenschutz",
+    "cookies": "Cookie-Richtlinie",
+    "partners": "Partner",
+    "credit": "Website entworfen & entwickelt von Alexandre Varela Tavares"
+  },
+  "buttons": {
+    "contact_us": "Kontaktieren Sie uns",
+    "learn_more": "Mehr erfahren",
+    "read_more": "Weiterlesen",
+    "back": "Zurück",
+    "start_project": "Projekt starten",
+    "explore": "Erkunden",
+    "close": "Schließen"
+  },
+  "team": {
+    "label": "Unser Team",
+    "title": "Experten zu Ihren Diensten"
+  },
+  "resultats_page": {
+    "seo_title": "Ergebnisse & Impact | Swiss Ecogestes",
+    "seo_desc": "Entdecken Sie die konkreten Ergebnisse unserer Begleitung: Energieeinsparungen, erhaltene Fördermittel und echte Kundenbeispiele in der Westschweiz.",
+    "hero_label": "Zahlen & Ergebnisse",
+    "hero_title": "Ein realer, messbarer und dokumentierter Impact",
+    "hero_subtitle": "Jede Intervention erzeugt konkrete Einsparungen. Hier sehen Sie, was unsere Kunden erreicht haben.",
+    "cases_label": "Fallstudien",
+    "cases_title": "Sie haben den Schritt gewagt",
+    "cases_subtitle": "Repräsentative Beispiele unserer Begleitungen in der Westschweiz.",
+    "cases_placeholder": "Repräsentative Daten — echte Fälle folgen",
+    "testi_label": "Referenzen",
+    "testi_title": "Was unsere Kunden sagen",
+    "programs_label": "Programme & Partner",
+    "programs_title": "Anerkannte Fördermittel — wir kennen sie alle",
+    "programs_subtitle": "Wir beherrschen alle kantonalen und bundesweiten Programme, um Ihre Fördergelder zu maximieren."
+  },
+  "team_page": {
+    "seo_title": "Über Swiss Ecogestes | Unser Team & Mission",
+    "seo_desc": "Entdecken Sie Swiss Ecogestes: unsere Mission, unser Expertenteam und unser Engagement für die Energiewende in der Westschweiz.",
+    "header_label": "Über uns",
+    "header_title": "Ein konkreter Ansatz zur Energiewende",
+    "intro": "Bei Swiss Ecogestes sind wir überzeugt, dass die Energiewende durch konkrete, messbare und rentable Maßnahmen gelingt. Wir begleiten Eigentümer, Verwaltungen, Unternehmen und Gemeinden mit einem pragmatischen Ansatz: Verbrauch senken, Anlagen optimieren und echte Wirkung erzielen.",
+    "mission_label": "Unsere Mission",
+    "mission_title": "Ihr Interesse, unsere einzige Priorität.",
+    "mission_text": "Kein Material zu verkaufen, keine versteckten Margen. Swiss Ecogestes ist eine unabhängige Beratungsfirma: Wir analysieren Ihre Situation, identifizieren erreichbare Einsparungen und maximieren Ihre Fördergelder — ohne Interessenkonflikt.",
+    "mission_text2": "Unser Ansatz kombiniert Felderfahrung, Kenntnisse kantonaler Programme (SIG Éco21, SuisseEnergie, Chauffez Renouvelable, OCEN) und persönliche Begleitung in jeder Phase Ihres Projekts.",
+    "presence_label": "Unsere Präsenz",
+    "presence_title": "Tätig in Waadt und Genf",
+    "presence_text": "Wir sind hauptsächlich in den Kantonen Waadt und Genf tätig, mit fundiertem Wissen über lokale Anforderungen, kantonale Förderprogramme und institutionelle Akteure.",
+    "stat_experts": "Dedizierte Experten",
+    "stat_cantons": "Abgedeckte Kantone",
+    "stat_partners": "Institutionelle Partner",
+    "stat_approach": "Neutral & unabhängig",
+    "photo_label": "Unser Team",
+    "photo_title": "Engagierte Experten vor Ort",
+    "photo_subtitle": "Gemeinsam begleiten wir jeden Kunden zu konkreten und nachhaltigen Lösungen.",
+    "team_title": "Unser Team",
+    "team_subtitle": "Fünf Experten mit Leidenschaft für die Energiewende, zu Ihren Diensten in der Westschweiz.",
+    "values_title": "Unsere Verpflichtungen & Werte",
+    "values_intro": "Über die technische Expertise hinaus bieten wir all unseren Partnern Sicherheit und Seelenfrieden.",
+    "quality_label": "Qualitätsprozess",
+    "quality_title": "Ein rigoroser Prozess von Anfang bis Ende",
+    "quality_text": "Jede Prüfung folgt einem strengen Qualitätsprozess, vom ersten Besuch bis zur Übergabe des Berichts und der personalisierten Empfehlungen.",
+    "quality_steps": "Vor-Ort-Besuch,Technische Analyse,Detaillierter Bericht,Empfehlungen,Persönliches Follow-up"
+  },
+  "client_types": {
+    "label": "Unsere Lösungen",
+    "title_prefix": "Fachwissen angepasst",
+    "title_connector": "an",
+    "title_highlight": "jeden Akteur",
+    "description": "Maßgeschneiderte technische und finanzielle Lösungen für jeden Gebäudetyp."
+  },
+  "common": {
+    "swissecogestes": "Swiss Ecogestes"
+  },
+  "cookie_banner": {
+    "title": "Datenschutz & Cookies",
+    "text": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und unseren Datenverkehr zu analysieren. Wenn Sie fortfahren, stimmen Sie der Verwendung von Cookies zu.",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen",
+    "policy": "Mehr erfahren"
+  },
+  "blog": {
+    "label": "Blog & Aktuelles",
+    "title": "Neueste Veröffentlichungen",
+    "view_all": "Alle Artikel ansehen",
+    "read_more": "WEITERLESEN",
+    "journal": "Das Journal",
+    "share": "Artikel teilen",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "expert": "Swiss Ecogeste Experte"
+  },
+  "service_detail": {
+    "not_found": "Dienstleistung nicht gefunden",
+    "back_home": "Zurück zur Startseite",
+    "back_services": "Zurück zu den Dienstleistungen",
+    "full_description": "Vollständige Beschreibung",
+    "what_we_offer": "Was wir anbieten:",
+    "placeholder_point": "Wichtiger Punkt oder spezifischer Vorteil im Zusammenhang mit {{title}}, um eine optimale Leistung zu gewährleisten.",
+    "interested": "Interessiert?",
+    "contact_experts": "Kontaktieren Sie unsere Experten für ein persönliches Angebot.",
+    "request_quote": "Angebot anfordern"
+  },
+  "partners": {
+    "title": "Sie vertrauen uns und empfehlen unsere Dienstleistungen"
+  },
+  "contact_section": {
+    "tag": "Kontakt",
+    "title": "Lassen Sie uns über Ihr Projekt sprechen.",
+    "subtitle": "Füllen Sie dieses Formular aus, um eine kostenlose Schätzung Ihrer potenziellen Einsparungen zu erhalten.",
+    "you_are": "Sie sind",
+    "types": {
+      "villa": "Villa",
+      "entreprise": "Unternehmen",
+      "regie": "Verwaltung",
+      "proprio": "Eigentümer",
+      "other": "Andere"
     },
-    "footer": {
-        "rights": "Alle Rechte vorbehalten.",
-        "slogan": "Ihr Expertenpartner für die Energiewende in der Westschweiz. Nachhaltige Lösungen und maßgeschneiderte Unterstützung.",
-        "presence": "Präsenz in den Kantonen",
-        "services": "Unsere Dienstleistungen",
-        "company": "Unternehmen",
-        "team": "Unser Team",
-        "blog": "Aktuelles",
-        "mentions": "Impressum",
-        "privacy": "Datenschutz",
-        "cookies": "Cookie-Richtlinie",
-        "partners": "Partner",
-        "credit": "Website entworfen & entwickelt von Alexandre Varela Tavares"
+    "name": "Name, Vorname",
+    "email": "E-Mail",
+    "phone": "Telefon (Optional)",
+    "message": "Nachricht",
+    "placeholder_message": "Wie können wir Ihnen helfen?",
+    "submit": "Anfrage senden",
+    "sending": "Wird gesendet...",
+    "success": "Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.",
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "quote": "\"Die billigste Energie ist die, die wir nicht verbrauchen. Lassen Sie uns gemeinsam Ihr Vermögen aufwerten.\"",
+    "rdv_cta": "Entdecken Sie Ihre realen Einsparungen mit einem kostenlosen* Audit",
+    "rdv_button": "Termin vereinbaren"
+  },
+  "contact_page": {
+    "seo_title": "Kontaktieren Sie uns | Swiss Ecogestes",
+    "seo_description": "Benötigen Sie Beratung oder ein Angebot? Kontaktieren Sie Swiss Ecogestes für Ihr Energiewendeprojekt in der Schweiz.",
+    "title": "Bereit, den ersten Schritt zu tun?",
+    "description": "Ob Sie am Anfang Ihrer Überlegungen stehen oder bereits bereit für Arbeiten sind, unsere Experten antworten Ihnen innerhalb von 48 Stunden."
+  },
+  "services_page": {
+    "seo_title": "Unsere Energiedienstleistungen",
+    "seo_desc": "Entdecken Sie unsere maßgeschneiderten Lösungen für Privatpersonen, Verwaltungen und Unternehmen: GEAK-Audits, Renovierungen, Solar und Energieoptimierung.",
+    "label": "Expertise & Lösungen",
+    "title": "360°-Dienstleistungen",
+    "intro": "Vom ersten Audit bis zur endgültigen Umsetzung bieten wir das technische Fachwissen, um Ihren Energieverbrauch zu transformieren.",
+    "particuliers": {
+      "title": "Für Privatpersonen",
+      "description": "Verbessern Sie den Komfort Ihres Hauses und senken Sie Ihre Energiekosten. Wir begleiten Sie Schritt für Schritt.",
+      "features": [
+        "GEAK Energieaudit",
+        "Sanierung der thermischen Hülle",
+        "Heizungssystemaustausch",
+        "Installation von Photovoltaikanlagen",
+        "Verwaltung von Förderanträgen"
+      ]
     },
-    "buttons": {
-        "contact_us": "Kontaktieren Sie uns",
-        "learn_more": "Mehr erfahren",
-        "read_more": "Weiterlesen",
-        "back": "Zurück",
-        "start_project": "Projekt starten",
-        "explore": "Erkunden",
-        "close": "Schließen"
+    "gerances": {
+      "title": "Für Verwaltungen",
+      "description": "Werten Sie Ihr Immobilienvermögen auf und vereinfachen Sie das Nebenkostenmanagement für Ihre Mieter.",
+      "features": [
+        "Immobilienportfolioprüfung (GEAK Plus)",
+        "Energiesparvertrag",
+        "Ladestationen für Elektrofahrzeuge",
+        "Entwicklung von Eigenverbrauchsgemeinschaften (ZEV)",
+        "Langfristige thermische Planung"
+      ]
     },
-    "team": {
-        "label": "Unser Team",
-        "title": "Experten zu Ihren Diensten"
+    "entreprises": {
+      "title": "Für Unternehmen",
+      "description": "Verpflichten Sie Ihr Unternehmen zur Nachhaltigkeit und optimieren Sie gleichzeitig die Betriebsabläufe.",
+      "features": [
+        "Zielvereinbarungen (Großverbraucher)",
+        "Optimierung von Druckluft und Kälte",
+        "Intelligente Beleuchtung und Hochleistungs-LED",
+        "Echtzeit-Energieüberwachung",
+        "Dekarbonisierungsstrategie"
+      ]
     },
-    "team_page": {
-        "seo_title": "Über Swiss Ecogestes | Unser Team & Mission",
-        "seo_desc": "Entdecken Sie Swiss Ecogestes: unsere Mission, unser Expertenteam und unser Engagement für die Energiewende in der Westschweiz.",
-        "header_label": "Über uns",
-        "header_title": "Ein konkreter Ansatz zur Energiewende",
-        "intro": "Bei Swiss Ecogestes sind wir überzeugt, dass die Energiewende durch konkrete, messbare und rentable Maßnahmen gelingt. Wir begleiten Eigentümer, Verwaltungen, Unternehmen und Gemeinden mit einem pragmatischen Ansatz: Verbrauch senken, Anlagen optimieren und echte Wirkung erzielen.",
-        "mission_label": "Unsere Mission",
-        "mission_title": "Ihr Interesse, unsere einzige Priorität.",
-        "mission_text": "Kein Material zu verkaufen, keine versteckten Margen. Swiss Ecogestes ist eine unabhängige Beratungsfirma: Wir analysieren Ihre Situation, identifizieren erreichbare Einsparungen und maximieren Ihre Fördergelder — ohne Interessenkonflikt.",
-        "mission_text2": "Unser Ansatz kombiniert Felderfahrung, Kenntnisse kantonaler Programme (SIG Éco21, SuisseEnergie, Chauffez Renouvelable, OCEN) und persönliche Begleitung in jeder Phase Ihres Projekts.",
-        "presence_label": "Unsere Präsenz",
-        "presence_title": "Tätig in Waadt und Genf",
-        "presence_text": "Wir sind hauptsächlich in den Kantonen Waadt und Genf tätig, mit fundiertem Wissen über lokale Anforderungen, kantonale Förderprogramme und institutionelle Akteure.",
-        "stat_experts": "Dedizierte Experten",
-        "stat_cantons": "Abgedeckte Kantone",
-        "stat_partners": "Institutionelle Partner",
-        "stat_approach": "Neutral & unabhängig",
-        "photo_label": "Unser Team",
-        "photo_title": "Engagierte Experten vor Ort",
-        "photo_subtitle": "Gemeinsam begleiten wir jeden Kunden zu konkreten und nachhaltigen Lösungen.",
-        "team_title": "Unser Team",
-        "team_subtitle": "Fünf Experten mit Leidenschaft für die Energiewende, zu Ihren Diensten in der Westschweiz.",
-        "values_title": "Unsere Verpflichtungen & Werte",
-        "values_intro": "Über die technische Expertise hinaus bieten wir all unseren Partnern Sicherheit und Seelenfrieden."
+    "cta_quote": "Angebot anfordern"
+  },
+  "services_overview": {
+    "seo_title": "Unsere Leistungen | Übersicht Swiss Ecogestes",
+    "seo_desc": "Vollständige Liste unserer Audit-, Energieberatungs- und Unterstützungsdienste für Privatpersonen, Unternehmen und Gemeinden.",
+    "label": "Katalog",
+    "title": "Unsere Leistungen",
+    "intro": "Ein Überblick über unsere Lösungen zur Reduzierung Ihres Verbrauchs und zur Aufwertung Ihres Vermögens.",
+    "available_title": "Verfügbare Dienste",
+    "upcoming_title": "Bald verfügbar",
+    "details": "Details",
+    "items": {
+      "eco_logement": "Öko-Wohnprogramm",
+      "pake": "Energieaudits für Unternehmen (PAKE)",
+      "audits_villa": "Villen-Audits & GEAK",
+      "visites_sig": "SIG / éco21 Besuche",
+      "idc": "Genfer IDC-Berechnung",
+      "sensibilisation": "Umweltsensibilisierung",
+      "chauffage": "Übergang zu erneuerbaren Heizungen"
     },
-    "client_types": {
-        "label": "Unsere Lösungen",
-        "title_prefix": "Fachwissen angepasst",
-        "title_connector": "an",
-        "title_highlight": "jeden Akteur",
-        "description": "Maßgeschneiderte technische und finanzielle Lösungen für jeden Gebäudetyp."
-    },
-    "common": {
-        "swissecogestes": "Swiss Ecogestes"
-    },
-    "cookie_banner": {
-        "title": "Datenschutz & Cookies",
-        "text": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und unseren Datenverkehr zu analysieren. Wenn Sie fortfahren, stimmen Sie der Verwendung von Cookies zu.",
-        "accept": "Akzeptieren",
-        "decline": "Ablehnen",
-        "policy": "Mehr erfahren"
-    },
-    "blog": {
-        "label": "Blog & Aktuelles",
-        "title": "Neueste Veröffentlichungen",
-        "view_all": "Alle Artikel ansehen",
-        "read_more": "WEITERLESEN",
-        "journal": "Das Journal",
-        "share": "Artikel teilen",
-        "copy": "Kopieren",
-        "copied": "Kopiert!",
-        "expert": "Swiss Ecogeste Experte"
-    },
-    "service_detail": {
-        "not_found": "Dienstleistung nicht gefunden",
-        "back_home": "Zurück zur Startseite",
-        "back_services": "Zurück zu den Dienstleistungen",
-        "full_description": "Vollständige Beschreibung",
-        "what_we_offer": "Was wir anbieten:",
-        "placeholder_point": "Wichtiger Punkt oder spezifischer Vorteil im Zusammenhang mit {{title}}, um eine optimale Leistung zu gewährleisten.",
-        "interested": "Interessiert?",
-        "contact_experts": "Kontaktieren Sie unsere Experten für ein persönliches Angebot.",
-        "request_quote": "Angebot anfordern"
-    },
-    "partners": {
-        "title": "Sie vertrauen uns und empfehlen unsere Dienstleistungen"
-    },
-    "contact_section": {
-        "tag": "Kontakt",
-        "title": "Lassen Sie uns über Ihr Projekt sprechen.",
-        "subtitle": "Füllen Sie dieses Formular aus, um eine kostenlose Schätzung Ihrer potenziellen Einsparungen zu erhalten.",
-        "you_are": "Sie sind",
-        "types": {
-            "villa": "Villa",
-            "entreprise": "Unternehmen",
-            "regie": "Verwaltung",
-            "proprio": "Eigentümer",
-            "other": "Andere"
-        },
-        "name": "Name, Vorname",
-        "email": "E-Mail",
-        "phone": "Telefon (Optional)",
-        "message": "Nachricht",
-        "placeholder_message": "Wie können wir Ihnen helfen?",
-        "submit": "Anfrage senden",
-        "sending": "Wird gesendet...",
-        "success": "Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.",
-        "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-        "quote": "\"Die billigste Energie ist die, die wir nicht verbrauchen. Lassen Sie uns gemeinsam Ihr Vermögen aufwerten.\"",
-        "rdv_cta": "Entdecken Sie Ihre realen Einsparungen mit einem kostenlosen Audit",
-        "rdv_button": "Termin vereinbaren"
-    },
-    "contact_page": {
-        "seo_title": "Kontaktieren Sie uns | Swiss Ecogestes",
-        "seo_description": "Benötigen Sie Beratung oder ein Angebot? Kontaktieren Sie Swiss Ecogestes für Ihr Energiewendeprojekt in der Schweiz.",
-        "title": "Bereit, den ersten Schritt zu tun?",
-        "description": "Ob Sie am Anfang Ihrer Überlegungen stehen oder bereits bereit für Arbeiten sind, unsere Experten antworten Ihnen innerhalb von 48 Stunden."
-    },
-    "services_page": {
-        "seo_title": "Unsere Energiedienstleistungen",
-        "seo_desc": "Entdecken Sie unsere maßgeschneiderten Lösungen für Privatpersonen, Verwaltungen und Unternehmen: GEAK-Audits, Renovierungen, Solar und Energieoptimierung.",
-        "label": "Expertise & Lösungen",
-        "title": "360°-Dienstleistungen",
-        "intro": "Vom ersten Audit bis zur endgültigen Umsetzung bieten wir das technische Fachwissen, um Ihren Energieverbrauch zu transformieren.",
-        "particuliers": {
-            "title": "Für Privatpersonen",
-            "description": "Verbessern Sie den Komfort Ihres Hauses und senken Sie Ihre Energiekosten. Wir begleiten Sie Schritt für Schritt.",
-            "features": [
-                "GEAK Energieaudit",
-                "Sanierung der thermischen Hülle",
-                "Heizungssystemaustausch",
-                "Installation von Photovoltaikanlagen",
-                "Verwaltung von Förderanträgen"
-            ]
-        },
-        "gerances": {
-            "title": "Für Verwaltungen",
-            "description": "Werten Sie Ihr Immobilienvermögen auf und vereinfachen Sie das Nebenkostenmanagement für Ihre Mieter.",
-            "features": [
-                "Immobilienportfolioprüfung (GEAK Plus)",
-                "Energiesparvertrag",
-                "Ladestationen für Elektrofahrzeuge",
-                "Entwicklung von Eigenverbrauchsgemeinschaften (ZEV)",
-                "Langfristige thermische Planung"
-            ]
-        },
-        "entreprises": {
-            "title": "Für Unternehmen",
-            "description": "Verpflichten Sie Ihr Unternehmen zur Nachhaltigkeit und optimieren Sie gleichzeitig die Betriebsabläufe.",
-            "features": [
-                "Zielvereinbarungen (Großverbraucher)",
-                "Optimierung von Druckluft und Kälte",
-                "Intelligente Beleuchtung und Hochleistungs-LED",
-                "Echtzeit-Energieüberwachung",
-                "Dekarbonisierungsstrategie"
-            ]
-        },
-        "cta_quote": "Angebot anfordern"
-    },
-    "services_overview": {
-        "seo_title": "Unsere Leistungen | Übersicht Swiss Ecogestes",
-        "seo_desc": "Vollständige Liste unserer Audit-, Energieberatungs- und Unterstützungsdienste für Privatpersonen, Unternehmen und Gemeinden.",
-        "label": "Katalog",
-        "title": "Unsere Leistungen",
-        "intro": "Ein Überblick über unsere Lösungen zur Reduzierung Ihres Verbrauchs und zur Aufwertung Ihres Vermögens.",
-        "available_title": "Verfügbare Dienste",
-        "upcoming_title": "Bald verfügbar",
-        "details": "Details",
-        "items": {
-            "eco_logement": "Öko-Wohnprogramm",
-            "pake": "Energieaudits für Unternehmen (PAKE)",
-            "audits_villa": "Villen-Audits & GEAK",
-            "visites_sig": "SIG / éco21 Besuche",
-            "idc": "Genfer IDC-Berechnung",
-            "sensibilisation": "Umweltsensibilisierung",
-            "chauffage": "Übergang zu erneuerbaren Heizungen"
-        },
-        "upcoming": {
-            "amu": "AMU (Nutzungsassistenz)",
-            "cecb_plus": "GEAK Plus Audit (Offizielle Zertifizierung)"
-        }
-    },
-    "why_us": {
-        "seo_title": "Warum Swiss Ecogestes wählen | Expertise & Vertrauen",
-        "seo_desc": "Entdecken Sie unsere Werte: kommerzielle Neutralität, zertifizierte Expertise, vollständiges administratives Management und Datenschutz.",
-        "label": "Unsere Verpflichtungen",
-        "title": "Expertise, Neutralität und Vertrauen.",
-        "intro": "Swiss Ecogestes wurde aus einer einfachen Überzeugung heraus gegründet: Die Energiewende muss transparent, einfach und rentabel für alle sein.",
-        "cta_title": "Bereit, mit einem vertrauenswürdigen Partner zusammenzuarbeiten?",
-        "cta_desc": "Lassen Sie uns über Ihre Bedürfnisse sprechen und sehen, wie wir Ihnen helfen können, Ihre Ziele zu erreichen.",
-        "cta_button": "Kontakt aufnehmen",
-        "items": {
-            "confiance": {
-                "title": "Vertrauenswürdiger Partner",
-                "desc": "Wir arbeiten eng mit der DIREN (Energiedirektion), den SIG und kantonalen Programmen zusammen, um die Konformität jedes Projekts zu gewährleisten."
-            },
-            "legal": {
-                "title": "Einhaltung des Rechtsrahmens",
-                "desc": "Ständige rechtliche Überwachung, um sicherzustellen, dass alle Installationen den neuesten eidgenössischen und kantonalen Normen (MoPEC, IDC usw.) entsprechen."
-            },
-            "data": {
-                "title": "Datenschutz",
-                "desc": "Ihre Energiedaten sind sensibel. Wir behandeln sie streng vertraulich, in der Schweiz gehostet und gesichert."
-            },
-            "neutrality": {
-                "title": "Kommerzielle Neutralität",
-                "desc": "Wir verkaufen keine Ausrüstung. Unsere Empfehlungen basieren ausschließlich auf IHREM Interesse und der technischen Leistung, ohne Interessenkonflikt."
-            },
-            "quality": {
-                "title": "Qualitätsprozess",
-                "desc": "Jedes Audit und jede Baustelle folgt einem strengen Qualitätsprozess, vom ersten Besuch bis zur endgültigen Abnahme der Arbeiten."
-            },
-            "human": {
-                "title": "Menschlicher Ansatz",
-                "desc": "Da die Energiewende vor allem ein menschliches Abenteuer ist, legen wir Wert auf Zuhören, Pädagogik und persönliche Begleitung."
-            }
-        }
-    },
-    "cta_banner": {
-        "title": "Kostenloses Audit Ihrer Anlage",
-        "subtitle": "Entdecken Sie Ihre tatsächlichen Fördermittel mit einem Experten.",
-        "button": "Termin vereinbaren"
-    },
-    "legal": {
-        "mentions": {
-            "seo_title": "Impressum | Swiss Ecogestes",
-            "seo_desc": "Impressum, Unternehmensinformationen und Nutzungsbedingungen der Swiss Ecogestes Website.",
-            "title": "Impressum",
-            "last_updated": "Zuletzt aktualisiert",
-            "sections": {
-                "editor": {
-                    "title": "Herausgeber",
-                    "content": [
-                        "Swiss Ecogestes SARL",
-                        "Adresse: [Vollständige Adresse — noch auszufüllen]",
-                        "Telefon: [Nummer — noch auszufüllen]",
-                        "E-Mail: info@swissecogestes.ch",
-                        "IDE: [IDE-Nummer — noch auszufüllen]",
-                        "Rechtsform: Gesellschaft mit beschränkter Haftung (GmbH), im Handelsregister eingetragen"
-                    ]
-                },
-                "director": {
-                    "title": "Verantwortlicher Herausgeber",
-                    "content": [
-                        "Mohammad SALMAN, Direktor"
-                    ]
-                },
-                "hosting": {
-                    "title": "Hosting",
-                    "content": [
-                        "Diese Website wird gehostet von Infomaniak Network SA",
-                        "Rue Eugène-Marziano 25, 1227 Les Acacias (Genf), Schweiz",
-                        "Website: infomaniak.com"
-                    ]
-                },
-                "intellectual_property": {
-                    "title": "Geistiges Eigentum",
-                    "content": [
-                        "Alle Inhalte dieser Website (Texte, Bilder, Grafiken, Logos, Icons) sind ausschliessliches Eigentum von Swiss Ecogestes SARL oder deren Partnern.",
-                        "Jede Vervielfältigung, Verbreitung oder Nutzung ohne vorherige schriftliche Genehmigung ist verboten."
-                    ]
-                },
-                "liability": {
-                    "title": "Haftungsbeschränkung",
-                    "content": [
-                        "Swiss Ecogestes SARL bemüht sich um die Richtigkeit und Aktualität der auf dieser Website veröffentlichten Informationen.",
-                        "Wir übernehmen keine Haftung für direkte oder indirekte Schäden, die durch den Zugriff auf oder die Nutzung dieser Website entstehen."
-                    ]
-                },
-                "credits": {
-                    "title": "Credits",
-                    "content": [
-                        "Diese Website wurde von <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a> entworfen und entwickelt."
-                    ]
-                }
-            }
-        },
-        "privacy": {
-            "seo_title": "Datenschutzerklärung | Swiss Ecogestes",
-            "seo_desc": "Unsere Datenschutz- und Vertraulichkeitspolitik.",
-            "title": "Datenschutzerklärung",
-            "sections": {
-                "intro": {
-                    "title": "Einleitung",
-                    "content": [
-                        "Swiss Ecogestes SARL (nachfolgend «wir») legt grossen Wert auf den Schutz Ihrer personenbezogenen Daten.",
-                        "Diese Richtlinie beschreibt, wie wir Ihre Daten gemäss dem Schweizer Bundesgesetz über den Datenschutz (DSG) und der Datenschutz-Grundverordnung (DSGVO) erheben, verwenden und schützen."
-                    ]
-                },
-                "collection": {
-                    "title": "Erhobene Daten",
-                    "content": [
-                        "Wir erheben ausschliesslich Daten, die Sie uns freiwillig über unsere Kontaktformulare mitteilen: Name, Vorname, E-Mail-Adresse, Telefonnummer (optional) und Nachricht.",
-                        "Wir erheben auch anonymisierte Navigationsdaten (besuchte Seiten, Besuchsdauer) mit datenschutzfreundlichen Analysetools."
-                    ]
-                },
-                "usage": {
-                    "title": "Verwendung der Daten",
-                    "content": [
-                        "Ihre personenbezogenen Daten werden ausschliesslich zur Beantwortung Ihrer Kontakt- und Informationsanfragen verwendet.",
-                        "Wir verkaufen, vermieten oder teilen Ihre Daten nicht mit Dritten zu kommerziellen Zwecken.",
-                        "Ihre Daten können mit unseren technischen Dienstleistern (Hosting, E-Mail-Versand) ausschliesslich im Rahmen der Leistungserbringung geteilt werden."
-                    ]
-                },
-                "retention": {
-                    "title": "Datenspeicherung",
-                    "content": [
-                        "Ihre Daten werden maximal 3 Jahre ab Ihrem letzten Kontakt mit uns gespeichert.",
-                        "Nach Ablauf dieser Frist werden Ihre Daten sicher gelöscht."
-                    ]
-                },
-                "rights": {
-                    "title": "Ihre Rechte",
-                    "content": [
-                        "Gemäss DSG und DSGVO haben Sie folgende Rechte: Auskunft, Berichtigung, Löschung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer Daten.",
-                        "Um diese Rechte auszuüben, kontaktieren Sie uns unter: info@swissecogestes.ch"
-                    ]
-                },
-                "contact": {
-                    "title": "Kontakt",
-                    "content": [
-                        "Bei Fragen zum Schutz Ihrer Daten können Sie uns per E-Mail unter info@swissecogestes.ch kontaktieren."
-                    ]
-                }
-            }
-        },
-        "cookies": {
-            "seo_title": "Cookie-Richtlinie | Swiss Ecogestes",
-            "seo_desc": "Informationen zur Verwendung von Cookies auf der Swiss Ecogestes Website.",
-            "label": "Cookie-Verwaltung",
-            "title": "Cookie-Richtlinie",
-            "sections": {
-                "what_is": {
-                    "title": "Was ist ein Cookie?",
-                    "content": [
-                        "Ein Cookie ist eine kleine Textdatei, die beim Besuch einer Website auf Ihrem Gerät (Computer, Tablet, Smartphone) gespeichert wird.",
-                        "Es ermöglicht der Website, Ihre Präferenzen zu speichern und Ihr Surferlebnis zu verbessern."
-                    ]
-                },
-                "types": {
-                    "title": "Verwendete Cookie-Typen",
-                    "content": [
-                        "Notwendige Cookies: für die korrekte Funktion der Website erforderlich (Navigation, Sicherheit). Sie können nicht deaktiviert werden.",
-                        "Präferenz-Cookies: speichern Ihre Sprach- und Anzeigeeinstellungen.",
-                        "Analyse-Cookies: helfen uns, die Nutzung der Website zu verstehen — in anonymisierter Form."
-                    ]
-                },
-                "third_party": {
-                    "title": "Drittanbieter-Cookies",
-                    "content": [
-                        "Unsere Website kann Dienste von Drittanbietern nutzen (Sanity CMS, Analysetools), die eigene Cookies setzen können.",
-                        "Wir haben keine direkte Kontrolle über diese Cookies — bitte lesen Sie die Datenschutzrichtlinien der jeweiligen Dienste."
-                    ]
-                },
-                "preferences": {
-                    "title": "Verwaltung Ihrer Einstellungen",
-                    "content": [
-                        "Sie können Ihre Cookie-Einstellungen jederzeit über Ihre Browser-Einstellungen (Einstellungen > Datenschutz) ändern.",
-                        "Das Ablehnen bestimmter Cookies kann die Funktionalität der Website einschränken.",
-                        "Weitere Informationen finden Sie in der Hilfedokumentation Ihres Browsers (Chrome, Firefox, Safari, Edge)."
-                    ]
-                }
-            }
-        }
+    "upcoming": {
+      "amu": "AMU (Nutzungsassistenz)",
+      "cecb_plus": "GEAK Plus Audit (Offizielle Zertifizierung)"
     }
+  },
+  "why_us": {
+    "seo_title": "Warum Swiss Ecogestes wählen | Expertise & Vertrauen",
+    "seo_desc": "Entdecken Sie unsere Werte: kommerzielle Neutralität, zertifizierte Expertise, vollständiges administratives Management und Datenschutz.",
+    "label": "Unsere Verpflichtungen",
+    "title": "Expertise, Neutralität und Vertrauen.",
+    "intro": "Swiss Ecogestes wurde aus einer einfachen Überzeugung heraus gegründet: Die Energiewende muss transparent, einfach und rentabel für alle sein.",
+    "cta_title": "Bereit, mit einem vertrauenswürdigen Partner zusammenzuarbeiten?",
+    "cta_desc": "Lassen Sie uns über Ihre Bedürfnisse sprechen und sehen, wie wir Ihnen helfen können, Ihre Ziele zu erreichen.",
+    "cta_button": "Kontakt aufnehmen",
+    "items": {
+      "confiance": {
+        "title": "Vertrauenswürdiger Partner",
+        "desc": "Wir arbeiten eng mit der DIREN (Energiedirektion), den SIG und kantonalen Programmen zusammen, um die Konformität jedes Projekts zu gewährleisten."
+      },
+      "legal": {
+        "title": "Einhaltung des Rechtsrahmens",
+        "desc": "Ständige rechtliche Überwachung, um sicherzustellen, dass alle Installationen den neuesten eidgenössischen und kantonalen Normen (MoPEC, IDC usw.) entsprechen."
+      },
+      "data": {
+        "title": "Datenschutz",
+        "desc": "Ihre Energiedaten sind sensibel. Wir behandeln sie streng vertraulich, in der Schweiz gehostet und gesichert."
+      },
+      "neutrality": {
+        "title": "Kommerzielle Neutralität",
+        "desc": "Wir verkaufen keine Ausrüstung. Unsere Empfehlungen basieren ausschließlich auf IHREM Interesse und der technischen Leistung, ohne Interessenkonflikt."
+      },
+      "quality": {
+        "title": "Qualitätsprozess",
+        "desc": "Jedes Audit und jede Baustelle folgt einem strengen Qualitätsprozess, vom ersten Besuch bis zur endgültigen Abnahme der Arbeiten."
+      },
+      "human": {
+        "title": "Menschlicher Ansatz",
+        "desc": "Da die Energiewende vor allem ein menschliches Abenteuer ist, legen wir Wert auf Zuhören, Pädagogik und persönliche Begleitung."
+      }
+    }
+  },
+  "cta_banner": {
+    "title": "Kostenloses* Audit Ihrer Anlage",
+    "subtitle": "Entdecken Sie Ihre tatsächlichen Fördermittel mit einem Experten.",
+    "button": "Termin vereinbaren",
+    "note": "* Unter Bedingungen"
+  },
+  "legal": {
+    "mentions": {
+      "seo_title": "Impressum | Swiss Ecogestes",
+      "seo_desc": "Impressum, Unternehmensinformationen und Nutzungsbedingungen der Swiss Ecogestes Website.",
+      "title": "Impressum",
+      "last_updated": "Zuletzt aktualisiert",
+      "sections": {
+        "editor": {
+          "title": "Herausgeber",
+          "content": [
+            "Swiss Ecogestes SARL",
+            "Adresse: [Vollständige Adresse — noch auszufüllen]",
+            "Telefon: [Nummer — noch auszufüllen]",
+            "E-Mail: info@swissecogestes.ch",
+            "IDE: [IDE-Nummer — noch auszufüllen]",
+            "Rechtsform: Gesellschaft mit beschränkter Haftung (GmbH), im Handelsregister eingetragen"
+          ]
+        },
+        "director": {
+          "title": "Verantwortlicher Herausgeber",
+          "content": [
+            "Mohammad SALMAN, Direktor"
+          ]
+        },
+        "hosting": {
+          "title": "Hosting",
+          "content": [
+            "Diese Website wird gehostet von Infomaniak Network SA",
+            "Rue Eugène-Marziano 25, 1227 Les Acacias (Genf), Schweiz",
+            "Website: infomaniak.com"
+          ]
+        },
+        "intellectual_property": {
+          "title": "Geistiges Eigentum",
+          "content": [
+            "Alle Inhalte dieser Website (Texte, Bilder, Grafiken, Logos, Icons) sind ausschliessliches Eigentum von Swiss Ecogestes SARL oder deren Partnern.",
+            "Jede Vervielfältigung, Verbreitung oder Nutzung ohne vorherige schriftliche Genehmigung ist verboten."
+          ]
+        },
+        "liability": {
+          "title": "Haftungsbeschränkung",
+          "content": [
+            "Swiss Ecogestes SARL bemüht sich um die Richtigkeit und Aktualität der auf dieser Website veröffentlichten Informationen.",
+            "Wir übernehmen keine Haftung für direkte oder indirekte Schäden, die durch den Zugriff auf oder die Nutzung dieser Website entstehen."
+          ]
+        },
+        "credits": {
+          "title": "Credits",
+          "content": [
+            "Diese Website wurde von <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a> entworfen und entwickelt."
+          ]
+        }
+      }
+    },
+    "privacy": {
+      "seo_title": "Datenschutzerklärung | Swiss Ecogestes",
+      "seo_desc": "Unsere Datenschutz- und Vertraulichkeitspolitik.",
+      "title": "Datenschutzerklärung",
+      "sections": {
+        "intro": {
+          "title": "Einleitung",
+          "content": [
+            "Swiss Ecogestes SARL (nachfolgend «wir») legt grossen Wert auf den Schutz Ihrer personenbezogenen Daten.",
+            "Diese Richtlinie beschreibt, wie wir Ihre Daten gemäss dem Schweizer Bundesgesetz über den Datenschutz (DSG) und der Datenschutz-Grundverordnung (DSGVO) erheben, verwenden und schützen."
+          ]
+        },
+        "collection": {
+          "title": "Erhobene Daten",
+          "content": [
+            "Wir erheben ausschliesslich Daten, die Sie uns freiwillig über unsere Kontaktformulare mitteilen: Name, Vorname, E-Mail-Adresse, Telefonnummer (optional) und Nachricht.",
+            "Wir erheben auch anonymisierte Navigationsdaten (besuchte Seiten, Besuchsdauer) mit datenschutzfreundlichen Analysetools."
+          ]
+        },
+        "usage": {
+          "title": "Verwendung der Daten",
+          "content": [
+            "Ihre personenbezogenen Daten werden ausschliesslich zur Beantwortung Ihrer Kontakt- und Informationsanfragen verwendet.",
+            "Wir verkaufen, vermieten oder teilen Ihre Daten nicht mit Dritten zu kommerziellen Zwecken.",
+            "Ihre Daten können mit unseren technischen Dienstleistern (Hosting, E-Mail-Versand) ausschliesslich im Rahmen der Leistungserbringung geteilt werden."
+          ]
+        },
+        "retention": {
+          "title": "Datenspeicherung",
+          "content": [
+            "Ihre Daten werden maximal 3 Jahre ab Ihrem letzten Kontakt mit uns gespeichert.",
+            "Nach Ablauf dieser Frist werden Ihre Daten sicher gelöscht."
+          ]
+        },
+        "rights": {
+          "title": "Ihre Rechte",
+          "content": [
+            "Gemäss DSG und DSGVO haben Sie folgende Rechte: Auskunft, Berichtigung, Löschung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer Daten.",
+            "Um diese Rechte auszuüben, kontaktieren Sie uns unter: info@swissecogestes.ch"
+          ]
+        },
+        "contact": {
+          "title": "Kontakt",
+          "content": [
+            "Bei Fragen zum Schutz Ihrer Daten können Sie uns per E-Mail unter info@swissecogestes.ch kontaktieren."
+          ]
+        }
+      }
+    },
+    "cookies": {
+      "seo_title": "Cookie-Richtlinie | Swiss Ecogestes",
+      "seo_desc": "Informationen zur Verwendung von Cookies auf der Swiss Ecogestes Website.",
+      "label": "Cookie-Verwaltung",
+      "title": "Cookie-Richtlinie",
+      "sections": {
+        "what_is": {
+          "title": "Was ist ein Cookie?",
+          "content": [
+            "Ein Cookie ist eine kleine Textdatei, die beim Besuch einer Website auf Ihrem Gerät (Computer, Tablet, Smartphone) gespeichert wird.",
+            "Es ermöglicht der Website, Ihre Präferenzen zu speichern und Ihr Surferlebnis zu verbessern."
+          ]
+        },
+        "types": {
+          "title": "Verwendete Cookie-Typen",
+          "content": [
+            "Notwendige Cookies: für die korrekte Funktion der Website erforderlich (Navigation, Sicherheit). Sie können nicht deaktiviert werden.",
+            "Präferenz-Cookies: speichern Ihre Sprach- und Anzeigeeinstellungen.",
+            "Analyse-Cookies: helfen uns, die Nutzung der Website zu verstehen — in anonymisierter Form."
+          ]
+        },
+        "third_party": {
+          "title": "Drittanbieter-Cookies",
+          "content": [
+            "Unsere Website kann Dienste von Drittanbietern nutzen (Sanity CMS, Analysetools), die eigene Cookies setzen können.",
+            "Wir haben keine direkte Kontrolle über diese Cookies — bitte lesen Sie die Datenschutzrichtlinien der jeweiligen Dienste."
+          ]
+        },
+        "preferences": {
+          "title": "Verwaltung Ihrer Einstellungen",
+          "content": [
+            "Sie können Ihre Cookie-Einstellungen jederzeit über Ihre Browser-Einstellungen (Einstellungen > Datenschutz) ändern.",
+            "Das Ablehnen bestimmter Cookies kann die Funktionalität der Website einschränken.",
+            "Weitere Informationen finden Sie in der Hilfedokumentation Ihres Browsers (Chrome, Firefox, Safari, Edge)."
+          ]
+        }
+      }
+    }
+  },
+  "search": {
+    "open": "Suche öffnen",
+    "close": "Suche schließen",
+    "placeholder": "Suchen..."
+  },
+  "process": {
+    "title": "Eine einfache und effektive Methode",
+    "cta": "Meine Analyse starten"
+  },
+  "audit_cta": {
+    "headline": "Wie viel können Sie wirklich sparen?",
+    "subtitle": "Ein Experte antwortet — kostenlos*.",
+    "button": "Mein kostenloses* Audit erhalten",
+    "note": "* Unter Bedingungen"
+  }
 }

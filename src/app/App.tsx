@@ -17,6 +17,7 @@ import CommunesPage from './pages/CommunesPage';
 import MentionsLegalesPage from './pages/MentionsLegalesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
+import ResultatsPage from './pages/ResultatsPage';
 import { GoogleAnalytics } from './components';
 
 // Wrapper component to handle language detection and redirection
@@ -74,6 +75,7 @@ export default function App() {
                   <Route path="/services" element={<ServicesPage />} />
                   <Route path="/team" element={<TeamPage />} />
                   <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/resultats" element={<ResultatsPage />} />
                   <Route path="/conseils" element={<ConseilsPage />} />
                   <Route path="/conseils/:slug" element={<ArticleDetailPage />} />
 

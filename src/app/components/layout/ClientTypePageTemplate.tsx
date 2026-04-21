@@ -13,6 +13,7 @@ interface ClientTypeService {
     description: string;
     image: string;
     features?: string[];
+    note?: string;
 }
 
 interface ClientTypePageTemplateProps {

@@ -1,4 +1,4 @@
-import { ShieldCheck, Scale, Database, FileCheck, Award, Users, MapPin } from 'lucide-react';
+import { ShieldCheck, Scale, Database, FileCheck, Award, Users, MapPin, CheckCircle2 } from 'lucide-react';
 import { SEO } from '../components';
 import { Team } from '../components/sections';
 import { Reveal } from '../components/animations';
@@ -109,6 +109,34 @@ const TeamPage = () => {
                                 </div>
                             </Reveal>
                         </div>
+                    </div>
+                </div>
+
+                {/* ── Processus qualité ── */}
+                <div className="relative py-14 bg-[#F4F7F5] border-t border-[#1b5e39]/10">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <Reveal>
+                            <div className="max-w-3xl mx-auto text-center">
+                                <span className="inline-block text-[#1b5e39] font-bold tracking-wider text-xs uppercase mb-4 bg-[#e8f5e9] px-4 py-1.5 rounded-full">
+                                    {t('team_page.quality_label')}
+                                </span>
+                                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight">
+                                    {t('team_page.quality_title')}
+                                </h2>
+                                <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full mb-6"></div>
+                                <p className="text-gray-700 text-lg leading-relaxed mb-8">
+                                    {t('team_page.quality_text')}
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-[#1b5e39]">
+                                    {t('team_page.quality_steps').split(',').map((step) => (
+                                        <div key={step} className="flex items-center gap-2 bg-white border border-[#1b5e39]/20 rounded-full px-4 py-2 shadow-sm">
+                                            <CheckCircle2 size={14} className="shrink-0" />
+                                            {step}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </Reveal>
                     </div>
                 </div>
 

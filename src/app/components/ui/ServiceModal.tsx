@@ -13,6 +13,7 @@ interface ServiceModalProps {
         description: string;
         image: string;
         features?: string[];
+        note?: string;
     };
     t: (key: string) => string;
     i18n: I18nType;
@@ -80,13 +81,19 @@ const ServiceModal = ({ isOpen, onClose, service, t, i18n }: ServiceModalProps) 
                                         </h4>
                                         <ul className="space-y-3">
                                             {service.features.map((feature, index) => (
-                                                <li key={index} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
+                                                <li key={index} className="flex items-start gap-3 text-gray-800 text-base">
                                                     <CheckCircle2 className="w-5 h-5 text-[var(--primary)] shrink-0 mt-0.5" />
                                                     <span>{feature}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
+                                )}
+
+                                {service.note && (
+                                    <p className="mb-4 text-xs text-gray-500 italic">
+                                        {service.note}
+                                    </p>
                                 )}
 
                                 <div className="mt-auto pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
