@@ -1,7 +1,7 @@
 ﻿
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
-import { getArticles, articlesFr, articlesEn, articlesDe } from '../data/articles';
+import { getArticles as getHardcodedArticles, articlesFr, articlesEn, articlesDe } from '../data/articles';
 import { SEO } from '../components';
 import { ArrowLeft, Facebook, Linkedin, ChevronRight, User, Link as LinkIcon, Check, Sparkles } from 'lucide-react';
 import { Reveal } from '../components/animations';
@@ -9,6 +9,122 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
 import DOMPurify from 'dompurify';
+import { PortableText, type PortableTextComponents } from '@portabletext/react';
+import type { PortableTextBlock } from '@portabletext/types';
+import { getArticleBySlug } from '../../sanity/client';
+import { getImageUrl } from '../../sanity/image';
+
+interface ArticleDetail {
+    id: string;
+    title: string;
+    excerpt: string;
+    category: string;
+    date: string;
+    readTime: string;
+    imageUrl: string;
+    slug: string;
+    contentHtml?: string;
+    contentPortableText?: PortableTextBlock[];
+}
+
+const LOCALE_BY_LANG: Record<'fr' | 'en' | 'de', string> = {
+    fr: 'fr-CH',
+    en: 'en-GB',
+    de: 'de-CH',
+};
+
+const formatArticleDate = (publishedAt: string, lang: 'fr' | 'en' | 'de') => {
+    const parsed = new Date(publishedAt);
+    if (Number.isNaN(parsed.getTime())) return '';
+    return parsed.toLocaleDateString(LOCALE_BY_LANG[lang], {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    });
+};
+
+const portableTextComponents: PortableTextComponents = {
+    block: {
+        h3: ({ children }) => (
+            <h3 className="text-gray-900 font-bold tracking-tight text-3xl mt-14 mb-6 leading-tight border-l-4 border-[var(--primary)] pl-4">
+                {children}
+            </h3>
+        ),
+        normal: ({ children }) => (
+            <p className="text-gray-800 leading-[1.9] mb-8 mt-0 text-lg font-normal">{children}</p>
+        ),
+    },
+    marks: {
+        strong: ({ children }) => <strong className="text-gray-900 font-bold">{children}</strong>,
+        link: ({ children, value }) => {
+            const href = value?.href || '#';
+            return (
+                <a
+                    href={href}
+                    target={href.startsWith('/') ? undefined : '_blank'}
+                    rel={href.startsWith('/') ? undefined : 'noreferrer noopener'}
+                    className="text-[var(--primary)] font-bold no-underline hover:text-[#1a4d3e] transition-colors"
+                >
+                    {children}
+                </a>
+            );
+        },
+    },
+    types: {
+        image: ({ value }) => {
+            const source = value as any;
+            const directUrl = source?.asset?.url;
+            const builtUrl = getImageUrl(source, 1400);
+            const imageUrl = directUrl || builtUrl;
+            if (!imageUrl) return null;
+
+            return (
+                <figure className="my-10">
+                    <img
+                        src={imageUrl}
+                        alt={source?.alt || ''}
+                        className="w-full rounded-none"
+                    />
+                </figure>
+            );
+        },
+    },
+    list: {
+        bullet: ({ children }) => <ul className="list-none pl-0 mb-8">{children}</ul>,
+    },
+    listItem: {
+        bullet: ({ children }) => <li className="relative pl-6 mb-3 text-lg text-gray-800 before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-2 before:h-2 before:bg-[var(--primary)] before:rounded-full">{children}</li>,
+    },
+};
+
+const getFallbackArticle = (slug: string | undefined, language: string): { article: ArticleDetail | null; sanitySlug: string | null } => {
+    if (!slug) return { article: null, sanitySlug: null };
+
+    const allArticles = [...articlesFr, ...articlesEn, ...articlesDe];
+    const foundBySlug = allArticles.find((article) => article.slug === slug);
+    const validId = foundBySlug?.id;
+    const currentLangArticles = getHardcodedArticles(language);
+    const currentLangMatch = validId ? currentLangArticles.find((article) => article.id === validId) : undefined;
+    const fallbackRaw = currentLangMatch || currentLangArticles.find((article) => article.slug === slug) || foundBySlug || null;
+
+    if (!fallbackRaw) return { article: null, sanitySlug: slug };
+
+    const frenchSlug = validId ? articlesFr.find((article) => article.id === validId)?.slug : undefined;
+    return {
+        article: {
+            id: fallbackRaw.id,
+            title: fallbackRaw.title,
+            excerpt: fallbackRaw.excerpt,
+            category: fallbackRaw.category,
+            date: fallbackRaw.date,
+            readTime: fallbackRaw.readTime,
+            imageUrl: fallbackRaw.imageUrl,
+            slug: fallbackRaw.slug,
+            contentHtml: fallbackRaw.content,
+        },
+        sanitySlug: frenchSlug || fallbackRaw.slug || slug,
+    };
+};
 
 const ArticleDetailPage = () => {
     const { slug } = useParams();
@@ -18,14 +134,45 @@ const ArticleDetailPage = () => {
     const [copied, setCopied] = useState(false);
     const { t, i18n } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
-    // Logic to find article even if language changes (slugs might differ)
-    const allArticles = [...articlesFr, ...articlesEn, ...articlesDe];
-    const foundBySlug = allArticles.find(a => a.slug === slug);
-    const validId = foundBySlug ? foundBySlug.id : null;
+    const fallbackResult = useMemo(() => getFallbackArticle(slug, i18n.language), [slug, i18n.language]);
+    const fallbackArticle = fallbackResult.article;
+    const sanitySlug = fallbackResult.sanitySlug;
 
-    const currentLangArticles = getArticles(i18n.language);
-    const article = currentLangArticles.find(a => a.id === validId) || currentLangArticles.find(a => a.slug === slug);
+    const [article, setArticle] = useState<ArticleDetail | null>(fallbackArticle);
+
+    useEffect(() => {
+        setArticle(fallbackArticle);
+    }, [fallbackArticle]);
+
+    useEffect(() => {
+        if (!sanitySlug) return;
+
+        let cancelled = false;
+        getArticleBySlug(sanitySlug, lang)
+            .then((result: any) => {
+                if (cancelled || !result || !result._id) return;
+                setArticle({
+                    id: result._id,
+                    title: result.title || fallbackArticle?.title || '',
+                    excerpt: result.excerpt || fallbackArticle?.excerpt || '',
+                    category: result.category || fallbackArticle?.category || '',
+                    date: result.publishedAt
+                        ? formatArticleDate(result.publishedAt, lang)
+                        : (fallbackArticle?.date || ''),
+                    readTime: result.readTime || fallbackArticle?.readTime || '',
+                    imageUrl: result.imageUrl || fallbackArticle?.imageUrl || '',
+                    slug: result.slug || sanitySlug,
+                    contentPortableText: Array.isArray(result.content) ? result.content : [],
+                });
+            })
+            .catch(() => {});
+
+        return () => {
+            cancelled = true;
+        };
+    }, [fallbackArticle, lang, sanitySlug]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -140,8 +287,13 @@ const ArticleDetailPage = () => {
                             [&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:top-[0.6em] [&_ul>li]:before:w-2 [&_ul>li]:before:h-2 [&_ul>li]:before:bg-[var(--primary)] [&_ul>li]:before:rounded-full
                             [&_a]:text-[var(--primary)] [&_a]:font-bold [&_a]:no-underline hover:text-[#1a4d3e] transition-colors
                             "
-                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content || '') }}
-                        />
+                        >
+                            {article.contentPortableText && article.contentPortableText.length > 0 ? (
+                                <PortableText value={article.contentPortableText} components={portableTextComponents} />
+                            ) : (
+                                <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contentHtml || '') }} />
+                            )}
+                        </article>
 
                         {/* SHARE SECTION CENTERED BOTTOM */}
                         <div className="mt-16 pt-12 border-t border-gray-100">

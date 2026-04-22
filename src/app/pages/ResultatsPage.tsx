@@ -1,9 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useInView } from 'motion/react';
 import { SEO } from '../components';
 import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
+import { getSanityResultatsPage } from '../../sanity/client';
+
+interface ImpactStat {
+    value: number;
+    suffix?: string;
+    prefix?: string;
+    label: string;
+}
+
+interface CaseKpi {
+    value: string;
+    unit: string;
+    label: string;
+}
+
+interface CaseItem {
+    sector: string;
+    title: string;
+    metric: number;
+    suffix: string;
+    metricLabel: string;
+    kpis: CaseKpi[];
+    before: string[];
+    after: string[];
+}
+
+interface ResultatsPageContent {
+    seo: {
+        title: string;
+        description: string;
+    };
+    heroTitle: string;
+    heroSubtitle: string;
+    impactStats: ImpactStat[];
+    cases: CaseItem[];
+}
 
 const Num = ({ to, prefix = '', suffix = '' }: { to: number; prefix?: string; suffix?: string; }) => {
     const ref = React.useRef(null);
@@ -98,16 +134,88 @@ const testimonialsFr = [
     { quote: "Une approche 100% neutre, sans forcer la vente de matériel de chauffagistes. Leur seul intérêt était le nôtre.", name: 'Sophie L.', role: 'Gérante de Régie', result: 'Transparence totale' },
 ];
 
+const getFallbackResultatsContent = (t: (key: string) => string): ResultatsPageContent => ({
+    seo: {
+        title: t('resultats_page.seo_title') || 'Résultats & Preuves – Swiss Ecogestes',
+        description: t('resultats_page.seo_desc') || 'Performance, résultats et impact concrets. Découvrez nos preuves par l\'exemple.',
+    },
+    heroTitle: 'Performance, résultats et impact concrets.',
+    heroSubtitle: 'Audits, stratégie énergétique et accompagnement pour régies, entreprises, propriétaires et collectivités. Identifiez rapidement vos économies potentielles, les aides disponibles et les actions prioritaires pour améliorer durablement la performance de vos installations.',
+    impactStats: getImpactStats(),
+    cases: casesFr,
+});
+
 const ResultatsPage = () => {
     useSearchHighlight();
-    const { t } = useTranslation('common');
-    const impacts = getImpactStats();
+    const { t, i18n } = useTranslation('common');
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
+
+    const [content, setContent] = useState<ResultatsPageContent>(getFallbackResultatsContent(t));
+
+    useEffect(() => {
+        setContent(getFallbackResultatsContent(t));
+    }, [lang, t]);
+
+    useEffect(() => {
+        let cancelled = false;
+        getSanityResultatsPage(lang)
+            .then((data: any) => {
+                if (cancelled || !data) return;
+                if (!data.heroTitle && !data.heroSubtitle && (!data.impactStats || data.impactStats.length === 0) && (!data.cases || data.cases.length === 0)) return;
+
+                const mappedImpactStats = Array.isArray(data.impactStats)
+                    ? data.impactStats
+                        .filter((stat: any) => typeof stat?.value === 'number')
+                        .map((stat: any) => ({
+                            value: stat.value,
+                            suffix: stat.suffix || '',
+                            prefix: stat.prefix || '',
+                            label: stat.label || '',
+                        }))
+                    : [];
+
+                const mappedCases = Array.isArray(data.cases)
+                    ? data.cases.map((caseItem: any) => ({
+                        sector: caseItem.sector || '',
+                        title: caseItem.title || '',
+                        metric: typeof caseItem.mainMetric === 'number' ? caseItem.mainMetric : 0,
+                        suffix: caseItem.mainMetricSuffix || '',
+                        metricLabel: caseItem.mainMetricLabel || '',
+                        kpis: Array.isArray(caseItem.kpis)
+                            ? caseItem.kpis.map((kpi: any) => ({
+                                value: `${kpi.value || ''}`,
+                                unit: kpi.unit || '',
+                                label: kpi.label || '',
+                            }))
+                            : [],
+                        before: Array.isArray(caseItem.beforeItems) ? caseItem.beforeItems : [],
+                        after: Array.isArray(caseItem.afterItems) ? caseItem.afterItems : [],
+                    }))
+                    : [];
+
+                setContent((prev) => ({
+                    seo: {
+                        title: data.seo?.title || prev.seo.title,
+                        description: data.seo?.description || prev.seo.description,
+                    },
+                    heroTitle: data.heroTitle || prev.heroTitle,
+                    heroSubtitle: data.heroSubtitle || prev.heroSubtitle,
+                    impactStats: mappedImpactStats.length > 0 ? mappedImpactStats : prev.impactStats,
+                    cases: mappedCases.length > 0 ? mappedCases : prev.cases,
+                }));
+            })
+            .catch(() => {});
+
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
 
     return (
         <div className="bg-white">
             <SEO
-                title={t('resultats_page.seo_title') || "Résultats & Preuves – Swiss Ecogestes"}
-                description={t('resultats_page.seo_desc') || "Performance, résultats et impact concrets. Découvrez nos preuves par l'exemple."}
+                title={content.seo.title}
+                description={content.seo.description}
                 canonical="/resultats"
             />
 
@@ -132,10 +240,10 @@ const ResultatsPage = () => {
                             </span>
                         </div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1b5e39] leading-[1.05] tracking-tight mb-4">
-                            Performance, résultats <br/>et impact concrets.
+                            {content.heroTitle}
                         </h1>
                         <p className="text-gray-600 font-medium text-lg leading-relaxed max-w-3xl">
-                            Audits, stratégie énergétique et accompagnement pour régies, entreprises, propriétaires et collectivités. Identifiez rapidement vos économies potentielles, les aides disponibles et les actions prioritaires pour améliorer durablement la performance de vos installations.
+                            {content.heroSubtitle}
                         </p>
                     </Reveal>
                 </div>
@@ -145,13 +253,15 @@ const ResultatsPage = () => {
             <div className="bg-[#1b5e39] border-y border-[#14472b]">
                 <div className="max-w-7xl mx-auto px-6 py-6 md:py-10">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-x-0 md:divide-x divide-white/20">
-                        {impacts.map((stat, i) => (
-                            <Reveal key={i} delay={0.05 * i} className="md:px-6 flex flex-col items-start md:items-center text-left md:text-center">
-                                <div className="text-3xl lg:text-4xl font-black text-amber-500 mb-1 tracking-tighter">
-                                    <Num to={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
-                                </div>
-                                <div className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white">
-                                    {stat.label}
+                        {content.impactStats.map((stat, i) => (
+                            <Reveal key={i} delay={0.05 * i}>
+                                <div className="md:px-6 flex flex-col items-start md:items-center text-left md:text-center">
+                                    <div className="text-3xl lg:text-4xl font-black text-amber-500 mb-1 tracking-tighter">
+                                        <Num to={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
+                                    </div>
+                                    <div className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white">
+                                        {stat.label}
+                                    </div>
                                 </div>
                             </Reveal>
                         ))}
@@ -174,7 +284,7 @@ const ResultatsPage = () => {
                     </Reveal>
 
                     <div className="flex flex-col gap-8 md:gap-12">
-                        {casesFr.map((c, i) => (
+                        {content.cases.map((c, i) => (
                             <Reveal key={i} delay={0.1}>
                                 <div className="bg-white border border-gray-200 border-t-[8px] border-t-[#1b5e39] shadow-md rounded overflow-hidden">
                                     <div className="flex flex-col lg:flex-row">
@@ -272,18 +382,20 @@ const ResultatsPage = () => {
 
                     <div className="grid md:grid-cols-3 gap-6">
                         {testimonialsFr.map((testi, i) => (
-                            <Reveal key={i} delay={0.1 * i} className="h-full">
-                                <div className="bg-[#1a232c] p-8 h-full flex flex-col border border-gray-800 rounded hover:border-gray-700 transition-colors">
-                                    <div className="mb-6 uppercase tracking-widest text-[10px] font-black text-emerald-400">
-                                        // {testi.result}
-                                    </div>
-                                    <p className="text-gray-300 text-sm font-medium leading-relaxed mb-8 flex-1">
-                                        "{testi.quote}"
-                                    </p>
-                                    <div className="mt-auto border-t border-gray-800 pt-5 flex items-center justify-between">
-                                        <div>
-                                            <div className="font-black text-white text-sm tracking-wide">{testi.name}</div>
-                                            <div className="text-amber-500 text-[10px] font-bold uppercase tracking-widest mt-1">{testi.role}</div>
+                            <Reveal key={i} delay={0.1 * i}>
+                                <div className="h-full">
+                                    <div className="bg-[#1a232c] p-8 h-full flex flex-col border border-gray-800 rounded hover:border-gray-700 transition-colors">
+                                        <div className="mb-6 uppercase tracking-widest text-[10px] font-black text-emerald-400">
+                                            // {testi.result}
+                                        </div>
+                                        <p className="text-gray-300 text-sm font-medium leading-relaxed mb-8 flex-1">
+                                            "{testi.quote}"
+                                        </p>
+                                        <div className="mt-auto border-t border-gray-800 pt-5 flex items-center justify-between">
+                                            <div>
+                                                <div className="font-black text-white text-sm tracking-wide">{testi.name}</div>
+                                                <div className="text-amber-500 text-[10px] font-bold uppercase tracking-widest mt-1">{testi.role}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

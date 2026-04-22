@@ -13,7 +13,9 @@
       "Bash(entreprisePageContent)",
       "Bash(villaPageContent)",
       "Bash(communesPageContent\")",
-      "Bash(npx sanity *)"
+      "Bash(npx sanity *)",
+      "Bash(dir \"C:\\\\Users\\\\avarela\\\\Projets\\\\Swiss-Ecogeste-SARL-Page-web\\\\studio\" /s /b)",
+      "Bash(findstr /v node_modules)"
     ]
   }
 }

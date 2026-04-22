@@ -192,49 +192,104 @@ export async function getSanityServicePage(pageSlug: string, lang: string = 'fr'
 // Articles
 // ─────────────────────────────────────────────
 
-export async function getArticles() {
+export async function getArticles(lang: string = 'fr') {
   return client.fetch(`
-    *[_type == "article"] | order(publishedAt desc) {
+    *[_type == "article"] | order(publishedAt desc) [0...3] {
       _id,
-      title,
-      slug,
-      excerpt,
-      category,
+      "title": title.${lang},
+      "excerpt": excerpt.${lang},
+      "category": category.${lang},
       publishedAt,
       readTime,
-      image {
-        asset->{ _id, url },
-        alt
-      },
-      content,
+      "imageUrl": image.asset->url,
+      "slug": slug.current,
       featured,
-      tags
     }
   `)
 }
 
-export async function getArticleBySlug(slug: string) {
+export async function getArticleBySlug(slug: string, lang: string = 'fr') {
   return client.fetch(
     `
     *[_type == "article" && slug.current == $slug][0] {
       _id,
-      title,
-      slug,
-      excerpt,
-      category,
+      "title": title.${lang},
+      "slug": slug.current,
+      "excerpt": excerpt.${lang},
+      "category": category.${lang},
       publishedAt,
       readTime,
-      image {
-        asset->{ _id, url },
-        alt
-      },
-      content,
+      "imageUrl": image.asset->url,
+      "imageAlt": image.alt,
+      "content": content.${lang},
       featured,
       tags
     }
   `,
     { slug }
   )
+}
+
+// ─────────────────────────────────────────────
+// Pages Resultats & A Propos
+// ─────────────────────────────────────────────
+
+export async function getSanityResultatsPage(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "resultatsPage"][0] {
+      "seo": {
+        "title": seo.title.${lang},
+        "description": seo.description.${lang}
+      },
+      "heroTitle": heroTitle.${lang},
+      "heroSubtitle": heroSubtitle.${lang},
+      "impactStats": impactStats[] {
+        value,
+        suffix,
+        prefix,
+        "label": label.${lang}
+      },
+      "cases": cases[] {
+        "sector": sector.${lang},
+        "title": title.${lang},
+        mainMetric,
+        mainMetricSuffix,
+        "mainMetricLabel": mainMetricLabel.${lang},
+        "kpis": kpis[] {
+          value,
+          unit,
+          "label": label.${lang}
+        },
+        "beforeItems": beforeItems.${lang},
+        "afterItems": afterItems.${lang}
+      }
+    }
+  `)
+}
+
+export async function getSanityAProposPage(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "aProposPage"][0] {
+      "heroLabel": heroLabel.${lang},
+      "heroTitle": heroTitle.${lang},
+      "heroIntro": heroIntro.${lang},
+      "missionTitle": missionTitle.${lang},
+      "missionText": missionText.${lang},
+      "missionText2": missionText2.${lang},
+      "presenceTitle": presenceTitle.${lang},
+      "presenceText": presenceText.${lang},
+      "companyStats": companyStats[] {
+        value,
+        "label": label.${lang}
+      },
+      "qualityTitle": qualityTitle.${lang},
+      "qualityText": qualityText.${lang},
+      "qualitySteps": qualitySteps.${lang},
+      "groupPhotoUrl": groupPhoto.asset->url,
+      "photoTitle": photoTitle.${lang},
+      "photoSubtitle": photoSubtitle.${lang}
+    }
+  `)
 }
 
 // ─────────────────────────────────────────────

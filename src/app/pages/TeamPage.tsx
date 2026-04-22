@@ -1,22 +1,115 @@
+import { useEffect, useState } from 'react';
 import { ShieldCheck, Scale, Database, FileCheck, Award, Users, MapPin, CheckCircle2 } from 'lucide-react';
 import { SEO } from '../components';
 import { Team } from '../components/sections';
 import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
+import { getSanityAProposPage } from '../../sanity/client';
 
 const GROUP_PHOTO_PLACEHOLDER = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';
 
-const TeamPage = () => {
-    useSearchHighlight();
-    const { t } = useTranslation('common');
+interface CompanyStat {
+    value: string;
+    label: string;
+}
 
-    const stats = [
+interface AProposPageContent {
+    heroLabel: string;
+    heroTitle: string;
+    heroIntro: string;
+    missionTitle: string;
+    missionText: string;
+    missionText2: string;
+    presenceTitle: string;
+    presenceText: string;
+    companyStats: CompanyStat[];
+    qualityTitle: string;
+    qualityText: string;
+    qualitySteps: string[];
+    groupPhotoUrl: string;
+    photoTitle: string;
+    photoSubtitle: string;
+}
+
+const getFallbackAProposContent = (t: (key: string) => string): AProposPageContent => ({
+    heroLabel: t('team_page.header_label'),
+    heroTitle: t('team_page.header_title'),
+    heroIntro: t('team_page.intro'),
+    missionTitle: t('team_page.mission_title'),
+    missionText: t('team_page.mission_text'),
+    missionText2: t('team_page.mission_text2'),
+    presenceTitle: t('team_page.presence_title'),
+    presenceText: t('team_page.presence_text'),
+    companyStats: [
         { value: '5', label: t('team_page.stat_experts') },
         { value: '2', label: t('team_page.stat_cantons') },
         { value: '6', label: t('team_page.stat_partners') },
         { value: '100%', label: t('team_page.stat_approach') },
-    ];
+    ],
+    qualityTitle: t('team_page.quality_title'),
+    qualityText: t('team_page.quality_text'),
+    qualitySteps: t('team_page.quality_steps').split(',').map((step) => step.trim()).filter(Boolean),
+    groupPhotoUrl: GROUP_PHOTO_PLACEHOLDER,
+    photoTitle: t('team_page.photo_title'),
+    photoSubtitle: t('team_page.photo_subtitle'),
+});
+
+const TeamPage = () => {
+    useSearchHighlight();
+    const { t, i18n } = useTranslation('common');
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
+
+    const [content, setContent] = useState<AProposPageContent>(getFallbackAProposContent(t));
+
+    useEffect(() => {
+        setContent(getFallbackAProposContent(t));
+    }, [lang, t]);
+
+    useEffect(() => {
+        let cancelled = false;
+        getSanityAProposPage(lang)
+            .then((data: any) => {
+                if (cancelled || !data) return;
+                if (!data.heroTitle && !data.missionTitle && !data.presenceTitle && !data.photoTitle) return;
+
+                const mappedStats: CompanyStat[] = Array.isArray(data.companyStats)
+                    ? data.companyStats
+                        .filter((stat: any) => stat?.value || stat?.label)
+                        .map((stat: any) => ({
+                            value: stat.value || '',
+                            label: stat.label || '',
+                        }))
+                    : [];
+
+                const mappedQualitySteps = Array.isArray(data.qualitySteps)
+                    ? data.qualitySteps.filter((step: any) => typeof step === 'string' && step.trim().length > 0)
+                    : [];
+
+                setContent((prev) => ({
+                    heroLabel: data.heroLabel || prev.heroLabel,
+                    heroTitle: data.heroTitle || prev.heroTitle,
+                    heroIntro: data.heroIntro || prev.heroIntro,
+                    missionTitle: data.missionTitle || prev.missionTitle,
+                    missionText: data.missionText || prev.missionText,
+                    missionText2: data.missionText2 || prev.missionText2,
+                    presenceTitle: data.presenceTitle || prev.presenceTitle,
+                    presenceText: data.presenceText || prev.presenceText,
+                    companyStats: mappedStats.length > 0 ? mappedStats : prev.companyStats,
+                    qualityTitle: data.qualityTitle || prev.qualityTitle,
+                    qualityText: data.qualityText || prev.qualityText,
+                    qualitySteps: mappedQualitySteps.length > 0 ? mappedQualitySteps : prev.qualitySteps,
+                    groupPhotoUrl: data.groupPhotoUrl || prev.groupPhotoUrl,
+                    photoTitle: data.photoTitle || prev.photoTitle,
+                    photoSubtitle: data.photoSubtitle || prev.photoSubtitle,
+                }));
+            })
+            .catch(() => {});
+
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
 
     return (
         <div className="bg-slate-50">
@@ -42,14 +135,14 @@ const TeamPage = () => {
                         <Reveal>
                             <div className="max-w-4xl mx-auto text-center">
                                 <span className="inline-block text-[#1b5e39] font-bold tracking-wider text-xs uppercase mb-4 bg-[#e8f5e9] px-4 py-1.5 rounded-full">
-                                    {t('team_page.header_label')}
+                                    {content.heroLabel}
                                 </span>
                                 <h1 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
-                                    {t('team_page.header_title')}
+                                    {content.heroTitle}
                                 </h1>
                                 <div className="w-20 h-1 bg-amber-400 mx-auto rounded-full mb-6"></div>
                                 <p className="text-gray-800 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto">
-                                    {t('team_page.intro')}
+                                    {content.heroIntro}
                                 </p>
                             </div>
                         </Reveal>
@@ -68,14 +161,14 @@ const TeamPage = () => {
                                         {t('team_page.mission_label')}
                                     </span>
                                     <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                                        {t('team_page.mission_title')}
+                                        {content.missionTitle}
                                     </h2>
                                     <div className="w-12 h-1 bg-amber-400 rounded-full mb-6"></div>
                                     <p className="text-gray-800 text-lg leading-relaxed mb-4">
-                                        {t('team_page.mission_text')}
+                                        {content.missionText}
                                     </p>
                                     <p className="text-gray-700 text-base leading-relaxed">
-                                        {t('team_page.mission_text2')}
+                                        {content.missionText2}
                                     </p>
                                 </div>
                             </Reveal>
@@ -87,19 +180,19 @@ const TeamPage = () => {
                                         {t('team_page.presence_label')}
                                     </span>
                                     <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                                        {t('team_page.presence_title')}
+                                        {content.presenceTitle}
                                     </h2>
                                     <div className="w-12 h-1 bg-amber-400 rounded-full mb-6"></div>
                                     <div className="flex items-start gap-3 mb-6">
                                         <MapPin size={20} className="text-[#1b5e39] mt-1 shrink-0" />
                                         <p className="text-gray-800 text-lg leading-relaxed">
-                                            {t('team_page.presence_text')}
+                                            {content.presenceText}
                                         </p>
                                     </div>
 
                                     {/* Key figures */}
                                     <div className="grid grid-cols-2 gap-4 mt-8">
-                                        {stats.map((stat, i) => (
+                                        {content.companyStats.map((stat, i) => (
                                             <div key={i} className="bg-[#F4F7F5] rounded-xl p-5 border border-[#1b5e39]/10">
                                                 <div className="text-3xl font-black text-[#1b5e39] mb-1">{stat.value}</div>
                                                 <div className="text-sm font-medium text-gray-700 uppercase tracking-wide">{stat.label}</div>
@@ -121,14 +214,14 @@ const TeamPage = () => {
                                     {t('team_page.quality_label')}
                                 </span>
                                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight">
-                                    {t('team_page.quality_title')}
+                                    {content.qualityTitle}
                                 </h2>
                                 <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full mb-6"></div>
                                 <p className="text-gray-700 text-lg leading-relaxed mb-8">
-                                    {t('team_page.quality_text')}
+                                    {content.qualityText}
                                 </p>
                                 <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-[#1b5e39]">
-                                    {t('team_page.quality_steps').split(',').map((step) => (
+                                    {content.qualitySteps.map((step) => (
                                         <div key={step} className="flex items-center gap-2 bg-white border border-[#1b5e39]/20 rounded-full px-4 py-2 shadow-sm">
                                             <CheckCircle2 size={14} className="shrink-0" />
                                             {step}
@@ -143,7 +236,7 @@ const TeamPage = () => {
                 {/* ── Photo de groupe ── */}
                 <div className="relative h-[420px] md:h-[520px] overflow-hidden">
                     <img
-                        src={GROUP_PHOTO_PLACEHOLDER}
+                        src={content.groupPhotoUrl}
                         alt="Équipe Swiss Ecogestes"
                         className="absolute inset-0 w-full h-full object-cover object-center"
                     />
@@ -154,11 +247,11 @@ const TeamPage = () => {
                                 {t('team_page.photo_label')}
                             </span>
                             <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight max-w-2xl">
-                                {t('team_page.photo_title')}
+                                {content.photoTitle}
                             </h2>
                             <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full mb-4"></div>
                             <p className="text-white/80 text-lg max-w-xl mx-auto">
-                                {t('team_page.photo_subtitle')}
+                                {content.photoSubtitle}
                             </p>
                         </Reveal>
                     </div>

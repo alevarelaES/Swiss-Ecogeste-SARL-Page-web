@@ -1,17 +1,12 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { SEO } from '../components';
 import { Hero, About, Partners, ContactSection, StatsSection, ArticlesSection, ClientTypeSection, ProcessSection } from '../components/sections';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
-import { useTranslation } from 'react-i18next';
-import { useLocalizedPath } from '../hooks/useLocalizedPath';
-import { ArrowRight } from 'lucide-react';
 
 const Home = () => {
     useSearchHighlight();
     const { hash } = useLocation();
-    const { t } = useTranslation('common');
-    const { getLocalizedPath } = useLocalizedPath();
 
     React.useEffect(() => {
         if (hash) {

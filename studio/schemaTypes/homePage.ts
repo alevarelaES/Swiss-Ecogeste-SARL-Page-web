@@ -1,164 +1,128 @@
 import { defineField, defineType } from 'sanity'
 
+// Ce document contient uniquement les textes d'introduction des sections de l'accueil.
+// Les slides Hero, les stats, les solutions, les partenaires sont gérés
+// dans leurs propres collections (Hero Slides, Statistiques, etc.).
+
 export const homePage = defineType({
-    name: 'homePage',
-    title: 'Page d\'Accueil',
-    type: 'document',
-    groups: [
-        { name: 'hero', title: 'Carrousel (Hero)' },
-        { name: 'stats', title: 'Statistiques' },
-        { name: 'solutions', title: 'Solutions' },
-        { name: 'blog', title: 'Blog & Actu' },
-        { name: 'partners', title: 'Partenaires' },
-        { name: 'seo', title: 'SEO' }
-    ],
-    fields: [
-        // --- HERO SECTION ---
+  name: 'homePage',
+  title: "Page d'Accueil — Textes des sections",
+  type: 'document',
+  groups: [
+    { name: 'stats', title: 'Section Statistiques' },
+    { name: 'solutions', title: 'Section Solutions' },
+    { name: 'partners', title: 'Section Partenaires' },
+  ],
+  fields: [
+    // --- SECTION STATISTIQUES (en-tête uniquement) ---
+    // Les chiffres eux-mêmes sont dans la collection "Statistiques Chiffres Clés"
+    defineField({
+      name: 'statsSection',
+      title: 'En-tête de la section Statistiques',
+      description: 'Les chiffres sont gérés dans "Statistiques Chiffres Clés"',
+      type: 'object',
+      group: 'stats',
+      fields: [
         defineField({
-            name: 'heroSlides',
-            title: 'Slides du Carrousel',
-            type: 'array',
-            group: 'hero',
-            of: [
-                {
-                    type: 'object',
-                    title: 'Slide',
-                    fields: [
-                        defineField({ name: 'title', title: 'Titre', type: 'localeString' }),
-                        defineField({ name: 'subtitle', title: 'Sous-titre', type: 'localeText' }),
-                        defineField({
-                            name: 'features',
-                            title: 'Points Clés',
-                            type: 'array',
-                            of: [{ type: 'string' }] // Simple strings for features as per data
-                        }),
-                        defineField({ name: 'buttonText', title: 'Texte Bouton', type: 'localeString' }),
-                        defineField({ name: 'buttonLink', title: 'Lien Bouton', type: 'string' }),
-                        defineField({ name: 'image', title: 'Image de fond', type: 'image', options: { hotspot: true } }),
-                    ],
-                    preview: {
-                        select: { title: 'title.fr', media: 'image' }
-                    }
-                }
-            ]
+          name: 'label',
+          title: 'Étiquette (ex: Chiffres Clés)',
+          type: 'object',
+          fields: [
+            { name: 'fr', type: 'string', title: 'Français' },
+            { name: 'en', type: 'string', title: 'English' },
+            { name: 'de', type: 'string', title: 'Deutsch' },
+          ],
         }),
+        defineField({
+          name: 'title',
+          title: 'Titre de la section',
+          type: 'object',
+          fields: [
+            { name: 'fr', type: 'string', title: 'Français' },
+            { name: 'en', type: 'string', title: 'English' },
+            { name: 'de', type: 'string', title: 'Deutsch' },
+          ],
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description (texte à droite du titre)',
+          type: 'object',
+          fields: [
+            { name: 'fr', type: 'text', title: 'Français' },
+            { name: 'en', type: 'text', title: 'English' },
+            { name: 'de', type: 'text', title: 'Deutsch' },
+          ],
+        }),
+      ],
+    }),
 
-        // --- STATS SECTION ---
+    // --- SECTION SOLUTIONS (en-tête uniquement) ---
+    // Les cartes sont gérées dans la collection "Types de Clients / Solutions"
+    defineField({
+      name: 'solutionsSection',
+      title: 'En-tête de la section Solutions',
+      description: 'Les cartes solutions sont gérées dans "Types de Clients / Solutions"',
+      type: 'object',
+      group: 'solutions',
+      fields: [
         defineField({
-            name: 'statsSection',
-            title: 'Section Statistiques',
-            type: 'object',
-            group: 'stats',
-            fields: [
-                defineField({
-                    name: 'label',
-                    title: 'Label (ex: Chiffres Clés)',
-                    type: 'localeString'
-                }),
-                defineField({
-                    name: 'title',
-                    title: 'Titre de la section',
-                    type: 'localeString'
-                }),
-                defineField({
-                    name: 'description',
-                    title: 'Description (droite du titre)',
-                    type: 'localeText'
-                }),
-                defineField({
-                    name: 'items',
-                    title: 'Liste des Statistiques (Max 4)',
-                    type: 'array',
-                    validation: Rule => Rule.max(4),
-                    of: [
-                        {
-                            type: 'object',
-                            fields: [
-                                defineField({ name: 'value', title: 'Valeur (ex: 20)', type: 'string' }),
-                                defineField({ name: 'label', title: 'Libellé', type: 'localeString' }),
-                                defineField({ name: 'prefix', title: 'Préfixe (Optionnel)', type: 'string' }),
-                                defineField({ name: 'suffix', title: 'Suffixe (Optionnel)', type: 'string' }),
-                                defineField({ name: 'icon', title: 'Icône (Lucide Name)', type: 'string' }),
-                            ],
-                            preview: {
-                                select: { title: 'label.fr', subtitle: 'value' },
-                                prepare({ title, subtitle }) {
-                                    return { title: title || 'Stat', subtitle: subtitle }
-                                }
-                            }
-                        }
-                    ]
-                }),
-            ],
+          name: 'label',
+          title: 'Étiquette (ex: Nos Solutions)',
+          type: 'object',
+          fields: [
+            { name: 'fr', type: 'string', title: 'Français' },
+            { name: 'en', type: 'string', title: 'English' },
+            { name: 'de', type: 'string', title: 'Deutsch' },
+          ],
         }),
+        defineField({
+          name: 'title',
+          title: 'Titre',
+          type: 'object',
+          fields: [
+            { name: 'fr', type: 'string', title: 'Français' },
+            { name: 'en', type: 'string', title: 'English' },
+            { name: 'de', type: 'string', title: 'Deutsch' },
+          ],
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'object',
+          fields: [
+            { name: 'fr', type: 'text', title: 'Français' },
+            { name: 'en', type: 'text', title: 'English' },
+            { name: 'de', type: 'text', title: 'Deutsch' },
+          ],
+        }),
+      ],
+    }),
 
-        // --- SOLUTIONS SECTION ---
+    // --- SECTION PARTENAIRES (en-tête uniquement) ---
+    // Les logos sont gérés dans la collection "Partenaires"
+    defineField({
+      name: 'partnersSection',
+      title: 'En-tête de la section Partenaires',
+      description: 'Les logos sont gérés dans la collection "Partenaires"',
+      type: 'object',
+      group: 'partners',
+      fields: [
         defineField({
-            name: 'solutionsSection',
-            title: 'Section Nos Solutions',
-            type: 'object',
-            group: 'solutions',
-            fields: [
-                defineField({ name: 'label', title: 'Étiquette', type: 'localeString' }),
-                defineField({ name: 'title', title: 'Titre', type: 'localeString' }),
-                defineField({ name: 'description', title: 'Description', type: 'localeText' }),
-                // Assuming solutions are linked to Services or Client Types. 
-                // Prompt says "Section Solutions: Ajoute une section pour présenter les solutions".
-                // Use a list of references to `clientType` if that's what represents solutions, or just text.
-                // Prompt says "liste d'items". Previous impl used clientTypes.
-                defineField({
-                    name: 'items',
-                    title: 'Types de Clients / Solutions',
-                    type: 'array',
-                    of: [{ type: 'reference', to: [{ type: 'clientType' }] }]
-                })
-            ],
+          name: 'title',
+          title: 'Titre (ex: Ils nous font confiance)',
+          type: 'object',
+          fields: [
+            { name: 'fr', type: 'string', title: 'Français' },
+            { name: 'en', type: 'string', title: 'English' },
+            { name: 'de', type: 'string', title: 'Deutsch' },
+          ],
         }),
-
-        // --- BLOG SECTION ---
-        defineField({
-            name: 'blogSection',
-            title: 'Section Blog',
-            type: 'object',
-            group: 'blog',
-            fields: [
-                defineField({ name: 'title', title: 'Titre', type: 'localeString' }),
-                defineField({ name: 'viewAllText', title: 'Texte "Voir tout"', type: 'localeString' }),
-                defineField({
-                    name: 'featuredArticles',
-                    title: 'Articles à la une',
-                    type: 'array',
-                    of: [{ type: 'reference', to: [{ type: 'article' }] }]
-                })
-            ],
-        }),
-
-        // --- PARTNERS SECTION ---
-        defineField({
-            name: 'partnersSection',
-            title: 'Partenaires',
-            type: 'object',
-            group: 'partners',
-            fields: [
-                defineField({ name: 'title', title: 'Titre', type: 'localeString' }),
-                defineField({
-                    name: 'list',
-                    title: 'Liste',
-                    type: 'array',
-                    of: [
-                        {
-                            type: 'object',
-                            fields: [
-                                defineField({ name: 'name', title: 'Nom', type: 'string' }),
-                                defineField({ name: 'logo', title: 'Logo', type: 'image' }),
-                            ]
-                        }
-                    ]
-                }),
-            ],
-        }),
-    ],
-    preview: {
-        prepare() { return { title: 'Page d\'Accueil' } }
-    }
+      ],
+    }),
+  ],
+  preview: {
+    prepare() {
+      return { title: "Page d'Accueil — Textes des sections" }
+    },
+  },
 })

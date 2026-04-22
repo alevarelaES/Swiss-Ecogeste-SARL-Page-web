@@ -3,7 +3,7 @@ import { HeartIcon } from '@sanity/icons'
 
 export const whyChooseUs = defineType({
   name: 'whyChooseUs',
-  title: 'Why Choose Us',
+  title: 'Pourquoi Swiss Ecogestes',
   type: 'document',
   icon: HeartIcon,
   fields: [

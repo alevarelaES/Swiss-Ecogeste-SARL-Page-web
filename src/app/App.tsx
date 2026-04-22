@@ -5,7 +5,6 @@ import { Toaster } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import { Layout } from './components/layout';
 import Home from './pages/Home';
-import ServicesPage from './pages/ServicesPage';
 import TeamPage from './pages/TeamPage';
 import ContactPage from './pages/ContactPage';
 import ConseilsPage from './pages/ConseilsPage';
@@ -72,7 +71,7 @@ export default function App() {
               <Layout>
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/services" element={<ServicesPage />} />
+                  <Route path="/services" element={<Navigate to="/services/villa" replace />} />
                   <Route path="/team" element={<TeamPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/resultats" element={<ResultatsPage />} />

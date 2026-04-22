@@ -1,14 +1,90 @@
 ﻿
+import { useEffect, useState } from 'react';
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getArticles } from '../../data/articles';
+import { getArticles as getHardcodedArticles } from '../../data/articles';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
+import { getArticles as getSanityArticles } from '../../../sanity/client';
+
+interface Article {
+    id: string;
+    title: string;
+    excerpt: string;
+    category: string;
+    date: string;
+    readTime: string;
+    imageUrl: string;
+    slug: string;
+}
+
+const LOCALE_BY_LANG: Record<'fr' | 'en' | 'de', string> = {
+    fr: 'fr-CH',
+    en: 'en-GB',
+    de: 'de-CH',
+};
+
+const formatArticleDate = (publishedAt: string, lang: 'fr' | 'en' | 'de') => {
+    const parsed = new Date(publishedAt);
+    if (Number.isNaN(parsed.getTime())) return '';
+    return parsed.toLocaleDateString(LOCALE_BY_LANG[lang], {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    });
+};
+
+const getFallbackArticles = (lang: string): Article[] => getHardcodedArticles(lang).slice(0, 3);
 
 const ArticlesSection = () => {
     const { t, i18n } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
-    const articles = getArticles(i18n.language);
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
+
+    const [articles, setArticles] = useState<Article[]>(getFallbackArticles(lang));
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setArticles(getFallbackArticles(lang));
+        setIsLoading(true);
+    }, [lang]);
+
+    useEffect(() => {
+        let cancelled = false;
+        getSanityArticles(lang)
+            .then((result: any[]) => {
+                if (cancelled || !result || result.length === 0) return;
+                const fallbackArticles = getFallbackArticles(lang);
+                const mapped = result
+                    .map((article: any, index: number) => ({
+                        id: article._id || fallbackArticles[index]?.id || `${index}`,
+                        title: article.title || fallbackArticles[index]?.title || '',
+                        excerpt: article.excerpt || fallbackArticles[index]?.excerpt || '',
+                        category: article.category || fallbackArticles[index]?.category || '',
+                        date: article.publishedAt
+                            ? formatArticleDate(article.publishedAt, lang)
+                            : (fallbackArticles[index]?.date || ''),
+                        readTime: article.readTime || fallbackArticles[index]?.readTime || '',
+                        imageUrl: article.imageUrl || fallbackArticles[index]?.imageUrl || '',
+                        slug: article.slug || fallbackArticles[index]?.slug || '',
+                    }))
+                    .filter((article: Article) => article.slug && article.title);
+
+                if (mapped.length > 0) {
+                    setArticles(mapped);
+                }
+            })
+            .catch(() => {})
+            .finally(() => {
+                if (!cancelled) {
+                    setIsLoading(false);
+                }
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, [lang]);
 
     return (
         <section id="articles" className="py-8 md:py-10 lg:py-12 bg-white">
@@ -31,7 +107,21 @@ const ArticlesSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-                    {articles.map((article) => (
+                    {isLoading ? Array.from({ length: 3 }).map((_, index) => (
+                        <div
+                            key={`article-skeleton-${index}`}
+                            className="bg-white rounded-none overflow-hidden shadow-md border border-gray-100 animate-pulse"
+                        >
+                            <div className="h-56 bg-gray-200" />
+                            <div className="p-8">
+                                <div className="h-3 w-1/3 bg-gray-200 mb-4" />
+                                <div className="h-8 w-full bg-gray-200 mb-3" />
+                                <div className="h-5 w-11/12 bg-gray-100 mb-2" />
+                                <div className="h-5 w-10/12 bg-gray-100 mb-6" />
+                                <div className="h-3 w-1/2 bg-gray-200" />
+                            </div>
+                        </div>
+                    )) : articles.map((article) => (
                         <div key={article.id}>
                             <Link
                                 to={getLocalizedPath(`/conseils/${article.slug}`)}
@@ -50,6 +140,7 @@ const ArticlesSection = () => {
                                 <div className="p-8 flex flex-col flex-grow">
                                     <div className="flex items-center gap-4 text-xs text-gray-800 mb-4 font-bold uppercase tracking-tighter">
                                         <span className="flex items-center gap-1.5"><Calendar size={14} className="text-[var(--primary)] opacity-50" /> {article.date}</span>
+                                        {article.readTime ? <span>{article.readTime}</span> : null}
                                     </div>
                                     <h3 className="text-xl lg:text-2xl font-black text-gray-900 mb-4 line-clamp-2 leading-[1.2] group-hover:text-[var(--primary)] transition-colors">
                                         {article.title}
