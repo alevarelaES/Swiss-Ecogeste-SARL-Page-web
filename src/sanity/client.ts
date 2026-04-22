@@ -5,7 +5,7 @@ const config = {
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
   dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
   apiVersion: import.meta.env.VITE_SANITY_API_VERSION || '2024-01-01',
-  useCdn: true, // Set to false for fresh data
+  useCdn: true,
 }
 
 export const client = createClient(config)
@@ -17,30 +17,10 @@ export const writeClient = createClient({
   useCdn: false,
 })
 
-// Helper pour récupérer les services
-export async function getServices() {
-  return client.fetch(`
-    *[_type == "service"] | order(number asc) {
-      _id,
-      id,
-      number,
-      icon,
-      title,
-      subtitle,
-      description,
-      fullDescription,
-      features,
-      image {
-        asset->{ _id, url },
-        alt
-      },
-      link,
-      delay
-    }
-  `)
-}
+// ─────────────────────────────────────────────
+// Équipe
+// ─────────────────────────────────────────────
 
-// Helper pour récupérer les membres de l'équipe
 export async function getTeamMembers() {
   return client.fetch(`
     *[_type == "teamMember"] | order(order asc) {
@@ -49,8 +29,7 @@ export async function getTeamMembers() {
       role,
       initials,
       photo {
-        asset->{ _id, url },
-        alt
+        asset->{ _id, url }
       },
       color,
       items,
@@ -61,7 +40,158 @@ export async function getTeamMembers() {
   `)
 }
 
-// Helper pour récupérer les articles
+// ─────────────────────────────────────────────
+// Hero Slides
+// ─────────────────────────────────────────────
+
+export async function getHeroSlides(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "heroSlide"] | order(order asc) {
+      _id,
+      isMain,
+      "label": label.${lang},
+      "title": title.${lang},
+      "sub": subtitle.${lang},
+      "description": description.${lang},
+      "featuresLabel": featuresLabel.${lang},
+      "features": features.${lang},
+      "buttonText": buttonText.${lang},
+      buttonLink,
+      "secondButtonText": secondButtonText.${lang},
+      secondButtonLink,
+      "img": image.asset->url,
+      order
+    }
+  `)
+}
+
+// ─────────────────────────────────────────────
+// Statistiques
+// ─────────────────────────────────────────────
+
+export async function getSanityStats(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "stat"] | order(order asc) {
+      _id,
+      value,
+      "text": text.${lang},
+      "prefix": prefix.${lang},
+      "suffix": suffix.${lang},
+      "label": label.${lang},
+      icon,
+      order
+    }
+  `)
+}
+
+export async function getSanityStatsContent(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "homePage"][0] {
+      "label": statsSection.label.${lang},
+      "title": statsSection.title.${lang},
+      "description": statsSection.description.${lang}
+    }
+  `)
+}
+
+// ─────────────────────────────────────────────
+// Types de clients (cartes solutions accueil)
+// ─────────────────────────────────────────────
+
+export async function getSanityClientTypes(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "clientType"] | order(order asc) {
+      _id,
+      slug,
+      "title": title.${lang},
+      "subtitle": subtitle.${lang},
+      "description": description.${lang},
+      link,
+      "imageUrl": image.asset->url,
+      order
+    }
+  `)
+}
+
+// ─────────────────────────────────────────────
+// Section À Propos (accueil)
+// ─────────────────────────────────────────────
+
+export async function getSanityAboutContent(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "aboutPage"][0] {
+      "sectionLabel": sectionLabel.${lang},
+      "title": title.${lang},
+      "paragraph1": paragraph1.${lang},
+      "paragraph2": paragraph2.${lang},
+      "values": values[] {
+        "title": title.${lang},
+        "subtitle": subtitle.${lang}
+      },
+      "ctaText": cta.text.${lang},
+      "ctaLink": cta.link,
+      "quote": quote.${lang},
+      "quoteAuthor": quoteAuthor.${lang},
+      "imageUrl": image.asset->url
+    }
+  `)
+}
+
+// ─────────────────────────────────────────────
+// Pourquoi nous choisir
+// ─────────────────────────────────────────────
+
+export async function getSanityWhyChooseUs(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "whyChooseUs"][0] {
+      "sectionLabel": sectionLabel.${lang},
+      "title": title.${lang},
+      "titleHighlight": titleHighlight.${lang},
+      "description": description.${lang},
+      "reasons": reasons[] {
+        icon,
+        "title": title.${lang},
+        "description": description.${lang}
+      }
+    }
+  `)
+}
+
+// ─────────────────────────────────────────────
+// Pages de service (villa, gérance, entreprise, communes)
+// ─────────────────────────────────────────────
+
+export async function getSanityServicePage(pageSlug: string, lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "servicePage" && pageSlug == $pageSlug][0] {
+      pageSlug,
+      "seo": {
+        "title": seo.title.${lang},
+        "description": seo.description.${lang},
+        "canonical": seo.canonical
+      },
+      "sectionLabel": sectionLabel.${lang},
+      "title": title.${lang},
+      "description": description.${lang},
+      "heroImage": heroImage.asset->url,
+      "buttonText": buttonText.${lang},
+      buttonLink,
+      "backLink": backLink.${lang},
+      "services": services[] {
+        "title": title.${lang},
+        "description": description.${lang},
+        "image": image.asset->url,
+        "features": features.${lang},
+        "note": note.${lang}
+      }
+    }
+  `, { pageSlug })
+}
+
+// ─────────────────────────────────────────────
+// Articles
+// ─────────────────────────────────────────────
+
 export async function getArticles() {
   return client.fetch(`
     *[_type == "article"] | order(publishedAt desc) {
@@ -83,7 +213,6 @@ export async function getArticles() {
   `)
 }
 
-// Helper pour récupérer un article par slug
 export async function getArticleBySlug(slug: string) {
   return client.fetch(
     `
@@ -108,7 +237,10 @@ export async function getArticleBySlug(slug: string) {
   )
 }
 
-// Helper pour récupérer la page contact
+// ─────────────────────────────────────────────
+// Page Contact
+// ─────────────────────────────────────────────
+
 export async function getContactPage() {
   return client.fetch(`
     *[_type == "contactPage"][0] {
@@ -123,7 +255,10 @@ export async function getContactPage() {
   `)
 }
 
-// Helper pour récupérer les partenaires
+// ─────────────────────────────────────────────
+// Partenaires
+// ─────────────────────────────────────────────
+
 export async function getPartners() {
   return client.fetch(`
     *[_type == "partner"] | order(order asc) {
@@ -138,7 +273,10 @@ export async function getPartners() {
   `)
 }
 
-// Helper pour récupérer les étapes du processus
+// ─────────────────────────────────────────────
+// Étapes du processus
+// ─────────────────────────────────────────────
+
 export async function getProcessSteps(lang: string = 'fr') {
   return client.fetch(`
     *[_type == "processStep"] | order(stepNumber asc) {
@@ -150,7 +288,10 @@ export async function getProcessSteps(lang: string = 'fr') {
   `)
 }
 
-// Helper pour récupérer les paramètres du site
+// ─────────────────────────────────────────────
+// Paramètres du site
+// ─────────────────────────────────────────────
+
 export async function getSettings() {
   return client.fetch(`
     *[_type == "settings"][0] {

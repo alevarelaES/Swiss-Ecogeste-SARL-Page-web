@@ -1,14 +1,41 @@
-﻿import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
-import { getClientTypes } from '../../data/clientTypes';
+import { getClientTypes as getHardcodedClientTypes } from '../../data/clientTypes';
+import { getSanityClientTypes } from '../../../sanity/client';
 
 const ClientTypeSection = () => {
     const { t, i18n } = useTranslation('common');
-    const clientTypes = getClientTypes(i18n.language);
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
-    const images = [
+    const [clientTypes, setClientTypes] = useState(getHardcodedClientTypes(lang));
+
+    useEffect(() => {
+        setClientTypes(getHardcodedClientTypes(lang));
+    }, [lang]);
+
+    useEffect(() => {
+        let cancelled = false;
+        getSanityClientTypes(lang)
+            .then((data: any[]) => {
+                if (cancelled || !data || data.length === 0) return;
+                const mapped = data.map((ct: any) => ({
+                    id: ct.slug || ct._id,
+                    title: ct.title || '',
+                    subtitle: ct.subtitle || '',
+                    description: ct.description || '',
+                    link: ct.link || '/',
+                    image: ct.imageUrl || '',
+                }));
+                setClientTypes(mapped);
+            })
+            .catch(() => {});
+        return () => { cancelled = true; };
+    }, [lang]);
+
+    const fallbackImages = [
         'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
         'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
         'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=800',
@@ -43,11 +70,10 @@ const ClientTypeSection = () => {
                                     {/* Image Top */}
                                     <div className="h-56 overflow-hidden relative">
                                         <img
-                                            src={images[index]}
+                                            src={client.image || fallbackImages[index % fallbackImages.length]}
                                             alt={client.title}
                                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
-                                        {/* Overlay number or decoration could go here */}
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                                     </div>
 

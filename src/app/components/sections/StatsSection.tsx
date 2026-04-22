@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useInView } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { getStats, getStatsContent } from '../../data/statsData';
+import { getSanityStats, getSanityStatsContent } from '../../../sanity/client';
+import { resolveIcon } from '../../utils/iconMap';
 
 const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: string, suffix: string }) => {
     const ref = React.useRef(null);
@@ -16,7 +18,6 @@ const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: strin
             const tick = (now: number) => {
                 const elapsed = now - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                // ease-out cubic
                 const eased = 1 - Math.pow(1 - progress, 3);
                 setCount(Math.floor(eased * value));
                 if (progress < 1) requestAnimationFrame(tick);
@@ -33,8 +34,52 @@ const Counter = ({ value, prefix = "", suffix }: { value: number, prefix?: strin
 
 const StatsSection = () => {
     const { i18n } = useTranslation();
-    const stats = getStats(i18n.language);
-    const statsContent = getStatsContent(i18n.language);
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
+
+    const [stats, setStats] = useState(getStats(lang));
+    const [statsContent, setStatsContent] = useState(getStatsContent(lang));
+
+    // Sync hardcoded fallback when language changes
+    useEffect(() => {
+        setStats(getStats(lang));
+        setStatsContent(getStatsContent(lang));
+    }, [lang]);
+
+    // Fetch from Sanity
+    useEffect(() => {
+        let cancelled = false;
+
+        getSanityStats(lang)
+            .then((data: any[]) => {
+                if (cancelled || !data || data.length === 0) return;
+                const mapped = data.map((s: any, idx: number) => ({
+                    id: idx + 1,
+                    value: s.value ?? undefined,
+                    text: s.text || undefined,
+                    prefix: s.prefix || undefined,
+                    suffix: s.suffix || '',
+                    label: s.label || '',
+                    icon: resolveIcon(s.icon),
+                }));
+                setStats(mapped);
+            })
+            .catch(() => {});
+
+        getSanityStatsContent(lang)
+            .then((data: any) => {
+                if (cancelled || !data) return;
+                if (data.label || data.title || data.description) {
+                    setStatsContent({
+                        label: data.label || statsContent.label,
+                        title: data.title || statsContent.title,
+                        description: data.description || statsContent.description,
+                    });
+                }
+            })
+            .catch(() => {});
+
+        return () => { cancelled = true; };
+    }, [lang]);
 
     return (
         <section className="relative py-8 sm:py-10 md:py-12 w-full overflow-hidden bg-[#2a7f55]">
@@ -98,4 +143,3 @@ const StatsSection = () => {
 };
 
 export default StatsSection;
-

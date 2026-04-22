@@ -12,16 +12,32 @@ import {
 } from "../ui/carousel";
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
-import { getHeroSlides } from '../../data/heroSlides';
+import { getHeroSlides as getHardcodedHeroSlides } from '../../data/heroSlides';
+import { getHeroSlides } from '../../../sanity/client';
 
 const Hero = () => {
     const { i18n } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
-    const heroSlides = getHeroSlides(i18n.language);
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
+    const [heroSlides, setHeroSlides] = useState(getHardcodedHeroSlides(lang));
     const [api, setApi] = useState<CarouselApi>();
     const [currentSlide, setCurrentSlide] = useState(0);
 
+    useEffect(() => {
+        setHeroSlides(getHardcodedHeroSlides(lang));
+    }, [lang]);
+
+    useEffect(() => {
+        let cancelled = false;
+        getHeroSlides(lang)
+            .then((data: any[]) => {
+                if (cancelled || !data || data.length === 0) return;
+                setHeroSlides(data);
+            })
+            .catch(() => {});
+        return () => { cancelled = true; };
+    }, [lang]);
 
     useEffect(() => {
         if (!api) return;
@@ -96,7 +112,7 @@ const Hero = () => {
                                         {slide.featuresLabel && (
                                             <span className="w-full text-white/80 text-sm italic mb-1">{slide.featuresLabel}</span>
                                         )}
-                                        {slide.features.map((feature, fIdx) => (
+                                        {Array.isArray(slide.features) && slide.features.map((feature: string, fIdx: number) => (
                                             <div key={fIdx} className="flex items-center gap-1.5 text-white/95 text-base font-medium">
                                                 <CheckCircle2 size={13} className="text-[var(--primary)] shrink-0" />
                                                 {feature}
@@ -136,12 +152,11 @@ const Hero = () => {
             <div className="hidden md:block absolute bottom-0 left-0 right-0 z-30 bg-black/50 backdrop-blur-md border-t border-white/10">
                 <div className="max-w-7xl mx-auto flex">
                     {heroSlides.map((slide, idx) => {
-                        const slideIndex = idx;
-                        const isActive = currentSlide === slideIndex;
+                        const isActive = currentSlide === idx;
                         return (
                             <button
                                 key={idx}
-                                onClick={() => goToSlide(slideIndex)}
+                                onClick={() => goToSlide(idx)}
                                 className={`flex-1 py-4 px-3 text-sm font-semibold transition-all duration-200 border-t-2 text-center ${
                                     isActive
                                         ? 'text-white border-[var(--primary)] bg-white/10'

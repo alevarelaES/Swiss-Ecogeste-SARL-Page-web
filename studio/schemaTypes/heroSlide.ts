@@ -8,8 +8,26 @@ export const heroSlide = defineType({
   icon: ImageIcon,
   fields: [
     defineField({
+      name: 'isMain',
+      title: 'Slide Principal',
+      type: 'boolean',
+      description: 'Activer si c\'est la slide principale (avec description complète et second bouton)',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'label',
+      title: 'Onglet Navigation',
+      type: 'object',
+      description: 'Texte affiché dans l\'onglet de navigation en bas du hero',
+      fields: [
+        { name: 'fr', type: 'string', title: 'Français' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'de', type: 'string', title: 'Deutsch' },
+      ],
+    }),
+    defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Titre',
       type: 'object',
       fields: [
         { name: 'fr', type: 'string', title: 'Français' },
@@ -20,7 +38,7 @@ export const heroSlide = defineType({
     }),
     defineField({
       name: 'subtitle',
-      title: 'Subtitle',
+      title: 'Sous-titre',
       type: 'object',
       fields: [
         { name: 'fr', type: 'text', title: 'Français' },
@@ -30,8 +48,30 @@ export const heroSlide = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'description',
+      title: 'Description (slide principal uniquement)',
+      type: 'object',
+      description: 'Paragraphe supplémentaire visible uniquement sur la slide principale',
+      fields: [
+        { name: 'fr', type: 'text', title: 'Français' },
+        { name: 'en', type: 'text', title: 'English' },
+        { name: 'de', type: 'text', title: 'Deutsch' },
+      ],
+    }),
+    defineField({
+      name: 'featuresLabel',
+      title: 'Label des points clés',
+      type: 'object',
+      description: 'Texte italique au-dessus de la liste de points clés',
+      fields: [
+        { name: 'fr', type: 'string', title: 'Français' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'de', type: 'string', title: 'Deutsch' },
+      ],
+    }),
+    defineField({
       name: 'features',
-      title: 'Features',
+      title: 'Points Clés',
       type: 'object',
       fields: [
         {
@@ -56,7 +96,7 @@ export const heroSlide = defineType({
     }),
     defineField({
       name: 'buttonText',
-      title: 'Button Text',
+      title: 'Texte Bouton Principal',
       type: 'object',
       fields: [
         { name: 'fr', type: 'string', title: 'Français' },
@@ -66,13 +106,29 @@ export const heroSlide = defineType({
     }),
     defineField({
       name: 'buttonLink',
-      title: 'Button Link',
+      title: 'Lien Bouton Principal',
       type: 'string',
-      description: 'Internal path (e.g., /services/villa)',
+      description: 'Chemin interne (ex: /services/villa)',
+    }),
+    defineField({
+      name: 'secondButtonText',
+      title: 'Texte Second Bouton',
+      type: 'object',
+      description: 'Bouton secondaire (slide principale uniquement)',
+      fields: [
+        { name: 'fr', type: 'string', title: 'Français' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'de', type: 'string', title: 'Deutsch' },
+      ],
+    }),
+    defineField({
+      name: 'secondButtonLink',
+      title: 'Lien Second Bouton',
+      type: 'string',
     }),
     defineField({
       name: 'image',
-      title: 'Image',
+      title: 'Image de Fond',
       type: 'image',
       options: {
         hotspot: true,
@@ -81,17 +137,24 @@ export const heroSlide = defineType({
     }),
     defineField({
       name: 'order',
-      title: 'Order',
+      title: 'Ordre d\'affichage',
       type: 'number',
-      description: 'Display order of the slide',
+      description: 'Position dans le carrousel (1 = premier)',
       validation: (rule) => rule.required().min(1),
     }),
   ],
   preview: {
     select: {
       title: 'title.fr',
-      subtitle: 'subtitle.fr',
+      subtitle: 'label.fr',
       media: 'image',
+    },
+    prepare({ title, subtitle, media }) {
+      return {
+        title: title || 'Slide sans titre',
+        subtitle: subtitle ? `Onglet: ${subtitle}` : '',
+        media,
+      }
     },
   },
 })

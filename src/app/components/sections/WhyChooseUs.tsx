@@ -1,10 +1,45 @@
-﻿import Reveal from '../animations/Reveal';
+import { useState, useEffect } from 'react';
+import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
-import { getWhyChooseUsContent } from '../../data/whyChooseUsContent';
+import { getWhyChooseUsContent as getHardcodedWhyChooseUs } from '../../data/whyChooseUsContent';
+import { getSanityWhyChooseUs } from '../../../sanity/client';
+import { resolveIcon } from '../../utils/iconMap';
 
 const WhyChooseUs = () => {
     const { i18n } = useTranslation();
-    const whyChooseUsContent = getWhyChooseUsContent(i18n.language);
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
+
+    const [content, setContent] = useState(getHardcodedWhyChooseUs(lang));
+
+    useEffect(() => {
+        setContent(getHardcodedWhyChooseUs(lang));
+    }, [lang]);
+
+    useEffect(() => {
+        let cancelled = false;
+        getSanityWhyChooseUs(lang)
+            .then((data: any) => {
+                if (cancelled || !data) return;
+                const fallback = getHardcodedWhyChooseUs(lang);
+                const reasons = (data.reasons && data.reasons.length > 0)
+                    ? data.reasons.map((r: any) => ({
+                        icon: resolveIcon(r.icon, fallback.reasons[0]?.icon),
+                        title: r.title || '',
+                        description: r.description || '',
+                    }))
+                    : fallback.reasons;
+
+                setContent({
+                    sectionLabel: data.sectionLabel || fallback.sectionLabel,
+                    title: data.title || fallback.title,
+                    titleHighlight: data.titleHighlight || fallback.titleHighlight,
+                    description: data.description || fallback.description,
+                    reasons,
+                });
+            })
+            .catch(() => {});
+        return () => { cancelled = true; };
+    }, [lang]);
 
     return (
         <section className="py-10 md:py-12 bg-gradient-to-br from-white via-[#f8fdf9] to-[#f0f9f4] relative overflow-hidden">
@@ -20,30 +55,30 @@ const WhyChooseUs = () => {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <Reveal>
-                    {/* Header - Centered & Stacked */}
+                    {/* Header */}
                     <div className="max-w-3xl mx-auto text-center mb-10">
                         <div className="flex items-center justify-center gap-3 mb-4">
                             <span className="h-px w-10 bg-amber-400"></span>
                             <span className="text-amber-400 font-bold tracking-widest uppercase text-sm">
-                                {whyChooseUsContent.sectionLabel}
+                                {content.sectionLabel}
                             </span>
                             <span className="h-px w-10 bg-amber-400"></span>
                         </div>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-8">
-                            {whyChooseUsContent.title} <br />
+                            {content.title} <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">
-                                {whyChooseUsContent.titleHighlight}
+                                {content.titleHighlight}
                             </span>
                         </h2>
                         <p className="text-gray-800 font-medium text-xl leading-relaxed max-w-2xl mx-auto">
-                            {whyChooseUsContent.description}
+                            {content.description}
                         </p>
                     </div>
 
-                    {/* Reasons Grid - Full Width */}
+                    {/* Reasons Grid */}
                     <div className="w-full">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                            {whyChooseUsContent.reasons.map((item, idx) => {
+                            {content.reasons.map((item, idx) => {
                                 const IconComponent = item.icon;
                                 return (
                                     <div key={idx} className="flex flex-col items-center text-center p-8 bg-gray-50 rounded-2xl border border-transparent hover:border-gray-200 hover:bg-white hover:shadow-xl transition-all duration-300 group">

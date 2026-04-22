@@ -14,6 +14,9 @@ import { servicesPage } from './servicesPage'
 import { aboutPage } from './aboutPage'
 import { partner } from './partner'
 import { processStep } from './processStep'
+import { stat } from './stat'
+import { whyChooseUs } from './whyChooseUs'
+import { servicePage } from './servicePage'
 
 export const schemaTypes = [
   // Types globaux
@@ -33,10 +36,11 @@ export const schemaTypes = [
   service,
   teamMember,
   article,
-  clientType, // Used in Home Solutions
-  partner,    // Section partenaires
-  processStep, // Section processus (étapes)
-
-  // Legacy / Support (si encore utilisés, sinon à supprimer)
-  heroSlide, // Maintenant intégré dans homePage mais peut rester si besoin de migration
+  clientType,   // Cartes solutions (accueil)
+  partner,      // Section partenaires
+  processStep,  // Section processus (étapes)
+  stat,         // Statistiques chiffres clés
+  heroSlide,    // Slides du carrousel hero
+  whyChooseUs,  // Section "Pourquoi nous choisir"
+  servicePage,  // Pages de service (villa, gérance, entreprise, communes)
 ]

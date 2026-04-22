@@ -2,11 +2,7 @@ import { defineField, defineType } from 'sanity'
 
 export const aboutPage = defineType({
   name: 'aboutPage',
-  title: 'Page À Propos (Accueil)',
-  // Note: The prompt implies aboutPage is a page. 
-  // In `aboutContent.ts` it seems to be an "About Us" section ON the homepage or a separate page? 
-  // User Prompt: "Réécris aboutPage.ts".
-  // `aboutContent.ts` has `sectionLabel`, `title`, `paragraph1`...
+  title: 'Section À Propos (Accueil)',
   type: 'document',
   groups: [
     { name: 'content', title: 'Contenu' },
@@ -17,21 +13,46 @@ export const aboutPage = defineType({
     defineField({
       name: 'sectionLabel',
       title: 'Label de Section',
-      type: 'localeString',
-      group: 'content'
+      type: 'object',
+      group: 'content',
+      fields: [
+        { name: 'fr', type: 'string', title: 'Français' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'de', type: 'string', title: 'Deutsch' },
+      ]
     }),
     defineField({
       name: 'title',
       title: 'Titre Principal',
-      type: 'localeString',
-      group: 'content'
+      type: 'object',
+      group: 'content',
+      fields: [
+        { name: 'fr', type: 'string', title: 'Français' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'de', type: 'string', title: 'Deutsch' },
+      ]
     }),
     defineField({
-      name: 'paragraphs',
-      title: 'Paragraphes',
-      type: 'array',
+      name: 'paragraph1',
+      title: 'Paragraphe 1 (accroche)',
+      type: 'object',
       group: 'content',
-      of: [{ type: 'localeText' }]
+      fields: [
+        { name: 'fr', type: 'text', title: 'Français' },
+        { name: 'en', type: 'text', title: 'English' },
+        { name: 'de', type: 'text', title: 'Deutsch' },
+      ]
+    }),
+    defineField({
+      name: 'paragraph2',
+      title: 'Paragraphe 2 (développement)',
+      type: 'object',
+      group: 'content',
+      fields: [
+        { name: 'fr', type: 'text', title: 'Français' },
+        { name: 'en', type: 'text', title: 'English' },
+        { name: 'de', type: 'text', title: 'Deutsch' },
+      ]
     }),
     defineField({
       name: 'values',
@@ -42,9 +63,30 @@ export const aboutPage = defineType({
         {
           type: 'object',
           fields: [
-            defineField({ name: 'title', title: 'Titre', type: 'localeString' }),
-            defineField({ name: 'subtitle', title: 'Sous-titre', type: 'localeString' }),
-          ]
+            defineField({
+              name: 'title',
+              title: 'Titre',
+              type: 'object',
+              fields: [
+                { name: 'fr', type: 'string', title: 'Français' },
+                { name: 'en', type: 'string', title: 'English' },
+                { name: 'de', type: 'string', title: 'Deutsch' },
+              ]
+            }),
+            defineField({
+              name: 'subtitle',
+              title: 'Sous-titre',
+              type: 'object',
+              fields: [
+                { name: 'fr', type: 'string', title: 'Français' },
+                { name: 'en', type: 'string', title: 'English' },
+                { name: 'de', type: 'string', title: 'Deutsch' },
+              ]
+            }),
+          ],
+          preview: {
+            select: { title: 'title.fr', subtitle: 'subtitle.fr' }
+          }
         }
       ]
     }),
@@ -54,15 +96,40 @@ export const aboutPage = defineType({
       type: 'object',
       group: 'content',
       fields: [
-        defineField({ name: 'text', title: 'Texte', type: 'localeString' }),
+        defineField({
+          name: 'text',
+          title: 'Texte',
+          type: 'object',
+          fields: [
+            { name: 'fr', type: 'string', title: 'Français' },
+            { name: 'en', type: 'string', title: 'English' },
+            { name: 'de', type: 'string', title: 'Deutsch' },
+          ]
+        }),
         defineField({ name: 'link', title: 'Lien', type: 'string' }),
       ]
     }),
     defineField({
       name: 'quote',
       title: 'Citation',
-      type: 'localeText',
-      group: 'content'
+      type: 'object',
+      group: 'content',
+      fields: [
+        { name: 'fr', type: 'text', title: 'Français' },
+        { name: 'en', type: 'text', title: 'English' },
+        { name: 'de', type: 'text', title: 'Deutsch' },
+      ]
+    }),
+    defineField({
+      name: 'quoteAuthor',
+      title: 'Auteur de la Citation',
+      type: 'object',
+      group: 'content',
+      fields: [
+        { name: 'fr', type: 'string', title: 'Français' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'de', type: 'string', title: 'Deutsch' },
+      ]
     }),
     defineField({
       name: 'image',

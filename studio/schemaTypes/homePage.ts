@@ -51,9 +51,19 @@ export const homePage = defineType({
             group: 'stats',
             fields: [
                 defineField({
+                    name: 'label',
+                    title: 'Label (ex: Chiffres Clés)',
+                    type: 'localeString'
+                }),
+                defineField({
                     name: 'title',
                     title: 'Titre de la section',
                     type: 'localeString'
+                }),
+                defineField({
+                    name: 'description',
+                    title: 'Description (droite du titre)',
+                    type: 'localeText'
                 }),
                 defineField({
                     name: 'items',

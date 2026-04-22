@@ -1,16 +1,49 @@
-﻿import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
 import { BACKGROUND_IMAGES } from '../../config/images';
 import { useTranslation } from 'react-i18next';
-import { getAboutContent } from '../../data/aboutContent';
+import { getAboutContent as getHardcodedAboutContent } from '../../data/aboutContent';
+import { getSanityAboutContent } from '../../../sanity/client';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 
 const About = () => {
     const { i18n } = useTranslation();
     const { getLocalizedPath } = useLocalizedPath();
-    const aboutContent = getAboutContent(i18n.language);
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
+
+    const [aboutContent, setAboutContent] = useState(getHardcodedAboutContent(lang));
+
+    useEffect(() => {
+        setAboutContent(getHardcodedAboutContent(lang));
+    }, [lang]);
+
+    useEffect(() => {
+        let cancelled = false;
+        getSanityAboutContent(lang)
+            .then((data: any) => {
+                if (cancelled || !data) return;
+                const fallback = getHardcodedAboutContent(lang);
+                setAboutContent({
+                    sectionLabel: data.sectionLabel || fallback.sectionLabel,
+                    title: data.title || fallback.title,
+                    paragraph1: data.paragraph1 || fallback.paragraph1,
+                    paragraph2: data.paragraph2 || fallback.paragraph2,
+                    values: (data.values && data.values.length > 0)
+                        ? data.values
+                        : fallback.values,
+                    ctaText: data.ctaText || fallback.ctaText,
+                    ctaLink: data.ctaLink || fallback.ctaLink,
+                    quote: data.quote || fallback.quote,
+                    quoteAuthor: data.quoteAuthor || fallback.quoteAuthor,
+                    image: data.imageUrl || fallback.image,
+                });
+            })
+            .catch(() => {});
+        return () => { cancelled = true; };
+    }, [lang]);
+
     const values = aboutContent.values;
 
     return (
@@ -87,4 +120,3 @@ const About = () => {
 };
 
 export default About;
-
