@@ -1,6 +1,6 @@
 ﻿import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Linkedin, Instagram, Facebook, Twitter, Mail, MapPin, Phone } from 'lucide-react'
+import { Linkedin, Instagram, Facebook, X, Mail, MapPin, Phone } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useLocalizedPath } from '../../hooks/useLocalizedPath'
 import { BRAND_IMAGES } from '../../config/images'
@@ -27,14 +27,14 @@ const Footer = () => {
   const footerSlogan = settings?.footerInfo?.slogan?.[currentLang] || t('footer.slogan')
   const footerCopyright = settings?.footerInfo?.copyright?.[currentLang] || t('footer.rights')
   const footerEmail = settings?.contactInfo?.email || 'info@swissecogestes.ch'
-  const footerPhone = settings?.contactInfo?.phone
-  const footerAddress = settings?.contactInfo?.address || 'Vaud & Geneve'
+  const footerPhone = settings?.contactInfo?.phone || '078 628 77 38'
+  const footerAddress = settings?.contactInfo?.address || 'Route de Chavannes 207, 1007 Lausanne'
   const legacyLinkedin = settings?.socialLinks?.find((x) => x.platform?.toLowerCase().includes('linkedin'))?.url
   const legacyInstagram = settings?.socialLinks?.find((x) => x.platform?.toLowerCase().includes('instagram'))?.url
   const linkedinUrl = settings?.socialMedia?.linkedin || legacyLinkedin || 'https://www.linkedin.com/company/swissecogestes/'
   const instagramUrl = settings?.socialMedia?.instagram || legacyInstagram || 'https://www.instagram.com/swissecogestes/'
-  const facebookUrl = settings?.socialMedia?.facebook
-  const twitterUrl = settings?.socialMedia?.twitter
+  const facebookUrl = settings?.socialMedia?.facebook || 'https://www.facebook.com/swissecogestes'
+  const twitterUrl = settings?.socialMedia?.twitter || 'https://twitter.com/swissecogestes'
 
   return (
     <footer className="bg-gray-50 text-gray-900 pt-10 sm:pt-12 md:pt-16 pb-6 sm:pb-8 font-sans overflow-hidden border-t border-gray-100">
@@ -91,9 +91,8 @@ const Footer = () => {
             <div>
               <h4 className="text-xs font-black uppercase tracking-widest text-gray-900 mb-4">{t('footer.company')}</h4>
               <ul className="space-y-2 text-[13px] font-bold text-gray-800">
-                <li><Link to={getLocalizedPath('/#about')} className="hover:text-[var(--primary)] transition-colors">{t('nav.about')}</Link></li>
-                <li><Link to={getLocalizedPath('/team')} className="hover:text-[var(--primary)] transition-colors">{t('footer.team')}</Link></li>
-                <li><Link to={getLocalizedPath('/conseils')} className="hover:text-[var(--primary)] transition-colors">{t('footer.blog')}</Link></li>
+                <li><Link to={getLocalizedPath('/a-propos')} className="hover:text-[var(--primary)] transition-colors">{t('nav.about')}</Link></li>
+                <li><Link to={getLocalizedPath('/actualites')} className="hover:text-[var(--primary)] transition-colors">{t('footer.blog')}</Link></li>
                 <li><Link to={getLocalizedPath('/contact')} className="hover:text-[var(--primary)] transition-colors">{t('nav.contact')}</Link></li>
               </ul>
             </div>
@@ -122,23 +121,19 @@ const Footer = () => {
             <Link to={getLocalizedPath('/cookies')} className="hover:text-[var(--primary)] transition-colors">{t('footer.cookies')}</Link>
           </div>
 
-          <div className="flex items-center gap-4 order-1 md:order-3">
+          <div className="flex items-center gap-2 order-1 md:order-3">
             <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
-              <Linkedin size={20} fill="currentColor" strokeWidth={0} />
+              <Linkedin size={18} fill="currentColor" strokeWidth={0} />
             </a>
             <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-[#E4405F] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
-              <Instagram size={20} />
+              <Instagram size={18} />
             </a>
-            {facebookUrl && (
-              <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="text-[#1877F2] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
-                <Facebook size={20} fill="currentColor" strokeWidth={0} />
-              </a>
-            )}
-            {twitterUrl && (
-              <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="text-gray-900 transition-all hover:-translate-y-1 hover:scale-110 inline-block">
-                <Twitter size={20} fill="currentColor" strokeWidth={0} />
-              </a>
-            )}
+            <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="text-[#1877F2] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
+              <Facebook size={18} fill="currentColor" strokeWidth={0} />
+            </a>
+            <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="text-gray-900 transition-all hover:-translate-y-1 hover:scale-110 inline-block">
+              <X size={18} strokeWidth={2} />
+            </a>
           </div>
         </div>
       </div>

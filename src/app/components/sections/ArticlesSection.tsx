@@ -101,7 +101,7 @@ const ArticlesSection = () => {
                             {t('blog.title')}
                         </h2>
                     </div>
-                    <Link to={getLocalizedPath('/conseils')} className="hidden md:flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
+                    <Link to={getLocalizedPath('/actualites')} className="hidden md:flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
                         {t('blog.view_all')} <ArrowRight size={20} className="ml-2" />
                     </Link>
                 </div>
@@ -124,7 +124,7 @@ const ArticlesSection = () => {
                     )) : articles.map((article) => (
                         <div key={article.id}>
                             <Link
-                                to={getLocalizedPath(`/conseils/${article.slug}`)}
+                                to={getLocalizedPath(`/actualites/${article.slug}`)}
                                 state={{ from: getLocalizedPath('/#articles') }}
                                 className="bg-white rounded-none overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col h-full border border-gray-100"
                             >
@@ -158,7 +158,7 @@ const ArticlesSection = () => {
                 </div>
 
                 <div className="mt-12 md:hidden text-center">
-                    <Link to={getLocalizedPath('/conseils')} className="inline-flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
+                    <Link to={getLocalizedPath('/actualites')} className="inline-flex items-center text-[var(--primary)] font-medium hover:text-amber-500 transition-colors">
                         {t('blog.view_all')} <ArrowRight size={20} className="ml-2" />
                     </Link>
                 </div>

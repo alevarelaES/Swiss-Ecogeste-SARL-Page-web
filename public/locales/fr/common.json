@@ -20,7 +20,7 @@
     "presence": "Présence sur les cantons de",
     "services": "Nos Services",
     "company": "Entreprise",
-    "team": "Notre équipe",
+    "team": "À propos",
     "blog": "Actualités",
     "mentions": "Mentions Légales",
     "privacy": "Confidentialité",
@@ -165,7 +165,7 @@
     "success": "Message envoyé avec succès ! Nous vous recontacterons bientôt.",
     "error": "Une erreur est survenue. Veuillez réessayer.",
     "quote": "\"L'énergie la moins chère est celle que l'on ne consomme pas. Ensemble, valorisons votre patrimoine.\"",
-    "rdv_cta": "Découvrez vos économies réelles avec un audit gratuit*",
+    "rdv_cta": "Découvrez vos économies réelles avec un audit gratuit",
     "rdv_button": "Prendre RDV"
   },
   "contact_page": {
@@ -275,10 +275,10 @@
     }
   },
   "cta_banner": {
-    "title": "Audit gratuit* de votre installation",
+    "title": "Audit gratuit de votre installation",
     "subtitle": "Découvrez vos subventions réelles avec un expert.",
     "button": "Prendre Rendez-vous",
-    "note": "* Sous conditions"
+    "note": ""
   },
   "legal": {
     "mentions": {
@@ -433,8 +433,8 @@
   },
   "audit_cta": {
     "headline": "Combien pouvez-vous vraiment économiser ?",
-    "subtitle": "Un expert vous répond — gratuitement*.",
-    "button": "Obtenir mon audit gratuit*",
-    "note": "* Sous conditions"
+    "subtitle": "Un expert vous répond — gratuitement.",
+    "button": "Obtenir mon audit gratuit",
+    "note": ""
   }
 }

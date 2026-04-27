@@ -203,7 +203,7 @@ const ArticleDetailPage = () => {
 
     return (
         <div className="min-h-screen bg-white font-sans">
-            <SEO title={article.title} description={article.excerpt} canonical={`/conseils/${article.slug}`} ogImage={article.imageUrl} />
+            <SEO title={article.title} description={article.excerpt} canonical={`/actualites/${article.slug}`} ogImage={article.imageUrl} />
 
             {/* HEADER AVEC TOUCHE DE COULEUR SUBTILE */}
             <header className="pt-32 pb-12 lg:pb-16 bg-gray-100 border-b border-gray-200 shadow-sm">
@@ -230,7 +230,7 @@ const ArticleDetailPage = () => {
                         <nav className="flex items-center gap-2 text-xs text-gray-800 font-bold uppercase tracking-wider">
                             <Link to={getLocalizedPath('/')} className="hover:text-gray-900 transition-colors">{t('nav.home')}</Link>
                             <ChevronRight size={10} strokeWidth={4} />
-                            <Link to={getLocalizedPath('/conseils')} className="hover:text-gray-900 transition-colors">{t('blog.journal')}</Link>
+                            <Link to={getLocalizedPath('/actualites')} className="hover:text-gray-900 transition-colors">{t('blog.journal')}</Link>
                             <ChevronRight size={10} strokeWidth={4} />
                             <span className="text-[var(--primary)] font-black">{article.category}</span>
                         </nav>

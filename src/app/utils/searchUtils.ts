@@ -51,7 +51,7 @@ export function searchAllContent(query: string, language: string = 'fr'): Search
                 description: article.excerpt,
                 type: 'article',
                 category: article.category,
-                url: language === 'fr' ? `/conseils/${article.slug}` : `/${language}/conseils/${article.slug}`,
+                url: language === 'fr' ? `/actualites/${article.slug}` : `/${language}/actualites/${article.slug}`,
                 imageUrl: article.imageUrl
             });
         }

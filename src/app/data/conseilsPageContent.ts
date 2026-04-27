@@ -15,7 +15,7 @@ const conseilsPageContentFr: ConseilsPageContent = {
     seo: {
         title: 'Actualités & Ressources | Swiss Ecogestes',
         description: 'Retrouvez nos derniers articles, guides et actualités sur la transition énergétique, le solaire et les économies d\'énergie en Suisse.',
-        canonical: '/conseils'
+        canonical: '/actualites'
     },
     sectionLabel: 'Le Journal de l\'Énergie',
     title: 'Actualités &',
@@ -28,7 +28,7 @@ const conseilsPageContentEn: ConseilsPageContent = {
     seo: {
         title: 'News & Resources | Swiss Ecogestes',
         description: 'Find our latest articles, guides, and news on energy transition, solar, and energy savings in Switzerland.',
-        canonical: '/conseils'
+        canonical: '/actualites'
     },
     sectionLabel: 'The Energy Journal',
     title: 'News &',
@@ -41,7 +41,7 @@ const conseilsPageContentDe: ConseilsPageContent = {
     seo: {
         title: 'Aktuelles & Ressourcen | Swiss Ecogestes',
         description: 'Finden Sie unsere neuesten Artikel, Ratgeber und Nachrichten zur Energiewende, Solar und Energieeinsparung in der Schweiz.',
-        canonical: '/conseils'
+        canonical: '/actualites'
     },
     sectionLabel: 'Energie-Journal',
     title: 'Aktuelles &',

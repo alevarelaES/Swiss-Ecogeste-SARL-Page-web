@@ -3,7 +3,7 @@ import { createClient } from '@sanity/client'
 // Configuration du client Sanity
 const config = {
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
-  dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
+  dataset: import.meta.env.VITE_SANITY_DATASET || 'dev',
   apiVersion: import.meta.env.VITE_SANITY_API_VERSION || '2024-01-01',
   useCdn: false,
 }
@@ -347,17 +347,35 @@ export async function getProcessSteps(lang: string = 'fr') {
 // Paramètres du site
 // ─────────────────────────────────────────────
 
+// ─────────────────────────────────────────────
+// Pages légales
+// ─────────────────────────────────────────────
+
+export async function getLegalPage(pageType: string, lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "legalPage" && pageType == $pageType][0] {
+      pageType,
+      "seoTitle": seo.title.${lang},
+      "seoDescription": seo.description.${lang},
+      "title": title.${lang},
+      lastUpdated,
+      "sections": sections[] {
+        "title": title.${lang},
+        "content": content.${lang}
+      }
+    }
+  `, { pageType })
+}
+
 export async function getSettings() {
   return client.fetch(`
     *[_type == "settings"][0] {
       _id,
-      siteName,
-      siteDescription,
-      phone,
-      email,
-      address,
+      "siteName": siteTitle.fr,
+      "siteDescription": siteDescription.fr,
       socialMedia,
-      businessHours,
+      footerInfo,
+      contactInfo,
       logo {
         asset->{ _id, url },
         alt

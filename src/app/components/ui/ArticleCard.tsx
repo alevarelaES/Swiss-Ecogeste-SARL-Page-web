@@ -14,7 +14,7 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
 
     return (
         <Link
-            to={getLocalizedPath(`/conseils/${article.slug}`)}
+            to={getLocalizedPath(`/actualites/${article.slug}`)}
             className="group flex flex-col h-full bg-white border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden rounded-none hover:-translate-y-1"
         >
             {/* Image Section */}

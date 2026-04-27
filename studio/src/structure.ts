@@ -34,21 +34,12 @@ export const structure = (S: StructureBuilder) =>
                 .id('all-stats'),
               S.divider(),
               S.listItem()
-                .title('Section À Propos (bloc accueil)')
+                .title('Pourquoi Swiss Ecogestes')
                 .id('about-section')
                 .child(
                   S.document()
                     .schemaType('aboutPage')
                     .documentId('aboutPage')
-                    .title('Section À Propos')
-                ),
-              S.listItem()
-                .title('Pourquoi Swiss Ecogestes')
-                .id('why-swiss-ecogestes')
-                .child(
-                  S.document()
-                    .schemaType('whyChooseUs')
-                    .documentId('whyChooseUs')
                     .title('Pourquoi Swiss Ecogestes')
                 ),
               S.divider(),
@@ -269,6 +260,45 @@ export const structure = (S: StructureBuilder) =>
             .schemaType('contactPage')
             .documentId('contactPage')
             .title('Page Contact')
+        ),
+
+      S.divider(),
+
+      // ═══════════════════════════════════════════════
+      // PAGES LÉGALES
+      // ═══════════════════════════════════════════════
+      S.listItem()
+        .title('Pages Légales')
+        .id('legal-root')
+        .child(
+          S.list()
+            .title('Pages Légales')
+            .items([
+              S.listItem()
+                .title('Mentions Légales')
+                .id('legal-mentions')
+                .child(
+                  S.documentList()
+                    .title('Mentions Légales')
+                    .filter('_type == "legalPage" && pageType == "mentions-legales"')
+                ),
+              S.listItem()
+                .title('Confidentialité')
+                .id('legal-privacy')
+                .child(
+                  S.documentList()
+                    .title('Confidentialité')
+                    .filter('_type == "legalPage" && pageType == "confidentialite"')
+                ),
+              S.listItem()
+                .title('Politique des Cookies')
+                .id('legal-cookies')
+                .child(
+                  S.documentList()
+                    .title('Politique des Cookies')
+                    .filter('_type == "legalPage" && pageType == "cookies"')
+                ),
+            ])
         ),
 
       S.divider(),

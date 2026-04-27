@@ -1,12 +1,12 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Mail, MapPin, Linkedin, Instagram, ArrowRight, Phone } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Instagram, Facebook, X, ArrowRight, Phone } from 'lucide-react';
 import { Button } from "../ui/button";
 import { cn } from '../ui/utils';
 import Reveal from '../animations/Reveal';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import DOMPurify from 'dompurify';
-import { getContactPage } from '../../../sanity/client';
+import { getContactPage, getSettings } from '../../../sanity/client';
 
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1974&auto=format&fit=crop";
 
@@ -14,11 +14,29 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
     const { t } = useTranslation('common');
     const [currentType, setCurrentType] = useState('Villa');
     const [contactImage, setContactImage] = useState(FALLBACK_IMAGE);
+    const [email, setEmail] = useState('info@swissecogestes.ch');
+    const [phone, setPhone] = useState('078 628 77 38');
+    const [address, setAddress] = useState('Route de Chavannes 207, 1007 Lausanne');
+    const [linkedinUrl, setLinkedinUrl] = useState('https://www.linkedin.com/company/swissecogestes/');
+    const [instagramUrl, setInstagramUrl] = useState('https://www.instagram.com/swissecogestes/');
+    const [facebookUrl, setFacebookUrl] = useState('https://www.facebook.com/swissecogestes');
+    const [twitterUrl, setTwitterUrl] = useState('https://twitter.com/swissecogestes');
 
     useEffect(() => {
         getContactPage().then((data) => {
             const url = data?.formSection?.image?.asset?.url;
             if (url) setContactImage(url);
+        }).catch(() => {});
+
+        getSettings().then((data) => {
+            if (!data) return;
+            if (data.contactInfo?.email) setEmail(data.contactInfo.email);
+            if (data.contactInfo?.phone) setPhone(data.contactInfo.phone);
+            if (data.contactInfo?.address) setAddress(data.contactInfo.address);
+            if (data.socialMedia?.linkedin) setLinkedinUrl(data.socialMedia.linkedin);
+            if (data.socialMedia?.instagram) setInstagramUrl(data.socialMedia.instagram);
+            if (data.socialMedia?.facebook) setFacebookUrl(data.socialMedia.facebook);
+            if (data.socialMedia?.twitter) setTwitterUrl(data.socialMedia.twitter);
         }).catch(() => {});
     }, []);
     const [formData, setFormData] = useState({
@@ -310,12 +328,23 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
 
                     {/* INFO ROW - Updated: No Container, Simple & Clean */}
                     <div className="flex flex-col md:flex-row justify-center items-center gap-12 text-gray-800">
-                        <a href="mailto:info@swissecogestes.ch" className="flex items-center gap-4 group transition-colors">
+                        <a href={`mailto:${email}`} className="flex items-center gap-4 group transition-colors">
                             <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39] group-hover:bg-[#e8f5e9] transition-colors">
                                 <Mail size={18} />
                             </div>
                             <span className="text-lg font-medium border-b-2 border-transparent group-hover:border-[#1b5e39] group-hover:text-[#1b5e39] transition-all pb-0.5">
-                                info@swissecogestes.ch
+                                {email}
+                            </span>
+                        </a>
+
+                        <span className="hidden md:block w-px h-8 bg-gray-300"></span>
+
+                        <a href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-4 group transition-colors">
+                            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39] group-hover:bg-[#e8f5e9] transition-colors">
+                                <Phone size={18} />
+                            </div>
+                            <span className="text-lg font-medium border-b-2 border-transparent group-hover:border-[#1b5e39] group-hover:text-[#1b5e39] transition-all pb-0.5">
+                                {phone}
                             </span>
                         </a>
 
@@ -325,17 +354,23 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                             <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39]">
                                 <MapPin size={18} />
                             </div>
-                            <span className="text-lg font-medium">Vaud & Genève</span>
+                            <span className="text-lg font-medium">{address}</span>
                         </div>
 
                         <span className="hidden md:block w-px h-8 bg-gray-300"></span>
 
                         <div className="flex gap-4">
-                            <a href="https://www.linkedin.com/company/swissecogestes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
                                 <Linkedin size={18} />
                             </a>
-                            <a href="https://www.instagram.com/swissecogestes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#E4405F]/10 flex items-center justify-center text-[#E4405F] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#E4405F]/10 flex items-center justify-center text-[#E4405F] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
                                 <Instagram size={18} />
+                            </a>
+                            <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1877F2]/10 flex items-center justify-center text-[#1877F2] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                                <Facebook size={18} />
+                            </a>
+                            <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-900/10 flex items-center justify-center text-gray-900 hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                                <X size={18} />
                             </a>
                         </div>
                     </div>

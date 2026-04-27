@@ -148,11 +148,11 @@ const Navbar = () => {
                         {t('nav.resultats')}
                     </NavLink>
 
-                    <NavLink to={getLocalizedPath('/conseils')}>
+                    <NavLink to={getLocalizedPath('/actualites')}>
                         {t('nav.journal')}
                     </NavLink>
 
-                    <NavLink to={getLocalizedPath('/team')}>
+                    <NavLink to={getLocalizedPath('/a-propos')}>
                         {t('nav.about')}
                     </NavLink>
 
@@ -273,8 +273,8 @@ const Navbar = () => {
 
                                 {[
                                     { to: '/resultats', label: t('nav.resultats') },
-                                    { to: '/conseils', label: t('nav.journal') },
-                                    { to: '/team', label: t('nav.about') }
+                                    { to: '/actualites', label: t('nav.journal') },
+                                    { to: '/a-propos', label: t('nav.about') }
                                 ].map((item, idx) => (
                                     <motion.div
                                         key={item.to}

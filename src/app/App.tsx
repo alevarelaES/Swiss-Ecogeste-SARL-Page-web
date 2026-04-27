@@ -72,11 +72,11 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/services" element={<Navigate to="/services/villa" replace />} />
-                  <Route path="/team" element={<TeamPage />} />
+                  <Route path="/a-propos" element={<TeamPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/resultats" element={<ResultatsPage />} />
-                  <Route path="/conseils" element={<ConseilsPage />} />
-                  <Route path="/conseils/:slug" element={<ArticleDetailPage />} />
+                  <Route path="/actualites" element={<ConseilsPage />} />
+                  <Route path="/actualites/:slug" element={<ArticleDetailPage />} />
 
                   {/* Service Specific Routes */}
                   <Route path="/services/villa" element={<VillaPage />} />

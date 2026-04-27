@@ -19,7 +19,7 @@
     "presence": "Präsenz in den Kantonen",
     "services": "Unsere Dienstleistungen",
     "company": "Unternehmen",
-    "team": "Unser Team",
+    "team": "Über uns",
     "blog": "Aktuelles",
     "mentions": "Impressum",
     "privacy": "Datenschutz",
@@ -149,7 +149,7 @@
     "success": "Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.",
     "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "quote": "\"Die billigste Energie ist die, die wir nicht verbrauchen. Lassen Sie uns gemeinsam Ihr Vermögen aufwerten.\"",
-    "rdv_cta": "Entdecken Sie Ihre realen Einsparungen mit einem kostenlosen* Audit",
+    "rdv_cta": "Entdecken Sie Ihre realen Einsparungen mit einem kostenlosen Audit",
     "rdv_button": "Termin vereinbaren"
   },
   "contact_page": {
@@ -259,10 +259,10 @@
     }
   },
   "cta_banner": {
-    "title": "Kostenloses* Audit Ihrer Anlage",
+    "title": "Kostenloses Audit Ihrer Anlage",
     "subtitle": "Entdecken Sie Ihre tatsächlichen Fördermittel mit einem Experten.",
     "button": "Termin vereinbaren",
-    "note": "* Unter Bedingungen"
+    "note": ""
   },
   "legal": {
     "mentions": {
@@ -417,8 +417,8 @@
   },
   "audit_cta": {
     "headline": "Wie viel können Sie wirklich sparen?",
-    "subtitle": "Ein Experte antwortet — kostenlos*.",
-    "button": "Mein kostenloses* Audit erhalten",
-    "note": "* Unter Bedingungen"
+    "subtitle": "Ein Experte antwortet — kostenlos.",
+    "button": "Mein kostenloses Audit erhalten",
+    "note": ""
   }
 }

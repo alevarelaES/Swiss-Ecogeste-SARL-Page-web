@@ -15,7 +15,7 @@ const GalleryCard = ({ article }: GalleryCardProps) => {
 
     return (
         <Link
-            to={getLocalizedPath(`/conseils/${article.slug}`)}
+            to={getLocalizedPath(`/actualites/${article.slug}`)}
             className="flex flex-col h-full bg-white group shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden rounded-none hover:-translate-y-1"
         >
             {/* Image Section */}

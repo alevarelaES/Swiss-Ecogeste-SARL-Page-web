@@ -20,7 +20,7 @@
     "presence": "Presence in the cantons of",
     "services": "Our Services",
     "company": "Company",
-    "team": "Our Team",
+    "team": "About",
     "blog": "News",
     "mentions": "Legal Mentions",
     "privacy": "Privacy Policy",
@@ -161,7 +161,7 @@
     "success": "Message sent successfully! We will contact you soon.",
     "error": "An error occurred. Please try again.",
     "quote": "\"The cheapest energy is the one we don't consume. Together, let's enhance your assets.\"",
-    "rdv_cta": "Discover your real savings with a free audit*",
+    "rdv_cta": "Discover your real savings with a free audit",
     "rdv_button": "Book an appointment"
   },
   "contact_page": {
@@ -271,10 +271,10 @@
     }
   },
   "cta_banner": {
-    "title": "Free* Installation Audit",
+    "title": "Free Installation Audit",
     "subtitle": "Discover your real subsidies with an expert.",
     "button": "Book an Appointment",
-    "note": "* Subject to conditions"
+    "note": ""
   },
   "legal": {
     "mentions": {
@@ -429,8 +429,8 @@
   },
   "audit_cta": {
     "headline": "How much could you really save?",
-    "subtitle": "An expert answers — for free*.",
-    "button": "Get my free* audit",
-    "note": "* Subject to conditions"
+    "subtitle": "An expert answers — for free.",
+    "button": "Get my free audit",
+    "note": ""
   }
 }

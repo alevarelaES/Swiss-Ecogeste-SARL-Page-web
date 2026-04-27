@@ -5,41 +5,8 @@ import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
 import { getSanityResultatsPage } from '../../sanity/client';
-
-interface ImpactStat {
-    value: number;
-    suffix?: string;
-    prefix?: string;
-    label: string;
-}
-
-interface CaseKpi {
-    value: string;
-    unit: string;
-    label: string;
-}
-
-interface CaseItem {
-    sector: string;
-    title: string;
-    metric: number;
-    suffix: string;
-    metricLabel: string;
-    kpis: CaseKpi[];
-    before: string[];
-    after: string[];
-}
-
-interface ResultatsPageContent {
-    seo: {
-        title: string;
-        description: string;
-    };
-    heroTitle: string;
-    heroSubtitle: string;
-    impactStats: ImpactStat[];
-    cases: CaseItem[];
-}
+import { getResultatsPageContent } from '../data/resultatsPageContent';
+import type { ResultatsPageContent } from '../data/resultatsPageContent';
 
 const Num = ({ to, prefix = '', suffix = '' }: { to: number; prefix?: string; suffix?: string; }) => {
     const ref = React.useRef(null);
@@ -59,102 +26,21 @@ const Num = ({ to, prefix = '', suffix = '' }: { to: number; prefix?: string; su
     return <span ref={ref}>{prefix}{v}{suffix}</span>;
 };
 
-const getImpactStats = () => {
-    return [
-        { value: 150, suffix: '+', label: 'Audits réalisés' },
-        { value: 300, suffix: '+', label: 'Bâtiments accompagnés' },
-        { value: 25, suffix: '%', prefix: '~ ', label: 'Économies identifiées' },
-        { value: 15, suffix: '+', label: 'Partenaires reconnus' },
-    ];
+
+const getFallbackResultatsContent = (lang: string): ResultatsPageContent => {
+    return getResultatsPageContent(lang);
 };
-
-const casesFr = [
-    {
-        sector: 'Régie & Immeuble',
-        title: 'Immeuble locatif, 24 logements — Genève',
-        metric: 18, suffix: '%', metricLabel: "Économie générée",
-        kpis: [
-            { value: '650', unit: 'MJ/m²a', label: 'Conso. Initiale (IDC)' },
-            { value: '12', unit: 'mois', label: 'Retour sur investissement' }
-        ],
-        before: [
-            "Chaufferie vétuste",
-            "Pompes mal réglées",
-            "Plaintes récurrentes de locataires pour inconfort estival et surchauffe"
-        ],
-        after: [
-            "Audit IDC",
-            "Mise en place de la GED",
-            "Équilibrage hydraulique et optimisation ciblée"
-        ]
-    },
-    {
-        sector: 'Villa individuelle',
-        title: 'Maison familiale — La Côte (VD)',
-        metric: 65, suffix: '%', metricLabel: "Frais d'étude couverts",
-        kpis: [
-            { value: '100', unit: '%', label: 'Plafond de Subvention' },
-            { value: '30', unit: 'jours', label: "Délai d'approbation" }
-        ],
-        before: [
-            "Chauffage au mazout très coûteux",
-            "Fortes déperditions en toiture",
-            "Sensation d'inconfort face aux courants d'air"
-        ],
-        after: [
-            "Édition intégrale CECB+",
-            "Conception de scénarios chiffrés",
-            "Montage complet du dossier d'aides"
-        ]
-    },
-    {
-        sector: 'Entreprise & PME',
-        title: 'Site de production industriel — Lausanne',
-        metric: 22, suffix: '%', metricLabel: "Économies annuelles",
-        kpis: [
-            { value: '200', unit: 'k kWh/an', label: 'Consommation de base' },
-            { value: '70', unit: '%', label: 'Taux subventionnable' }
-        ],
-        before: [
-            "Pertes massives sur les réseaux d'air comprimé",
-            "Groupes de froid mal régulés",
-            "Risques de non-conformité cantonale"
-        ],
-        after: [
-            "Audit PEIK complet",
-            "Intégration d'une récupération de chaleur",
-            "Plan d'action subventionné"
-        ]
-    }
-];
-
-const testimonialsFr = [
-    { quote: "Notre seul intérêt : que vous économisiez. Pas de matériel à vendre, pas de marges cachées. Juste votre intérêt, en priorité.", name: 'Swiss Ecogestes', role: 'Notre Engagement', result: 'Indépendance' },
-    { quote: "Grâce à Swiss Ecogeste, le processus d'audit a valorisé notre patrimoine en un temps record.", name: 'Marc D.', role: 'Propriétaire de bâtiment', result: 'Amélioration thermique' },
-    { quote: "Une approche 100% neutre, sans forcer la vente de matériel de chauffagistes. Leur seul intérêt était le nôtre.", name: 'Sophie L.', role: 'Gérante de Régie', result: 'Transparence totale' },
-];
-
-const getFallbackResultatsContent = (t: (key: string) => string): ResultatsPageContent => ({
-    seo: {
-        title: t('resultats_page.seo_title') || 'Résultats & Preuves – Swiss Ecogestes',
-        description: t('resultats_page.seo_desc') || 'Performance, résultats et impact concrets. Découvrez nos preuves par l\'exemple.',
-    },
-    heroTitle: 'Performance, résultats et impact concrets.',
-    heroSubtitle: 'Audits, stratégie énergétique et accompagnement pour régies, entreprises, propriétaires et collectivités. Identifiez rapidement vos économies potentielles, les aides disponibles et les actions prioritaires pour améliorer durablement la performance de vos installations.',
-    impactStats: getImpactStats(),
-    cases: casesFr,
-});
 
 const ResultatsPage = () => {
     useSearchHighlight();
-    const { t, i18n } = useTranslation('common');
+    const { i18n } = useTranslation('common');
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
-    const [content, setContent] = useState<ResultatsPageContent>(getFallbackResultatsContent(t));
+    const [content, setContent] = useState<ResultatsPageContent>(getFallbackResultatsContent(lang));
 
     useEffect(() => {
-        setContent(getFallbackResultatsContent(t));
-    }, [lang, t]);
+        setContent(getFallbackResultatsContent(lang));
+    }, [lang]);
 
     useEffect(() => {
         let cancelled = false;
@@ -194,6 +80,7 @@ const ResultatsPage = () => {
                     : [];
 
                 setContent((prev) => ({
+                    ...prev,
                     seo: {
                         title: data.seo?.title || prev.seo.title,
                         description: data.seo?.description || prev.seo.description,
@@ -275,10 +162,10 @@ const ResultatsPage = () => {
                     <Reveal>
                         <div className="flex flex-col mb-12 border-b border-gray-200 pb-6">
                             <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight mb-3">
-                                Preuves par l'exemple
+                                {content.proofByExample.title}
                             </h2>
                             <p className="text-gray-600 font-medium text-lg max-w-2xl">
-                                Découvrez l'impact de nos audits sur des bâtiments réels : la situation avant notre intervention, et les résultats après l'application de nos recommandations concrètes.
+                                {content.proofByExample.description}
                             </p>
                         </div>
                     </Reveal>
@@ -336,7 +223,7 @@ const ResultatsPage = () => {
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-auto">
                                                 <div className="bg-red-50/70 border-t-[3px] border-red-400 p-5 rounded-b shadow-sm">
                                                     <h4 className="text-xs font-black text-red-600 uppercase tracking-widest mb-3">
-                                                        Avant
+                                                        {content.casesBefore}
                                                     </h4>
                                                     <ul className="text-sm font-medium text-red-900/80 leading-relaxed list-disc pl-4 space-y-1.5 marker:text-red-400">
                                                         {c.before.map((item, idx) => (
@@ -346,7 +233,7 @@ const ResultatsPage = () => {
                                                 </div>
                                                 <div className="bg-emerald-50/70 border-t-[3px] border-[#1b5e39] p-5 rounded-b shadow-sm">
                                                     <h4 className="text-xs font-black text-[#1b5e39] uppercase tracking-widest mb-3">
-                                                        Après
+                                                        {content.casesAfter}
                                                     </h4>
                                                     <ul className="text-sm font-bold text-emerald-950 leading-relaxed list-disc pl-4 space-y-1.5 marker:text-[#1b5e39]">
                                                         {c.after.map((item, idx) => (
@@ -372,16 +259,16 @@ const ResultatsPage = () => {
                     <Reveal>
                         <div className="text-center mb-10">
                             <span className="text-amber-500 font-bold tracking-widest uppercase text-xs mb-3 block">
-                                Vous méritez un avis honnête, pas une vente déguisée.
+                                {content.testimonials.tagline}
                             </span>
                             <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">
-                                Transparence totale.
+                                {content.testimonials.title}
                             </h2>
                         </div>
                     </Reveal>
 
                     <div className="grid md:grid-cols-3 gap-6">
-                        {testimonialsFr.map((testi, i) => (
+                        {content.testimonials.testimonial.map((testi, i) => (
                             <Reveal key={i} delay={0.1 * i}>
                                 <div className="h-full">
                                     <div className="bg-[#1a232c] p-8 h-full flex flex-col border border-gray-800 rounded hover:border-gray-700 transition-colors">
@@ -406,7 +293,7 @@ const ResultatsPage = () => {
                     <Reveal delay={0.3}>
                         <div className="mt-16 pt-10 border-t border-gray-800 text-center pb-8">
                             <p className="text-gray-500 mb-6 uppercase tracking-widest text-[10px] font-bold">
-                                Acteurs institutionnels & Normes
+                                {content.actors}
                             </p>
                             <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12">
                                 {['SIG Eco21', 'SuisseEnergie', 'OCEN', 'Chauffez Renouvelable', 'PEIK', 'CECB +'].map((p) => (

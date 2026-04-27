@@ -116,7 +116,7 @@ const TeamPage = () => {
             <SEO
                 title={t('team_page.seo_title')}
                 description={t('team_page.seo_desc')}
-                canonical="/team"
+                canonical="/a-propos"
             />
 
             <div className="fixed inset-0 pointer-events-none overflow-hidden">

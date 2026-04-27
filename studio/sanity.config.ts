@@ -9,7 +9,7 @@ export default defineConfig({
   title: 'Swiss Ecogestes',
 
   projectId: 'btjdqrld',
-  dataset: 'production',
+  dataset: 'dev',
 
   plugins: [
     structureTool({
