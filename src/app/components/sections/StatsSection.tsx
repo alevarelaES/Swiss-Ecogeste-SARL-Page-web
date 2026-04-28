@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useInView } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { getStats, getStatsContent } from '../../data/statsData';
+import { getStats, getStatsContent } from '../../data/homePageContent';
 import { getSanityStats, getSanityStatsContent } from '../../../sanity/client';
 import { resolveIcon } from '../../utils/iconMap';
 

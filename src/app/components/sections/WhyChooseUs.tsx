@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
-import { getWhyChooseUsContent as getHardcodedWhyChooseUs } from '../../data/whyChooseUsContent';
+import { getWhyChooseUsContent as getHardcodedWhyChooseUs } from '../../data/homePageContent';
 import { getSanityWhyChooseUs } from '../../../sanity/client';
 import { resolveIcon } from '../../utils/iconMap';
 

@@ -49,63 +49,6 @@
     "read_less": "Réduire",
     "close": "Fermer"
   },
-  "team": {
-    "label": "Notre Équipe",
-    "title": "Experts à votre écoute",
-    "description": "Nos experts certifiés s'engagent à optimiser votre consommation énergétique avec précision et intégrité."
-  },
-  "resultats_page": {
-    "seo_title": "Résultats & Impact | Swiss Ecogestes",
-    "seo_desc": "Découvrez l'impact concret de nos accompagnements : économies d'énergie, subventions obtenues et cas clients réels en Suisse romande.",
-    "hero_label": "Chiffres & Résultats",
-    "hero_title": "Un impact réel, mesurable et documenté",
-    "hero_subtitle": "Chaque intervention génère des économies concrètes. Voici ce que nos clients ont obtenu.",
-    "cases_label": "Cas concrets",
-    "cases_title": "Ils ont franchi le pas",
-    "cases_subtitle": "Des exemples représentatifs de nos accompagnements en Suisse romande.",
-    "cases_placeholder": "Données représentatives — cas réels à venir",
-    "testi_label": "Témoignages",
-    "testi_title": "Ce que disent nos clients",
-    "programs_label": "Programmes & partenaires",
-    "programs_title": "Des subventions reconnues, nous les maîtrisons",
-    "programs_subtitle": "Nous maîtrisons l'ensemble des programmes cantonaux et fédéraux pour maximiser vos aides."
-  },
-  "team_page": {
-    "seo_title": "À propos de Swiss Ecogestes | Notre équipe & mission",
-    "seo_desc": "Découvrez Swiss Ecogestes : notre mission, notre équipe d'experts et notre engagement pour la transition énergétique en Suisse romande.",
-    "header_label": "À propos de nous",
-    "header_title": "Une approche concrète de la transition énergétique",
-    "intro": "Chez Swiss Ecogestes, nous sommes convaincus que la transition énergétique passe par des actions concrètes, mesurables et rentables. Nous accompagnons propriétaires, régies, entreprises et collectivités avec une approche pragmatique : réduire les consommations, optimiser les installations et générer un impact réel.",
-    "mission_label": "Notre mission",
-    "mission_title": "Votre intérêt, notre seule priorité.",
-    "mission_text": "Pas de matériel à vendre, pas de marges cachées. Swiss Ecogestes est un conseil indépendant : nous analysons votre situation, identifions les économies réalisables et maximisons vos subventions — sans conflit d'intérêt.",
-    "mission_text2": "Notre approche combine expertise terrain, maîtrise des programmes cantonaux (SIG Éco21, SuisseEnergie, Chauffez Renouvelable, OCEN) et accompagnement humain à chaque étape de votre projet.",
-    "presence_label": "Notre présence",
-    "presence_title": "Actifs en Vaud et à Genève",
-    "presence_text": "Nous intervenons principalement dans les cantons de Vaud et de Genève, avec une connaissance approfondie des exigences locales, des programmes de subvention cantonaux et des acteurs institutionnels.",
-    "stat_experts": "Experts dédiés",
-    "stat_cantons": "Cantons couverts",
-    "stat_partners": "Partenaires institutionnels",
-    "stat_approach": "Neutre & indépendant",
-    "photo_label": "Notre équipe",
-    "photo_title": "Des experts engagés sur le terrain",
-    "photo_subtitle": "Ensemble, nous accompagnons chaque client vers des solutions concrètes et durables.",
-    "team_title": "Notre Équipe",
-    "team_subtitle": "Cinq experts passionnés par la transition énergétique, à votre service en Suisse romande.",
-    "values_title": "Nos Engagements & Valeurs",
-    "values_intro": "Au-delà de l'expertise technique, nous apportons une sécurité et une tranquillité d'esprit à tous nos partenaires.",
-    "quality_label": "Processus qualité",
-    "quality_title": "Un processus rigoureux, du début à la fin",
-    "quality_text": "Chaque audit suit un processus qualité rigoureux, de la première visite jusqu'à la remise du rapport et des recommandations personnalisées.",
-    "quality_steps": "Visite terrain,Analyse technique,Rapport détaillé,Recommandations,Suivi personnalisé"
-  },
-  "client_types": {
-    "label": "Nos Solutions",
-    "title_prefix": "Une expertise adaptée",
-    "title_connector": "à",
-    "title_highlight": "chaque acteur",
-    "description": "Des solutions techniques et financières sur mesure pour chaque type de bâtiment."
-  },
   "common": {
     "swissecogestes": "Swiss Ecogestes",
     "back": "Retour"
@@ -173,70 +116,6 @@
     "seo_description": "Besoin d'un conseil ou d'un devis ? Contactez Swiss Ecogestes pour votre projet de transition énergétique en Suisse.",
     "title": "Prêt à faire le premier pas ?",
     "description": "Que vous soyez au début de votre réflexion ou déjà prêt pour des travaux, nos experts vous répondent sous 48h."
-  },
-  "services_page": {
-    "seo_title": "Nos Services Énergétiques",
-    "seo_desc": "Découvrez nos solutions sur mesure pour particuliers, gérances et entreprises : audits CECB, rénovations, solaire et optimisation énergétique.",
-    "label": "Expertise & Solutions",
-    "title": "Nos services à 360°",
-    "intro": "De l'audit initial à la mise en œuvre finale, nous fournissons l'expertise technique nécessaire pour transformer votre consommation énergétique.",
-    "particuliers": {
-      "title": "Pour les Particuliers",
-      "description": "Améliorez le confort de votre foyer tout en réduisant vos factures énergétiques. Nous vous guidons pas à pas.",
-      "features": [
-        "Audit énergétique CECB",
-        "Assainissement de l'enveloppe thermique",
-        "Remplacement de système de chauffage",
-        "Installation de panneaux photovoltaïques",
-        "Gestion des demandes de subventions"
-      ]
-    },
-    "gerances": {
-      "title": "Pour les Gérances",
-      "description": "Valorisez votre patrimoine immobilier et simplifiez la gestion des charges pour vos locataires.",
-      "features": [
-        "Audit de parc immobilier (CECB Plus)",
-        "Contrat de performance énergétique",
-        "Bornes de recharge pour véhicules électriques",
-        "Développement de regroupements d'autoconsommateurs (RCP)",
-        "Planification thermique à long terme"
-      ]
-    },
-    "entreprises": {
-      "title": "Pour les Entreprises",
-      "description": "Engagez votre entreprise dans la durabilité tout en optimisant vos flux opérationnels.",
-      "features": [
-        "Convention d'objectifs (Grands Consommateurs)",
-        "Optimisation de l'air comprimé et du froid",
-        "Éclairage intelligent et LED haut rendement",
-        "Monitoring énergétique en temps réel",
-        "Stratégie de décarbonation"
-      ]
-    },
-    "cta_quote": "Demander un devis"
-  },
-  "services_overview": {
-    "seo_title": "Nos Prestations | Vue d'ensemble Swiss Ecogestes",
-    "seo_desc": "Liste complète de nos services d'audit, conseil énergétique et accompagnement pour particuliers, entreprises et collectivités.",
-    "label": "Catalogue",
-    "title": "Nos Prestations",
-    "intro": "Une vue d'ensemble de nos solutions pour réduire votre consommation et valoriser votre patrimoine.",
-    "available_title": "Services Disponibles",
-    "upcoming_title": "En préparation",
-    "details": "Détails",
-    "items": {
-      "eco_logement": "Programme Éco-logement",
-      "pake": "Audits Énergétiques Entreprises (PAKE)",
-      "audits_villa": "Audits Villas & CECB",
-      "visites_sig": "Visites SIG / éco21",
-      "idc": "Calcul de l'IDC Genève",
-      "sensibilisation": "Sensibilisation Environnementale",
-      "chauffage": "Transition Chauffage Renouvelable"
-    },
-    "upcoming": {
-      "amu": "AMU (Assistance à Maîtrise d'Usage)",
-      "cecb_plus": "Audit CECB Plus (Certification officielle)"
-    }
   },
   "why_us": {
     "seo_title": "Pourquoi Choisir Swiss Ecogestes | Expertise & Confiance",

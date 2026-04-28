@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
 import { BACKGROUND_IMAGES } from '../../config/images';
 import { useTranslation } from 'react-i18next';
-import { getAboutContent as getHardcodedAboutContent } from '../../data/aboutContent';
+import { getAboutContent as getHardcodedAboutContent } from '../../data/homePageContent';
 import { getSanityAboutContent } from '../../../sanity/client';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 

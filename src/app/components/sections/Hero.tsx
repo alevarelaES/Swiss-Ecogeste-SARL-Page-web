@@ -12,7 +12,7 @@ import {
 } from "../ui/carousel";
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
-import { getHeroSlides as getHardcodedHeroSlides } from '../../data/heroSlides';
+import { getHeroSlides as getHardcodedHeroSlides } from '../../data/homePageContent';
 import { getHeroSlides } from '../../../sanity/client';
 
 const Hero = () => {

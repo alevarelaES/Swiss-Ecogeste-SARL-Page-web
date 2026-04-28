@@ -48,62 +48,6 @@
     "explore": "Explore",
     "close": "Close"
   },
-  "team": {
-    "label": "Our Team",
-    "title": "Experts at your service"
-  },
-  "resultats_page": {
-    "seo_title": "Results & Impact | Swiss Ecogestes",
-    "seo_desc": "Discover the concrete impact of our services: energy savings, subsidies obtained and real client cases in French-speaking Switzerland.",
-    "hero_label": "Figures & Results",
-    "hero_title": "Real, measurable, documented impact",
-    "hero_subtitle": "Every intervention generates concrete savings. Here is what our clients have achieved.",
-    "cases_label": "Case studies",
-    "cases_title": "They took the step",
-    "cases_subtitle": "Representative examples of our projects in French-speaking Switzerland.",
-    "cases_placeholder": "Representative data — real cases coming soon",
-    "testi_label": "Testimonials",
-    "testi_title": "What our clients say",
-    "programs_label": "Programmes & partners",
-    "programs_title": "Recognised subsidies — we master them all",
-    "programs_subtitle": "We master all cantonal and federal programmes to maximise your financial support."
-  },
-  "team_page": {
-    "seo_title": "About Swiss Ecogestes | Our team & mission",
-    "seo_desc": "Discover Swiss Ecogestes: our mission, our team of experts and our commitment to energy transition in French-speaking Switzerland.",
-    "header_label": "About us",
-    "header_title": "A concrete approach to energy transition",
-    "intro": "At Swiss Ecogestes, we believe energy transition happens through concrete, measurable and profitable actions. We support property owners, agencies, businesses and municipalities with a pragmatic approach: reducing consumption, optimising installations and generating real impact.",
-    "mission_label": "Our mission",
-    "mission_title": "Your interest, our only priority.",
-    "mission_text": "No equipment to sell, no hidden margins. Swiss Ecogestes is an independent advisory firm: we analyse your situation, identify achievable savings and maximise your subsidies — with no conflict of interest.",
-    "mission_text2": "Our approach combines field expertise, mastery of cantonal programmes (SIG Éco21, SuisseEnergie, Chauffez Renouvelable, OCEN) and personal support at every stage of your project.",
-    "presence_label": "Our presence",
-    "presence_title": "Active in Vaud and Geneva",
-    "presence_text": "We operate primarily in the cantons of Vaud and Geneva, with in-depth knowledge of local requirements, cantonal subsidy programmes and institutional stakeholders.",
-    "stat_experts": "Dedicated experts",
-    "stat_cantons": "Cantons covered",
-    "stat_partners": "Institutional partners",
-    "stat_approach": "Neutral & independent",
-    "photo_label": "Our team",
-    "photo_title": "Committed experts in the field",
-    "photo_subtitle": "Together, we guide every client towards concrete and sustainable solutions.",
-    "team_title": "Our Team",
-    "team_subtitle": "Five experts passionate about energy transition, at your service in French-speaking Switzerland.",
-    "values_title": "Our Commitments & Values",
-    "values_intro": "Beyond technical expertise, we provide security and peace of mind to all our partners.",
-    "quality_label": "Quality process",
-    "quality_title": "A rigorous process, from start to finish",
-    "quality_text": "Every audit follows a rigorous quality process, from the first visit to the delivery of the report and personalised recommendations.",
-    "quality_steps": "Site visit,Technical analysis,Detailed report,Recommendations,Personalised follow-up"
-  },
-  "client_types": {
-    "label": "Our Solutions",
-    "title_prefix": "Expertise adapted",
-    "title_connector": "to",
-    "title_highlight": "every actor",
-    "description": "Tailor-made technical and financial solutions for every type of building."
-  },
   "common": {
     "swissecogestes": "Swiss Ecogestes"
   },
@@ -169,70 +113,6 @@
     "seo_description": "Need advice or a quote? Contact Swiss Ecogestes for your energy transition project in Switzerland.",
     "title": "Ready to take the first step?",
     "description": "Whether you are at the beginning of your reflection or already ready for work, our experts will answer you within 48h."
-  },
-  "services_page": {
-    "seo_title": "Our Energy Services",
-    "seo_desc": "Discover our tailored solutions for individuals, real estate managers, and companies: CECB audits, renovations, solar, and energy optimization.",
-    "label": "Expertise & Solutions",
-    "title": "360° Services",
-    "intro": "From initial audit to final implementation, we provide the technical expertise needed to transform your energy consumption.",
-    "particuliers": {
-      "title": "For Individuals",
-      "description": "Improve your home's comfort while reducing energy bills. We guide you step by step.",
-      "features": [
-        "CECB Energy Audit",
-        "Thermal Envelope Renovation",
-        "Heating System Replacement",
-        "Photovoltaic Panel Installation",
-        "Subsidy Application Management"
-      ]
-    },
-    "gerances": {
-      "title": "For Real Estate Managers",
-      "description": "Enhance your real estate assets and simplify charge management for your tenants.",
-      "features": [
-        "Real Estate Portfolio Audit (CECB Plus)",
-        "Energy Performance Contract",
-        "Electric Vehicle Charging Stations",
-        "Development of Self-Consumption Groups (RCP)",
-        "Long-term Thermal Planning"
-      ]
-    },
-    "entreprises": {
-      "title": "For Companies",
-      "description": "Commit your company to sustainability while optimizing operational flows.",
-      "features": [
-        "Target Agreements (Large Consumers)",
-        "Compressed Air and Cooling Optimization",
-        "Smart Lighting and High-Efficiency LED",
-        "Real-time Energy Monitoring",
-        "Decarbonization Strategy"
-      ]
-    },
-    "cta_quote": "Request a Quote"
-  },
-  "services_overview": {
-    "seo_title": "Our Services | Swiss Ecogestes Overview",
-    "seo_desc": "Complete list of our audit, energy consulting, and support services for individuals, companies, and communities.",
-    "label": "Catalog",
-    "title": "Our Services",
-    "intro": "An overview of our solutions to reduce your consumption and enhance your assets.",
-    "available_title": "Available Services",
-    "upcoming_title": "Coming Soon",
-    "details": "Details",
-    "items": {
-      "eco_logement": "Eco-housing Program",
-      "pake": "Company Energy Audits (PAKE)",
-      "audits_villa": "Villa Audits & CECB",
-      "visites_sig": "SIG / eco21 Visits",
-      "idc": "Geneva IDC Calculation",
-      "sensibilisation": "Environmental Awareness",
-      "chauffage": "Renewable Heating Transition"
-    },
-    "upcoming": {
-      "amu": "AMU (Usage Assistance)",
-      "cecb_plus": "CECB Plus Audit (Official Certification)"
-    }
   },
   "why_us": {
     "seo_title": "Why Choose Swiss Ecogestes | Expertise & Trust",

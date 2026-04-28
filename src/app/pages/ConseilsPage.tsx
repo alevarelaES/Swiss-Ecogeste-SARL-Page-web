@@ -1,17 +1,72 @@
-﻿import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { SEO } from '../components';
-import { getArticles } from '../data/articles';
+import { getArticles as getStaticArticles } from '../data/articles';
 import { getConseilsPageContent } from '../data/conseilsPageContent';
 import { useTranslation } from 'react-i18next';
 import { GalleryCard, Button } from '../components/ui';
+import { getArticles as getSanityArticles, getSanityBlogPage } from '../../sanity/client';
 
 const ConseilsPage = () => {
     const { i18n, t } = useTranslation('common');
-    const content = getConseilsPageContent(i18n.language);
-    const allArticles = getArticles(i18n.language);
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
+
+    const staticContent = getConseilsPageContent(i18n.language);
+    const staticArticles = getStaticArticles(i18n.language);
+
+    const [content, setContent] = useState(staticContent);
+    const [allArticles, setAllArticles] = useState(staticArticles);
     const [selectedCategory, setSelectedCategory] = useState('All');
 
-    // Dynamic categories from article data
+    // Reset langue
+    useEffect(() => {
+        setContent(getConseilsPageContent(i18n.language));
+        setAllArticles(getStaticArticles(i18n.language));
+    }, [lang]);
+
+    // Charger depuis Sanity
+    useEffect(() => {
+        let cancelled = false;
+
+        getSanityBlogPage(lang).then((data: any) => {
+            if (cancelled || !data) return;
+            const fallback = getConseilsPageContent(i18n.language);
+            setContent({
+                seo: {
+                    title: data.seoTitle || fallback.seo.title,
+                    description: data.seoDescription || fallback.seo.description,
+                    canonical: fallback.seo.canonical,
+                },
+                sectionLabel: fallback.sectionLabel,
+                title: data.title ? data.title.split(' &')[0] + ' &' : fallback.title,
+                titleHighlight: data.title ? data.title.split('& ')[1] || fallback.titleHighlight : fallback.titleHighlight,
+                description: data.description || fallback.description,
+                readMoreText: fallback.readMoreText,
+            });
+        }).catch(() => {});
+
+        getSanityArticles(lang).then((data: any[]) => {
+            if (cancelled || !data || data.length === 0) return;
+            const mapped = data.map((a: any) => ({
+                id: a._id,
+                title: a.title || '',
+                excerpt: a.excerpt || '',
+                category: a.category || '',
+                date: a.publishedAt
+                    ? new Date(a.publishedAt).toLocaleDateString(
+                          lang === 'fr' ? 'fr-CH' : lang === 'de' ? 'de-CH' : 'en-GB',
+                          { day: 'numeric', month: 'short', year: 'numeric' }
+                      )
+                    : '',
+                readTime: a.readTime || '',
+                imageUrl: a.imageUrl || '',
+                slug: a.slug || '',
+            }));
+            setAllArticles(mapped);
+        }).catch(() => {});
+
+        return () => { cancelled = true; };
+    }, [lang]);
+
     const categories = useMemo(() => {
         const uniqueCategories = Array.from(new Set(allArticles.map(a => a.category)));
         return [
@@ -20,7 +75,6 @@ const ConseilsPage = () => {
         ];
     }, [allArticles, t]);
 
-    // Filter logic
     const filteredArticles = useMemo(() => {
         if (selectedCategory === 'All') return allArticles;
         return allArticles.filter(article => article.category === selectedCategory);

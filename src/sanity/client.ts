@@ -287,7 +287,28 @@ export async function getSanityAProposPage(lang: string = 'fr') {
       "qualitySteps": qualitySteps.${lang},
       "groupPhotoUrl": groupPhoto.asset->url,
       "photoTitle": photoTitle.${lang},
-      "photoSubtitle": photoSubtitle.${lang}
+      "photoSubtitle": photoSubtitle.${lang},
+      "valeursTitle": valeursTitle.${lang},
+      "valeursIntro": valeursIntro.${lang},
+      "valeursItems": valeursItems[] {
+        "title": title.${lang},
+        "description": description.${lang}
+      }
+    }
+  `)
+}
+
+// ─────────────────────────────────────────────
+// Page Blog (Actualités)
+// ─────────────────────────────────────────────
+
+export async function getSanityBlogPage(lang: string = 'fr') {
+  return client.fetch(`
+    *[_type == "blogPage"][0] {
+      "seoTitle": seo.title.${lang},
+      "seoDescription": seo.description.${lang},
+      "title": hero.h1.${lang},
+      "description": hero.intro.${lang}
     }
   `)
 }

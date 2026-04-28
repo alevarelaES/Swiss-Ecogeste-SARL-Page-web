@@ -36,62 +36,6 @@
     "explore": "Erkunden",
     "close": "Schließen"
   },
-  "team": {
-    "label": "Unser Team",
-    "title": "Experten zu Ihren Diensten"
-  },
-  "resultats_page": {
-    "seo_title": "Ergebnisse & Impact | Swiss Ecogestes",
-    "seo_desc": "Entdecken Sie die konkreten Ergebnisse unserer Begleitung: Energieeinsparungen, erhaltene Fördermittel und echte Kundenbeispiele in der Westschweiz.",
-    "hero_label": "Zahlen & Ergebnisse",
-    "hero_title": "Ein realer, messbarer und dokumentierter Impact",
-    "hero_subtitle": "Jede Intervention erzeugt konkrete Einsparungen. Hier sehen Sie, was unsere Kunden erreicht haben.",
-    "cases_label": "Fallstudien",
-    "cases_title": "Sie haben den Schritt gewagt",
-    "cases_subtitle": "Repräsentative Beispiele unserer Begleitungen in der Westschweiz.",
-    "cases_placeholder": "Repräsentative Daten — echte Fälle folgen",
-    "testi_label": "Referenzen",
-    "testi_title": "Was unsere Kunden sagen",
-    "programs_label": "Programme & Partner",
-    "programs_title": "Anerkannte Fördermittel — wir kennen sie alle",
-    "programs_subtitle": "Wir beherrschen alle kantonalen und bundesweiten Programme, um Ihre Fördergelder zu maximieren."
-  },
-  "team_page": {
-    "seo_title": "Über Swiss Ecogestes | Unser Team & Mission",
-    "seo_desc": "Entdecken Sie Swiss Ecogestes: unsere Mission, unser Expertenteam und unser Engagement für die Energiewende in der Westschweiz.",
-    "header_label": "Über uns",
-    "header_title": "Ein konkreter Ansatz zur Energiewende",
-    "intro": "Bei Swiss Ecogestes sind wir überzeugt, dass die Energiewende durch konkrete, messbare und rentable Maßnahmen gelingt. Wir begleiten Eigentümer, Verwaltungen, Unternehmen und Gemeinden mit einem pragmatischen Ansatz: Verbrauch senken, Anlagen optimieren und echte Wirkung erzielen.",
-    "mission_label": "Unsere Mission",
-    "mission_title": "Ihr Interesse, unsere einzige Priorität.",
-    "mission_text": "Kein Material zu verkaufen, keine versteckten Margen. Swiss Ecogestes ist eine unabhängige Beratungsfirma: Wir analysieren Ihre Situation, identifizieren erreichbare Einsparungen und maximieren Ihre Fördergelder — ohne Interessenkonflikt.",
-    "mission_text2": "Unser Ansatz kombiniert Felderfahrung, Kenntnisse kantonaler Programme (SIG Éco21, SuisseEnergie, Chauffez Renouvelable, OCEN) und persönliche Begleitung in jeder Phase Ihres Projekts.",
-    "presence_label": "Unsere Präsenz",
-    "presence_title": "Tätig in Waadt und Genf",
-    "presence_text": "Wir sind hauptsächlich in den Kantonen Waadt und Genf tätig, mit fundiertem Wissen über lokale Anforderungen, kantonale Förderprogramme und institutionelle Akteure.",
-    "stat_experts": "Dedizierte Experten",
-    "stat_cantons": "Abgedeckte Kantone",
-    "stat_partners": "Institutionelle Partner",
-    "stat_approach": "Neutral & unabhängig",
-    "photo_label": "Unser Team",
-    "photo_title": "Engagierte Experten vor Ort",
-    "photo_subtitle": "Gemeinsam begleiten wir jeden Kunden zu konkreten und nachhaltigen Lösungen.",
-    "team_title": "Unser Team",
-    "team_subtitle": "Fünf Experten mit Leidenschaft für die Energiewende, zu Ihren Diensten in der Westschweiz.",
-    "values_title": "Unsere Verpflichtungen & Werte",
-    "values_intro": "Über die technische Expertise hinaus bieten wir all unseren Partnern Sicherheit und Seelenfrieden.",
-    "quality_label": "Qualitätsprozess",
-    "quality_title": "Ein rigoroser Prozess von Anfang bis Ende",
-    "quality_text": "Jede Prüfung folgt einem strengen Qualitätsprozess, vom ersten Besuch bis zur Übergabe des Berichts und der personalisierten Empfehlungen.",
-    "quality_steps": "Vor-Ort-Besuch,Technische Analyse,Detaillierter Bericht,Empfehlungen,Persönliches Follow-up"
-  },
-  "client_types": {
-    "label": "Unsere Lösungen",
-    "title_prefix": "Fachwissen angepasst",
-    "title_connector": "an",
-    "title_highlight": "jeden Akteur",
-    "description": "Maßgeschneiderte technische und finanzielle Lösungen für jeden Gebäudetyp."
-  },
   "common": {
     "swissecogestes": "Swiss Ecogestes"
   },
@@ -157,70 +101,6 @@
     "seo_description": "Benötigen Sie Beratung oder ein Angebot? Kontaktieren Sie Swiss Ecogestes für Ihr Energiewendeprojekt in der Schweiz.",
     "title": "Bereit, den ersten Schritt zu tun?",
     "description": "Ob Sie am Anfang Ihrer Überlegungen stehen oder bereits bereit für Arbeiten sind, unsere Experten antworten Ihnen innerhalb von 48 Stunden."
-  },
-  "services_page": {
-    "seo_title": "Unsere Energiedienstleistungen",
-    "seo_desc": "Entdecken Sie unsere maßgeschneiderten Lösungen für Privatpersonen, Verwaltungen und Unternehmen: GEAK-Audits, Renovierungen, Solar und Energieoptimierung.",
-    "label": "Expertise & Lösungen",
-    "title": "360°-Dienstleistungen",
-    "intro": "Vom ersten Audit bis zur endgültigen Umsetzung bieten wir das technische Fachwissen, um Ihren Energieverbrauch zu transformieren.",
-    "particuliers": {
-      "title": "Für Privatpersonen",
-      "description": "Verbessern Sie den Komfort Ihres Hauses und senken Sie Ihre Energiekosten. Wir begleiten Sie Schritt für Schritt.",
-      "features": [
-        "GEAK Energieaudit",
-        "Sanierung der thermischen Hülle",
-        "Heizungssystemaustausch",
-        "Installation von Photovoltaikanlagen",
-        "Verwaltung von Förderanträgen"
-      ]
-    },
-    "gerances": {
-      "title": "Für Verwaltungen",
-      "description": "Werten Sie Ihr Immobilienvermögen auf und vereinfachen Sie das Nebenkostenmanagement für Ihre Mieter.",
-      "features": [
-        "Immobilienportfolioprüfung (GEAK Plus)",
-        "Energiesparvertrag",
-        "Ladestationen für Elektrofahrzeuge",
-        "Entwicklung von Eigenverbrauchsgemeinschaften (ZEV)",
-        "Langfristige thermische Planung"
-      ]
-    },
-    "entreprises": {
-      "title": "Für Unternehmen",
-      "description": "Verpflichten Sie Ihr Unternehmen zur Nachhaltigkeit und optimieren Sie gleichzeitig die Betriebsabläufe.",
-      "features": [
-        "Zielvereinbarungen (Großverbraucher)",
-        "Optimierung von Druckluft und Kälte",
-        "Intelligente Beleuchtung und Hochleistungs-LED",
-        "Echtzeit-Energieüberwachung",
-        "Dekarbonisierungsstrategie"
-      ]
-    },
-    "cta_quote": "Angebot anfordern"
-  },
-  "services_overview": {
-    "seo_title": "Unsere Leistungen | Übersicht Swiss Ecogestes",
-    "seo_desc": "Vollständige Liste unserer Audit-, Energieberatungs- und Unterstützungsdienste für Privatpersonen, Unternehmen und Gemeinden.",
-    "label": "Katalog",
-    "title": "Unsere Leistungen",
-    "intro": "Ein Überblick über unsere Lösungen zur Reduzierung Ihres Verbrauchs und zur Aufwertung Ihres Vermögens.",
-    "available_title": "Verfügbare Dienste",
-    "upcoming_title": "Bald verfügbar",
-    "details": "Details",
-    "items": {
-      "eco_logement": "Öko-Wohnprogramm",
-      "pake": "Energieaudits für Unternehmen (PAKE)",
-      "audits_villa": "Villen-Audits & GEAK",
-      "visites_sig": "SIG / éco21 Besuche",
-      "idc": "Genfer IDC-Berechnung",
-      "sensibilisation": "Umweltsensibilisierung",
-      "chauffage": "Übergang zu erneuerbaren Heizungen"
-    },
-    "upcoming": {
-      "amu": "AMU (Nutzungsassistenz)",
-      "cecb_plus": "GEAK Plus Audit (Offizielle Zertifizierung)"
-    }
   },
   "why_us": {
     "seo_title": "Warum Swiss Ecogestes wählen | Expertise & Vertrauen",

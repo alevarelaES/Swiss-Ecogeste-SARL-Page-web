@@ -84,8 +84,8 @@ const Navbar = () => {
 
     const serviceLinks = [
         { name: t('nav.gerance'), path: getLocalizedPath('/services/gerance') },
-        { name: t('nav.villa'), path: getLocalizedPath('/services/villa') },
         { name: t('nav.entreprise'), path: getLocalizedPath('/services/entreprise') },
+        { name: t('nav.villa'), path: getLocalizedPath('/services/villa') },
         { name: t('nav.communes'), path: getLocalizedPath('/services/communes') },
     ];
 

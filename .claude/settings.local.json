@@ -21,7 +21,9 @@
       "Bash(node -e \"const f=require\\('./public/locales/fr/common.json'\\); const keys=['header_label','header_title','intro','mission_title','mission_text','mission_text2','presence_title','presence_text','quality_title','quality_text','quality_steps','photo_title','photo_subtitle']; keys.forEach\\(k=>console.log\\(k+': '+JSON.stringify\\(f.team_page[k]\\).substring\\(0,100\\)\\)\\)\")",
       "Bash(node -e \"const f=require\\('./public/locales/fr/common.json'\\); const p=f.team_page; console.log\\('mission_text:',p.mission_text\\); console.log\\('mission_text2:',p.mission_text2\\); console.log\\('presence_text:',p.presence_text\\); console.log\\('quality_text:',p.quality_text\\)\")",
       "Bash(node -e \"const en=require\\('./public/locales/en/common.json'\\); const de=require\\('./public/locales/de/common.json'\\); const p=en.team_page; const pd=de.team_page; ['header_label','header_title','intro','mission_title','mission_text','mission_text2','presence_title','presence_text','quality_title','quality_text','quality_steps','photo_title','photo_subtitle'].forEach\\(k=>{ console.log\\('EN '+k+':',p[k]\\); console.log\\('DE '+k+':',pd[k]\\); }\\)\")",
-      "Bash(node -e \"const f=require\\('./public/locales/fr/common.json'\\); console.log\\(f.team_page.intro\\)\")"
+      "Bash(node -e \"const f=require\\('./public/locales/fr/common.json'\\); console.log\\(f.team_page.intro\\)\")",
+      "Bash(git add *)",
+      "Bash(node -e ' *)"
     ]
   }
 }

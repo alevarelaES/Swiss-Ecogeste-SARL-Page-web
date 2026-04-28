@@ -10,6 +10,7 @@ export const aProposPage = defineType({
     { name: 'stats', title: 'Chiffres entreprise' },
     { name: 'quality', title: 'Processus qualite' },
     { name: 'photo', title: 'Photo de groupe' },
+    { name: 'valeurs', title: 'Engagements & Valeurs' },
   ],
   fields: [
     defineField({
@@ -160,6 +161,66 @@ export const aProposPage = defineType({
         { name: 'de', type: 'array', title: 'Deutsch', of: [{ type: 'string' }] },
       ],
     }),
+    // ── Engagements & Valeurs ──────────────────────────────────────────────────
+    defineField({
+      name: 'valeursTitle',
+      title: 'Titre section Engagements & Valeurs',
+      group: 'valeurs',
+      type: 'object',
+      fields: [
+        { name: 'fr', type: 'string', title: 'Francais' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'de', type: 'string', title: 'Deutsch' },
+      ],
+    }),
+    defineField({
+      name: 'valeursIntro',
+      title: 'Introduction section Valeurs',
+      group: 'valeurs',
+      type: 'object',
+      fields: [
+        { name: 'fr', type: 'text', title: 'Francais' },
+        { name: 'en', type: 'text', title: 'English' },
+        { name: 'de', type: 'text', title: 'Deutsch' },
+      ],
+    }),
+    defineField({
+      name: 'valeursItems',
+      title: 'Engagements (6 max)',
+      group: 'valeurs',
+      description: 'Les 6 cartes affichees dans la section Valeurs. L\'ordre correspond aux icones : Bouclier, Balance, Base de données, Contrat, Trophée, Equipe.',
+      type: 'array',
+      validation: (rule) => rule.max(6),
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Titre',
+              type: 'object',
+              fields: [
+                { name: 'fr', type: 'string', title: 'Francais' },
+                { name: 'en', type: 'string', title: 'English' },
+                { name: 'de', type: 'string', title: 'Deutsch' },
+              ],
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
+              type: 'object',
+              fields: [
+                { name: 'fr', type: 'text', title: 'Francais' },
+                { name: 'en', type: 'text', title: 'English' },
+                { name: 'de', type: 'text', title: 'Deutsch' },
+              ],
+            }),
+          ],
+          preview: { select: { title: 'title.fr', subtitle: 'description.fr' } },
+        },
+      ],
+    }),
+
     defineField({
       name: 'groupPhoto',
       title: "Photo de groupe de l'equipe",

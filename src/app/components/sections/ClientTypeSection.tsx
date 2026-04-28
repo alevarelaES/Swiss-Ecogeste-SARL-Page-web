@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
-import { getClientTypes as getHardcodedClientTypes } from '../../data/clientTypes';
+import { getClientTypes as getHardcodedClientTypes, getClientTypesSectionHeader } from '../../data/homePageContent';
 import { getSanityClientTypes } from '../../../sanity/client';
 
 const ClientTypeSection = () => {
     const { t, i18n } = useTranslation('common');
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
+    const header = getClientTypesSectionHeader(lang);
     const [clientTypes, setClientTypes] = useState(getHardcodedClientTypes(lang));
 
     useEffect(() => {
@@ -50,14 +51,14 @@ const ClientTypeSection = () => {
                         <div className="max-w-2xl">
                             <div className="flex items-center gap-4 mb-4">
                                 <span className="h-[2px] w-12 bg-amber-500"></span>
-                                <span className="text-amber-600 font-bold tracking-widest uppercase text-xs">{t('client_types.label')}</span>
+                                <span className="text-amber-600 font-bold tracking-widest uppercase text-xs">{header.label}</span>
                             </div>
                             <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
-                                {t('client_types.title_prefix')} {t('client_types.title_connector')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">{t('client_types.title_highlight')}</span>
+                                {header.titlePrefix} {header.titleConnector} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-emerald-600">{header.titleHighlight}</span>
                             </h2>
                         </div>
                         <p className="text-gray-800 font-medium text-lg leading-relaxed max-w-md text-right md:text-right hidden md:block">
-                            {t('client_types.description')}
+                            {header.description}
                         </p>
                     </div>
                 </Reveal>
@@ -67,7 +68,6 @@ const ClientTypeSection = () => {
                         <Reveal key={client.id} delay={index * 0.1}>
                             <Link to={client.link} className="block h-full group">
                                 <div className="bg-white hover:shadow-2xl transition-all duration-300 h-full flex flex-col group-hover:-translate-y-2">
-                                    {/* Image Top */}
                                     <div className="h-56 overflow-hidden relative">
                                         <img
                                             src={client.image || fallbackImages[index % fallbackImages.length]}
@@ -77,20 +77,16 @@ const ClientTypeSection = () => {
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                                     </div>
 
-                                    {/* Content Body */}
                                     <div className="p-8 flex flex-col flex-grow border-x border-b border-gray-100">
                                         <h3 className="text-xl font-bold text-gray-900 mb-2">
                                             {client.title}
                                         </h3>
-
                                         <span className="text-[11px] font-bold text-[var(--primary)] uppercase tracking-widest mb-4 block">
                                             {client.subtitle}
                                         </span>
-
                                         <p className="text-gray-700 text-base leading-relaxed mb-8 flex-grow">
                                             {client.description}
                                         </p>
-
                                         <div className="mt-auto border text-gray-800 border-gray-200 px-6 py-3 text-xs font-bold uppercase tracking-widest flex items-center justify-between group-hover:bg-[var(--primary)] group-hover:border-[var(--primary)] group-hover:text-white transition-all">
                                             {t('buttons.explore')}
                                             <ArrowRight size={14} />
