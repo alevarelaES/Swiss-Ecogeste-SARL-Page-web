@@ -26,8 +26,6 @@ const TeamPage = () => {
                 if (cancelled || !data) return;
                 if (!data.heroTitle && !data.missionTitle && !data.presenceTitle && !data.photoTitle) return;
 
-                const fallback = getAProposPageContent(lang);
-
                 const mappedStats = Array.isArray(data.companyStats)
                     ? data.companyStats
                         .filter((s: any) => s?.value || s?.label)

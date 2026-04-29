@@ -6,10 +6,33 @@ import { useSearchHighlight } from '../hooks/useSearchHighlight';
 import { ServiceCard } from '../components/services';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 
+const SERVICES_PAGE_CONTENT: Record<string, { seoTitle: string; seoDesc: string; title: string; intro: string }> = {
+    fr: {
+        seoTitle: 'Nos Solutions | Swiss Ecogestes',
+        seoDesc: 'Audits énergétiques, conseils et accompagnement pour villas, régies, entreprises et communes en Suisse romande.',
+        title: 'Nos Solutions',
+        intro: 'Des prestations sur-mesure pour chaque profil : propriétaire, régie, entreprise ou collectivité.',
+    },
+    en: {
+        seoTitle: 'Our Solutions | Swiss Ecogestes',
+        seoDesc: 'Energy audits, advice and support for villas, real estate managers, companies and municipalities in French-speaking Switzerland.',
+        title: 'Our Solutions',
+        intro: 'Tailored services for every profile: owner, real estate manager, company or municipality.',
+    },
+    de: {
+        seoTitle: 'Unsere Lösungen | Swiss Ecogestes',
+        seoDesc: 'Energieaudits, Beratung und Begleitung für Villen, Verwaltungen, Unternehmen und Gemeinden in der Westschweiz.',
+        title: 'Unsere Lösungen',
+        intro: 'Massgeschneiderte Leistungen für jedes Profil: Eigentümer, Verwaltung, Unternehmen oder Gemeinde.',
+    },
+};
+
 const ServicesPage = () => {
     useSearchHighlight();
     const { t, i18n } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
+    const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
+    const pageContent = SERVICES_PAGE_CONTENT[lang];
     const services = getServices(i18n.language);
 
     const detailedServices = services.map(service => ({
@@ -24,8 +47,8 @@ const ServicesPage = () => {
     return (
         <div className="min-h-screen bg-[#fdfdfd] overflow-x-hidden">
             <SEO
-                title={t('services_page.seo_title')}
-                description={t('services_page.seo_desc')}
+                title={pageContent.seoTitle}
+                description={pageContent.seoDesc}
                 canonical="/services"
             />
 
@@ -42,10 +65,10 @@ const ServicesPage = () => {
                     <div>
                         {/* Badge Removed */}
                         <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-                            {t('services_page.title')}
+                            {pageContent.title}
                         </h1>
                         <p className="tex-lg md:text-2xl text-white/80 max-w-2xl mx-auto font-light leading-relaxed">
-                            {t('services_page.intro')}
+                            {pageContent.intro}
                         </p>
                     </div>
                 </div>

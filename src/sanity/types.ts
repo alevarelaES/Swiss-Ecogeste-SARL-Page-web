@@ -11,7 +11,7 @@ export interface LocalizedText {
   en: string
   de: string
 }
-
+Y
 export interface LocalizedArray {
   fr: string[]
   en: string[]

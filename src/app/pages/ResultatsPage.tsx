@@ -134,10 +134,10 @@ const testimonialsFr = [
     { quote: "Une approche 100% neutre, sans forcer la vente de matériel de chauffagistes. Leur seul intérêt était le nôtre.", name: 'Sophie L.', role: 'Gérante de Régie', result: 'Transparence totale' },
 ];
 
-const getFallbackResultatsContent = (t: (key: string) => string): ResultatsPageContent => ({
+const getFallbackResultatsContent = (): ResultatsPageContent => ({
     seo: {
-        title: t('resultats_page.seo_title') || 'Résultats & Preuves – Swiss Ecogestes',
-        description: t('resultats_page.seo_desc') || 'Performance, résultats et impact concrets. Découvrez nos preuves par l\'exemple.',
+        title: 'Résultats & Preuves – Swiss Ecogestes',
+        description: "Performance, résultats et impact concrets. Découvrez nos preuves par l'exemple.",
     },
     heroTitle: 'Performance, résultats et impact concrets.',
     heroSubtitle: 'Audits, stratégie énergétique et accompagnement pour régies, entreprises, propriétaires et collectivités. Identifiez rapidement vos économies potentielles, les aides disponibles et les actions prioritaires pour améliorer durablement la performance de vos installations.',
@@ -147,14 +147,14 @@ const getFallbackResultatsContent = (t: (key: string) => string): ResultatsPageC
 
 const ResultatsPage = () => {
     useSearchHighlight();
-    const { t, i18n } = useTranslation('common');
+    const { i18n } = useTranslation('common');
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
-    const [content, setContent] = useState<ResultatsPageContent>(getFallbackResultatsContent(t));
+    const [content, setContent] = useState<ResultatsPageContent>(getFallbackResultatsContent());
 
     useEffect(() => {
-        setContent(getFallbackResultatsContent(t));
-    }, [lang, t]);
+        setContent(getFallbackResultatsContent());
+    }, [lang]);
 
     useEffect(() => {
         let cancelled = false;
