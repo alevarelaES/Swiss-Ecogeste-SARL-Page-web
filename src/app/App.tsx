@@ -74,7 +74,7 @@ export default function App() {
                   <Route path="/services" element={<Navigate to="/services/villa" replace />} />
                   <Route path="/a-propos" element={<TeamPage />} />
                   <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/resultats" element={<ResultatsPage />} />
+                  <Route path="/resultats" element={<Navigate to="/" replace />} />
                   <Route path="/actualites" element={<ConseilsPage />} />
                   <Route path="/actualites/:slug" element={<ArticleDetailPage />} />
 
