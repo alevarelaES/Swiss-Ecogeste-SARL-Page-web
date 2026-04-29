@@ -1,4 +1,3 @@
-import { legalPage } from './legalPage'
 import { teamMember } from './teamMember'
 import { article } from './article'
 import { settings } from './settings'
@@ -15,6 +14,7 @@ import { partner } from './partner'
 import { processStep } from './processStep'
 import { resultatsPage } from './resultatsPage'
 import { stat } from './stat'
+import { whyChooseUs } from './whyChooseUs'
 import { servicePage } from './servicePage'
 
 export const schemaTypes = [
@@ -31,9 +31,6 @@ export const schemaTypes = [
   resultatsPage,
   settings,        // Footer & Config
 
-  // Pages légales
-  legalPage,
-
   // Documents de contenu (Collections)
   teamMember,
   article,
@@ -42,5 +39,6 @@ export const schemaTypes = [
   processStep,     // Section processus (étapes)
   stat,            // Statistiques chiffres clés
   heroSlide,       // Slides du carrousel hero
+  whyChooseUs,     // Section "Pourquoi nous choisir"
   servicePage,     // Pages de service (villa, gérance, entreprise, communes)
 ]
