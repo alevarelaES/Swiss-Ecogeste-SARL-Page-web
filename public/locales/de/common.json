@@ -300,5 +300,8 @@
     "subtitle": "Ein Experte antwortet — kostenlos.",
     "button": "Mein kostenloses Audit erhalten",
     "note": ""
+  },
+  "team": {
+    "expertise": "Expertise"
   }
 }

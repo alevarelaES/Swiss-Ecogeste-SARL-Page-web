@@ -8,15 +8,22 @@ export function urlFor(source: SanityImage) {
   return builder.image(source)
 }
 
-// Helper pour obtenir une URL d'image optimisee
 export function getImageUrl(source: SanityImage | undefined, width = 800, height?: number) {
   if (!source?.asset) return ''
+  const b = urlFor(source).width(width)
+  return (height ? b.height(height) : b).url()
+}
 
-  const imageBuilder = urlFor(source).width(width)
-
-  if (height) {
-    imageBuilder.height(height)
-  }
-
-  return imageBuilder.url()
+/** 600×600 square crop biased toward the upper quarter — optimised for portrait headshots. */
+export function getTeamMemberImageUrl(source: SanityImage): string {
+  if (!source?.asset) return ''
+  return urlFor(source)
+    .width(600)
+    .height(600)
+    .fit('crop')
+    .crop('focalpoint')
+    .focalPoint(0.5, 0.25)
+    .auto('format')
+    .quality(85)
+    .url()
 }

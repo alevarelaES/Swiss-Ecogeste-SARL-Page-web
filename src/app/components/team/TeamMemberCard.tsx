@@ -1,34 +1,43 @@
-﻿import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+const MAX_EXPERTISE_ITEMS = 3;
 
 interface TeamMemberCardProps {
     name: string;
     role: string;
+    initials?: string;
     items: string[];
-    image?: string; // Optional image URL for future use
+    image?: string;
+    loading?: 'lazy' | 'eager';
 }
 
-export const TeamMemberCard = ({ name, role, items, image }: TeamMemberCardProps) => {
+export const TeamMemberCard = ({ name, role, initials, items, image, loading = 'lazy' }: TeamMemberCardProps) => {
+    const { t } = useTranslation('common');
+
     return (
         <div className="group flex flex-col bg-white border border-gray-200 rounded-none overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300 h-full">
-            {/* Image Container - Reduced Height (Square) */}
+            {/* Photo */}
             <div className="relative w-full aspect-square bg-gray-100 overflow-hidden">
                 {image ? (
                     <img
                         src={image}
                         alt={name}
-                        className="w-full h-full object-cover" // Zoom removed from image
+                        width={600}
+                        height={600}
+                        className="w-full h-full object-cover object-top"
+                        loading={loading}
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-300">
-                        <span className="sr-only">No image</span>
+                    <div className="w-full h-full flex items-center justify-center bg-[#e8f5e9]">
+                        {initials && (
+                            <span className="text-4xl font-black text-[#1b5e39]/60">{initials}</span>
+                        )}
                     </div>
                 )}
-
-                {/* Overlay Gradient for Text Contrast (Optional, kept minimal) */}
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/0 to-transparent"></div>
             </div>
 
-            {/* Content Section */}
+            {/* Content */}
             <div className="p-6 flex flex-col flex-grow">
                 <div className="mb-4">
                     <h3 className="text-xl font-bold text-gray-900 leading-tight mb-1">
@@ -39,14 +48,14 @@ export const TeamMemberCard = ({ name, role, items, image }: TeamMemberCardProps
                     </p>
                 </div>
 
-                {/* Divider - Very subtle */}
                 <div className="h-px w-full bg-gray-100 mb-4"></div>
 
-                {/* Expertise/Tags */}
                 <div className="flex-grow">
-                    <p className="text-xs font-semibold text-gray-800 uppercase tracking-wider mb-3">Expertise</p>
+                    <p className="text-xs font-semibold text-gray-800 uppercase tracking-wider mb-3">
+                        {t('team.expertise')}
+                    </p>
                     <ul className="space-y-2">
-                        {items.slice(0, 3).map((item, i) => ( // Limit to 3 items for cleanliness
+                        {items.slice(0, MAX_EXPERTISE_ITEMS).map((item, i) => (
                             <li key={i} className="flex items-start gap-2.5 text-[13px] text-gray-800 leading-relaxed">
                                 <CheckCircle2 className="w-4 h-4 text-[#1b5e39]/60 shrink-0 mt-0.5" />
                                 <span>{item}</span>
@@ -54,11 +63,6 @@ export const TeamMemberCard = ({ name, role, items, image }: TeamMemberCardProps
                         ))}
                     </ul>
                 </div>
-
-                {/* Socials - Placeholder for future */}
-                {/* <div className="mt-6 flex gap-4">
-                     <SocialIcon />
-                </div> */}
             </div>
         </div>
     );

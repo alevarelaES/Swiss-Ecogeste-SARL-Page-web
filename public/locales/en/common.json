@@ -312,5 +312,8 @@
     "subtitle": "An expert answers — for free.",
     "button": "Get my free audit",
     "note": ""
+  },
+  "team": {
+    "expertise": "Expertise"
   }
 }

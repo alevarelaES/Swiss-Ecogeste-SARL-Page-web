@@ -16,7 +16,6 @@ import CommunesPage from './pages/CommunesPage';
 import MentionsLegalesPage from './pages/MentionsLegalesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
-import ResultatsPage from './pages/ResultatsPage';
 import { GoogleAnalytics } from './components';
 
 // Wrapper component to handle language detection and redirection
