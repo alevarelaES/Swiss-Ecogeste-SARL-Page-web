@@ -43,6 +43,12 @@ const LanguageWrapper = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+// Redirects unmatched nested routes back to the language home
+const LocalizedCatchAll = () => {
+  const { lng } = useParams<{ lng: string }>();
+  return <Navigate to={`/${lng || 'fr'}`} replace />;
+};
+
 // Separate component for root redirection
 const RootRedirect = () => {
   const { i18n } = useTranslation();
@@ -71,10 +77,10 @@ export default function App() {
               <Layout>
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/services" element={<Navigate to="/services/villa" replace />} />
+                  <Route path="/services" element={<Navigate to="villa" replace />} />
                   <Route path="/a-propos" element={<TeamPage />} />
                   <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/resultats" element={<Navigate to="/" replace />} />
+                  <Route path="/resultats" element={<LocalizedCatchAll />} />
                   <Route path="/actualites" element={<ConseilsPage />} />
                   <Route path="/actualites/:slug" element={<ArticleDetailPage />} />
 
@@ -90,7 +96,7 @@ export default function App() {
                   <Route path="/cookies" element={<CookiePolicyPage />} />
 
                   {/* Catch-all within localized paths */}
-                  <Route path="*" element={<Navigate to="" replace />} />
+                  <Route path="*" element={<LocalizedCatchAll />} />
                 </Routes>
               </Layout>
             </LanguageWrapper>

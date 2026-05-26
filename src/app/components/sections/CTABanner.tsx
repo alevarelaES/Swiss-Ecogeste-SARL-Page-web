@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 
 interface CTABannerProps {
     title?: string;
@@ -18,6 +19,7 @@ const CTABanner = ({
     buttonLink = "/contact"
 }: CTABannerProps) => {
     const { t } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
 
     const displayTitle = title || t('cta_banner.title');
     const displaySubtitle = subtitle || t('cta_banner.subtitle');
@@ -43,7 +45,7 @@ const CTABanner = ({
                         asChild
                         className="bg-white hover:bg-gray-100 text-[#1b5e39] font-bold px-8 h-14 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg text-base"
                     >
-                        <Link to={buttonLink}>{displayButtonText}</Link>
+                        <Link to={getLocalizedPath(buttonLink)}>{displayButtonText}</Link>
                     </Button>
                 </div>
             </div>

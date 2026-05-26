@@ -188,31 +188,7 @@ const TeamPage = () => {
                     </div>
                 </div>
 
-                {/* ── Photo de groupe ── */}
-                <div className="relative h-[420px] md:h-[520px] overflow-hidden">
-                    <img
-                        src={content.groupPhotoUrl}
-                        alt="Équipe Swiss Ecogestes"
-                        className="absolute inset-0 w-full h-full object-cover object-center"
-                    />
-                    <div className="absolute inset-0 bg-[#0f1f1a]/65"></div>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                        <Reveal>
-                            <span className="inline-block text-amber-400 font-bold tracking-widest uppercase text-xs mb-4">
-                                {content.photoLabel}
-                            </span>
-                            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight max-w-2xl">
-                                {content.photoTitle}
-                            </h2>
-                            <div className="w-16 h-1 bg-amber-400 mx-auto rounded-full mb-4"></div>
-                            <p className="text-white/80 text-lg max-w-xl mx-auto">
-                                {content.photoSubtitle}
-                            </p>
-                        </Reveal>
-                    </div>
-                </div>
-
-                {/* ── Notre équipe ── */}
+{/* ── Notre équipe ── */}
                 <div className="relative py-16 pb-20 bg-gradient-to-b from-[#F0F4F2] to-slate-50 border-t border-gray-200">
                     <div className="max-w-7xl mx-auto px-6 relative z-10">
                         <Reveal>
