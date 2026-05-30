@@ -71,7 +71,7 @@ export async function getHeroSlides(lang: string = 'fr') {
 
 export async function getSanityStats(lang: string = 'fr') {
   return client.fetch(`
-    *[_type == "stat"] | order(order asc) {
+    *[_type == "stat"] | order(order asc) [0...4] {
       _id,
       value,
       "text": text.${lang},
@@ -355,7 +355,7 @@ export async function getPartners() {
 
 export async function getProcessSteps(lang: string = 'fr') {
   return client.fetch(`
-    *[_type == "processStep"] | order(stepNumber asc) {
+    *[_type == "processStep"] | order(stepNumber asc) [0...4] {
       _id,
       stepNumber,
       "title": title.${lang},

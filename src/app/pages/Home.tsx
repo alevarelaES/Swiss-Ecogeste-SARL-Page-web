@@ -30,8 +30,8 @@ const Home = () => {
                 <StatsSection />
                 <ProcessSection />
                 <ClientTypeSection />
-                <ArticlesSection />
                 <Partners />
+                <ArticlesSection />
 
                 <ContactSection compact />
             </div>
