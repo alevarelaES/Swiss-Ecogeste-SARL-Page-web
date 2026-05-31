@@ -21,6 +21,11 @@ const FALLBACK_PARTNERS: Partner[] = [
 
 const PartnerLogo = ({ partner }: { partner: Partner }) => {
     const [imgError, setImgError] = useState(false);
+
+    useEffect(() => {
+        setImgError(false);
+    }, [partner.logoUrl]);
+
     const showImage = !!partner.logoUrl && !imgError;
 
     const img = (
