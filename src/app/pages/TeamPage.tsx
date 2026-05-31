@@ -97,10 +97,10 @@ const TeamPage = () => {
                                     {content.heroTitle}
                                 </h1>
                                 <div className="w-20 h-1 bg-amber-400 mx-auto rounded-full mb-6"></div>
-                                <p className="text-gray-800 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto text-left">
-                                    {content.heroIntro}
-                                </p>
                             </div>
+                            <p className="text-gray-800 text-xl md:text-2xl leading-relaxed text-left">
+                                {content.heroIntro}
+                            </p>
                         </Reveal>
                     </div>
                 </div>
