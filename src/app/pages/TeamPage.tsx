@@ -98,7 +98,7 @@ const TeamPage = () => {
                                 </h1>
                                 <div className="w-20 h-1 bg-amber-400 mx-auto rounded-full mb-6"></div>
                             </div>
-                            <p className="text-gray-800 text-xl md:text-2xl leading-relaxed text-left">
+                            <p className="text-gray-800 text-xl md:text-2xl leading-relaxed text-justify">
                                 {content.heroIntro}
                             </p>
                         </Reveal>
@@ -120,10 +120,10 @@ const TeamPage = () => {
                                         {content.missionTitle}
                                     </h2>
                                     <div className="w-12 h-1 bg-amber-400 rounded-full mb-6"></div>
-                                    <p className="text-gray-800 text-lg leading-relaxed mb-4">
+                                    <p className="text-gray-800 text-lg leading-relaxed mb-4 text-justify">
                                         {content.missionText}
                                     </p>
-                                    <p className="text-gray-700 text-base leading-relaxed">
+                                    <p className="text-gray-700 text-base leading-relaxed text-justify">
                                         {content.missionText2}
                                     </p>
                                 </div>
@@ -141,7 +141,7 @@ const TeamPage = () => {
                                     <div className="w-12 h-1 bg-amber-400 rounded-full mb-6"></div>
                                     <div className="flex items-start gap-3 mb-6">
                                         <MapPin size={20} className="text-[#1b5e39] mt-1 shrink-0" />
-                                        <p className="text-gray-800 text-lg leading-relaxed">
+                                        <p className="text-gray-800 text-lg leading-relaxed text-justify">
                                             {content.presenceText}
                                         </p>
                                     </div>
