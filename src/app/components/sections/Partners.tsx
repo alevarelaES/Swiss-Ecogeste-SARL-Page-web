@@ -20,28 +20,23 @@ const FALLBACK_PARTNERS: Partner[] = [
 ];
 
 const PartnerLogo = ({ partner }: { partner: Partner }) => {
-    const hasImage = !!partner.logoUrl;
+    const [imgError, setImgError] = useState(false);
+    const showImage = !!partner.logoUrl && !imgError;
+
     const img = (
         <div className="mx-8 md:mx-16 flex items-center justify-center select-none group">
-            {hasImage ? (
+            {showImage ? (
                 <img
                     src={partner.logoUrl}
                     alt={partner.name}
                     className="h-16 md:h-20 w-auto object-contain max-w-[180px] md:max-w-[220px] filter transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-md"
-                    onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const fallback = target.nextElementSibling as HTMLElement | null;
-                        if (fallback) fallback.style.display = 'block';
-                    }}
+                    onError={() => setImgError(true)}
                 />
-            ) : null}
-            <span
-                style={{ display: hasImage ? 'none' : 'block' }}
-                className="font-bold text-gray-800 text-lg border border-dashed border-gray-300 p-4 rounded-lg pointer-events-none whitespace-nowrap"
-            >
-                {partner.name}
-            </span>
+            ) : (
+                <span className="font-bold text-gray-800 text-lg border border-dashed border-gray-300 p-4 rounded-lg pointer-events-none whitespace-nowrap">
+                    {partner.name}
+                </span>
+            )}
         </div>
     );
 
