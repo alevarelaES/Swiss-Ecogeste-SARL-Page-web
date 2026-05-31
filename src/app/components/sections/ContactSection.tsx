@@ -10,10 +10,33 @@ import { getContactPage, getSettings } from '../../../sanity/client';
 
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1974&auto=format&fit=crop";
 
-const ContactSection = ({ compact = false }: { compact?: boolean }) => {
-    const { t } = useTranslation('common');
+export type ContactPageData = {
+    tag?: string;
+    title?: string;
+    subtitle?: string;
+    quote?: string;
+    youAreLabel?: string;
+    typeVilla?: string;
+    typeEntreprise?: string;
+    typeRegie?: string;
+    typeProprio?: string;
+    typeOther?: string;
+    nameLabel?: string;
+    emailLabel?: string;
+    phoneLabel?: string;
+    messageLabel?: string;
+    messagePlaceholder?: string;
+    submitButton?: string;
+    sendingButton?: string;
+    imageUrl?: string;
+};
+
+const ContactSection = ({ compact = false, pageData }: { compact?: boolean; pageData?: ContactPageData }) => {
+    const { t, i18n } = useTranslation('common');
+    const language = i18n.language.split('-')[0];
     const [currentType, setCurrentType] = useState('Villa');
     const [contactImage, setContactImage] = useState(FALLBACK_IMAGE);
+    const [sanityData, setSanityData] = useState<ContactPageData>(pageData ?? {});
     const [email, setEmail] = useState('info@swissecogestes.ch');
     const [phone, setPhone] = useState('078 628 77 38');
     const [address, setAddress] = useState('Route de Chavannes 207, 1007 Lausanne');
@@ -23,9 +46,10 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
     const [twitterUrl, setTwitterUrl] = useState('https://twitter.com/swissecogestes');
 
     useEffect(() => {
-        getContactPage().then((data) => {
-            const url = data?.formSection?.image?.asset?.url;
-            if (url) setContactImage(url);
+        getContactPage(language).then((data) => {
+            if (!data) return;
+            setSanityData(data);
+            if (data.imageUrl) setContactImage(data.imageUrl);
         }).catch(() => {});
 
         getSettings().then((data) => {
@@ -38,7 +62,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
             if (data.socialMedia?.facebook) setFacebookUrl(data.socialMedia.facebook);
             if (data.socialMedia?.twitter) setTwitterUrl(data.socialMedia.twitter);
         }).catch(() => {});
-    }, []);
+    }, [language]);
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -151,11 +175,11 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
     };
 
     const clientRequestTypes = [
-        { label: t('contact_section.types.villa'), value: 'Villa' },
-        { label: t('contact_section.types.entreprise'), value: 'Entreprise' },
-        { label: t('contact_section.types.regie'), value: 'Gérance/Régie' },
-        { label: t('contact_section.types.proprio'), value: 'Propriétaire' },
-        { label: t('contact_section.types.other'), value: 'Autre' },
+        { label: sanityData.typeVilla || t('contact_section.types.villa'), value: 'Villa' },
+        { label: sanityData.typeEntreprise || t('contact_section.types.entreprise'), value: 'Entreprise' },
+        { label: sanityData.typeRegie || t('contact_section.types.regie'), value: 'Gérance/Régie' },
+        { label: sanityData.typeProprio || t('contact_section.types.proprio'), value: 'Propriétaire' },
+        { label: sanityData.typeOther || t('contact_section.types.other'), value: 'Autre' },
     ];
 
     return (
@@ -188,18 +212,18 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                         <div className="w-full lg:w-1/2 p-8 sm:p-16 flex flex-col justify-center">
                             <div className="max-w-lg mx-auto w-full">
                                 <span className="inline-block text-[#1b5e39] font-bold tracking-wider text-xs uppercase mb-4 bg-[#e8f5e9] px-4 py-1.5 rounded-full">
-                                    {t('contact_section.tag')}
+                                    {sanityData.tag || t('contact_section.tag')}
                                 </span>
                                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0f1f1a] mb-6 tracking-tight font-sans">
-                                    {t('contact_section.title')}
+                                    {sanityData.title || t('contact_section.title')}
                                 </h2>
                                 <p className="text-gray-800 mb-10 text-lg leading-relaxed">
-                                    {t('contact_section.subtitle')}
+                                    {sanityData.subtitle || t('contact_section.subtitle')}
                                 </p>
 
                                 <form onSubmit={handleSubmit} className="space-y-8">
                                     <div className="space-y-4">
-                                        <label className="text-sm font-bold text-[#0f1f1a] uppercase tracking-wide">{t('contact_section.you_are')}</label>
+                                        <label className="text-sm font-bold text-[#0f1f1a] uppercase tracking-wide">{sanityData.youAreLabel || t('contact_section.you_are')}</label>
                                         <div className="flex flex-wrap gap-3">
                                             {clientRequestTypes.map((type) => (
                                                 <Button
@@ -224,7 +248,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
 
                                     <div className="space-y-2">
                                         <div className="flex justify-between items-center">
-                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">{t('contact_section.name')}</label>
+                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">{sanityData.nameLabel || t('contact_section.name')}</label>
                                             {errors.fullName && <span className="text-[10px] text-red-500 font-medium">{errors.fullName}</span>}
                                         </div>
                                         <input
@@ -240,7 +264,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
                                             <div className="flex justify-between items-center">
-                                                <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">{t('contact_section.email')}</label>
+                                                <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">{sanityData.emailLabel || t('contact_section.email')}</label>
                                                 {errors.email && <span className="text-[10px] text-red-500 font-medium">{errors.email}</span>}
                                             </div>
                                             <input
@@ -254,7 +278,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                         </div>
                                         <div className="space-y-2">
                                             <div className="flex justify-between items-center">
-                                                <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">{t('contact_section.phone')}</label>
+                                                <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">{sanityData.phoneLabel || t('contact_section.phone')}</label>
                                                 {errors.phone && <span className="text-[10px] text-red-500 font-medium">{errors.phone}</span>}
                                             </div>
                                             <div className="relative">
@@ -275,7 +299,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
 
                                     <div className="space-y-2">
                                         <div className="flex justify-between items-center">
-                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">{t('contact_section.message')}</label>
+                                            <label className="text-xs font-bold text-[#0f1f1a] uppercase tracking-wide">{sanityData.messageLabel || t('contact_section.message')}</label>
                                             {errors.message && <span className="text-[10px] text-red-500 font-medium">{errors.message}</span>}
                                         </div>
                                         <textarea
@@ -284,7 +308,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                             value={formData.message}
                                             onChange={handleChange}
                                             className={`w-full bg-white border border-gray-200 rounded-none px-5 py-4 text-[#0f1f1a] placeholder:text-gray-700 focus:ring-2 focus:ring-[#1b5e39]/20 transition-all shadow-md resize-none ${errors.message ? 'ring-1 ring-red-500' : ''}`}
-                                            placeholder={t('contact_section.placeholder_message')}
+                                            placeholder={sanityData.messagePlaceholder || t('contact_section.placeholder_message')}
                                         ></textarea>
                                     </div>
 
@@ -296,7 +320,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                                         disabled={isSubmitting}
                                         className="w-full h-14 bg-[#1b5e39] hover:bg-[#144a2d] text-white text-lg font-bold shadow-xl shadow-[#1b5e39]/20 transition-all hover:-translate-y-1 group disabled:opacity-70 disabled:hover:translate-y-0"
                                     >
-                                        <span>{isSubmitting ? t('contact_section.sending') : t('contact_section.submit')}</span>
+                                        <span>{isSubmitting ? (sanityData.sendingButton || t('contact_section.sending')) : (sanityData.submitButton || t('contact_section.submit'))}</span>
                                         {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                                     </Button>
                                 </form>
@@ -316,7 +340,7 @@ const ContactSection = ({ compact = false }: { compact?: boolean }) => {
                             <div className="absolute bottom-0 left-0 right-0 p-12 text-white">
                                 <div className="mb-6 w-12 h-1 bg-[#4ade80]"></div>
                                 <blockquote className="text-2xl md:text-3xl font-medium leading-normal mb-8 tracking-tight font-sans">
-                                    {t('contact_section.quote')}
+                                    {sanityData.quote || t('contact_section.quote')}
                                 </blockquote>
                                 <div className="flex items-center gap-3 opacity-90">
                                     <span className="font-bold tracking-widest uppercase text-sm">{t('common.swissecogestes')}</span>

@@ -20,19 +20,26 @@ const FALLBACK_PARTNERS: Partner[] = [
 ];
 
 const PartnerLogo = ({ partner }: { partner: Partner }) => {
+    const hasImage = !!partner.logoUrl;
     const img = (
         <div className="mx-8 md:mx-16 flex items-center justify-center select-none group">
-            <img
-                src={partner.logoUrl}
-                alt={partner.name}
-                className="h-16 md:h-20 w-auto object-contain max-w-[180px] md:max-w-[220px] filter transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-md"
-                onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    target.nextElementSibling?.classList.remove('hidden');
-                }}
-            />
-            <span className="hidden font-bold text-gray-800 text-lg border border-dashed border-gray-300 p-4 rounded-lg pointer-events-none whitespace-nowrap">
+            {hasImage ? (
+                <img
+                    src={partner.logoUrl}
+                    alt={partner.name}
+                    className="h-16 md:h-20 w-auto object-contain max-w-[180px] md:max-w-[220px] filter transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-md"
+                    onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const fallback = target.nextElementSibling as HTMLElement | null;
+                        if (fallback) fallback.style.display = 'block';
+                    }}
+                />
+            ) : null}
+            <span
+                style={{ display: hasImage ? 'none' : 'block' }}
+                className="font-bold text-gray-800 text-lg border border-dashed border-gray-300 p-4 rounded-lg pointer-events-none whitespace-nowrap"
+            >
                 {partner.name}
             </span>
         </div>

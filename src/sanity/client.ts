@@ -317,16 +317,31 @@ export async function getSanityBlogPage(lang: string = 'fr') {
 // Page Contact
 // ─────────────────────────────────────────────
 
-export async function getContactPage() {
+export async function getContactPage(lang: string = 'fr') {
   return client.fetch(`
     *[_type == "contactPage"][0] {
-      formSection {
-        image {
-          asset->{ _id, url },
-          hotspot,
-          crop
-        }
-      }
+      "seoTitle": seo.title.${lang},
+      "seoDescription": seo.description.${lang},
+      "heroTitle": hero.title.${lang},
+      "heroDescription": hero.description.${lang},
+      "tag": formSection.tag.${lang},
+      "title": formSection.title.${lang},
+      "subtitle": formSection.subtitle.${lang},
+      "quote": formSection.quote.${lang},
+      "youAreLabel": formSection.youAreLabel.${lang},
+      "typeVilla": formSection.typeVilla.${lang},
+      "typeEntreprise": formSection.typeEntreprise.${lang},
+      "typeRegie": formSection.typeRegie.${lang},
+      "typeProprio": formSection.typeProprio.${lang},
+      "typeOther": formSection.typeOther.${lang},
+      "nameLabel": formSection.nameLabel.${lang},
+      "emailLabel": formSection.emailLabel.${lang},
+      "phoneLabel": formSection.phoneLabel.${lang},
+      "messageLabel": formSection.messageLabel.${lang},
+      "messagePlaceholder": formSection.messagePlaceholder.${lang},
+      "submitButton": formSection.submitButton.${lang},
+      "sendingButton": formSection.sendingButton.${lang},
+      "imageUrl": formSection.image.asset->url
     }
   `)
 }

@@ -70,6 +70,71 @@ export const contactPage = defineType({
                     title: 'Citation',
                     type: 'localeText',
                 }),
+                defineField({
+                    name: 'youAreLabel',
+                    title: 'Label "Vous êtes"',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'typeVilla',
+                    title: 'Type : Villa',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'typeEntreprise',
+                    title: 'Type : Entreprise',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'typeRegie',
+                    title: 'Type : Gérance/Régie',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'typeProprio',
+                    title: 'Type : Propriétaire',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'typeOther',
+                    title: 'Type : Autre',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'nameLabel',
+                    title: 'Label champ Nom',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'emailLabel',
+                    title: 'Label champ Email',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'phoneLabel',
+                    title: 'Label champ Téléphone',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'messageLabel',
+                    title: 'Label champ Message',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'messagePlaceholder',
+                    title: 'Placeholder Message',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'submitButton',
+                    title: 'Bouton Envoyer',
+                    type: 'localeString',
+                }),
+                defineField({
+                    name: 'sendingButton',
+                    title: 'Bouton Envoi en cours',
+                    type: 'localeString',
+                }),
             ],
         }),
     ],
