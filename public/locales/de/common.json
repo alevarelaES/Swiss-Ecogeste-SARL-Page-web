@@ -11,7 +11,8 @@
     "communes": "Gemeinden & VNB",
     "journal": "Aktuelles",
     "our_services": "Unsere Dienstleistungen",
-    "choose_language": "Sprache wählen"
+    "choose_language": "Sprache wählen",
+    "projects": "Projekte"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",
@@ -25,7 +26,18 @@
     "privacy": "Datenschutz",
     "cookies": "Cookie-Richtlinie",
     "partners": "Partner",
-    "credit": "Website entworfen & entwickelt von Alexandre Varela Tavares"
+    "credit": "Website entworfen & entwickelt von Alexandre Varela Tavares",
+    "links": {
+      "mentions": "Impressum",
+      "privacy": "Datenschutz",
+      "cookies": "Cookies"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "address": "Adresse",
+      "phone": "Telefon",
+      "email": "E-Mail"
+    }
   },
   "buttons": {
     "contact_us": "Kontaktieren Sie uns",
@@ -34,10 +46,12 @@
     "back": "Zurück",
     "start_project": "Projekt starten",
     "explore": "Erkunden",
-    "close": "Schließen"
+    "close": "Schließen",
+    "read_less": "Weniger anzeigen"
   },
   "common": {
-    "swissecogestes": "Swiss Ecogestes"
+    "swissecogestes": "Swiss Ecogestes",
+    "back": "Zurück"
   },
   "cookie_banner": {
     "title": "Datenschutz & Cookies",
@@ -67,7 +81,8 @@
     "interested": "Interessiert?",
     "contact_experts": "Kontaktieren Sie unsere Experten für ein persönliches Angebot.",
     "request_quote": "Angebot anfordern",
-    "program_link": "Mehr zum Programm"
+    "program_link": "Mehr zum Programm",
+    "what_we_include": "Was wir einschliessen"
   },
   "partners": {
     "title": "Sie vertrauen uns und empfehlen unsere Dienstleistungen"
@@ -208,7 +223,8 @@
             "Diese Website wurde von <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a> entworfen und entwickelt."
           ]
         }
-      }
+      },
+      "label": "Rechtliche Informationen"
     },
     "privacy": {
       "seo_title": "Datenschutzerklärung | Swiss Ecogestes",
@@ -257,7 +273,9 @@
             "Bei Fragen zum Schutz Ihrer Daten können Sie uns per E-Mail unter info@swissecogestes.ch kontaktieren."
           ]
         }
-      }
+      },
+      "last_updated": "Zuletzt aktualisiert",
+      "label": "Personendaten"
     },
     "cookies": {
       "seo_title": "Cookie-Richtlinie | Swiss Ecogestes",
@@ -295,7 +313,8 @@
             "Weitere Informationen finden Sie in der Hilfedokumentation Ihres Browsers (Chrome, Firefox, Safari, Edge)."
           ]
         }
-      }
+      },
+      "last_updated": "Zuletzt aktualisiert"
     }
   },
   "search": {

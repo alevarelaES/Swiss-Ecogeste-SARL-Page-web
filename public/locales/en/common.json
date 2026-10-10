@@ -46,10 +46,12 @@
     "back": "Back",
     "start_project": "Start my project",
     "explore": "Explore",
-    "close": "Close"
+    "close": "Close",
+    "read_less": "Show less"
   },
   "common": {
-    "swissecogestes": "Swiss Ecogestes"
+    "swissecogestes": "Swiss Ecogestes",
+    "back": "Back"
   },
   "cookie_banner": {
     "title": "Privacy & Cookies",
@@ -79,7 +81,8 @@
     "interested": "Interested?",
     "contact_experts": "Contact our experts to get a personalized quote.",
     "request_quote": "Request a Quote",
-    "program_link": "More about the programme"
+    "program_link": "More about the programme",
+    "what_we_include": "What we include"
   },
   "partners": {
     "title": "They trust us and recommend our services"
@@ -220,7 +223,8 @@
             "This website was designed and developed by <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a>."
           ]
         }
-      }
+      },
+      "label": "Legal Information"
     },
     "privacy": {
       "seo_title": "Privacy Policy | Swiss Ecogestes",
@@ -269,7 +273,9 @@
             "For any questions regarding the protection of your data, please contact us by email at info@swissecogestes.ch"
           ]
         }
-      }
+      },
+      "last_updated": "Last updated",
+      "label": "Personal Data"
     },
     "cookies": {
       "seo_title": "Cookie Policy | Swiss Ecogestes",
@@ -307,7 +313,8 @@
             "For more information, consult your browser's help guide (Chrome, Firefox, Safari, Edge)."
           ]
         }
-      }
+      },
+      "last_updated": "Last updated"
     }
   },
   "search": {

@@ -4,6 +4,7 @@ import { SEO } from '../components';
 import { Reveal } from '../components/animations';
 import { sanitizeHtml } from '../utils/sanitize';
 import { getLegalPage } from '../../sanity/client';
+import { formatLegalDate } from '../utils/formatLegalDate';
 import { useSanityData } from '../../sanity/useSanityContent';
 
 interface LegalSection {
@@ -31,8 +32,8 @@ const CookiePolicyPage = () => {
     const seoTitle = pageData?.seoTitle ?? t('legal.cookies.seo_title');
     const seoDesc = pageData?.seoDescription ?? t('legal.cookies.seo_desc');
     const lastUpdated = pageData?.lastUpdated
-        ? new Date(pageData.lastUpdated).toLocaleDateString('fr-CH', { day: '2-digit', month: 'long', year: 'numeric' })
-        : '01 Février 2026';
+        ? formatLegalDate(pageData.lastUpdated, lang)
+        : formatLegalDate('2026-02-01', lang);
 
     return (
         <div className="pt-32 pb-24">
@@ -43,7 +44,7 @@ const CookiePolicyPage = () => {
                     <div className="mb-12">
                         <span className="text-[var(--primary)] font-bold tracking-wider uppercase text-sm">{t('legal.cookies.label')}</span>
                         <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-2 mb-4">{title}</h1>
-                        <p className="text-gray-700 text-sm">Dernière mise à jour : {lastUpdated}</p>
+                        <p className="text-gray-700 text-sm">{t('legal.cookies.last_updated')} : {lastUpdated}</p>
                     </div>
                 </Reveal>
                 <div className="space-y-12">

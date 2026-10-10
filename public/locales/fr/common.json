@@ -223,7 +223,8 @@
             "Ce site internet a été conçu et réalisé par <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a>."
           ]
         }
-      }
+      },
+      "label": "Informations Légales"
     },
     "privacy": {
       "seo_title": "Politique de Confidentialité | Swiss Ecogestes",
@@ -272,7 +273,9 @@
             "Pour toute question relative à la protection de vos données, vous pouvez nous contacter par email à info@swissecogestes.ch"
           ]
         }
-      }
+      },
+      "last_updated": "Dernière mise à jour",
+      "label": "Données Personnelles"
     },
     "cookies": {
       "seo_title": "Politique des Cookies | Swiss Ecogestes",
@@ -310,7 +313,8 @@
             "Pour plus d'informations, consultez les guides de votre navigateur (Chrome, Firefox, Safari, Edge)."
           ]
         }
-      }
+      },
+      "last_updated": "Dernière mise à jour"
     }
   },
   "search": {
