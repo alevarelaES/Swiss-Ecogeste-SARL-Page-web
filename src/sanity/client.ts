@@ -155,9 +155,11 @@ export async function getSanityServicePage(pageSlug: string, lang: string = 'fr'
       "backLink": backLink.${lang},
       "services": services[] {
         "title": title.${lang},
+        "titleFr": title.fr,
         "description": description.${lang},
         "image": image.asset->url,
         "features": features.${lang},
+        "featuresFr": features.fr,
         featureLinks,
         "note": note.${lang},
         link,

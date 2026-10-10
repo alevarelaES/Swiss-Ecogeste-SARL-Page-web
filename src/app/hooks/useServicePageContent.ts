@@ -1,5 +1,6 @@
 import { getSanityServicePage } from '../../sanity/client';
 import { useSanityContent } from '../../sanity/useSanityContent';
+import { defaultServiceLinks } from '../data/serviceLinks';
 
 export type ServiceItem = {
     title: string;
@@ -51,16 +52,20 @@ export function useServicePageContent(
                 buttonText: data.buttonText || fallback.buttonText,
                 buttonLink: data.buttonLink || fallback.buttonLink,
                 services: (data.services && data.services.length > 0)
-                    ? data.services.map((s: any, i: number) => ({
-                        title: s.title || '',
-                        description: s.description || '',
-                        image: s.image || fallback.services[i]?.image || '',
-                        features: s.features || [],
-                        featureLinks: s.featureLinks || [],
-                        note: s.note || undefined,
-                        link: s.link || undefined,
-                        linkLabel: s.linkLabel || undefined,
-                    }))
+                    ? data.services.map((s: any, i: number) => {
+                        // Liens du PDF client par défaut, remplacés par ceux saisis dans Sanity
+                        const defaults = defaultServiceLinks(pageSlug, s.titleFr, s.featuresFr);
+                        return {
+                            title: s.title || '',
+                            description: s.description || '',
+                            image: s.image || fallback.services[i]?.image || '',
+                            features: s.features || [],
+                            featureLinks: s.featureLinks?.some((l: string) => l?.trim()) ? s.featureLinks : defaults.featureLinks,
+                            note: s.note || undefined,
+                            link: s.link || defaults.link,
+                            linkLabel: s.linkLabel || undefined,
+                        };
+                    })
                     : fallback.services,
             };
         }

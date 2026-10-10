@@ -13,6 +13,7 @@
 
 import 'dotenv/config'
 import { createClient } from '@sanity/client'
+import { SERVICE_LINK_RULES as RULES } from '../src/app/data/serviceLinks'
 
 const dataset = process.env.VITE_SANITY_DATASET || 'dev'
 const apply = process.argv.includes('--apply')
@@ -24,66 +25,6 @@ const client = createClient({
   token: process.env.SANITY_WRITE_TOKEN,
   useCdn: false,
 })
-
-const LINKS = {
-  ecologement:
-    'https://www.vd.ch/environnement/energie/subventions-des-energies-renouvelables-et-des-economies-denergie-pour-proprietaires-communes-et-entreprises/subvention-eco-logement',
-  chauffezRenouvelable: 'https://www.suisseenergie.ch/renover/conseil-incitatif-chauffezrenouvelable/',
-  idc: 'https://www.ge.ch/connaitre-consommation-energie-batiment-idc',
-  // Le lien du PDF (ge.ch/assistance-maitrise-dusage) renvoie une erreur 404 ;
-  // cette page de l'État de Genève présente l'AMU subventionné.
-  amu: 'https://www.ge.ch/baisser-consommation-energetique-batiment',
-  amo: 'https://ww2.sig-ge.ch/immobilier/optimisation-energetique-et-environnementale/eco21-immobilier/renovation-batiments',
-  visiteConseil:
-    'https://ww2.sig-ge.ch/entreprises/optimisation-energetique-et-environnementale/eco21-entreprises/accompagnement-SIG-eco21',
-  visiteExpertise:
-    'https://ww2.sig-ge.ch/artisans_independants/optimisation-energetique-et-environnementale/eco21-professionnels/visite_expertise',
-  peik: 'https://www.suisseenergie.ch/entreprises/se-faire-conseiller/peik/',
-  // PDF : « Audit éclairage -> lien vers la page SIG éco21 » (sans URL précise)
-  sigOptimisationInstallations:
-    'https://ww2.sig-ge.ch/immobilier/optimisation-energetique-et-environnementale/eco21-immobilier/optimisation-installations',
-  visiteVilla:
-    'https://ww2.sig-ge.ch/particuliers/demarches-et-factures/solutions-proprietaires-villas/diagnostic-energetique-environnemental',
-}
-
-type Rule = {
-  match: RegExp
-  link?: string
-  featureLinks?: string[]
-  /** Lien d'un point clé précis, retrouvé par son texte français */
-  featureLink?: { match: RegExp; href: string }
-}
-
-const RULES: Record<string, Rule[]> = {
-  gerance: [
-    { match: /\bGED\b/, featureLink: { match: /éclairage/i, href: LINKS.sigOptimisationInstallations } },
-    { match: /écologement/i, link: LINKS.ecologement },
-    { match: /audit chauffage/i, link: LINKS.chauffezRenouvelable },
-    { match: /calcul idc/i, link: LINKS.idc },
-    { match: /\bAMU\b/, link: LINKS.amu },
-    { match: /\bAMO\b|maîtrise d.ouvrage/i, link: LINKS.amo },
-  ],
-  entreprise: [
-    { match: /visite conseil/i, link: LINKS.visiteConseil },
-    { match: /visite expertise/i, link: LINKS.visiteExpertise },
-    { match: /PEIK/, link: LINKS.peik },
-    { match: /audit chauffage/i, link: LINKS.chauffezRenouvelable },
-    { match: /calcul idc/i, link: LINKS.idc },
-  ],
-  villa: [
-    { match: /visite villa/i, link: LINKS.visiteVilla },
-    { match: /audit chauffage/i, link: LINKS.chauffezRenouvelable },
-    { match: /calcul idc/i, link: LINKS.idc },
-    { match: /\bAMO\b|maîtrise d.ouvrage/i, link: LINKS.amo },
-  ],
-  communes: [
-    {
-      // Bâtiments communaux, Immeubles et régies, Villas et maisons, Entreprises locales
-      match: /mesures concr[èe]tes/i,
-      featureLinks: ['/services/gerance', '/services/gerance', '/services/villa', '/services/entreprise'],
-    },
-  ],
-}
 
 const HIGHLIGHTS: Record<string, { fr: string[]; en: string[]; de: string[] }> = {
   '/services/gerance': {
