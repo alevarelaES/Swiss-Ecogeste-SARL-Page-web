@@ -49,7 +49,6 @@ const ServicesPage = () => {
             <SEO
                 title={pageContent.seoTitle}
                 description={pageContent.seoDesc}
-                canonical="/services"
             />
 
             {/* Premium Hero Section */}

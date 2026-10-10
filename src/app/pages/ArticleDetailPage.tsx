@@ -8,11 +8,12 @@ import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
-import DOMPurify from 'dompurify';
+import { sanitizeHtml } from '../utils/sanitize';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import type { PortableTextBlock } from '@portabletext/types';
 import { getArticleBySlug } from '../../sanity/client';
 import { getImageUrl } from '../../sanity/image';
+import { SITE_URL } from '../seo/site';
 
 interface ArticleDetail {
     id: string;
@@ -95,6 +96,12 @@ const portableTextComponents: PortableTextComponents = {
     listItem: {
         bullet: ({ children }) => <li className="relative pl-6 mb-3 text-lg text-gray-800 before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-2 before:h-2 before:bg-[var(--primary)] before:rounded-full">{children}</li>,
     },
+};
+
+// Chemin du même article dans chaque langue (les slugs sont traduits), pour les balises hreflang
+const articleAlternatePaths = (id: string, slug: string) => {
+    const pathFor = (list: typeof articlesFr) => `/actualites/${list.find((a) => a.id === id)?.slug ?? slug}`;
+    return { fr: pathFor(articlesFr), en: pathFor(articlesEn), de: pathFor(articlesDe) };
 };
 
 const getFallbackArticle = (slug: string | undefined, language: string): { article: ArticleDetail | null; sanitySlug: string | null } => {
@@ -180,7 +187,7 @@ const ArticleDetailPage = () => {
 
     if (!article) return null;
 
-    const currentUrl = window.location.href;
+    const currentUrl = `${SITE_URL}${location.pathname}`;
     const shareTitle = article.title;
 
     const handleCopyLink = () => {
@@ -203,7 +210,7 @@ const ArticleDetailPage = () => {
 
     return (
         <div className="min-h-screen bg-white font-sans">
-            <SEO title={article.title} description={article.excerpt} canonical={`/actualites/${article.slug}`} ogImage={article.imageUrl} />
+            <SEO title={article.title} description={article.excerpt} ogImage={article.imageUrl} ogType="article" alternatePaths={articleAlternatePaths(article.id, article.slug)} />
 
             {/* HEADER AVEC TOUCHE DE COULEUR SUBTILE */}
             <header className="pt-32 pb-12 lg:pb-16 bg-gray-100 border-b border-gray-200 shadow-sm">
@@ -291,7 +298,7 @@ const ArticleDetailPage = () => {
                             {article.contentPortableText && article.contentPortableText.length > 0 ? (
                                 <PortableText value={article.contentPortableText} components={portableTextComponents} />
                             ) : (
-                                <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contentHtml || '') }} />
+                                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.contentHtml || '') }} />
                             )}
                         </article>
 

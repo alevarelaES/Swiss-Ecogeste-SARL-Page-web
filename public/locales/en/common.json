@@ -326,5 +326,9 @@
   },
   "team": {
     "expertise": "Expertise"
+  },
+  "home_seo": {
+    "title": "Energy audits and subsidies in French-speaking Switzerland",
+    "description": "Swiss Ecogestes cuts energy costs for property managers, businesses, homeowners and municipalities in French-speaking Switzerland: energy audits, IDC calculation, CECB, subsidies and independent support."
   }
 }

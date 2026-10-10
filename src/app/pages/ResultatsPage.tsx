@@ -216,7 +216,6 @@ const ResultatsPage = () => {
             <SEO
                 title={content.seo.title}
                 description={content.seo.description}
-                canonical="/resultats"
             />
 
             {/* ── EN-TÊTE ULTRA CONDENSÉ AVEC FOND ARCHITECTURAL ───────────────────────────── */}

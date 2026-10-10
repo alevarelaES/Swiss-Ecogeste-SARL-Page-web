@@ -85,7 +85,6 @@ const ConseilsPage = () => {
             <SEO
                 title={content.seo.title}
                 description={content.seo.description}
-                canonical={content.seo.canonical}
             />
 
             {/* COMPACT HEADER SECTION */}

@@ -8,6 +8,10 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 4000,
   },
+  ssr: {
+    // Paquets CommonJS à inclure dans le bundle du pré-rendu (sinon leurs exports nommés échouent sous Node)
+    noExternal: ['react-helmet-async'],
+  },
   plugins: [
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them

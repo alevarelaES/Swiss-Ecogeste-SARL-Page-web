@@ -28,3 +28,4 @@ public/images/Docker Desktop Installer.exe
 .claude/settings.local.json
 .claude/worktrees/
 .vercel
+dist-ssr/

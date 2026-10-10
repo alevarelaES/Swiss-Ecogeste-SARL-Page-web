@@ -329,5 +329,9 @@
   },
   "team": {
     "expertise": "Expertise"
+  },
+  "home_seo": {
+    "title": "Audits énergétiques et subventions en Suisse romande",
+    "description": "Swiss Ecogestes réduit les coûts énergétiques des régies, entreprises, propriétaires et communes en Suisse romande : audits énergétiques, calcul IDC, CECB, subventions et accompagnement indépendant."
   }
 }

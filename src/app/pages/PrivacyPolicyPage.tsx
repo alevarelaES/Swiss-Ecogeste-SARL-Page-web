@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { BackButton } from '../components/navigation';
 import { SEO } from '../components';
 import { Reveal } from '../components/animations';
-import DOMPurify from 'dompurify';
+import { sanitizeHtml } from '../utils/sanitize';
 import { getLegalPage } from '../../sanity/client';
 
 interface LegalSection {
@@ -59,7 +59,7 @@ const PrivacyPolicyPage = () => {
                                 <div className="space-y-4 text-gray-800 leading-relaxed">
                                     {section.content.map((paragraph, pIndex) => (
                                         <p key={pIndex} dangerouslySetInnerHTML={{
-                                            __html: DOMPurify.sanitize(paragraph, {
+                                            __html: sanitizeHtml(paragraph, {
                                                 ALLOWED_TAGS: ['strong', 'em', 'br', 'a'],
                                                 ALLOWED_ATTR: ['href', 'target', 'rel', 'class']
                                             })

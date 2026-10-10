@@ -3,10 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { SEO } from '../components';
 import { Hero, About, Partners, ContactSection, StatsSection, ArticlesSection, ClientTypeSection, ProcessSection } from '../components/sections';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
+import { useTranslation } from 'react-i18next';
+import { ORGANIZATION_JSON_LD, WEBSITE_JSON_LD } from '../seo/site';
 
 const Home = () => {
     useSearchHighlight();
     const { hash } = useLocation();
+    const { t } = useTranslation('common');
 
     React.useEffect(() => {
         if (hash) {
@@ -20,9 +23,9 @@ const Home = () => {
     return (
         <>
             <SEO
-                title="Expert en Efficacité Énergétique"
-                description="Swiss Ecogestes accompagne les particuliers, gérances et entreprises dans leur transition énergétique en Suisse. Solutions durables et économies d'énergie."
-                canonical="/"
+                title={t('home_seo.title')}
+                description={t('home_seo.description')}
+                jsonLd={[ORGANIZATION_JSON_LD, WEBSITE_JSON_LD]}
             />
             <div className="bg-white">
                 <Hero />

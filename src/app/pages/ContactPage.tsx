@@ -22,7 +22,6 @@ const ContactPage = () => {
             <SEO
                 title={pageData.seoTitle || t('contact_page.seo_title')}
                 description={pageData.seoDescription || t('contact_page.seo_description')}
-                canonical="/contact"
             />
             <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
                 <Reveal>

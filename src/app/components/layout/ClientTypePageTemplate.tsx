@@ -42,7 +42,6 @@ export const ClientTypePageTemplate = ({ content }: ClientTypePageTemplateProps)
             <SEO
                 title={content.seo.title}
                 description={content.seo.description}
-                canonical={content.seo.canonical}
             />
 
             <div className="max-w-7xl mx-auto px-6">

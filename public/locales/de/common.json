@@ -314,5 +314,9 @@
   },
   "team": {
     "expertise": "Expertise"
+  },
+  "home_seo": {
+    "title": "Energieaudits und Förderbeiträge in der Westschweiz",
+    "description": "Swiss Ecogestes senkt die Energiekosten von Verwaltungen, Unternehmen, Eigentümern und Gemeinden in der Westschweiz: Energieaudits, IDC-Berechnung, GEAK, Förderbeiträge und unabhängige Begleitung."
   }
 }

@@ -72,7 +72,6 @@ const TeamPage = () => {
             <SEO
                 title={content.seo.title}
                 description={content.seo.description}
-                canonical="/a-propos"
             />
 
             <div className="fixed inset-0 pointer-events-none overflow-hidden">

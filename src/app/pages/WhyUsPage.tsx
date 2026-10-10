@@ -48,7 +48,6 @@ const WhyUsPage = () => {
             <SEO
                 title={t('why_us.seo_title')}
                 description={t('why_us.seo_desc')}
-                canonical="/pourquoi"
             />
 
             <div className="max-w-7xl mx-auto px-6">
