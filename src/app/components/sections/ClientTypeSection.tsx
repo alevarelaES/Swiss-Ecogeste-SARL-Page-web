@@ -1,40 +1,29 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
 import { getClientTypes as getHardcodedClientTypes, getClientTypesSectionHeader } from '../../data/homePageContent';
 import { getSanityClientTypes } from '../../../sanity/client';
+import { useSanityContent } from '../../../sanity/useSanityContent';
 
 const ClientTypeSection = () => {
     const { t, i18n } = useTranslation('common');
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
     const header = getClientTypesSectionHeader(lang);
-    const [clientTypes, setClientTypes] = useState(getHardcodedClientTypes(lang));
-
-    useEffect(() => {
-        setClientTypes(getHardcodedClientTypes(lang));
-    }, [lang]);
-
-    useEffect(() => {
-        let cancelled = false;
-        getSanityClientTypes(lang)
-            .then((data: any[]) => {
-                if (cancelled || !data || data.length === 0) return;
-                const mapped = data.map((ct: any) => ({
-                    id: ct.slug || ct._id,
-                    title: ct.title || '',
-                    subtitle: ct.subtitle || '',
-                    description: ct.description || '',
-                    link: ct.link || '/',
-                    image: ct.imageUrl || '',
-                }));
-                setClientTypes(mapped);
-            })
-            .catch(() => {});
-        return () => { cancelled = true; };
-    }, [lang]);
+    const clientTypes = useSanityContent(
+        `clientTypes:${lang}`,
+        () => getSanityClientTypes(lang),
+        getHardcodedClientTypes(lang),
+        (data: any[]) => data.length === 0 ? null : data.map((ct: any) => ({
+            id: ct.slug || ct._id,
+            title: ct.title || '',
+            subtitle: ct.subtitle || '',
+            description: ct.description || '',
+            link: ct.link || '/',
+            image: ct.imageUrl || '',
+        }))
+    );
 
     const fallbackImages = [
         'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',

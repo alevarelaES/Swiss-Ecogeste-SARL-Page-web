@@ -1,11 +1,11 @@
 ﻿
-import { useEffect, useState } from 'react';
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getArticles as getHardcodedArticles } from '../../data/articles';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 import { getArticles as getSanityArticles } from '../../../sanity/client';
+import { useSanityContent } from '../../../sanity/useSanityContent';
 
 interface Article {
     id: string;
@@ -31,6 +31,7 @@ const formatArticleDate = (publishedAt: string, lang: 'fr' | 'en' | 'de') => {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
+        timeZone: 'UTC',
     });
 };
 
@@ -41,50 +42,29 @@ const ArticlesSection = () => {
     const { getLocalizedPath } = useLocalizedPath();
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
-    const [articles, setArticles] = useState<Article[]>(getFallbackArticles(lang));
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        setArticles(getFallbackArticles(lang));
-        setIsLoading(true);
-    }, [lang]);
-
-    useEffect(() => {
-        let cancelled = false;
-        getSanityArticles(lang)
-            .then((result: any[]) => {
-                if (cancelled || !result || result.length === 0) return;
-                const fallbackArticles = getFallbackArticles(lang);
-                const mapped = result
-                    .map((article: any, index: number) => ({
-                        id: article._id || fallbackArticles[index]?.id || `${index}`,
-                        title: article.title || fallbackArticles[index]?.title || '',
-                        excerpt: article.excerpt || fallbackArticles[index]?.excerpt || '',
-                        category: article.category || fallbackArticles[index]?.category || '',
-                        date: article.publishedAt
-                            ? formatArticleDate(article.publishedAt, lang)
-                            : (fallbackArticles[index]?.date || ''),
-                        readTime: article.readTime || fallbackArticles[index]?.readTime || '',
-                        imageUrl: article.imageUrl || fallbackArticles[index]?.imageUrl || '',
-                        slug: article.slug || fallbackArticles[index]?.slug || '',
-                    }))
-                    .filter((article: Article) => article.slug && article.title);
-
-                if (mapped.length > 0) {
-                    setArticles(mapped);
-                }
-            })
-            .catch(() => {})
-            .finally(() => {
-                if (!cancelled) {
-                    setIsLoading(false);
-                }
-            });
-
-        return () => {
-            cancelled = true;
-        };
-    }, [lang]);
+    const articles = useSanityContent<Article[], any[]>(
+        `articles:${lang}`,
+        () => getSanityArticles(lang),
+        getFallbackArticles(lang),
+        (result) => {
+            const fallbackArticles = getFallbackArticles(lang);
+            const mapped = result
+                .map((article: any, index: number) => ({
+                    id: article._id || fallbackArticles[index]?.id || `${index}`,
+                    title: article.title || fallbackArticles[index]?.title || '',
+                    excerpt: article.excerpt || fallbackArticles[index]?.excerpt || '',
+                    category: article.category || fallbackArticles[index]?.category || '',
+                    date: article.publishedAt
+                        ? formatArticleDate(article.publishedAt, lang)
+                        : (fallbackArticles[index]?.date || ''),
+                    readTime: article.readTime || fallbackArticles[index]?.readTime || '',
+                    imageUrl: article.imageUrl || fallbackArticles[index]?.imageUrl || '',
+                    slug: article.slug || fallbackArticles[index]?.slug || '',
+                }))
+                .filter((article: Article) => article.slug && article.title);
+            return mapped.length > 0 ? mapped : null;
+        }
+    );
 
     return (
         <section id="articles" className="py-8 md:py-10 lg:py-12 bg-white">
@@ -107,21 +87,7 @@ const ArticlesSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-                    {isLoading ? Array.from({ length: 3 }).map((_, index) => (
-                        <div
-                            key={`article-skeleton-${index}`}
-                            className="bg-white rounded-none overflow-hidden shadow-md border border-gray-100 animate-pulse"
-                        >
-                            <div className="h-56 bg-gray-200" />
-                            <div className="p-8">
-                                <div className="h-3 w-1/3 bg-gray-200 mb-4" />
-                                <div className="h-8 w-full bg-gray-200 mb-3" />
-                                <div className="h-5 w-11/12 bg-gray-100 mb-2" />
-                                <div className="h-5 w-10/12 bg-gray-100 mb-6" />
-                                <div className="h-3 w-1/2 bg-gray-200" />
-                            </div>
-                        </div>
-                    )) : articles.map((article) => (
+                    {articles.map((article) => (
                         <div key={article.id}>
                             <Link
                                 to={getLocalizedPath(`/actualites/${article.slug}`)}

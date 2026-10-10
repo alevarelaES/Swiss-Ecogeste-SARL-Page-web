@@ -14,30 +14,21 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 import { getHeroSlides as getHardcodedHeroSlides } from '../../data/homePageContent';
 import { getHeroSlides } from '../../../sanity/client';
+import { useSanityContent } from '../../../sanity/useSanityContent';
 
 const Hero = () => {
     const { i18n } = useTranslation('common');
     const { getLocalizedPath } = useLocalizedPath();
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
-    const [heroSlides, setHeroSlides] = useState(getHardcodedHeroSlides(lang));
+    const heroSlides = useSanityContent(
+        `heroSlides:${lang}`,
+        () => getHeroSlides(lang),
+        getHardcodedHeroSlides(lang),
+        (data: any[]) => (data.length > 0 ? data : null)
+    );
     const [api, setApi] = useState<CarouselApi>();
     const [currentSlide, setCurrentSlide] = useState(0);
-
-    useEffect(() => {
-        setHeroSlides(getHardcodedHeroSlides(lang));
-    }, [lang]);
-
-    useEffect(() => {
-        let cancelled = false;
-        getHeroSlides(lang)
-            .then((data: any[]) => {
-                if (cancelled || !data || data.length === 0) return;
-                setHeroSlides(data);
-            })
-            .catch(() => {});
-        return () => { cancelled = true; };
-    }, [lang]);
 
     useEffect(() => {
         if (!api) return;

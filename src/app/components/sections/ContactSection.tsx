@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState } from 'react';
 import { Mail, MapPin, Linkedin, Instagram, Facebook, X, ArrowRight, Phone } from 'lucide-react';
 import { Button } from "../ui/button";
 import { cn } from '../ui/utils';
@@ -6,6 +6,7 @@ import Reveal from '../animations/Reveal';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 import { getContactPage, getSettings } from '../../../sanity/client';
+import { useSanityData } from '../../../sanity/useSanityContent';
 
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1974&auto=format&fit=crop";
 
@@ -34,34 +35,17 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
     const { t, i18n } = useTranslation('common');
     const language = i18n.language.split('-')[0];
     const [currentType, setCurrentType] = useState('Villa');
-    const [contactImage, setContactImage] = useState(FALLBACK_IMAGE);
-    const [sanityData, setSanityData] = useState<ContactPageData>(pageData ?? {});
-    const [email, setEmail] = useState('info@swissecogestes.ch');
-    const [phone, setPhone] = useState('078 628 77 38');
-    const [address, setAddress] = useState('Route de Chavannes 207, 1007 Lausanne');
-    const [linkedinUrl, setLinkedinUrl] = useState('https://www.linkedin.com/company/swissecogestes/');
-    const [instagramUrl, setInstagramUrl] = useState('https://www.instagram.com/swissecogestes/');
-    const [facebookUrl, setFacebookUrl] = useState('https://www.facebook.com/swissecogestes');
-    const [twitterUrl, setTwitterUrl] = useState('https://twitter.com/swissecogestes');
-
-    useEffect(() => {
-        getContactPage(language).then((data) => {
-            if (!data) return;
-            setSanityData(data);
-            if (data.imageUrl) setContactImage(data.imageUrl);
-        }).catch(() => {});
-
-        getSettings().then((data) => {
-            if (!data) return;
-            if (data.contactInfo?.email) setEmail(data.contactInfo.email);
-            if (data.contactInfo?.phone) setPhone(data.contactInfo.phone);
-            if (data.contactInfo?.address) setAddress(data.contactInfo.address);
-            if (data.socialMedia?.linkedin) setLinkedinUrl(data.socialMedia.linkedin);
-            if (data.socialMedia?.instagram) setInstagramUrl(data.socialMedia.instagram);
-            if (data.socialMedia?.facebook) setFacebookUrl(data.socialMedia.facebook);
-            if (data.socialMedia?.twitter) setTwitterUrl(data.socialMedia.twitter);
-        }).catch(() => {});
-    }, [language]);
+    const contactPage = useSanityData<ContactPageData | null>(`contactPage:${language}`, () => getContactPage(language));
+    const settings = useSanityData<any>('settings', () => getSettings());
+    const sanityData: ContactPageData = contactPage ?? pageData ?? {};
+    const contactImage = sanityData.imageUrl || FALLBACK_IMAGE;
+    const email = settings?.contactInfo?.email || 'info@swissecogestes.ch';
+    const phone = settings?.contactInfo?.phone || '078 628 77 38';
+    const address = settings?.contactInfo?.address || 'Route de Chavannes 207, 1007 Lausanne';
+    const linkedinUrl = settings?.socialMedia?.linkedin || 'https://www.linkedin.com/company/swissecogestes/';
+    const instagramUrl = settings?.socialMedia?.instagram || 'https://www.instagram.com/swissecogestes/';
+    const facebookUrl = settings?.socialMedia?.facebook || 'https://www.facebook.com/swissecogestes';
+    const twitterUrl = settings?.socialMedia?.twitter || 'https://twitter.com/swissecogestes';
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',

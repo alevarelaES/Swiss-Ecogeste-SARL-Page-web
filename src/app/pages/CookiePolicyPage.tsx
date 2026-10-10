@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackButton } from '../components/navigation';
 import { SEO } from '../components';
 import { Reveal } from '../components/animations';
 import { sanitizeHtml } from '../utils/sanitize';
 import { getLegalPage } from '../../sanity/client';
+import { useSanityData } from '../../sanity/useSanityContent';
 
 interface LegalSection {
     title: string;
@@ -22,13 +22,8 @@ interface LegalPageData {
 const CookiePolicyPage = () => {
     const { t, i18n } = useTranslation('common');
     const lang = i18n.language.split('-')[0] === 'de' ? 'de' : i18n.language.split('-')[0] === 'en' ? 'en' : 'fr';
-    const [pageData, setPageData] = useState<LegalPageData | null>(null);
-
-    useEffect(() => {
-        getLegalPage('cookies', lang)
-            .then((data) => { if (data?.sections?.length) setPageData(data) })
-            .catch(() => {});
-    }, [lang]);
+    const legalPage = useSanityData<LegalPageData | null>(`legalPage:cookies:${lang}`, () => getLegalPage('cookies', lang));
+    const pageData = legalPage?.sections?.length ? legalPage : null;
 
     const i18nSections = t('legal.cookies.sections', { returnObjects: true }) as Record<string, LegalSection>;
     const sections: LegalSection[] = pageData?.sections ?? Object.values(i18nSections);

@@ -1,9 +1,9 @@
-﻿import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getProcessSteps } from '../../../sanity/client';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
+import { useSanityContent } from '../../../sanity/useSanityContent';
 
 interface ProcessStep {
     stepNumber: number;
@@ -37,19 +37,12 @@ const ProcessSection = () => {
     const lang = i18n.language?.slice(0, 2) || 'fr';
     const navigate = useNavigate();
     const { getLocalizedPath } = useLocalizedPath();
-    const [steps, setSteps] = useState<ProcessStep[]>(FALLBACK_STEPS[lang] ?? FALLBACK_STEPS.fr);
-
-    useEffect(() => {
-        getProcessSteps(lang).then((data) => {
-            if (data && data.length > 0) {
-                setSteps(data);
-            } else {
-                setSteps(FALLBACK_STEPS[lang] ?? FALLBACK_STEPS.fr);
-            }
-        }).catch(() => {
-            setSteps(FALLBACK_STEPS[lang] ?? FALLBACK_STEPS.fr);
-        });
-    }, [lang]);
+    const steps = useSanityContent<ProcessStep[], ProcessStep[]>(
+        `processSteps:${lang}`,
+        () => getProcessSteps(lang),
+        FALLBACK_STEPS[lang] ?? FALLBACK_STEPS.fr,
+        (data) => (data.length > 0 ? data : null)
+    );
 
     return (
         <section id="process" className="py-20 md:py-28 bg-white">

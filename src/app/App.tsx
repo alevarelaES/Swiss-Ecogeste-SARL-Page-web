@@ -17,6 +17,7 @@ import MentionsLegalesPage from './pages/MentionsLegalesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
 import { GoogleAnalytics } from './components';
+import { SanityCacheProvider, browserSanityCache } from '../sanity/useSanityContent';
 
 // Wrapper component to handle language detection and redirection
 const LanguageWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -108,12 +109,17 @@ export function AppShell() {
   );
 }
 
+// Données Sanity injectées dans la page pré-rendue (voir src/sanity/useSanityContent.tsx)
+const sanityCache = browserSanityCache();
+
 export default function App() {
   return (
-    <HelmetProvider>
-      <BrowserRouter>
-        <AppShell />
-      </BrowserRouter>
-    </HelmetProvider>
+    <SanityCacheProvider cache={sanityCache}>
+      <HelmetProvider>
+        <BrowserRouter>
+          <AppShell />
+        </BrowserRouter>
+      </HelmetProvider>
+    </SanityCacheProvider>
   );
 }

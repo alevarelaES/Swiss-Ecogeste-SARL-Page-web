@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
 import { getTeamMembers as getHardcodedTeamMembers } from '../../data/teamMembers';
 import { getTeamMembers } from '../../../sanity/client';
+import { useSanityContent } from '../../../sanity/useSanityContent';
 import { getTeamMemberImageUrl } from '../../../sanity/image';
 import { TeamMemberCard } from '../team/TeamMemberCard';
 
@@ -19,29 +19,13 @@ const Team = () => {
     const { i18n } = useTranslation();
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
-    const [teamMembers, setTeamMembers] = useState(getHardcodedTeamMembers(lang));
-    const rawDataRef = useRef<any[] | null>(null);
-
-    // Fetch Sanity data once — lang is intentionally excluded to avoid redundant network calls.
-    // Language switches are handled by the effect below.
-    useEffect(() => {
-        let cancelled = false;
-        getTeamMembers()
-            .then((data: any[]) => {
-                if (cancelled || !data || data.length === 0) return;
-                rawDataRef.current = data;
-                setTeamMembers(mapMembers(data, lang));
-            })
-            .catch(() => {});
-        return () => { cancelled = true; };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-    // Re-map cached Sanity data when the language changes — no network call.
-    useEffect(() => {
-        if (rawDataRef.current) {
-            setTeamMembers(mapMembers(rawDataRef.current, lang));
-        }
-    }, [lang]);
+    // Requête indépendante de la langue : les traductions sont choisies dans mapMembers
+    const teamMembers = useSanityContent(
+        'teamMembers',
+        () => getTeamMembers(),
+        getHardcodedTeamMembers(lang),
+        (data: any[]) => (data.length > 0 ? mapMembers(data, lang) : null)
+    );
 
     return (
         <section id="team" className="relative">

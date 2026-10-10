@@ -25,9 +25,16 @@ const ssrEntry = path.join(root, 'dist-ssr', 'entry-server.js');
 
 type Page = { path: string; priority: number; changefreq: string; alternates?: Record<Language, string> };
 
-function pagesFor(lang: Language): Page[] {
+/**
+ * Articles : ceux de Sanity s'il en contient (un même slug pour toutes les langues),
+ * sinon les articles locaux (slugs traduits).
+ */
+function articlePagesFor(lang: Language, sanitySlugs: string[]): Page[] {
+    if (sanitySlugs.length > 0) {
+        return sanitySlugs.map((slug) => ({ path: `/actualites/${slug}`, priority: 0.5, changefreq: 'monthly' }));
+    }
     const articles = { fr: articlesFr, en: articlesEn, de: articlesDe };
-    const articlePages: Page[] = articles[lang].map((article) => ({
+    return articles[lang].map((article) => ({
         path: `/actualites/${article.slug}`,
         priority: 0.5,
         changefreq: 'monthly',
@@ -38,7 +45,6 @@ function pagesFor(lang: Language): Page[] {
             ])
         ) as Record<Language, string>,
     }));
-    return [...STATIC_PAGES, ...articlePages];
 }
 
 const urlOf = (lang: Language, p: string) => `/${lang}${p === '/' ? '' : p}`;
@@ -53,7 +59,10 @@ function loadResources() {
     );
 }
 
-function injectIntoTemplate(template: string, appHtml: string, helmet: any): string {
+// JSON sûr à placer dans une balise <script>
+const scriptJson = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003c');
+
+function injectIntoTemplate(template: string, appHtml: string, helmet: any, sanityData: Record<string, unknown>): string {
     const head = [
         helmet.title.toString(),
         helmet.meta.toString(),
@@ -65,10 +74,13 @@ function injectIntoTemplate(template: string, appHtml: string, helmet: any): str
         .replace(/<html[^>]*>/, `<html ${helmet.htmlAttributes.toString()}>`)
         .replace(/<title>[\s\S]*?<\/title>/, '')
         .replace('</head>', `    ${head}\n</head>`)
-        .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+        .replace(
+            '<div id="root"></div>',
+            `<div id="root">${appHtml}</div>\n    <script>window.__SANITY_DATA__=${scriptJson(sanityData)}</script>`
+        );
 }
 
-function buildSitemap(): string {
+function buildSitemap(pagesFor: (lang: Language) => Page[]): string {
     const today = new Date().toISOString().slice(0, 10);
     const entries: string[] = [];
     for (const lang of SUPPORTED_LANGUAGES) {
@@ -98,32 +110,43 @@ function buildSitemap(): string {
 }
 
 async function main() {
-    const { render } = await import(pathToFileURL(ssrEntry).href);
+    const { render, getSanityArticleSlugs } = await import(pathToFileURL(ssrEntry).href);
     const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
     const resources = loadResources();
 
+    let sanitySlugs: string[] = [];
+    try {
+        sanitySlugs = await getSanityArticleSlugs();
+    } catch (error) {
+        console.warn('[prerender] Articles Sanity indisponibles, articles locaux utilisés :', (error as Error).message);
+    }
+    const pagesFor = (lang: Language): Page[] => [...STATIC_PAGES, ...articlePagesFor(lang, sanitySlugs)];
+
+    // Réponses Sanity partagées entre toutes les pages
+    const sanityData: Record<string, unknown> = {};
     let count = 0;
     for (const lang of SUPPORTED_LANGUAGES) {
         for (const page of pagesFor(lang)) {
             const url = urlOf(lang, page.path);
-            const { html, helmet } = await render(url, lang, resources);
+            const { html, helmet, sanityData: pageData } = await render(url, lang, resources, sanityData);
             if (!helmet || !html) throw new Error(`Rendu vide pour ${url}`);
 
             const out = path.join(dist, `${url}.html`);
             fs.mkdirSync(path.dirname(out), { recursive: true });
-            fs.writeFileSync(out, injectIntoTemplate(template, html, helmet));
+            fs.writeFileSync(out, injectIntoTemplate(template, html, helmet, pageData));
             count++;
         }
     }
 
-    fs.writeFileSync(path.join(dist, 'sitemap.xml'), buildSitemap());
+    fs.writeFileSync(path.join(dist, 'sitemap.xml'), buildSitemap(pagesFor));
     fs.writeFileSync(
         path.join(dist, 'robots.txt'),
         `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
     );
     fs.rmSync(path.join(root, 'dist-ssr'), { recursive: true, force: true });
 
-    console.log(`✓ Pré-rendu : ${count} pages, sitemap.xml et robots.txt générés`);
+    const fromSanity = Object.values(sanityData).filter((v) => v != null).length;
+    console.log(`✓ Pré-rendu : ${count} pages (${fromSanity} contenus Sanity), sitemap.xml et robots.txt générés`);
 }
 
 main().catch((error) => {

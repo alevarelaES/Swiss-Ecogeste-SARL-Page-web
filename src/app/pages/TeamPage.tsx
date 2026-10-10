@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { ShieldCheck, Scale, Database, FileCheck, Award, Users, MapPin, CheckCircle2 } from 'lucide-react';
 import { SEO } from '../components';
 import { Team } from '../components/sections';
@@ -6,6 +5,7 @@ import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
 import { getSanityAProposPage } from '../../sanity/client';
+import { useSanityContent } from '../../sanity/useSanityContent';
 import { getAProposPageContent, type AProposPageContent } from '../data/aProposPageContent';
 
 const TeamPage = () => {
@@ -13,59 +13,50 @@ const TeamPage = () => {
     const { i18n } = useTranslation();
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
-    const [content, setContent] = useState<AProposPageContent>(getAProposPageContent(lang));
+    const content = useSanityContent<AProposPageContent, any>(
+        `aProposPage:${lang}`,
+        () => getSanityAProposPage(lang),
+        getAProposPageContent(lang),
+        (data, prev) => {
+            if (!data.heroTitle && !data.missionTitle && !data.presenceTitle && !data.photoTitle) return null;
 
-    useEffect(() => {
-        setContent(getAProposPageContent(lang));
-    }, [lang]);
+            const mappedStats = Array.isArray(data.companyStats)
+                ? data.companyStats
+                    .filter((s: any) => s?.value || s?.label)
+                    .map((s: any) => ({ value: s.value || '', label: s.label || '' }))
+                : [];
 
-    useEffect(() => {
-        let cancelled = false;
-        getSanityAProposPage(lang)
-            .then((data: any) => {
-                if (cancelled || !data) return;
-                if (!data.heroTitle && !data.missionTitle && !data.presenceTitle && !data.photoTitle) return;
+            const mappedQualitySteps = Array.isArray(data.qualitySteps)
+                ? data.qualitySteps.filter((s: any) => typeof s === 'string' && s.trim().length > 0)
+                : [];
 
-                const mappedStats = Array.isArray(data.companyStats)
-                    ? data.companyStats
-                        .filter((s: any) => s?.value || s?.label)
-                        .map((s: any) => ({ value: s.value || '', label: s.label || '' }))
-                    : [];
+            const mappedValeursItems = Array.isArray(data.valeursItems) && data.valeursItems.length > 0
+                ? data.valeursItems.map((item: any) => ({ title: item.title || '', description: item.description || '' }))
+                : null;
 
-                const mappedQualitySteps = Array.isArray(data.qualitySteps)
-                    ? data.qualitySteps.filter((s: any) => typeof s === 'string' && s.trim().length > 0)
-                    : [];
-
-                const mappedValeursItems = Array.isArray(data.valeursItems) && data.valeursItems.length > 0
-                    ? data.valeursItems.map((item: any) => ({ title: item.title || '', description: item.description || '' }))
-                    : null;
-
-                setContent((prev) => ({
-                    ...prev,
-                    heroLabel:     data.heroLabel     || prev.heroLabel,
-                    heroTitle:     data.heroTitle     || prev.heroTitle,
-                    heroIntro:     data.heroIntro     || prev.heroIntro,
-                    missionTitle:  data.missionTitle  || prev.missionTitle,
-                    missionText:   data.missionText   || prev.missionText,
-                    missionText2:  data.missionText2  || prev.missionText2,
-                    presenceTitle: data.presenceTitle || prev.presenceTitle,
-                    presenceText:  data.presenceText  || prev.presenceText,
-                    companyStats:  mappedStats.length > 0 ? mappedStats : prev.companyStats,
-                    qualityTitle:  data.qualityTitle  || prev.qualityTitle,
-                    qualityText:   data.qualityText   || prev.qualityText,
-                    qualitySteps:  mappedQualitySteps.length > 0 ? mappedQualitySteps : prev.qualitySteps,
-                    groupPhotoUrl: data.groupPhotoUrl || prev.groupPhotoUrl,
-                    photoTitle:    data.photoTitle    || prev.photoTitle,
-                    photoSubtitle: data.photoSubtitle || prev.photoSubtitle,
-                    valeursTitle:  data.valeursTitle  || prev.valeursTitle,
-                    valeursIntro:  data.valeursIntro  || prev.valeursIntro,
-                    valeursItems:  mappedValeursItems  ?? prev.valeursItems,
-                }));
-            })
-            .catch(() => {});
-
-        return () => { cancelled = true; };
-    }, [lang]);
+            return ({
+                ...prev,
+                heroLabel:     data.heroLabel     || prev.heroLabel,
+                heroTitle:     data.heroTitle     || prev.heroTitle,
+                heroIntro:     data.heroIntro     || prev.heroIntro,
+                missionTitle:  data.missionTitle  || prev.missionTitle,
+                missionText:   data.missionText   || prev.missionText,
+                missionText2:  data.missionText2  || prev.missionText2,
+                presenceTitle: data.presenceTitle || prev.presenceTitle,
+                presenceText:  data.presenceText  || prev.presenceText,
+                companyStats:  mappedStats.length > 0 ? mappedStats : prev.companyStats,
+                qualityTitle:  data.qualityTitle  || prev.qualityTitle,
+                qualityText:   data.qualityText   || prev.qualityText,
+                qualitySteps:  mappedQualitySteps.length > 0 ? mappedQualitySteps : prev.qualitySteps,
+                groupPhotoUrl: data.groupPhotoUrl || prev.groupPhotoUrl,
+                photoTitle:    data.photoTitle    || prev.photoTitle,
+                photoSubtitle: data.photoSubtitle || prev.photoSubtitle,
+                valeursTitle:  data.valeursTitle  || prev.valeursTitle,
+                valeursIntro:  data.valeursIntro  || prev.valeursIntro,
+                valeursItems:  mappedValeursItems  ?? prev.valeursItems,
+            });
+        }
+    );
 
     return (
         <div className="bg-slate-50">

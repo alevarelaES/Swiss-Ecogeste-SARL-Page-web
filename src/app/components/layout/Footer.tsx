@@ -1,16 +1,17 @@
-﻿import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Linkedin, Instagram, Facebook, X, Mail, MapPin, Phone } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useLocalizedPath } from '../../hooks/useLocalizedPath'
 import { BRAND_IMAGES } from '../../config/images'
 import { getSettings } from '../../../sanity/client'
+import { useSanityData } from '../../../sanity/useSanityContent'
 import type { Settings } from '../../../sanity/types'
 
 const Footer = () => {
   const { t, i18n } = useTranslation('common')
   const { getLocalizedPath } = useLocalizedPath()
-  const [settings, setSettings] = useState<Settings | null>(null)
+  const settings = useSanityData<Settings | null>('settings', () => getSettings())
 
   const currentLang = useMemo(() => {
     const lang = i18n.language.split('-')[0]
@@ -18,11 +19,6 @@ const Footer = () => {
     return 'fr'
   }, [i18n.language])
 
-  useEffect(() => {
-    getSettings()
-      .then((data) => setSettings(data))
-      .catch(() => setSettings(null))
-  }, [])
 
   const footerSlogan = settings?.footerInfo?.slogan?.[currentLang] || t('footer.slogan')
   const footerCopyright = settings?.footerInfo?.copyright?.[currentLang] || t('footer.rights')

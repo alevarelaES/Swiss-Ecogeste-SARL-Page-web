@@ -131,25 +131,6 @@ export async function getSanityAboutContent(lang: string = 'fr') {
   `)
 }
 
-// ─────────────────────────────────────────────
-// Pourquoi nous choisir
-// ─────────────────────────────────────────────
-
-export async function getSanityWhyChooseUs(lang: string = 'fr') {
-  return client.fetch(`
-    *[_type == "whyChooseUs"][0] {
-      "sectionLabel": sectionLabel.${lang},
-      "title": title.${lang},
-      "titleHighlight": titleHighlight.${lang},
-      "description": description.${lang},
-      "reasons": reasons[] {
-        icon,
-        "title": title.${lang},
-        "description": description.${lang}
-      }
-    }
-  `)
-}
 
 // ─────────────────────────────────────────────
 // Pages de service (villa, gérance, entreprise, communes)
@@ -176,7 +157,10 @@ export async function getSanityServicePage(pageSlug: string, lang: string = 'fr'
         "description": description.${lang},
         "image": image.asset->url,
         "features": features.${lang},
-        "note": note.${lang}
+        featureLinks,
+        "note": note.${lang},
+        link,
+        "linkLabel": linkLabel.${lang}
       }
     }
   `, { pageSlug })
@@ -225,41 +209,9 @@ export async function getArticleBySlug(slug: string, lang: string = 'fr') {
 }
 
 // ─────────────────────────────────────────────
-// Pages Resultats & A Propos
+// Page À propos
 // ─────────────────────────────────────────────
 
-export async function getSanityResultatsPage(lang: string = 'fr') {
-  return client.fetch(`
-    *[_type == "resultatsPage"][0] {
-      "seo": {
-        "title": seo.title.${lang},
-        "description": seo.description.${lang}
-      },
-      "heroTitle": heroTitle.${lang},
-      "heroSubtitle": heroSubtitle.${lang},
-      "impactStats": impactStats[] {
-        value,
-        suffix,
-        prefix,
-        "label": label.${lang}
-      },
-      "cases": cases[] {
-        "sector": sector.${lang},
-        "title": title.${lang},
-        mainMetric,
-        mainMetricSuffix,
-        "mainMetricLabel": mainMetricLabel.${lang},
-        "kpis": kpis[] {
-          value,
-          unit,
-          "label": label.${lang}
-        },
-        "beforeItems": beforeItems.${lang},
-        "afterItems": afterItems.${lang}
-      }
-    }
-  `)
-}
 
 export async function getSanityAProposPage(lang: string = 'fr') {
   return client.fetch(`

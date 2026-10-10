@@ -1,21 +1,16 @@
-import { useEffect, useState } from 'react';
 import { SEO } from '../components';
 import { ContactSection } from '../components/sections';
 import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { getContactPage } from '../../sanity/client';
+import { useSanityData } from '../../sanity/useSanityContent';
 import type { ContactPageData } from '../components/sections/ContactSection';
 
 const ContactPage = () => {
     const { t, i18n } = useTranslation('common');
     const language = i18n.language.split('-')[0];
-    const [pageData, setPageData] = useState<ContactPageData & { seoTitle?: string; seoDescription?: string; heroTitle?: string; heroDescription?: string }>({});
-
-    useEffect(() => {
-        getContactPage(language).then((data) => {
-            if (data) setPageData(data);
-        }).catch(() => {});
-    }, [language]);
+    type ContactPageContent = ContactPageData & { seoTitle?: string; seoDescription?: string; heroTitle?: string; heroDescription?: string };
+    const pageData = useSanityData<ContactPageContent | null>(`contactPage:${language}`, () => getContactPage(language)) ?? {};
 
     return (
         <div className="pt-32 pb-24">

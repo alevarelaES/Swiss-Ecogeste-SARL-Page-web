@@ -12,6 +12,7 @@ import { sanitizeHtml } from '../utils/sanitize';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import type { PortableTextBlock } from '@portabletext/types';
 import { getArticleBySlug } from '../../sanity/client';
+import { useSanityData } from '../../sanity/useSanityContent';
 import { getImageUrl } from '../../sanity/image';
 import { SITE_URL } from '../seo/site';
 
@@ -41,6 +42,7 @@ const formatArticleDate = (publishedAt: string, lang: 'fr' | 'en' | 'de') => {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
+        timeZone: 'UTC',
     });
 };
 
@@ -147,39 +149,25 @@ const ArticleDetailPage = () => {
     const fallbackArticle = fallbackResult.article;
     const sanitySlug = fallbackResult.sanitySlug;
 
-    const [article, setArticle] = useState<ArticleDetail | null>(fallbackArticle);
-
-    useEffect(() => {
-        setArticle(fallbackArticle);
-    }, [fallbackArticle]);
-
-    useEffect(() => {
-        if (!sanitySlug) return;
-
-        let cancelled = false;
-        getArticleBySlug(sanitySlug, lang)
-            .then((result: any) => {
-                if (cancelled || !result || !result._id) return;
-                setArticle({
-                    id: result._id,
-                    title: result.title || fallbackArticle?.title || '',
-                    excerpt: result.excerpt || fallbackArticle?.excerpt || '',
-                    category: result.category || fallbackArticle?.category || '',
-                    date: result.publishedAt
-                        ? formatArticleDate(result.publishedAt, lang)
-                        : (fallbackArticle?.date || ''),
-                    readTime: result.readTime || fallbackArticle?.readTime || '',
-                    imageUrl: result.imageUrl || fallbackArticle?.imageUrl || '',
-                    slug: result.slug || sanitySlug,
-                    contentPortableText: Array.isArray(result.content) ? result.content : [],
-                });
-            })
-            .catch(() => {});
-
-        return () => {
-            cancelled = true;
-        };
-    }, [fallbackArticle, lang, sanitySlug]);
+    const sanityArticle = useSanityData<any>(
+        `article:${sanitySlug ?? ''}:${lang}`,
+        () => (sanitySlug ? getArticleBySlug(sanitySlug, lang) : Promise.resolve(null))
+    );
+    const article: ArticleDetail | null = sanityArticle?._id
+        ? {
+            id: sanityArticle._id,
+            title: sanityArticle.title || fallbackArticle?.title || '',
+            excerpt: sanityArticle.excerpt || fallbackArticle?.excerpt || '',
+            category: sanityArticle.category || fallbackArticle?.category || '',
+            date: sanityArticle.publishedAt
+                ? formatArticleDate(sanityArticle.publishedAt, lang)
+                : (fallbackArticle?.date || ''),
+            readTime: sanityArticle.readTime || fallbackArticle?.readTime || '',
+            imageUrl: sanityArticle.imageUrl || fallbackArticle?.imageUrl || '',
+            slug: sanityArticle.slug || sanitySlug || '',
+            contentPortableText: Array.isArray(sanityArticle.content) ? sanityArticle.content : [],
+        }
+        : fallbackArticle;
 
     useEffect(() => {
         window.scrollTo(0, 0);
