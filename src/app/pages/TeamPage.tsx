@@ -199,7 +199,7 @@ const TeamPage = () => {
                 </div>
 
                 {/* ── Valeurs ── */}
-                <div className="relative py-10 md:py-12 bg-cover bg-center overflow-hidden -mb-1" style={{ backgroundImage: `url('/images/fond_values_section.png')` }}>
+                <div className="relative py-10 md:py-12 bg-cover bg-center overflow-hidden -mb-1" style={{ backgroundImage: `url('/images/fond_values_section.webp')` }}>
                     <div className="absolute inset-0 bg-white/85"></div>
                     <div className="absolute top-10 right-10 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl"></div>
                     <div className="absolute bottom-10 left-10 w-24 h-24 bg-amber-500/8 rounded-full blur-xl"></div>

@@ -24,7 +24,7 @@ export const SERVICE_IMAGES = {
     calculIdc: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1000&auto=format&fit=crop",
 
     // Chauffage Renouvelable - Image d'intérieur avec radiateur (fichier local)
-    chauffage: "/images/Chuaffage_card.jpg",
+    chauffage: "/images/chauffage_card.webp",
 
     // Eco-Logement - Image d'immeuble moderne
     ecoLogement: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
@@ -52,7 +52,7 @@ export const SERVICES_PAGE_IMAGES = {
 // ========================================
 export const BACKGROUND_IMAGES = {
     // Section "À Propos" - Image de fond
-    about: "/images/fond_a_propos_de_nosu_swiss_ecogestes.png",
+    about: "/images/fond_a_propos.webp",
     
     // Image principale de la section À Propos (bureau/équipe)
     aboutMain: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1000&auto=format&fit=crop",
