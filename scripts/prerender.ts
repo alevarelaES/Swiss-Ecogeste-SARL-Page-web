@@ -138,6 +138,14 @@ async function main() {
         }
     }
 
+    // Page servie par Vercel (statut 404) pour toute URL inconnue : le navigateur affiche
+    // la page « introuvable » dans la langue de l'URL ; Google ne l'indexe pas.
+    fs.writeFileSync(
+        path.join(dist, '404.html'),
+        template
+            .replace(/<title>[\s\S]*?<\/title>/, '<title>Page introuvable | Swiss Ecogestes</title>\n    <meta name="robots" content="noindex">')
+    );
+
     fs.writeFileSync(path.join(dist, 'sitemap.xml'), buildSitemap(pagesFor));
     fs.writeFileSync(
         path.join(dist, 'robots.txt'),

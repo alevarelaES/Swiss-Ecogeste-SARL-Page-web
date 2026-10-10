@@ -43,6 +43,11 @@ sans exécuter de JavaScript. Dans le navigateur, React reprend la main sur ce H
   (et non `useEffect` + `fetch`), sinon ce contenu n'apparaîtra pas dans le HTML pré-rendu.
 - Le code exécuté pendant le rendu ne doit pas toucher à `window`, `document` ou `localStorage`
   en dehors d'un `useEffect`.
+- Pas de réécriture « SPA » sur Vercel : une URL qui n'a pas été pré-rendue reçoit `404.html`
+  (statut 404, page « introuvable » dans la langue de l'URL). Un article publié dans Sanity n'existe
+  donc qu'après le déploiement suivant (d'où le webhook de republication ci-dessous).
+- `vercel.json` contient aussi les redirections 301 de l'ancien site WordPress (`/home-2`, flux,
+  sitemaps Yoast, `wp-admin`…) et des chemins sans préfixe de langue vers `/fr/…`.
 
 ## Sanity
 

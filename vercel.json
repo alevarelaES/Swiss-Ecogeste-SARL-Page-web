@@ -8,6 +8,26 @@
             "permanent": false
         },
         {
+            "source": "/:lng(fr|en|de)/services",
+            "destination": "/:lng/services/villa",
+            "permanent": false
+        },
+        {
+            "source": "/:lng(fr|en|de)/resultats",
+            "destination": "/:lng",
+            "permanent": true
+        },
+        {
+            "source": "/:page(a-propos|contact|actualites|mentions-legales|confidentialite|cookies)",
+            "destination": "/fr/:page",
+            "permanent": true
+        },
+        {
+            "source": "/:section(services|actualites)/:slug",
+            "destination": "/fr/:section/:slug",
+            "permanent": true
+        },
+        {
             "source": "/home-2/:path*",
             "destination": "/fr",
             "permanent": true
@@ -36,12 +56,6 @@
             "source": "/(wp-admin|wp-login.php|xmlrpc.php|wp-json)",
             "destination": "/fr",
             "permanent": true
-        }
-    ],
-    "rewrites": [
-        {
-            "source": "/((?!api/).*)",
-            "destination": "/index.html"
         }
     ],
     "headers": [

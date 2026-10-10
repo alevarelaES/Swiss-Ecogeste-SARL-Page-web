@@ -16,6 +16,7 @@ import CommunesPage from './pages/CommunesPage';
 import MentionsLegalesPage from './pages/MentionsLegalesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { GoogleAnalytics } from './components';
 import { SanityCacheProvider, browserSanityCache } from '../sanity/useSanityContent';
 
@@ -96,7 +97,7 @@ export function AppShell() {
                 <Route path="/cookies" element={<CookiePolicyPage />} />
 
                 {/* Catch-all within localized paths */}
-                <Route path="*" element={<LocalizedCatchAll />} />
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Layout>
           </LanguageWrapper>
