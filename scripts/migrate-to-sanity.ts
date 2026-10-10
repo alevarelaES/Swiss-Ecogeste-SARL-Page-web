@@ -16,7 +16,7 @@ import { getArticles } from '../src/app/data/articles'
 
 const writeClient = createClient({
   projectId: process.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
-  dataset: process.env.VITE_SANITY_DATASET || 'production',
+  dataset: process.env.VITE_SANITY_DATASET || 'dev',
   apiVersion: '2024-01-01',
   token: process.env.SANITY_WRITE_TOKEN,
   useCdn: false,

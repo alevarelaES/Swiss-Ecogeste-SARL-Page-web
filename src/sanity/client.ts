@@ -3,7 +3,8 @@ import { createClient } from '@sanity/client'
 // Configuration du client Sanity
 const config = {
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
-  dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
+  // 'dev' est le jeu de données utilisé par le site en ligne et modifié dans le Studio
+  dataset: import.meta.env.VITE_SANITY_DATASET || 'dev',
   apiVersion: import.meta.env.VITE_SANITY_API_VERSION || '2024-01-01',
   useCdn: false,
 }
