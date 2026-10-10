@@ -1,6 +1,34 @@
 import { getSanityServicePage } from '../../sanity/client';
 import { useSanityContent } from '../../sanity/useSanityContent';
 import { defaultServiceLinks } from '../data/serviceLinks';
+import { getVillaPageContent } from '../data/villaPageContent';
+import { getGerancePageContent } from '../data/gerancePageContent';
+import { getEntreprisePageContent } from '../data/entreprisePageContent';
+import { getCommunesPageContent } from '../data/communesPageContent';
+
+// Contenu local en français, pour retrouver les liens par défaut des services dans toutes les langues
+const FRENCH_FALLBACKS: Record<string, () => { services: { title: string; features?: string[] }[] }> = {
+    villa: () => getVillaPageContent('fr'),
+    gerance: () => getGerancePageContent('fr'),
+    entreprise: () => getEntreprisePageContent('fr'),
+    communes: () => getCommunesPageContent('fr'),
+};
+
+/** Ajoute les liens du PDF client au contenu local (affiché quand Sanity est injoignable). */
+function withDefaultLinks(pageSlug: string, content: ServicePageContent): ServicePageContent {
+    const french = FRENCH_FALLBACKS[pageSlug]?.().services ?? [];
+    return {
+        ...content,
+        services: content.services.map((service, i) => {
+            const defaults = defaultServiceLinks(pageSlug, french[i]?.title, french[i]?.features);
+            return {
+                ...service,
+                link: service.link || defaults.link,
+                featureLinks: service.featureLinks?.some((l) => l?.trim()) ? service.featureLinks : defaults.featureLinks,
+            };
+        }),
+    };
+}
 
 export type ServiceItem = {
     title: string;
@@ -30,8 +58,9 @@ export type ServicePageContent = {
 export function useServicePageContent(
     pageSlug: string,
     lang: string,
-    fallback: ServicePageContent
+    localContent: ServicePageContent
 ): ServicePageContent {
+    const fallback = withDefaultLinks(pageSlug, localContent);
     return useSanityContent(
         `servicePage:${pageSlug}:${lang}`,
         () => getSanityServicePage(pageSlug, lang),
