@@ -1,26 +1,23 @@
-﻿import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, CheckCircle2, ArrowRight, ExternalLink } from 'lucide-react';
 import { Button } from "../ui/button";
 import { Link } from 'react-router-dom';
 import { i18n as I18nType } from 'i18next';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
+import type { ServiceItem } from '../../hooks/useServicePageContent';
+import { SmartLink, resolveServiceLink } from './SmartLink';
 
 interface ServiceModalProps {
     isOpen: boolean;
     onClose: () => void;
-    service: {
-        title: string;
-        description: string;
-        image: string;
-        features?: string[];
-        note?: string;
-    };
+    service: ServiceItem;
     t: (key: string) => string;
     i18n: I18nType;
 }
 
 const ServiceModal = ({ isOpen, onClose, service, t, i18n }: ServiceModalProps) => {
     const { getLocalizedPath } = useLocalizedPath();
+    const { link, note } = resolveServiceLink(service);
     return (
         <AnimatePresence>
             {isOpen && (
@@ -83,17 +80,36 @@ const ServiceModal = ({ isOpen, onClose, service, t, i18n }: ServiceModalProps) 
                                             {service.features.map((feature, index) => (
                                                 <li key={index} className="flex items-start gap-3 text-gray-800 text-base">
                                                     <CheckCircle2 className="w-5 h-5 text-[var(--primary)] shrink-0 mt-0.5" />
-                                                    <span>{feature}</span>
+                                                    {service.featureLinks?.[index]?.trim() ? (
+                                                        <SmartLink
+                                                            href={service.featureLinks[index]}
+                                                            onClick={onClose}
+                                                            className="text-[var(--primary)] font-medium underline underline-offset-2 hover:no-underline"
+                                                        >
+                                                            {feature}
+                                                        </SmartLink>
+                                                    ) : (
+                                                        <span>{feature}</span>
+                                                    )}
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
                                 )}
 
-                                {service.note && (
-                                    <p className="mb-4 text-xs text-gray-500 italic">
-                                        {service.note}
-                                    </p>
+                                {(note || link) && (
+                                    <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                                        {note && <p className="text-xs text-gray-500 italic">{note}</p>}
+                                        {link && (
+                                            <SmartLink
+                                                href={link}
+                                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--primary)] hover:underline"
+                                            >
+                                                {service.linkLabel || t('service_detail.program_link')}
+                                                <ExternalLink size={14} aria-hidden="true" />
+                                            </SmartLink>
+                                        )}
+                                    </div>
                                 )}
 
                                 <div className="mt-auto pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4">

@@ -160,6 +160,33 @@ export const servicePage = defineType({
               ]
             }),
             defineField({
+              name: 'featureLinks',
+              title: 'Liens des points clés (optionnel)',
+              description:
+                "Un lien par point clé, dans le même ordre que la liste ci-dessus. Laisser une ligne vide pour un point sans lien. Lien interne (ex. /services/villa) ou externe (https://…).",
+              type: 'array',
+              of: [{ type: 'string' }],
+            }),
+            defineField({
+              name: 'link',
+              title: 'Lien vers le programme / la page officielle',
+              description:
+                "Affiché sur la carte (à côté de « Sous conditions ») et dans la fenêtre de détail. Ex. https://www.suisseenergie.ch/…",
+              type: 'url',
+              validation: (rule) => rule.uri({ scheme: ['http', 'https'], allowRelative: true }),
+            }),
+            defineField({
+              name: 'linkLabel',
+              title: 'Texte du lien (optionnel)',
+              description: "Par défaut : « Plus d'infos sur le programme ».",
+              type: 'object',
+              fields: [
+                { name: 'fr', type: 'string', title: 'Français' },
+                { name: 'en', type: 'string', title: 'English' },
+                { name: 'de', type: 'string', title: 'Deutsch' },
+              ]
+            }),
+            defineField({
               name: 'note',
               title: 'Note (ex: * Sous conditions)',
               type: 'object',

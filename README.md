@@ -35,10 +35,29 @@ sans exécuter de JavaScript. Dans le navigateur, React reprend la main sur ce H
 - Les pages à pré-rendre sont listées dans `src/app/seo/site.ts` (`STATIC_PAGES`). Toute nouvelle page
   doit y être ajoutée pour figurer dans le sitemap.
 - Les balises SEO de chaque page passent par le composant `src/app/components/SEO.tsx`.
-- Le pré-rendu utilise le contenu local (`src/app/data`, `public/locales`) : le contenu Sanity
-  est chargé ensuite dans le navigateur.
+- Le pré-rendu interroge Sanity (`src/sanity/useSanityContent.tsx`) : le HTML contient le contenu
+  publié dans le Studio au moment du build. Les réponses sont injectées dans la page
+  (`window.__SANITY_DATA__`) et le navigateur recharge ensuite le contenu à jour.
+  Si Sanity est injoignable, la section garde le contenu local (`src/app/data`, `public/locales`).
+- Pour charger du contenu Sanity dans un composant, utiliser `useSanityContent` ou `useSanityData`
+  (et non `useEffect` + `fetch`), sinon ce contenu n'apparaîtra pas dans le HTML pré-rendu.
 - Le code exécuté pendant le rendu ne doit pas toucher à `window`, `document` ou `localStorage`
   en dehors d'un `useEffect`.
+
+## Sanity
+
+- Projet `btjdqrld`, jeu de données **`dev`** : c'est celui du site en ligne et du Studio.
+- **Republication automatique** : comme le HTML est généré au build, une modification publiée
+  dans le Studio doit relancer un déploiement Vercel.
+  1. Vercel → Settings → Git → Deploy Hooks : créer un hook sur la branche de production, copier l'URL.
+  2. sanity.io/manage → projet → API → Webhooks : nouveau webhook, URL = celle du hook Vercel,
+     dataset `dev`, déclencheurs Create / Update / Delete, méthode POST.
+- **CORS** : sanity.io/manage → API → CORS origins doit contenir chaque domaine du site
+  (`https://swissecogestes.ch`, `https://www.swissecogestes.ch`, le domaine Vercel).
+- Après une modification des schémas (`studio/schemaTypes`), redéployer le Studio :
+  `cd studio && npm install && npx sanity deploy`.
+- `scripts/add-service-links.ts` ajoute les liens « programme » des pages services
+  (aperçu par défaut, `--apply` pour écrire, nécessite `SANITY_WRITE_TOKEN`).
 
 ## Formulaire de contact
 

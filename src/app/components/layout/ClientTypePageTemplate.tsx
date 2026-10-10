@@ -7,14 +7,7 @@ import { useTranslation } from 'react-i18next';
 import ClientTypeServiceCard from '../services/ClientTypeServiceCard';
 import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 import { useSearchHighlight } from '../../hooks/useSearchHighlight';
-
-interface ClientTypeService {
-    title: string;
-    description: string;
-    image: string;
-    features?: string[];
-    note?: string;
-}
+import type { ServiceItem } from '../../hooks/useServicePageContent';
 
 interface ClientTypePageTemplateProps {
     content: {
@@ -26,7 +19,7 @@ interface ClientTypePageTemplateProps {
         buttonText: string;
         buttonLink: string;
         heroImage: string;
-        services: ClientTypeService[];
+        services: ServiceItem[];
     };
 }
 

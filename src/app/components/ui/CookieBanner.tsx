@@ -4,9 +4,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/app/components/ui/button';
 import { ShieldCheck, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 
 export const CookieBanner = () => {
     const { t } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -82,7 +84,7 @@ export const CookieBanner = () => {
                                 variant="ghost"
                                 className="text-gray-700 hover:text-[var(--primary)] text-xs font-normal shrink-0"
                             >
-                                <Link to="/cookies">
+                                <Link to={getLocalizedPath('/cookies')}>
                                     {t('cookie_banner.policy', 'En savoir plus')}
                                 </Link>
                             </Button>

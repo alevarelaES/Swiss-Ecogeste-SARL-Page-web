@@ -1,18 +1,15 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../ui/button'
 import ServiceModal from '../ui/ServiceModal'
 import { useLocalizedPath } from '../../hooks/useLocalizedPath'
+import type { ServiceItem } from '../../hooks/useServicePageContent'
+import { SmartLink, resolveServiceLink } from '../ui/SmartLink'
+import { ExternalLink } from 'lucide-react'
 
 export interface ClientTypeServiceCardProps {
-  service: {
-    title: string
-    description: string
-    image: string
-    features?: string[]
-    note?: string
-  }
+  service: ServiceItem
   t: (key: string) => string
 }
 
@@ -20,6 +17,7 @@ const ClientTypeServiceCard = ({ service, t }: ClientTypeServiceCardProps) => {
   const { i18n } = useTranslation('common')
   const { getLocalizedPath } = useLocalizedPath()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const { link, note } = resolveServiceLink(service)
 
   return (
     <>
@@ -56,10 +54,19 @@ const ClientTypeServiceCard = ({ service, t }: ClientTypeServiceCardProps) => {
             </Button>
           </div>
 
-          {service.note && (
-            <p className="mt-4 pt-3 border-t border-gray-200 text-xs text-gray-500 italic">
-              {service.note}
-            </p>
+          {(note || link) && (
+            <div className="mt-4 pt-3 border-t border-gray-200 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+              {note && <p className="text-xs text-gray-500 italic">{note}</p>}
+              {link && (
+                <SmartLink
+                  href={link}
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--primary)] hover:underline"
+                >
+                  {service.linkLabel || t('service_detail.program_link')}
+                  <ExternalLink size={12} aria-hidden="true" />
+                </SmartLink>
+              )}
+            </div>
           )}
         </div>
       </div>

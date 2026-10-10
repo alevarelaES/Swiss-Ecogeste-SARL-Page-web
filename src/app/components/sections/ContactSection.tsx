@@ -1,5 +1,6 @@
 ﻿import React, { useState } from 'react';
-import { Mail, MapPin, Linkedin, Instagram, Facebook, X, ArrowRight, Phone } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Instagram, Facebook, ArrowRight, Phone } from 'lucide-react';
+import { XLogo } from '../ui/XLogo';
 import { Button } from "../ui/button";
 import { cn } from '../ui/utils';
 import Reveal from '../animations/Reveal';
@@ -388,17 +389,17 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
                         <span className="hidden md:block w-px h-8 bg-gray-300"></span>
 
                         <div className="flex gap-4">
-                            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                            <a href={linkedinUrl} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
                                 <Linkedin size={18} />
                             </a>
-                            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#E4405F]/10 flex items-center justify-center text-[#E4405F] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                            <a href={instagramUrl} aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#E4405F]/10 flex items-center justify-center text-[#E4405F] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
                                 <Instagram size={18} />
                             </a>
-                            <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1877F2]/10 flex items-center justify-center text-[#1877F2] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                            <a href={facebookUrl} aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1877F2]/10 flex items-center justify-center text-[#1877F2] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
                                 <Facebook size={18} />
                             </a>
-                            <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-900/10 flex items-center justify-center text-gray-900 hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
-                                <X size={18} />
+                            <a href={twitterUrl} aria-label="X" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-900/10 flex items-center justify-center text-gray-900 hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                                <XLogo size={16} />
                             </a>
                         </div>
                     </div>
