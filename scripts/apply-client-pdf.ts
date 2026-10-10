@@ -1,11 +1,13 @@
 /**
- * Ajoute dans Sanity les liens demandés par le client (PDF « Texte_Site ») sur les pages services.
+ * Applique dans Sanity les demandes du client (PDF « Texte_Site ») :
+ * - liens « programme » des pages services (cartes + fenêtre de détail) ;
+ * - liste des prestations sur les cartes « Nos solutions » de l'accueil.
  *
  * Usage :
- *   npx tsx scripts/add-service-links.ts                                    # aperçu, n'écrit rien
- *   SANITY_WRITE_TOKEN=sk... npx tsx scripts/add-service-links.ts --apply   # applique
+ *   npx tsx scripts/apply-client-pdf.ts                                    # aperçu, n'écrit rien
+ *   SANITY_WRITE_TOKEN=sk... npx tsx scripts/apply-client-pdf.ts --apply   # applique
  *
- * Les services sont retrouvés par leur titre français. Le script est idempotent :
+ * Les services sont retrouvés par leur titre français, les cartes de l'accueil par leur lien. Le script est idempotent :
  * le relancer réécrit les mêmes valeurs.
  */
 
@@ -73,6 +75,29 @@ const RULES: Record<string, Rule[]> = {
   ],
 }
 
+const HIGHLIGHTS: Record<string, { fr: string[]; en: string[]; de: string[] }> = {
+  '/services/gerance': {
+    fr: ["GED – Gestionnaire énergie délégué", "Écologement (subventionné)", "Audit chauffage (gratuit)", "Calcul IDC", "Accompagnement AMU", "Audit sur mesure"],
+    en: ["DEM – Delegated energy manager", "Écologement (subsidised)", "Heating audit (free)", "IDC calculation", "AMU user support", "Custom audit"],
+    de: ["DEV – Delegierter Energieverwalter", "Écologement (subventioniert)", "Heizungsaudit (kostenlos)", "IDC-Berechnung", "AMU-Nutzerbegleitung", "Massgeschneidertes Audit"],
+  },
+  '/services/entreprise': {
+    fr: ["Visite conseil SIG (gratuite)", "Visite expertise SIG", "Audit chauffage (gratuit)", "Audit PEIK", "Calcul IDC", "Audit sur mesure"],
+    en: ["SIG advisory visit (free)", "SIG expert visit", "Heating audit (free)", "PEIK audit", "IDC calculation", "Custom audit"],
+    de: ["SIG-Beratungsbesuch (kostenlos)", "SIG-Expertenbesuch", "Heizungsaudit (kostenlos)", "PEIK-Audit", "IDC-Berechnung", "Massgeschneidertes Audit"],
+  },
+  '/services/villa': {
+    fr: ["Visite villa SIG", "Audit chaudière (gratuit)", "Audit CECB & CECB+", "Calcul IDC", "Autres audits sur mesure"],
+    en: ["SIG villa visit", "Boiler audit (free)", "CECB & CECB+ audit", "IDC calculation", "Other custom audits"],
+    de: ["SIG-Villenbesuch", "Heizkesselaudit (kostenlos)", "GEAK- & GEAK-Plus-Audit", "IDC-Berechnung", "Weitere massgeschneiderte Audits"],
+  },
+  '/services/communes': {
+    fr: ["Audit général & plan d'action", "Mesures d'économie concrètes", "Bâtiments communaux", "Villas et maisons", "Entreprises locales"],
+    en: ["General audit & action plan", "Concrete saving measures", "Municipal buildings", "Villas and houses", "Local businesses"],
+    de: ["Gesamtaudit & Aktionsplan", "Konkrete Sparmassnahmen", "Gemeindegebäude", "Villen und Häuser", "Lokale Unternehmen"],
+  },
+}
+
 async function main() {
   if (apply && !process.env.SANITY_WRITE_TOKEN) {
     throw new Error('SANITY_WRITE_TOKEN manquant (jeton "Editor" créé sur https://www.sanity.io/manage)')
@@ -112,12 +137,24 @@ async function main() {
     }
   }
 
+  const clientTypes: { _id: string; link?: string; title?: { fr?: string } }[] = await client.fetch(
+    `*[_type == "clientType"]{ _id, link, title }`
+  )
+  for (const card of clientTypes) {
+    const highlights = card.link ? HIGHLIGHTS[card.link] : undefined
+    if (!highlights) continue
+    console.log(`accueil     ${card.title?.fr}`)
+    console.log(`            prestations → ${highlights.fr.join(' · ')}`)
+    tx.patch(client.patch(card._id).set({ highlights }))
+    changes++
+  }
+
   if (!apply) {
-    console.log(`\n${changes} services à modifier dans le dataset "${dataset}". Relancer avec --apply pour écrire.`)
+    console.log(`\n${changes} éléments à modifier dans le dataset "${dataset}". Relancer avec --apply pour écrire.`)
     return
   }
   await tx.commit()
-  console.log(`\n✓ ${changes} services mis à jour dans le dataset "${dataset}".`)
+  console.log(`\n✓ ${changes} éléments mis à jour dans le dataset "${dataset}".`)
 }
 
 main().catch((error) => {

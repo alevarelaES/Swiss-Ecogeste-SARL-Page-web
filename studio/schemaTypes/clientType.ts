@@ -55,6 +55,17 @@ export const clientType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'highlights',
+      title: 'Prestations listées sur la carte',
+      description: "Liste à puces affichée sur la carte de l'accueil (section « Nos solutions »).",
+      type: 'object',
+      fields: [
+        { name: 'fr', type: 'array', title: 'Français', of: [{ type: 'string' }] },
+        { name: 'en', type: 'array', title: 'English', of: [{ type: 'string' }] },
+        { name: 'de', type: 'array', title: 'Deutsch', of: [{ type: 'string' }] },
+      ]
+    }),
+    defineField({
       name: 'link',
       title: 'Link',
       type: 'string',

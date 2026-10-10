@@ -56,8 +56,9 @@ sans exécuter de JavaScript. Dans le navigateur, React reprend la main sur ce H
   (`https://swissecogestes.ch`, `https://www.swissecogestes.ch`, le domaine Vercel).
 - Après une modification des schémas (`studio/schemaTypes`), redéployer le Studio :
   `cd studio && npm install && npx sanity deploy`.
-- `scripts/add-service-links.ts` ajoute les liens « programme » des pages services
-  (aperçu par défaut, `--apply` pour écrire, nécessite `SANITY_WRITE_TOKEN`).
+- `scripts/apply-client-pdf.ts` écrit dans Sanity les demandes du client : liens « programme » des
+  pages services et prestations des cartes de l'accueil (aperçu par défaut, `--apply` pour écrire,
+  nécessite `SANITY_WRITE_TOKEN`).
 
 ## Formulaire de contact
 

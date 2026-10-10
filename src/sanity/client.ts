@@ -100,6 +100,7 @@ export async function getSanityClientTypes(lang: string = 'fr') {
       "title": title.${lang},
       "subtitle": subtitle.${lang},
       "description": description.${lang},
+      "highlights": highlights.${lang},
       link,
       "imageUrl": image.asset->url,
       order

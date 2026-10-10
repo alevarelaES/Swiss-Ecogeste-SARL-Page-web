@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import Reveal from '../animations/Reveal';
 import { useTranslation } from 'react-i18next';
+import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 import { getClientTypes as getHardcodedClientTypes, getClientTypesSectionHeader } from '../../data/homePageContent';
 import { getSanityClientTypes } from '../../../sanity/client';
 import { useSanityContent } from '../../../sanity/useSanityContent';
 
 const ClientTypeSection = () => {
     const { t, i18n } = useTranslation('common');
+    const { getLocalizedPath } = useLocalizedPath();
     const lang = i18n.language.startsWith('de') ? 'de' : i18n.language.startsWith('en') ? 'en' : 'fr';
 
     const header = getClientTypesSectionHeader(lang);
@@ -15,8 +17,10 @@ const ClientTypeSection = () => {
         `clientTypes:${lang}`,
         () => getSanityClientTypes(lang),
         getHardcodedClientTypes(lang),
-        (data: any[]) => data.length === 0 ? null : data.map((ct: any) => ({
+        (data: any[], fallback) => data.length === 0 ? null : data.map((ct: any) => ({
             id: ct.slug || ct._id,
+            // Liste saisie dans Sanity, sinon celle du contenu local pour la même page
+            highlights: ct.highlights?.length ? ct.highlights : fallback.find((f) => f.link === ct.link)?.highlights,
             title: ct.title || '',
             subtitle: ct.subtitle || '',
             description: ct.description || '',
@@ -55,7 +59,7 @@ const ClientTypeSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {clientTypes.map((client, index) => (
                         <Reveal key={client.id} delay={index * 0.1}>
-                            <Link to={client.link} className="block h-full group">
+                            <Link to={getLocalizedPath(client.link)} className="block h-full group">
                                 <div className="bg-white hover:shadow-2xl transition-all duration-300 h-full flex flex-col group-hover:-translate-y-2">
                                     <div className="h-56 overflow-hidden relative">
                                         <img
@@ -73,9 +77,20 @@ const ClientTypeSection = () => {
                                         <span className="text-[11px] font-bold text-[var(--primary)] uppercase tracking-widest mb-4 block">
                                             {client.subtitle}
                                         </span>
-                                        <p className="text-gray-700 text-base leading-relaxed mb-8 flex-grow">
+                                        <p className="text-gray-700 text-base leading-relaxed mb-5">
                                             {client.description}
                                         </p>
+                                        {client.highlights && client.highlights.length > 0 && (
+                                            <ul className="space-y-2 mb-8">
+                                                {client.highlights.map((item) => (
+                                                    <li key={item} className="flex items-start gap-2 text-sm text-gray-800">
+                                                        <Check size={16} className="text-[var(--primary)] shrink-0 mt-0.5" aria-hidden="true" />
+                                                        <span>{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                        <div className="flex-grow" />
                                         <div className="mt-auto border text-gray-800 border-gray-200 px-6 py-3 text-xs font-bold uppercase tracking-widest flex items-center justify-between group-hover:bg-[var(--primary)] group-hover:border-[var(--primary)] group-hover:text-white transition-all">
                                             {t('buttons.explore')}
                                             <ArrowRight size={14} />
