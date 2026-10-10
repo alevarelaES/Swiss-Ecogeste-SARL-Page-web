@@ -31,10 +31,10 @@ type LocaleStringArray = {
 
 const projectId = process.env.VITE_SANITY_PROJECT_ID || 'btjdqrld'
 const dataset = process.env.VITE_SANITY_DATASET || 'production'
-const token = process.env.VITE_SANITY_WRITE_TOKEN || process.env.SANITY_WRITE_TOKEN
+const token = process.env.SANITY_WRITE_TOKEN
 
 if (!token) {
-  throw new Error('Missing Sanity write token in .env (VITE_SANITY_WRITE_TOKEN)')
+  throw new Error('Missing Sanity write token in .env (SANITY_WRITE_TOKEN)')
 }
 
 const client = createClient({

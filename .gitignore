@@ -23,3 +23,8 @@ Thumbs.db
 # *.ai
 public/images/Docker Desktop Installer.exe
 .claude/worktrees/sharp-perlman-5e9f52/
+
+# Réglages locaux Claude Code
+.claude/settings.local.json
+.claude/worktrees/
+.vercel

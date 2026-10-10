@@ -9,10 +9,18 @@
  */
 
 import 'dotenv/config'
-import { writeClient } from '../src/sanity/client'
+import { createClient } from '@sanity/client'
 import { getServices } from '../src/app/data/services'
 import { getTeamMembers } from '../src/app/data/teamMembers'
 import { getArticles } from '../src/app/data/articles'
+
+const writeClient = createClient({
+  projectId: process.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
+  dataset: process.env.VITE_SANITY_DATASET || 'production',
+  apiVersion: '2024-01-01',
+  token: process.env.SANITY_WRITE_TOKEN,
+  useCdn: false,
+})
 
 // Fonction helper pour créer un document
 async function createDocument(type: string, data: any) {

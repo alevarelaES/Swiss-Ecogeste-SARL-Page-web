@@ -3,19 +3,12 @@ import { createClient } from '@sanity/client'
 // Configuration du client Sanity
 const config = {
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
-  dataset: import.meta.env.VITE_SANITY_DATASET || 'dev',
+  dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
   apiVersion: import.meta.env.VITE_SANITY_API_VERSION || '2024-01-01',
   useCdn: false,
 }
 
 export const client = createClient(config)
-
-// Client avec token d'écriture pour la migration
-export const writeClient = createClient({
-  ...config,
-  token: import.meta.env.VITE_SANITY_WRITE_TOKEN,
-  useCdn: false,
-})
 
 // ─────────────────────────────────────────────
 // Équipe
