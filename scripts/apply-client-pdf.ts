@@ -39,14 +39,24 @@ const LINKS = {
   visiteExpertise:
     'https://ww2.sig-ge.ch/artisans_independants/optimisation-energetique-et-environnementale/eco21-professionnels/visite_expertise',
   peik: 'https://www.suisseenergie.ch/entreprises/se-faire-conseiller/peik/',
+  // PDF : « Audit éclairage -> lien vers la page SIG éco21 » (sans URL précise)
+  sigOptimisationInstallations:
+    'https://ww2.sig-ge.ch/immobilier/optimisation-energetique-et-environnementale/eco21-immobilier/optimisation-installations',
   visiteVilla:
     'https://ww2.sig-ge.ch/particuliers/demarches-et-factures/solutions-proprietaires-villas/diagnostic-energetique-environnemental',
 }
 
-type Rule = { match: RegExp; link?: string; featureLinks?: string[] }
+type Rule = {
+  match: RegExp
+  link?: string
+  featureLinks?: string[]
+  /** Lien d'un point clé précis, retrouvé par son texte français */
+  featureLink?: { match: RegExp; href: string }
+}
 
 const RULES: Record<string, Rule[]> = {
   gerance: [
+    { match: /\bGED\b/, featureLink: { match: /éclairage/i, href: LINKS.sigOptimisationInstallations } },
     { match: /écologement/i, link: LINKS.ecologement },
     { match: /audit chauffage/i, link: LINKS.chauffezRenouvelable },
     { match: /calcul idc/i, link: LINKS.idc },
@@ -122,10 +132,19 @@ async function main() {
       const unset: string[] = []
       if (rule.link) set[`${path}.link`] = rule.link
       if (rule.featureLinks) set[`${path}.featureLinks`] = rule.featureLinks
+      if (rule.featureLink) {
+        const features: string[] = service.features?.fr || []
+        const index = features.findIndex((f) => rule.featureLink!.match.test(f))
+        if (index >= 0) {
+          set[`${path}.featureLinks`] = features.map((_, i) => (i === index ? rule.featureLink!.href : ''))
+          console.log(`${page.pageSlug.padEnd(11)} ${title}`)
+          console.log(`            « ${features[index]} » → ${rule.featureLink.href}`)
+        }
+      }
       // Une URL avait été saisie dans le champ « note » faute de champ dédié : on la retire
       if (/^https?:\/\//.test(service.note?.fr || '')) unset.push(`${path}.note`)
 
-      console.log(`${page.pageSlug.padEnd(11)} ${title}`)
+      if (rule.link || rule.featureLinks) console.log(`${page.pageSlug.padEnd(11)} ${title}`)
       if (rule.link) console.log(`            lien   → ${rule.link}`)
       if (rule.featureLinks) console.log(`            points → ${rule.featureLinks.join(', ')}`)
       if (unset.length) console.log(`            note   → supprimée (contenait une URL)`)
