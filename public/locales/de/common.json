@@ -94,7 +94,18 @@
     "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "quote": "\"Die billigste Energie ist die, die wir nicht verbrauchen. Lassen Sie uns gemeinsam Ihr Vermögen aufwerten.\"",
     "rdv_cta": "Entdecken Sie Ihre realen Einsparungen mit einem kostenlosen Audit",
-    "rdv_button": "Termin vereinbaren"
+    "rdv_button": "Termin vereinbaren",
+    "send_error": "Der Versand ist fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an {{email}}.",
+    "errors": {
+      "name_required": "Name erforderlich",
+      "name_invalid": "Ungültiger Name (2 bis 100 Zeichen)",
+      "email_required": "E-Mail erforderlich",
+      "email_invalid": "Ungültige E-Mail",
+      "phone_invalid": "Ungültige Telefonnummer",
+      "message_required": "Nachricht erforderlich",
+      "message_short": "Nachricht zu kurz (mind. 10 Zeichen)",
+      "message_long": "Nachricht zu lang (max. 2000 Zeichen)"
+    }
   },
   "contact_page": {
     "seo_title": "Kontaktieren Sie uns | Swiss Ecogestes",

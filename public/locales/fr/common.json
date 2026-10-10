@@ -109,7 +109,18 @@
     "error": "Une erreur est survenue. Veuillez réessayer.",
     "quote": "\"L'énergie la moins chère est celle que l'on ne consomme pas. Ensemble, valorisons votre patrimoine.\"",
     "rdv_cta": "Découvrez vos économies réelles avec un audit gratuit",
-    "rdv_button": "Prendre RDV"
+    "rdv_button": "Prendre RDV",
+    "send_error": "L'envoi a échoué. Réessayez ou écrivez-nous directement à {{email}}.",
+    "errors": {
+      "name_required": "Nom requis",
+      "name_invalid": "Nom invalide (2 à 100 caractères)",
+      "email_required": "Email requis",
+      "email_invalid": "Email invalide",
+      "phone_invalid": "Téléphone invalide",
+      "message_required": "Message requis",
+      "message_short": "Message trop court (min. 10 caractères)",
+      "message_long": "Message trop long (max. 2000 caractères)"
+    }
   },
   "contact_page": {
     "seo_title": "Contactez-nous | Swiss Ecogestes",

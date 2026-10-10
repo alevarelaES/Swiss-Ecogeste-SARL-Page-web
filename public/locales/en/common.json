@@ -106,7 +106,18 @@
     "error": "An error occurred. Please try again.",
     "quote": "\"The cheapest energy is the one we don't consume. Together, let's enhance your assets.\"",
     "rdv_cta": "Discover your real savings with a free audit",
-    "rdv_button": "Book an appointment"
+    "rdv_button": "Book an appointment",
+    "send_error": "Sending failed. Please try again or email us directly at {{email}}.",
+    "errors": {
+      "name_required": "Name required",
+      "name_invalid": "Invalid name (2 to 100 characters)",
+      "email_required": "Email required",
+      "email_invalid": "Invalid email",
+      "phone_invalid": "Invalid phone number",
+      "message_required": "Message required",
+      "message_short": "Message too short (min. 10 characters)",
+      "message_long": "Message too long (max. 2000 characters)"
+    }
   },
   "contact_page": {
     "seo_title": "Contact Us | Swiss Ecogestes",
