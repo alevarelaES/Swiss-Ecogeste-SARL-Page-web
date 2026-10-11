@@ -64,6 +64,11 @@ sans exécuter de JavaScript. Dans le navigateur, React reprend la main sur ce H
 - `scripts/apply-client-pdf.ts` écrit dans Sanity les demandes du client : liens « programme » des
   pages services et prestations des cartes de l'accueil (aperçu par défaut, `--apply` pour écrire,
   nécessite `SANITY_WRITE_TOKEN`).
+- `scripts/fix-seo-content.ts` applique les corrections de contenu de l'audit SEO (titres SEO
+  raccourcis, carrousel allemand en allemand standard, « SIG visit », description de la page
+  confidentialité). Même fonctionnement : aperçu par défaut, `--apply` pour écrire.
+- Les images Sanity sont demandées redimensionnées et au format WebP/AVIF via les paramètres du CDN
+  (`?w=…&auto=format`, voir `src/sanity/client.ts`) : inutile de les réduire avant de les importer.
 
 ## Formulaire de contact
 
