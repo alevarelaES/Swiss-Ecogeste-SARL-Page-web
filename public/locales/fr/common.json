@@ -81,7 +81,8 @@
     "interested": "Intéressé ?",
     "contact_experts": "Contactez nos experts pour obtenir un devis personnalisé.",
     "request_quote": "Demander un Devis",
-    "what_we_include": "Ce que nous incluons"
+    "what_we_include": "Ce que nous incluons",
+    "program_link": "Plus d'infos sur le programme"
   },
   "partners": {
     "title": "Ils nous font confiance et recommandent nos services"
@@ -109,7 +110,18 @@
     "error": "Une erreur est survenue. Veuillez réessayer.",
     "quote": "\"L'énergie la moins chère est celle que l'on ne consomme pas. Ensemble, valorisons votre patrimoine.\"",
     "rdv_cta": "Découvrez vos économies réelles avec un audit gratuit",
-    "rdv_button": "Prendre RDV"
+    "rdv_button": "Prendre RDV",
+    "send_error": "L'envoi a échoué. Réessayez ou écrivez-nous directement à {{email}}.",
+    "errors": {
+      "name_required": "Nom requis",
+      "name_invalid": "Nom invalide (2 à 100 caractères)",
+      "email_required": "Email requis",
+      "email_invalid": "Email invalide",
+      "phone_invalid": "Téléphone invalide",
+      "message_required": "Message requis",
+      "message_short": "Message trop court (min. 10 caractères)",
+      "message_long": "Message trop long (max. 2000 caractères)"
+    }
   },
   "contact_page": {
     "seo_title": "Contactez-nous | Swiss Ecogestes",
@@ -211,7 +223,8 @@
             "Ce site internet a été conçu et réalisé par <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a>."
           ]
         }
-      }
+      },
+      "label": "Informations Légales"
     },
     "privacy": {
       "seo_title": "Politique de Confidentialité | Swiss Ecogestes",
@@ -260,7 +273,9 @@
             "Pour toute question relative à la protection de vos données, vous pouvez nous contacter par email à info@swissecogestes.ch"
           ]
         }
-      }
+      },
+      "last_updated": "Dernière mise à jour",
+      "label": "Données Personnelles"
     },
     "cookies": {
       "seo_title": "Politique des Cookies | Swiss Ecogestes",
@@ -298,7 +313,8 @@
             "Pour plus d'informations, consultez les guides de votre navigateur (Chrome, Firefox, Safari, Edge)."
           ]
         }
-      }
+      },
+      "last_updated": "Dernière mise à jour"
     }
   },
   "search": {
@@ -318,5 +334,15 @@
   },
   "team": {
     "expertise": "Expertise"
+  },
+  "home_seo": {
+    "title": "Audits énergétiques en Suisse romande",
+    "description": "Audits énergétiques, calcul IDC, CECB et subventions pour régies, entreprises, propriétaires et communes en Suisse romande. Conseil neutre et indépendant."
+  },
+  "not_found": {
+    "title": "Page introuvable",
+    "text": "Cette page n'existe pas ou a été déplacée.",
+    "home": "Retour à l'accueil",
+    "contact": "Nous contacter"
   }
 }

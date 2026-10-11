@@ -1,10 +1,11 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { SEO } from '../components';
 import { getArticles as getStaticArticles } from '../data/articles';
 import { getConseilsPageContent } from '../data/conseilsPageContent';
 import { useTranslation } from 'react-i18next';
 import { GalleryCard, Button } from '../components/ui';
 import { getArticles as getSanityArticles, getSanityBlogPage } from '../../sanity/client';
+import { useSanityContent } from '../../sanity/useSanityContent';
 
 const ConseilsPage = () => {
     const { i18n, t } = useTranslation('common');
@@ -13,59 +14,44 @@ const ConseilsPage = () => {
     const staticContent = getConseilsPageContent(i18n.language);
     const staticArticles = getStaticArticles(i18n.language);
 
-    const [content, setContent] = useState(staticContent);
-    const [allArticles, setAllArticles] = useState(staticArticles);
+    const content = useSanityContent(
+        `blogPage:${lang}`,
+        () => getSanityBlogPage(lang),
+        staticContent,
+        (data: any, fallback) => ({
+            seo: {
+                title: data.seoTitle || fallback.seo.title,
+                description: data.seoDescription || fallback.seo.description,
+                canonical: fallback.seo.canonical,
+            },
+            sectionLabel: fallback.sectionLabel,
+            title: data.title ? data.title.split(' &')[0] + ' &' : fallback.title,
+            titleHighlight: data.title ? data.title.split('& ')[1] || fallback.titleHighlight : fallback.titleHighlight,
+            description: data.description || fallback.description,
+            readMoreText: fallback.readMoreText,
+        })
+    );
+    const allArticles = useSanityContent(
+        `articles:${lang}`,
+        () => getSanityArticles(lang),
+        staticArticles,
+        (data: any[]) => data.length === 0 ? null : data.map((a: any) => ({
+            id: a._id,
+            title: a.title || '',
+            excerpt: a.excerpt || '',
+            category: a.category || '',
+            date: a.publishedAt
+                ? new Date(a.publishedAt).toLocaleDateString(
+                      lang === 'fr' ? 'fr-CH' : lang === 'de' ? 'de-CH' : 'en-GB',
+                      { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }
+                  )
+                : '',
+            readTime: a.readTime || '',
+            imageUrl: a.imageUrl || '',
+            slug: a.slug || '',
+        }))
+    );
     const [selectedCategory, setSelectedCategory] = useState('All');
-
-    // Reset langue
-    useEffect(() => {
-        setContent(getConseilsPageContent(i18n.language));
-        setAllArticles(getStaticArticles(i18n.language));
-    }, [lang]);
-
-    // Charger depuis Sanity
-    useEffect(() => {
-        let cancelled = false;
-
-        getSanityBlogPage(lang).then((data: any) => {
-            if (cancelled || !data) return;
-            const fallback = getConseilsPageContent(i18n.language);
-            setContent({
-                seo: {
-                    title: data.seoTitle || fallback.seo.title,
-                    description: data.seoDescription || fallback.seo.description,
-                    canonical: fallback.seo.canonical,
-                },
-                sectionLabel: fallback.sectionLabel,
-                title: data.title ? data.title.split(' &')[0] + ' &' : fallback.title,
-                titleHighlight: data.title ? data.title.split('& ')[1] || fallback.titleHighlight : fallback.titleHighlight,
-                description: data.description || fallback.description,
-                readMoreText: fallback.readMoreText,
-            });
-        }).catch(() => {});
-
-        getSanityArticles(lang).then((data: any[]) => {
-            if (cancelled || !data || data.length === 0) return;
-            const mapped = data.map((a: any) => ({
-                id: a._id,
-                title: a.title || '',
-                excerpt: a.excerpt || '',
-                category: a.category || '',
-                date: a.publishedAt
-                    ? new Date(a.publishedAt).toLocaleDateString(
-                          lang === 'fr' ? 'fr-CH' : lang === 'de' ? 'de-CH' : 'en-GB',
-                          { day: 'numeric', month: 'short', year: 'numeric' }
-                      )
-                    : '',
-                readTime: a.readTime || '',
-                imageUrl: a.imageUrl || '',
-                slug: a.slug || '',
-            }));
-            setAllArticles(mapped);
-        }).catch(() => {});
-
-        return () => { cancelled = true; };
-    }, [lang]);
 
     const categories = useMemo(() => {
         const uniqueCategories = Array.from(new Set(allArticles.map(a => a.category)));
@@ -85,7 +71,6 @@ const ConseilsPage = () => {
             <SEO
                 title={content.seo.title}
                 description={content.seo.description}
-                canonical={content.seo.canonical}
             />
 
             {/* COMPACT HEADER SECTION */}

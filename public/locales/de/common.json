@@ -11,7 +11,8 @@
     "communes": "Gemeinden & VNB",
     "journal": "Aktuelles",
     "our_services": "Unsere Dienstleistungen",
-    "choose_language": "Sprache wählen"
+    "choose_language": "Sprache wählen",
+    "projects": "Projekte"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",
@@ -25,7 +26,18 @@
     "privacy": "Datenschutz",
     "cookies": "Cookie-Richtlinie",
     "partners": "Partner",
-    "credit": "Website entworfen & entwickelt von Alexandre Varela Tavares"
+    "credit": "Website entworfen & entwickelt von Alexandre Varela Tavares",
+    "links": {
+      "mentions": "Impressum",
+      "privacy": "Datenschutz",
+      "cookies": "Cookies"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "address": "Adresse",
+      "phone": "Telefon",
+      "email": "E-Mail"
+    }
   },
   "buttons": {
     "contact_us": "Kontaktieren Sie uns",
@@ -34,10 +46,12 @@
     "back": "Zurück",
     "start_project": "Projekt starten",
     "explore": "Erkunden",
-    "close": "Schließen"
+    "close": "Schließen",
+    "read_less": "Weniger anzeigen"
   },
   "common": {
-    "swissecogestes": "Swiss Ecogestes"
+    "swissecogestes": "Swiss Ecogestes",
+    "back": "Zurück"
   },
   "cookie_banner": {
     "title": "Datenschutz & Cookies",
@@ -66,7 +80,9 @@
     "placeholder_point": "Wichtiger Punkt oder spezifischer Vorteil im Zusammenhang mit {{title}}, um eine optimale Leistung zu gewährleisten.",
     "interested": "Interessiert?",
     "contact_experts": "Kontaktieren Sie unsere Experten für ein persönliches Angebot.",
-    "request_quote": "Angebot anfordern"
+    "request_quote": "Angebot anfordern",
+    "program_link": "Mehr zum Programm",
+    "what_we_include": "Was wir einschliessen"
   },
   "partners": {
     "title": "Sie vertrauen uns und empfehlen unsere Dienstleistungen"
@@ -94,7 +110,18 @@
     "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "quote": "\"Die billigste Energie ist die, die wir nicht verbrauchen. Lassen Sie uns gemeinsam Ihr Vermögen aufwerten.\"",
     "rdv_cta": "Entdecken Sie Ihre realen Einsparungen mit einem kostenlosen Audit",
-    "rdv_button": "Termin vereinbaren"
+    "rdv_button": "Termin vereinbaren",
+    "send_error": "Der Versand ist fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an {{email}}.",
+    "errors": {
+      "name_required": "Name erforderlich",
+      "name_invalid": "Ungültiger Name (2 bis 100 Zeichen)",
+      "email_required": "E-Mail erforderlich",
+      "email_invalid": "Ungültige E-Mail",
+      "phone_invalid": "Ungültige Telefonnummer",
+      "message_required": "Nachricht erforderlich",
+      "message_short": "Nachricht zu kurz (mind. 10 Zeichen)",
+      "message_long": "Nachricht zu lang (max. 2000 Zeichen)"
+    }
   },
   "contact_page": {
     "seo_title": "Kontaktieren Sie uns | Swiss Ecogestes",
@@ -196,7 +223,8 @@
             "Diese Website wurde von <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a> entworfen und entwickelt."
           ]
         }
-      }
+      },
+      "label": "Rechtliche Informationen"
     },
     "privacy": {
       "seo_title": "Datenschutzerklärung | Swiss Ecogestes",
@@ -245,7 +273,9 @@
             "Bei Fragen zum Schutz Ihrer Daten können Sie uns per E-Mail unter info@swissecogestes.ch kontaktieren."
           ]
         }
-      }
+      },
+      "last_updated": "Zuletzt aktualisiert",
+      "label": "Personendaten"
     },
     "cookies": {
       "seo_title": "Cookie-Richtlinie | Swiss Ecogestes",
@@ -283,7 +313,8 @@
             "Weitere Informationen finden Sie in der Hilfedokumentation Ihres Browsers (Chrome, Firefox, Safari, Edge)."
           ]
         }
-      }
+      },
+      "last_updated": "Zuletzt aktualisiert"
     }
   },
   "search": {
@@ -303,5 +334,15 @@
   },
   "team": {
     "expertise": "Expertise"
+  },
+  "home_seo": {
+    "title": "Energieaudits in der Westschweiz",
+    "description": "Energieaudits, IDC-Berechnung, GEAK und Förderbeiträge für Verwaltungen, Unternehmen, Eigentümer und Gemeinden in der Westschweiz. Neutrale Beratung."
+  },
+  "not_found": {
+    "title": "Seite nicht gefunden",
+    "text": "Diese Seite existiert nicht oder wurde verschoben.",
+    "home": "Zur Startseite",
+    "contact": "Kontakt aufnehmen"
   }
 }

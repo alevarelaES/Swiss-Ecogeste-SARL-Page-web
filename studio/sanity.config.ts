@@ -9,7 +9,8 @@ export default defineConfig({
   title: 'Swiss Ecogestes',
 
   projectId: 'btjdqrld',
-  dataset: 'production',
+  // Même jeu de données que le site (src/sanity/client.ts)
+  dataset: 'dev',
 
   plugins: [
     structureTool({

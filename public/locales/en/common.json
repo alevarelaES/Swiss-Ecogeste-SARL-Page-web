@@ -46,10 +46,12 @@
     "back": "Back",
     "start_project": "Start my project",
     "explore": "Explore",
-    "close": "Close"
+    "close": "Close",
+    "read_less": "Show less"
   },
   "common": {
-    "swissecogestes": "Swiss Ecogestes"
+    "swissecogestes": "Swiss Ecogestes",
+    "back": "Back"
   },
   "cookie_banner": {
     "title": "Privacy & Cookies",
@@ -78,7 +80,9 @@
     "placeholder_point": "Key point or specific benefit related to {{title}} to ensure optimal performance.",
     "interested": "Interested?",
     "contact_experts": "Contact our experts to get a personalized quote.",
-    "request_quote": "Request a Quote"
+    "request_quote": "Request a Quote",
+    "program_link": "More about the programme",
+    "what_we_include": "What we include"
   },
   "partners": {
     "title": "They trust us and recommend our services"
@@ -106,7 +110,18 @@
     "error": "An error occurred. Please try again.",
     "quote": "\"The cheapest energy is the one we don't consume. Together, let's enhance your assets.\"",
     "rdv_cta": "Discover your real savings with a free audit",
-    "rdv_button": "Book an appointment"
+    "rdv_button": "Book an appointment",
+    "send_error": "Sending failed. Please try again or email us directly at {{email}}.",
+    "errors": {
+      "name_required": "Name required",
+      "name_invalid": "Invalid name (2 to 100 characters)",
+      "email_required": "Email required",
+      "email_invalid": "Invalid email",
+      "phone_invalid": "Invalid phone number",
+      "message_required": "Message required",
+      "message_short": "Message too short (min. 10 characters)",
+      "message_long": "Message too long (max. 2000 characters)"
+    }
   },
   "contact_page": {
     "seo_title": "Contact Us | Swiss Ecogestes",
@@ -208,7 +223,8 @@
             "This website was designed and developed by <a href=\"http://alexandre-varela.ch/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[var(--primary)] hover:underline font-bold\">Alexandre Varela Tavares</a>."
           ]
         }
-      }
+      },
+      "label": "Legal Information"
     },
     "privacy": {
       "seo_title": "Privacy Policy | Swiss Ecogestes",
@@ -257,7 +273,9 @@
             "For any questions regarding the protection of your data, please contact us by email at info@swissecogestes.ch"
           ]
         }
-      }
+      },
+      "last_updated": "Last updated",
+      "label": "Personal Data"
     },
     "cookies": {
       "seo_title": "Cookie Policy | Swiss Ecogestes",
@@ -295,7 +313,8 @@
             "For more information, consult your browser's help guide (Chrome, Firefox, Safari, Edge)."
           ]
         }
-      }
+      },
+      "last_updated": "Last updated"
     }
   },
   "search": {
@@ -315,5 +334,15 @@
   },
   "team": {
     "expertise": "Expertise"
+  },
+  "home_seo": {
+    "title": "Energy audits in French-speaking Switzerland",
+    "description": "Energy audits, IDC calculation, CECB and subsidies for property managers, businesses, homeowners and municipalities in French-speaking Switzerland."
+  },
+  "not_found": {
+    "title": "Page not found",
+    "text": "This page does not exist or has been moved.",
+    "home": "Back to home",
+    "contact": "Contact us"
   }
 }

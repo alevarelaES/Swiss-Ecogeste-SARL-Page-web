@@ -3,19 +3,13 @@ import { createClient } from '@sanity/client'
 // Configuration du client Sanity
 const config = {
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
+  // 'dev' est le jeu de données utilisé par le site en ligne et modifié dans le Studio
   dataset: import.meta.env.VITE_SANITY_DATASET || 'dev',
   apiVersion: import.meta.env.VITE_SANITY_API_VERSION || '2024-01-01',
   useCdn: false,
 }
 
 export const client = createClient(config)
-
-// Client avec token d'écriture pour la migration
-export const writeClient = createClient({
-  ...config,
-  token: import.meta.env.VITE_SANITY_WRITE_TOKEN,
-  useCdn: false,
-})
 
 // ─────────────────────────────────────────────
 // Équipe
@@ -106,6 +100,7 @@ export async function getSanityClientTypes(lang: string = 'fr') {
       "title": title.${lang},
       "subtitle": subtitle.${lang},
       "description": description.${lang},
+      "highlights": highlights.${lang},
       link,
       "imageUrl": image.asset->url,
       order
@@ -137,25 +132,6 @@ export async function getSanityAboutContent(lang: string = 'fr') {
   `)
 }
 
-// ─────────────────────────────────────────────
-// Pourquoi nous choisir
-// ─────────────────────────────────────────────
-
-export async function getSanityWhyChooseUs(lang: string = 'fr') {
-  return client.fetch(`
-    *[_type == "whyChooseUs"][0] {
-      "sectionLabel": sectionLabel.${lang},
-      "title": title.${lang},
-      "titleHighlight": titleHighlight.${lang},
-      "description": description.${lang},
-      "reasons": reasons[] {
-        icon,
-        "title": title.${lang},
-        "description": description.${lang}
-      }
-    }
-  `)
-}
 
 // ─────────────────────────────────────────────
 // Pages de service (villa, gérance, entreprise, communes)
@@ -179,10 +155,15 @@ export async function getSanityServicePage(pageSlug: string, lang: string = 'fr'
       "backLink": backLink.${lang},
       "services": services[] {
         "title": title.${lang},
+        "titleFr": title.fr,
         "description": description.${lang},
         "image": image.asset->url,
         "features": features.${lang},
-        "note": note.${lang}
+        "featuresFr": features.fr,
+        featureLinks,
+        "note": note.${lang},
+        link,
+        "linkLabel": linkLabel.${lang}
       }
     }
   `, { pageSlug })
@@ -231,41 +212,9 @@ export async function getArticleBySlug(slug: string, lang: string = 'fr') {
 }
 
 // ─────────────────────────────────────────────
-// Pages Resultats & A Propos
+// Page À propos
 // ─────────────────────────────────────────────
 
-export async function getSanityResultatsPage(lang: string = 'fr') {
-  return client.fetch(`
-    *[_type == "resultatsPage"][0] {
-      "seo": {
-        "title": seo.title.${lang},
-        "description": seo.description.${lang}
-      },
-      "heroTitle": heroTitle.${lang},
-      "heroSubtitle": heroSubtitle.${lang},
-      "impactStats": impactStats[] {
-        value,
-        suffix,
-        prefix,
-        "label": label.${lang}
-      },
-      "cases": cases[] {
-        "sector": sector.${lang},
-        "title": title.${lang},
-        mainMetric,
-        mainMetricSuffix,
-        "mainMetricLabel": mainMetricLabel.${lang},
-        "kpis": kpis[] {
-          value,
-          unit,
-          "label": label.${lang}
-        },
-        "beforeItems": beforeItems.${lang},
-        "afterItems": afterItems.${lang}
-      }
-    }
-  `)
-}
 
 export async function getSanityAProposPage(lang: string = 'fr') {
   return client.fetch(`

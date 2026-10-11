@@ -1,12 +1,13 @@
-﻿import React, { useState, useEffect } from 'react';
-import { Mail, MapPin, Linkedin, Instagram, Facebook, X, ArrowRight, Phone } from 'lucide-react';
+﻿import React, { useState } from 'react';
+import { Mail, MapPin, Linkedin, Instagram, Facebook, ArrowRight, Phone } from 'lucide-react';
+import { XLogo } from '../ui/XLogo';
 import { Button } from "../ui/button";
 import { cn } from '../ui/utils';
 import Reveal from '../animations/Reveal';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
-import DOMPurify from 'dompurify';
 import { getContactPage, getSettings } from '../../../sanity/client';
+import { useSanityData } from '../../../sanity/useSanityContent';
 
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1974&auto=format&fit=crop";
 
@@ -35,34 +36,17 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
     const { t, i18n } = useTranslation('common');
     const language = i18n.language.split('-')[0];
     const [currentType, setCurrentType] = useState('Villa');
-    const [contactImage, setContactImage] = useState(FALLBACK_IMAGE);
-    const [sanityData, setSanityData] = useState<ContactPageData>(pageData ?? {});
-    const [email, setEmail] = useState('info@swissecogestes.ch');
-    const [phone, setPhone] = useState('078 628 77 38');
-    const [address, setAddress] = useState('Route de Chavannes 207, 1007 Lausanne');
-    const [linkedinUrl, setLinkedinUrl] = useState('https://www.linkedin.com/company/swissecogestes/');
-    const [instagramUrl, setInstagramUrl] = useState('https://www.instagram.com/swissecogestes/');
-    const [facebookUrl, setFacebookUrl] = useState('https://www.facebook.com/swissecogestes');
-    const [twitterUrl, setTwitterUrl] = useState('https://twitter.com/swissecogestes');
-
-    useEffect(() => {
-        getContactPage(language).then((data) => {
-            if (!data) return;
-            setSanityData(data);
-            if (data.imageUrl) setContactImage(data.imageUrl);
-        }).catch(() => {});
-
-        getSettings().then((data) => {
-            if (!data) return;
-            if (data.contactInfo?.email) setEmail(data.contactInfo.email);
-            if (data.contactInfo?.phone) setPhone(data.contactInfo.phone);
-            if (data.contactInfo?.address) setAddress(data.contactInfo.address);
-            if (data.socialMedia?.linkedin) setLinkedinUrl(data.socialMedia.linkedin);
-            if (data.socialMedia?.instagram) setInstagramUrl(data.socialMedia.instagram);
-            if (data.socialMedia?.facebook) setFacebookUrl(data.socialMedia.facebook);
-            if (data.socialMedia?.twitter) setTwitterUrl(data.socialMedia.twitter);
-        }).catch(() => {});
-    }, [language]);
+    const contactPage = useSanityData<ContactPageData | null>(`contactPage:${language}`, () => getContactPage(language));
+    const settings = useSanityData<any>('settings', () => getSettings());
+    const sanityData: ContactPageData = contactPage ?? pageData ?? {};
+    const contactImage = sanityData.imageUrl || FALLBACK_IMAGE;
+    const email = settings?.contactInfo?.email || 'info@swissecogestes.ch';
+    const phone = settings?.contactInfo?.phone || '078 628 77 38';
+    const address = settings?.contactInfo?.address || 'Route de Chavannes 207, 1007 Lausanne';
+    const linkedinUrl = settings?.socialMedia?.linkedin || 'https://www.linkedin.com/company/swissecogestes/';
+    const instagramUrl = settings?.socialMedia?.instagram || 'https://www.instagram.com/swissecogestes/';
+    const facebookUrl = settings?.socialMedia?.facebook || 'https://www.facebook.com/swissecogestes';
+    const twitterUrl = settings?.socialMedia?.twitter || 'https://twitter.com/swissecogestes';
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -72,45 +56,42 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    // Moment où le formulaire est affiché : sert à repérer les robots qui l'envoient instantanément
+    const [startedAt] = useState(() => Date.now());
+    const [honeypot, setHoneypot] = useState('');
+
     const validateForm = () => {
         const newErrors: Record<string, string> = {};
 
-        // Sanitize inputs
-        const sanitizedName = DOMPurify.sanitize(formData.fullName.trim(), { ALLOWED_TAGS: [] });
-        const sanitizedEmail = DOMPurify.sanitize(formData.email.trim(), { ALLOWED_TAGS: [] });
-        const sanitizedMessage = DOMPurify.sanitize(formData.message.trim(), { ALLOWED_TAGS: [] });
+        const name = formData.fullName.trim();
+        const mail = formData.email.trim();
+        const message = formData.message.trim();
 
-        // Validate name (2-100 chars, letters, spaces, hyphens)
-        if (!sanitizedName) {
-            newErrors.fullName = t('contact_section.name') + ' requis';
-        } else if (sanitizedName.length < 2 || sanitizedName.length > 100) {
-            newErrors.fullName = 'Nom invalide (2-100 caractères)';
-        } else if (!/^[a-zA-ZÀ-ſ\s'-]+$/.test(sanitizedName)) {
-            newErrors.fullName = 'Nom invalide (lettres uniquement)';
+        if (!name) {
+            newErrors.fullName = t('contact_section.errors.name_required');
+        } else if (name.length < 2 || name.length > 100) {
+            newErrors.fullName = t('contact_section.errors.name_invalid');
         }
 
-        // Validate email (RFC 5322 compliant)
-        if (!sanitizedEmail) {
-            newErrors.email = "Email requis";
-        } else if (!/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(sanitizedEmail)) {
-            newErrors.email = "Email invalide";
+        if (!mail) {
+            newErrors.email = t('contact_section.errors.email_required');
+        } else if (!/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/.test(mail)) {
+            newErrors.email = t('contact_section.errors.email_invalid');
         }
 
-        // Validate phone (international format)
         if (formData.phone) {
             const sanitizedPhone = formData.phone.replace(/\s/g, '');
-            if (!/^\+?[1-9]\d{1,14}$/.test(sanitizedPhone)) {
-                newErrors.phone = "Téléphone invalide (format international)";
+            if (!/^\+?[0-9]\d{6,14}$/.test(sanitizedPhone)) {
+                newErrors.phone = t('contact_section.errors.phone_invalid');
             }
         }
 
-        // Validate message (10-2000 chars)
-        if (!sanitizedMessage) {
-            newErrors.message = "Message requis";
-        } else if (sanitizedMessage.length < 10) {
-            newErrors.message = "Message trop court (min 10 caractères)";
-        } else if (sanitizedMessage.length > 2000) {
-            newErrors.message = "Message trop long (max 2000 caractères)";
+        if (!message) {
+            newErrors.message = t('contact_section.errors.message_required');
+        } else if (message.length < 10) {
+            newErrors.message = t('contact_section.errors.message_short');
+        } else if (message.length > 2000) {
+            newErrors.message = t('contact_section.errors.message_long');
         }
 
         setErrors(newErrors);
@@ -141,8 +122,18 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
         if (validateForm()) {
             setIsSubmitting(true);
             try {
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 1500));
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        ...formData,
+                        requestType: currentType,
+                        language,
+                        website: honeypot,
+                        startedAt,
+                    }),
+                });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 toast.success(t('contact_section.success'));
                 setFormData({
                     fullName: '',
@@ -151,8 +142,8 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
                     message: ''
                 });
                 setErrors({});
-            } catch (error) {
-                toast.error(t('contact_section.error'));
+            } catch {
+                toast.error(t('contact_section.send_error', { email }));
             } finally {
                 setIsSubmitting(false);
             }
@@ -221,7 +212,21 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
                                     {sanityData.subtitle || t('contact_section.subtitle')}
                                 </p>
 
-                                <form onSubmit={handleSubmit} className="space-y-8">
+                                <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+                                    {/* Champ piège invisible : seuls les robots le remplissent */}
+                                    <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+                                        <label>
+                                            Website
+                                            <input
+                                                type="text"
+                                                name="website"
+                                                tabIndex={-1}
+                                                autoComplete="off"
+                                                value={honeypot}
+                                                onChange={(e) => setHoneypot(e.target.value)}
+                                            />
+                                        </label>
+                                    </div>
                                     <div className="space-y-4">
                                         <label className="text-sm font-bold text-[#0f1f1a] uppercase tracking-wide">{sanityData.youAreLabel || t('contact_section.you_are')}</label>
                                         <div className="flex flex-wrap gap-3">
@@ -384,17 +389,17 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
                         <span className="hidden md:block w-px h-8 bg-gray-300"></span>
 
                         <div className="flex gap-4">
-                            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                            <a href={linkedinUrl} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
                                 <Linkedin size={18} />
                             </a>
-                            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#E4405F]/10 flex items-center justify-center text-[#E4405F] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                            <a href={instagramUrl} aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#E4405F]/10 flex items-center justify-center text-[#E4405F] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
                                 <Instagram size={18} />
                             </a>
-                            <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1877F2]/10 flex items-center justify-center text-[#1877F2] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                            <a href={facebookUrl} aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1877F2]/10 flex items-center justify-center text-[#1877F2] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
                                 <Facebook size={18} />
                             </a>
-                            <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-900/10 flex items-center justify-center text-gray-900 hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
-                                <X size={18} />
+                            <a href={twitterUrl} aria-label="X" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-900/10 flex items-center justify-center text-gray-900 hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
+                                <XLogo size={16} />
                             </a>
                         </div>
                     </div>

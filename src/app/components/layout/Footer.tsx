@@ -1,16 +1,27 @@
-﻿import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Linkedin, Instagram, Facebook, X, Mail, MapPin, Phone } from 'lucide-react'
+import { Linkedin, Instagram, Facebook, Mail, MapPin, Phone } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useLocalizedPath } from '../../hooks/useLocalizedPath'
 import { BRAND_IMAGES } from '../../config/images'
+import { XLogo } from '../ui/XLogo'
 import { getSettings } from '../../../sanity/client'
+import { useSanityData } from '../../../sanity/useSanityContent'
 import type { Settings } from '../../../sanity/types'
+
+// Partenaires listés dans le pied de page (demande du client)
+const FOOTER_PARTNERS = [
+  { name: 'SIG éco21', title: 'Programme éco21 des Services Industriels de Genève', url: 'https://ww2.sig-ge.ch/a-propos-de-sig/nous-connaitre/le-programme-eco21' },
+  { name: 'Chauffez renouvelable', title: 'Programme Chauffez renouvelable de SuisseEnergie', url: 'https://www.suisseenergie.ch/renover/conseil-incitatif-chauffezrenouvelable/' },
+  { name: 'DGE-DIREN', title: "Direction de l'énergie du canton de Vaud", url: 'https://www.vd.ch/djes/dge/dge-diren' },
+  { name: 'OCEN', title: "Office cantonal de l'énergie, Genève", url: 'https://www.ge.ch/organisation/office-cantonal-energie-ocen' },
+  { name: 'SIL', title: 'Services industriels de Lausanne', url: 'https://www.lausanne.ch/sil' },
+]
 
 const Footer = () => {
   const { t, i18n } = useTranslation('common')
   const { getLocalizedPath } = useLocalizedPath()
-  const [settings, setSettings] = useState<Settings | null>(null)
+  const settings = useSanityData<Settings | null>('settings', () => getSettings())
 
   const currentLang = useMemo(() => {
     const lang = i18n.language.split('-')[0]
@@ -18,11 +29,6 @@ const Footer = () => {
     return 'fr'
   }, [i18n.language])
 
-  useEffect(() => {
-    getSettings()
-      .then((data) => setSettings(data))
-      .catch(() => setSettings(null))
-  }, [])
 
   const footerSlogan = settings?.footerInfo?.slogan?.[currentLang] || t('footer.slogan')
   const footerCopyright = settings?.footerInfo?.copyright?.[currentLang] || t('footer.rights')
@@ -100,11 +106,13 @@ const Footer = () => {
             <div>
               <h4 className="text-xs font-black uppercase tracking-widest text-gray-900 mb-4">{t('footer.partners')}</h4>
               <ul className="space-y-2 text-[13px] font-bold text-gray-800">
-                <li><a href="https://eco21.ch/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary)] transition-colors">SIG Eco21</a></li>
-                <li><a href="https://www.suisseenergie.ch/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary)] transition-colors">SuisseEnergie</a></li>
-                <li><a href="https://www.chauffez-renouvelable.ch/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary)] transition-colors">Chauffez Renouvelable</a></li>
-                <li><a href="https://www.vd.ch/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary)] transition-colors">Canton de Vaud</a></li>
-                <li><a href="https://www.ge.ch/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary)] transition-colors">Canton de Genève</a></li>
+                {FOOTER_PARTNERS.map((partner) => (
+                  <li key={partner.name}>
+                    <a href={partner.url} target="_blank" rel="noopener noreferrer" title={partner.title} className="hover:text-[var(--primary)] transition-colors">
+                      {partner.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -112,7 +120,7 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[12px] font-bold text-gray-800 order-2 md:order-1">
-            © 2026 {t('common.swissecogestes')} - {footerCopyright}
+            {footerCopyright.trim().startsWith('©') ? footerCopyright : `© ${new Date().getFullYear()} ${t('common.swissecogestes')} - ${footerCopyright}`}
           </p>
 
           <div className="flex flex-wrap justify-center gap-6 text-[12px] font-bold text-gray-800 order-3 md:order-2">
@@ -122,17 +130,17 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-2 order-1 md:order-3">
-            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
+            <a href={linkedinUrl} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="text-[#0077b5] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
               <Linkedin size={18} fill="currentColor" strokeWidth={0} />
             </a>
-            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-[#E4405F] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
+            <a href={instagramUrl} aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="text-[#E4405F] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
               <Instagram size={18} />
             </a>
-            <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="text-[#1877F2] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
+            <a href={facebookUrl} aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] transition-all hover:-translate-y-1 hover:scale-110 inline-block">
               <Facebook size={18} fill="currentColor" strokeWidth={0} />
             </a>
-            <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="text-gray-900 transition-all hover:-translate-y-1 hover:scale-110 inline-block">
-              <X size={18} strokeWidth={2} />
+            <a href={twitterUrl} aria-label="X" target="_blank" rel="noopener noreferrer" className="text-gray-900 transition-all hover:-translate-y-1 hover:scale-110 inline-block">
+              <XLogo />
             </a>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'sonner';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +16,9 @@ import CommunesPage from './pages/CommunesPage';
 import MentionsLegalesPage from './pages/MentionsLegalesPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { GoogleAnalytics } from './components';
+import { SanityCacheProvider, browserSanityCache } from '../sanity/useSanityContent';
 
 // Wrapper component to handle language detection and redirection
 const LanguageWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -60,53 +62,65 @@ const RootRedirect = () => {
   return <Navigate to={`/${safeLng}${cleanPath}`} replace />;
 };
 
-export default function App() {
+// Routes et éléments globaux, sans routeur : utilisé tel quel par le pré-rendu (StaticRouter)
+export function AppShell() {
   return (
-    <HelmetProvider>
+    <>
       <Toaster position="bottom-right" richColors />
-      <Router>
-        <GoogleAnalytics />
-        <Routes>
-          {/* Root redirect */}
-          <Route path="/" element={<RootRedirect />} />
+      <GoogleAnalytics />
+      <Routes>
+        {/* Root redirect */}
+        <Route path="/" element={<RootRedirect />} />
 
-          {/* Localized routes */}
-          <Route path="/:lng/*" element={
-            <LanguageWrapper>
-              <Layout>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/services" element={<Navigate to="villa" replace />} />
-                  <Route path="/a-propos" element={<TeamPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/resultats" element={<LocalizedCatchAll />} />
-                  <Route path="/actualites" element={<ConseilsPage />} />
-                  <Route path="/actualites/:slug" element={<ArticleDetailPage />} />
+        {/* Localized routes */}
+        <Route path="/:lng/*" element={
+          <LanguageWrapper>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/services" element={<Navigate to="villa" replace />} />
+                <Route path="/a-propos" element={<TeamPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/resultats" element={<LocalizedCatchAll />} />
+                <Route path="/actualites" element={<ConseilsPage />} />
+                <Route path="/actualites/:slug" element={<ArticleDetailPage />} />
 
-                  {/* Service Specific Routes */}
-                  <Route path="/services/villa" element={<VillaPage />} />
-                  <Route path="/services/entreprise" element={<EntreprisePage />} />
-                  <Route path="/services/gerance" element={<GerancePage />} />
-                  <Route path="/services/communes" element={<CommunesPage />} />
+                {/* Service Specific Routes */}
+                <Route path="/services/villa" element={<VillaPage />} />
+                <Route path="/services/entreprise" element={<EntreprisePage />} />
+                <Route path="/services/gerance" element={<GerancePage />} />
+                <Route path="/services/communes" element={<CommunesPage />} />
 
-                  {/* Legal Routes */}
-                  <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
-                  <Route path="/confidentialite" element={<PrivacyPolicyPage />} />
-                  <Route path="/cookies" element={<CookiePolicyPage />} />
+                {/* Legal Routes */}
+                <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+                <Route path="/confidentialite" element={<PrivacyPolicyPage />} />
+                <Route path="/cookies" element={<CookiePolicyPage />} />
 
-                  {/* Catch-all within localized paths */}
-                  <Route path="*" element={<LocalizedCatchAll />} />
-                </Routes>
-              </Layout>
-            </LanguageWrapper>
-          } />
+                {/* Catch-all within localized paths */}
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Layout>
+          </LanguageWrapper>
+        } />
 
-          {/* Fallback for non-prefixed paths */}
-          <Route path="*" element={<RootRedirect />} />
-        </Routes>
-      </Router>
-    </HelmetProvider>
+        {/* Fallback for non-prefixed paths */}
+        <Route path="*" element={<RootRedirect />} />
+      </Routes>
+    </>
   );
 }
 
+// Données Sanity injectées dans la page pré-rendue (voir src/sanity/useSanityContent.tsx)
+const sanityCache = browserSanityCache();
 
+export default function App() {
+  return (
+    <SanityCacheProvider cache={sanityCache}>
+      <HelmetProvider>
+        <BrowserRouter>
+          <AppShell />
+        </BrowserRouter>
+      </HelmetProvider>
+    </SanityCacheProvider>
+  );
+}

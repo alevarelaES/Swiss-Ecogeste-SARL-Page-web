@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackButton } from '../components/navigation';
 import { SEO } from '../components';
 import { Reveal } from '../components/animations';
-import DOMPurify from 'dompurify';
+import { sanitizeHtml } from '../utils/sanitize';
 import { getLegalPage } from '../../sanity/client';
+import { formatLegalDate } from '../utils/formatLegalDate';
+import { useSanityData } from '../../sanity/useSanityContent';
 
 interface LegalSection {
     title: string;
@@ -22,13 +23,8 @@ interface LegalPageData {
 const MentionsLegalesPage = () => {
     const { t, i18n } = useTranslation('common');
     const lang = i18n.language.split('-')[0] === 'de' ? 'de' : i18n.language.split('-')[0] === 'en' ? 'en' : 'fr';
-    const [pageData, setPageData] = useState<LegalPageData | null>(null);
-
-    useEffect(() => {
-        getLegalPage('mentions-legales', lang)
-            .then((data) => { if (data?.sections?.length) setPageData(data) })
-            .catch(() => {});
-    }, [lang]);
+    const legalPage = useSanityData<LegalPageData | null>(`legalPage:mentions-legales:${lang}`, () => getLegalPage('mentions-legales', lang));
+    const pageData = legalPage?.sections?.length ? legalPage : null;
 
     const i18nSections = t('legal.mentions.sections', { returnObjects: true }) as Record<string, LegalSection>;
     const sections: LegalSection[] = pageData?.sections ?? Object.values(i18nSections);
@@ -36,8 +32,8 @@ const MentionsLegalesPage = () => {
     const seoTitle = pageData?.seoTitle ?? t('legal.mentions.seo_title');
     const seoDesc = pageData?.seoDescription ?? t('legal.mentions.seo_desc');
     const lastUpdated = pageData?.lastUpdated
-        ? new Date(pageData.lastUpdated).toLocaleDateString('fr-CH', { day: '2-digit', month: 'long', year: 'numeric' })
-        : '01 Février 2026';
+        ? formatLegalDate(pageData.lastUpdated, lang)
+        : formatLegalDate('2026-02-01', lang);
 
     return (
         <div className="pt-32 pb-24">
@@ -46,7 +42,7 @@ const MentionsLegalesPage = () => {
                 <Reveal><BackButton /></Reveal>
                 <Reveal>
                     <div className="mb-12">
-                        <span className="text-[var(--primary)] font-bold tracking-wider uppercase text-sm">Informations Légales</span>
+                        <span className="text-[var(--primary)] font-bold tracking-wider uppercase text-sm">{t('legal.mentions.label')}</span>
                         <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-2 mb-4">{title}</h1>
                         <p className="text-gray-700 text-sm">{t('legal.mentions.last_updated')} : {lastUpdated}</p>
                     </div>
@@ -59,7 +55,7 @@ const MentionsLegalesPage = () => {
                                 <div className="space-y-4 text-gray-800 leading-relaxed">
                                     {section.content.map((paragraph, pIndex) => (
                                         <p key={pIndex} dangerouslySetInnerHTML={{
-                                            __html: DOMPurify.sanitize(paragraph, {
+                                            __html: sanitizeHtml(paragraph, {
                                                 ALLOWED_TAGS: ['strong', 'em', 'br', 'a'],
                                                 ALLOWED_ATTR: ['href', 'target', 'rel', 'class']
                                             })

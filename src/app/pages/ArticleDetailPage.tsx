@@ -8,11 +8,13 @@ import { Reveal } from '../components/animations';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedPath } from '../hooks/useLocalizedPath';
 import { useSearchHighlight } from '../hooks/useSearchHighlight';
-import DOMPurify from 'dompurify';
+import { sanitizeHtml } from '../utils/sanitize';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import type { PortableTextBlock } from '@portabletext/types';
 import { getArticleBySlug } from '../../sanity/client';
+import { useSanityData } from '../../sanity/useSanityContent';
 import { getImageUrl } from '../../sanity/image';
+import { SITE_URL } from '../seo/site';
 
 interface ArticleDetail {
     id: string;
@@ -40,6 +42,7 @@ const formatArticleDate = (publishedAt: string, lang: 'fr' | 'en' | 'de') => {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
+        timeZone: 'UTC',
     });
 };
 
@@ -97,6 +100,12 @@ const portableTextComponents: PortableTextComponents = {
     },
 };
 
+// Chemin du même article dans chaque langue (les slugs sont traduits), pour les balises hreflang
+const articleAlternatePaths = (id: string, slug: string) => {
+    const pathFor = (list: typeof articlesFr) => `/actualites/${list.find((a) => a.id === id)?.slug ?? slug}`;
+    return { fr: pathFor(articlesFr), en: pathFor(articlesEn), de: pathFor(articlesDe) };
+};
+
 const getFallbackArticle = (slug: string | undefined, language: string): { article: ArticleDetail | null; sanitySlug: string | null } => {
     if (!slug) return { article: null, sanitySlug: null };
 
@@ -140,39 +149,25 @@ const ArticleDetailPage = () => {
     const fallbackArticle = fallbackResult.article;
     const sanitySlug = fallbackResult.sanitySlug;
 
-    const [article, setArticle] = useState<ArticleDetail | null>(fallbackArticle);
-
-    useEffect(() => {
-        setArticle(fallbackArticle);
-    }, [fallbackArticle]);
-
-    useEffect(() => {
-        if (!sanitySlug) return;
-
-        let cancelled = false;
-        getArticleBySlug(sanitySlug, lang)
-            .then((result: any) => {
-                if (cancelled || !result || !result._id) return;
-                setArticle({
-                    id: result._id,
-                    title: result.title || fallbackArticle?.title || '',
-                    excerpt: result.excerpt || fallbackArticle?.excerpt || '',
-                    category: result.category || fallbackArticle?.category || '',
-                    date: result.publishedAt
-                        ? formatArticleDate(result.publishedAt, lang)
-                        : (fallbackArticle?.date || ''),
-                    readTime: result.readTime || fallbackArticle?.readTime || '',
-                    imageUrl: result.imageUrl || fallbackArticle?.imageUrl || '',
-                    slug: result.slug || sanitySlug,
-                    contentPortableText: Array.isArray(result.content) ? result.content : [],
-                });
-            })
-            .catch(() => {});
-
-        return () => {
-            cancelled = true;
-        };
-    }, [fallbackArticle, lang, sanitySlug]);
+    const sanityArticle = useSanityData<any>(
+        `article:${sanitySlug ?? ''}:${lang}`,
+        () => (sanitySlug ? getArticleBySlug(sanitySlug, lang) : Promise.resolve(null))
+    );
+    const article: ArticleDetail | null = sanityArticle?._id
+        ? {
+            id: sanityArticle._id,
+            title: sanityArticle.title || fallbackArticle?.title || '',
+            excerpt: sanityArticle.excerpt || fallbackArticle?.excerpt || '',
+            category: sanityArticle.category || fallbackArticle?.category || '',
+            date: sanityArticle.publishedAt
+                ? formatArticleDate(sanityArticle.publishedAt, lang)
+                : (fallbackArticle?.date || ''),
+            readTime: sanityArticle.readTime || fallbackArticle?.readTime || '',
+            imageUrl: sanityArticle.imageUrl || fallbackArticle?.imageUrl || '',
+            slug: sanityArticle.slug || sanitySlug || '',
+            contentPortableText: Array.isArray(sanityArticle.content) ? sanityArticle.content : [],
+        }
+        : fallbackArticle;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -180,7 +175,7 @@ const ArticleDetailPage = () => {
 
     if (!article) return null;
 
-    const currentUrl = window.location.href;
+    const currentUrl = `${SITE_URL}${location.pathname}`;
     const shareTitle = article.title;
 
     const handleCopyLink = () => {
@@ -203,7 +198,7 @@ const ArticleDetailPage = () => {
 
     return (
         <div className="min-h-screen bg-white font-sans">
-            <SEO title={article.title} description={article.excerpt} canonical={`/actualites/${article.slug}`} ogImage={article.imageUrl} />
+            <SEO title={article.title} description={article.excerpt} ogImage={article.imageUrl} ogType="article" alternatePaths={articleAlternatePaths(article.id, article.slug)} />
 
             {/* HEADER AVEC TOUCHE DE COULEUR SUBTILE */}
             <header className="pt-32 pb-12 lg:pb-16 bg-gray-100 border-b border-gray-200 shadow-sm">
@@ -291,7 +286,7 @@ const ArticleDetailPage = () => {
                             {article.contentPortableText && article.contentPortableText.length > 0 ? (
                                 <PortableText value={article.contentPortableText} components={portableTextComponents} />
                             ) : (
-                                <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.contentHtml || '') }} />
+                                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.contentHtml || '') }} />
                             )}
                         </article>
 

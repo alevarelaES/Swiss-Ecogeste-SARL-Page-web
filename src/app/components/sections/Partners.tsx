@@ -3,6 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { useTranslation } from 'react-i18next';
 import { getPartners } from '../../../sanity/client';
+import { useSanityContent } from '../../../sanity/useSanityContent';
 
 interface Partner {
     name: string;
@@ -58,7 +59,16 @@ const PartnerLogo = ({ partner }: { partner: Partner }) => {
 
 const Partners = ({ sectionTitle }: { sectionTitle?: string }) => {
     const { t } = useTranslation('common');
-    const [partners, setPartners] = useState<Partner[]>(FALLBACK_PARTNERS);
+    const partners = useSanityContent<Partner[], any[]>(
+        'partners',
+        () => getPartners(),
+        FALLBACK_PARTNERS,
+        (data) => data.length === 0 ? null : data.map((p: { name: string; logo?: { asset?: { url: string } }; url?: string }) => ({
+            name: p.name,
+            logoUrl: p.logo?.asset?.url ?? '',
+            url: p.url,
+        }))
+    );
 
     const [emblaRef] = useEmblaCarousel(
         { loop: true, dragFree: true },
@@ -72,21 +82,6 @@ const Partners = ({ sectionTitle }: { sectionTitle?: string }) => {
         ]
     );
 
-    useEffect(() => {
-        getPartners().then((data) => {
-            if (data && data.length > 0) {
-                setPartners(
-                    data.map((p: { name: string; logo?: { asset?: { url: string } }; url?: string }) => ({
-                        name: p.name,
-                        logoUrl: p.logo?.asset?.url ?? '',
-                        url: p.url,
-                    }))
-                );
-            }
-        }).catch(() => {
-            // Keep fallback on error
-        });
-    }, []);
 
     return (
         <section id="partners" className="py-8 md:py-10 bg-[#f0f4f2] border-y border-gray-200/60 overflow-hidden relative">
