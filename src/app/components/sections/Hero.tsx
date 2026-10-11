@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, type ComponentProps } from 'react';
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import Autoplay from "embla-carousel-autoplay";
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -15,6 +16,10 @@ import { useLocalizedPath } from '../../hooks/useLocalizedPath';
 import { getHeroSlides as getHardcodedHeroSlides } from '../../data/homePageContent';
 import { getHeroSlides } from '../../../sanity/client';
 import { useSanityContent } from '../../../sanity/useSanityContent';
+
+// Un seul titre H1 par page : la première diapo ; les suivantes utilisent un H2 au même style
+const SlideHeading = ({ first, ...props }: { first: boolean } & ComponentProps<typeof motion.h1>) =>
+    first ? <motion.h1 {...props} /> : <motion.h2 {...props} />;
 
 const Hero = () => {
     const { i18n } = useTranslation('common');
@@ -43,8 +48,16 @@ const Hero = () => {
         if (autoplay) autoplay.reset();
     }, [api]);
 
+    const firstImage = Array.isArray(heroSlides) ? heroSlides[0]?.img : undefined;
+
     return (
         <section className="relative h-screen w-full overflow-hidden bg-gray-950 select-none">
+            {/* Image de la première diapo chargée en priorité : elle est l'élément le plus visible au chargement */}
+            {firstImage && (
+                <Helmet>
+                    <link rel="preload" as="image" href={firstImage} fetchPriority="high" />
+                </Helmet>
+            )}
             <Carousel
                 opts={{ loop: true }}
                 plugins={[Autoplay({ delay: 7000, stopOnInteraction: false })]}
@@ -65,14 +78,15 @@ const Hero = () => {
 
                             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-24 sm:pt-28 md:pt-20 pb-8 md:pb-28 select-none">
                                 <div className="max-w-2xl text-left select-none">
-                                    <motion.h1
+                                    <SlideHeading
+                                        first={index === 0}
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.8, delay: 0.1 }}
                                         className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5 leading-[1.05] tracking-tight drop-shadow-lg"
                                     >
                                         {slide.title}
-                                    </motion.h1>
+                                    </SlideHeading>
 
                                     <motion.p
                                         initial={{ opacity: 0, y: 20 }}

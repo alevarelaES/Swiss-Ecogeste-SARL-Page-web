@@ -1,5 +1,8 @@
 import { createClient } from '@sanity/client'
 
+// Les images Sanity sont demandées redimensionnées et au format moderne (WebP/AVIF)
+// via les paramètres du CDN (?w=…&auto=format), au lieu des originaux de 2000 px.
+
 // Configuration du client Sanity
 const config = {
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'btjdqrld',
@@ -53,7 +56,7 @@ export async function getHeroSlides(lang: string = 'fr') {
       buttonLink,
       "secondButtonText": secondButtonText.${lang},
       secondButtonLink,
-      "img": image.asset->url,
+      "img": image.asset->url + "?w=1920&q=75&auto=format",
       order
     }
   `)
@@ -102,7 +105,7 @@ export async function getSanityClientTypes(lang: string = 'fr') {
       "description": description.${lang},
       "highlights": highlights.${lang},
       link,
-      "imageUrl": image.asset->url,
+      "imageUrl": image.asset->url + "?w=900&q=75&auto=format",
       order
     }
   `)
@@ -127,7 +130,7 @@ export async function getSanityAboutContent(lang: string = 'fr') {
       "ctaLink": cta.link,
       "quote": quote.${lang},
       "quoteAuthor": quoteAuthor.${lang},
-      "imageUrl": image.asset->url
+      "imageUrl": image.asset->url + "?w=900&q=75&auto=format"
     }
   `)
 }
@@ -149,7 +152,7 @@ export async function getSanityServicePage(pageSlug: string, lang: string = 'fr'
       "sectionLabel": sectionLabel.${lang},
       "title": title.${lang},
       "description": description.${lang},
-      "heroImage": heroImage.asset->url,
+      "heroImage": heroImage.asset->url + "?w=1600&q=75&auto=format",
       "buttonText": buttonText.${lang},
       buttonLink,
       "backLink": backLink.${lang},
@@ -157,7 +160,7 @@ export async function getSanityServicePage(pageSlug: string, lang: string = 'fr'
         "title": title.${lang},
         "titleFr": title.fr,
         "description": description.${lang},
-        "image": image.asset->url,
+        "image": image.asset->url + "?w=900&q=75&auto=format",
         "features": features.${lang},
         "featuresFr": features.fr,
         featureLinks,
@@ -182,7 +185,7 @@ export async function getArticles(lang: string = 'fr') {
       "category": category.${lang},
       publishedAt,
       readTime,
-      "imageUrl": image.asset->url,
+      "imageUrl": image.asset->url + "?w=900&q=75&auto=format",
       "slug": slug.current,
       featured,
     }
@@ -200,7 +203,7 @@ export async function getArticleBySlug(slug: string, lang: string = 'fr') {
       "category": category.${lang},
       publishedAt,
       readTime,
-      "imageUrl": image.asset->url,
+      "imageUrl": image.asset->url + "?w=900&q=75&auto=format",
       "imageAlt": image.alt,
       "content": content.${lang},
       featured,
@@ -234,7 +237,7 @@ export async function getSanityAProposPage(lang: string = 'fr') {
       "qualityTitle": qualityTitle.${lang},
       "qualityText": qualityText.${lang},
       "qualitySteps": qualitySteps.${lang},
-      "groupPhotoUrl": groupPhoto.asset->url,
+      "groupPhotoUrl": groupPhoto.asset->url + "?w=1600&q=75&auto=format",
       "photoTitle": photoTitle.${lang},
       "photoSubtitle": photoSubtitle.${lang},
       "valeursTitle": valeursTitle.${lang},
@@ -290,7 +293,7 @@ export async function getContactPage(lang: string = 'fr') {
       "messagePlaceholder": formSection.messagePlaceholder.${lang},
       "submitButton": formSection.submitButton.${lang},
       "sendingButton": formSection.sendingButton.${lang},
-      "imageUrl": formSection.image.asset->url
+      "imageUrl": formSection.image.asset->url + "?w=1200&q=75&auto=format"
     }
   `)
 }
