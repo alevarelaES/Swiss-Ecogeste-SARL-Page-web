@@ -356,37 +356,31 @@ const ContactSection = ({ compact = false, pageData }: { compact?: boolean; page
                     </div>
 
                     {/* INFO ROW - Updated: No Container, Simple & Clean */}
-                    <div className="flex flex-col md:flex-row justify-center items-center gap-12 text-gray-800">
+                    <div className="flex flex-col md:flex-row md:flex-wrap justify-center items-center gap-x-10 gap-y-6 text-gray-800">
                         <a href={`mailto:${email}`} className="flex items-center gap-4 group transition-colors">
-                            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39] group-hover:bg-[#e8f5e9] transition-colors">
+                            <div className="shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39] group-hover:bg-[#e8f5e9] transition-colors">
                                 <Mail size={18} />
                             </div>
-                            <span className="text-lg font-medium border-b-2 border-transparent group-hover:border-[#1b5e39] group-hover:text-[#1b5e39] transition-all pb-0.5">
+                            <span className="text-lg font-medium border-b-2 border-transparent group-hover:border-[#1b5e39] group-hover:text-[#1b5e39] transition-all pb-0.5 whitespace-nowrap">
                                 {email}
                             </span>
                         </a>
 
-                        <span className="hidden md:block w-px h-8 bg-gray-300"></span>
-
                         <a href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-4 group transition-colors">
-                            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39] group-hover:bg-[#e8f5e9] transition-colors">
+                            <div className="shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39] group-hover:bg-[#e8f5e9] transition-colors">
                                 <Phone size={18} />
                             </div>
-                            <span className="text-lg font-medium border-b-2 border-transparent group-hover:border-[#1b5e39] group-hover:text-[#1b5e39] transition-all pb-0.5">
+                            <span className="text-lg font-medium border-b-2 border-transparent group-hover:border-[#1b5e39] group-hover:text-[#1b5e39] transition-all pb-0.5 whitespace-nowrap">
                                 {phone}
                             </span>
                         </a>
 
-                        <span className="hidden md:block w-px h-8 bg-gray-300"></span>
-
                         <div className="flex items-center gap-4 cursor-default">
-                            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39]">
+                            <div className="shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#1b5e39]">
                                 <MapPin size={18} />
                             </div>
-                            <span className="text-lg font-medium">{address}</span>
+                            <span className="text-lg font-medium md:whitespace-nowrap">{address}</span>
                         </div>
-
-                        <span className="hidden md:block w-px h-8 bg-gray-300"></span>
 
                         <div className="flex gap-4">
                             <a href={linkedinUrl} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] hover:-translate-y-1.5 transition-transform duration-300 ease-spring">
