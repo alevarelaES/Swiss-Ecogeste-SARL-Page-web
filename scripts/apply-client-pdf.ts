@@ -87,7 +87,7 @@ async function main() {
 
       if (rule.link || rule.featureLinks) console.log(`${page.pageSlug.padEnd(11)} ${title}`)
       if (rule.link) console.log(`            lien   → ${rule.link}`)
-      if (rule.featureLinks) console.log(`            points → ${rule.featureLinks.join(', ')}`)
+      if (rule.featureLinks) console.log(`            points → ${rule.featureLinks.length ? rule.featureLinks.join(', ') : '(liens supprimés)'}`)
       if (unset.length) console.log(`            note   → supprimée (contenait une URL)`)
 
       let patch = client.patch(page._id).set(set)

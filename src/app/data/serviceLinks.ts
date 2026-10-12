@@ -7,18 +7,18 @@ export const LINKS = {
     'https://www.vd.ch/environnement/energie/subventions-des-energies-renouvelables-et-des-economies-denergie-pour-proprietaires-communes-et-entreprises/subvention-eco-logement',
   chauffezRenouvelable: 'https://www.suisseenergie.ch/renover/conseil-incitatif-chauffezrenouvelable/',
   idc: 'https://www.ge.ch/connaitre-consommation-energie-batiment-idc',
-  // Le lien du PDF (ge.ch/assistance-maitrise-dusage) renvoie une erreur 404 ;
-  // cette page de l'État de Genève présente l'AMU subventionné.
-  amu: 'https://www.ge.ch/baisser-consommation-energetique-batiment',
+  // Lien confirmé par le client (octobre 2026) : même page SIG que l'AMO
+  amu: 'https://ww2.sig-ge.ch/immobilier/optimisation-energetique-et-environnementale/eco21-immobilier/renovation-batiments',
   amo: 'https://ww2.sig-ge.ch/immobilier/optimisation-energetique-et-environnementale/eco21-immobilier/renovation-batiments',
   visiteConseil:
     'https://ww2.sig-ge.ch/entreprises/optimisation-energetique-et-environnementale/eco21-entreprises/accompagnement-SIG-eco21',
   visiteExpertise:
     'https://ww2.sig-ge.ch/artisans_independants/optimisation-energetique-et-environnementale/eco21-professionnels/visite_expertise',
   peik: 'https://www.suisseenergie.ch/entreprises/se-faire-conseiller/peik/',
-  // PDF : « Audit éclairage -> lien vers la page SIG éco21 » (sans URL précise)
+  // GED : page SIG éco21 « optimisation des installations » (bouton de la carte, demandé par le client)
   sigOptimisationInstallations:
     'https://ww2.sig-ge.ch/immobilier/optimisation-energetique-et-environnementale/eco21-immobilier/optimisation-installations',
+  cecb: 'https://www.cecb.ch',
   visiteVilla:
     'https://ww2.sig-ge.ch/particuliers/demarches-et-factures/solutions-proprietaires-villas/diagnostic-energetique-environnemental',
 }
@@ -33,7 +33,9 @@ export type ServiceLinkRule = {
 
 export const SERVICE_LINK_RULES: Record<string, ServiceLinkRule[]> = {
   gerance: [
-    { match: /\bGED\b/, featureLink: { match: /éclairage/i, href: LINKS.sigOptimisationInstallations } },
+    // Lien en bas de la carte comme les autres (et non plus sur le point « Audit éclairage ») ;
+    // featureLinks vide efface l'ancien lien enregistré dans Sanity
+    { match: /\bGED\b/, link: LINKS.sigOptimisationInstallations, featureLinks: [] },
     { match: /écologement/i, link: LINKS.ecologement },
     { match: /audit chauffage/i, link: LINKS.chauffezRenouvelable },
     { match: /calcul idc/i, link: LINKS.idc },
@@ -49,6 +51,7 @@ export const SERVICE_LINK_RULES: Record<string, ServiceLinkRule[]> = {
   ],
   villa: [
     { match: /visite villa/i, link: LINKS.visiteVilla },
+    { match: /CECB/, link: LINKS.cecb },
     { match: /audit chauffage/i, link: LINKS.chauffezRenouvelable },
     { match: /calcul idc/i, link: LINKS.idc },
     { match: /\bAMO\b|maîtrise d.ouvrage/i, link: LINKS.amo },
