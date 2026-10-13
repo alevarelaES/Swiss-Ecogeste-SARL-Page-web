@@ -25,7 +25,7 @@ export interface GerancePageContent {
 const gerancePageContentFr: GerancePageContent = {
     seo: {
         title: 'Services Régies & Immeubles | GED, IDC & Audit',
-        description: 'Partenaire des régies immobilières. GED, écologement, audit chauffage, calcul IDC et accompagnement AMU pour votre parc immobilier.',
+        description: 'Partenaire des régies immobilières. GED, écologement, audit chauffage, calcul IDC et assistance à maîtrise d’usage (AMU) pour votre parc immobilier.',
         canonical: '/services/gerance'
     },
     backLink: 'Retour',
@@ -86,7 +86,7 @@ const gerancePageContentFr: GerancePageContent = {
             ]
         },
         {
-            title: 'Accompagnement AMU',
+            title: 'Assistance à maîtrise d’usage (AMU)',
             description: 'Facilitez vos projets de rénovation et maximisez leur impact. Nous intégrons les usagers au cœur du projet pour garantir le bon usage et la performance des bâtiments.',
             image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800',
             features: [
@@ -112,7 +112,7 @@ const gerancePageContentFr: GerancePageContent = {
 const gerancePageContentEn: GerancePageContent = {
     seo: {
         title: 'Real Estate & Buildings Services | GED, IDC & Audit',
-        description: 'Partner for real estate agencies. DEM, ecohousing, heating audit, IDC calculation and AMU support for your property portfolio.',
+        description: 'Partner for real estate agencies. DEM, ecohousing, heating audit, IDC calculation and building use management assistance (AMU) for your property portfolio.',
         canonical: '/services/gerance'
     },
     backLink: 'Back',
@@ -173,7 +173,7 @@ const gerancePageContentEn: GerancePageContent = {
             ]
         },
         {
-            title: 'AMU Support',
+            title: 'Building use management assistance (AMU)',
             description: 'Facilitate your renovation projects and maximize their impact. We integrate users at the heart of the project to ensure proper use and building performance.',
             image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800',
             features: [
@@ -199,7 +199,7 @@ const gerancePageContentEn: GerancePageContent = {
 const gerancePageContentDe: GerancePageContent = {
     seo: {
         title: 'Dienstleistungen für Verwaltung & Gebäude | GED, IDC & Audit',
-        description: 'Partner für Immobilienverwaltungen. GED, Ökologement, Heizungsaudit, IDC-Berechnung und AMU-Begleitung für Ihren Immobilienbestand.',
+        description: 'Partner für Immobilienverwaltungen. GED, Ökologement, Heizungsaudit, IDC-Berechnung und Nutzungsbegleitung (AMU) für Ihren Immobilienbestand.',
         canonical: '/services/gerance'
     },
     backLink: 'Zurück',
@@ -260,7 +260,7 @@ const gerancePageContentDe: GerancePageContent = {
             ]
         },
         {
-            title: 'AMU-Begleitung',
+            title: 'Nutzungsbegleitung (AMU)',
             description: 'Erleichtern Sie Ihre Renovierungsprojekte und maximieren Sie deren Wirkung. Wir integrieren die Nutzer in das Projekt, um die ordnungsgemäße Nutzung und Leistung der Gebäude sicherzustellen.',
             image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800',
             features: [

@@ -67,6 +67,8 @@ sans exécuter de JavaScript. Dans le navigateur, React reprend la main sur ce H
 - `scripts/fix-seo-content.ts` applique les corrections de contenu de l'audit SEO (titres SEO
   raccourcis, carrousel allemand en allemand standard, « SIG visit », description de la page
   confidentialité). Même fonctionnement : aperçu par défaut, `--apply` pour écrire.
+- `scripts/update-amu-partners.ts` renomme l'AMU en « Assistance à maîtrise d’usage (AMU) » et ajoute
+  les partenaires SIL et Equiwatt au carrousel (logos lus dans `public/partners/`). Même fonctionnement.
 - Les images Sanity sont demandées redimensionnées et au format WebP/AVIF via les paramètres du CDN
   (`?w=…&auto=format`, voir `src/sanity/client.ts`) : inutile de les réduire avant de les importer.
 
