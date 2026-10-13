@@ -15,7 +15,8 @@ const FOOTER_PARTNERS = [
   { name: 'Chauffez renouvelable', title: 'Programme Chauffez renouvelable de SuisseEnergie', url: 'https://www.suisseenergie.ch/renover/conseil-incitatif-chauffezrenouvelable/' },
   { name: 'DGE-DIREN', title: "Direction de l'énergie du canton de Vaud", url: 'https://www.vd.ch/djes/dge/dge-diren' },
   { name: 'OCEN', title: "Office cantonal de l'énergie, Genève", url: 'https://www.ge.ch/organisation/office-cantonal-energie-ocen' },
-  { name: 'SIL', title: 'Services industriels de Lausanne', url: 'https://www.lausanne.ch/sil' },
+  { name: 'SIL', title: 'Services industriels de Lausanne', url: 'https://www.lausanne.ch/vie-pratique/energies-et-eau/services-industriels' },
+  { name: 'Equiwatt', title: 'Programme Equiwatt de la Ville de Lausanne', url: 'https://www.equiwatt-lausanne.ch' },
 ]
 
 const Footer = () => {

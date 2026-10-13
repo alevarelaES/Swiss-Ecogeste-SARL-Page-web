@@ -28,9 +28,9 @@ const client = createClient({
 
 const HIGHLIGHTS: Record<string, { fr: string[]; en: string[]; de: string[] }> = {
   '/services/gerance': {
-    fr: ["GED – Gestionnaire énergie délégué", "Écologement (subventionné)", "Audit chauffage (gratuit)", "Calcul IDC", "Accompagnement AMU", "Audit sur mesure"],
-    en: ["DEM – Delegated energy manager", "Écologement (subsidised)", "Heating audit (free)", "IDC calculation", "AMU user support", "Custom audit"],
-    de: ["DEV – Delegierter Energieverwalter", "Écologement (subventioniert)", "Heizungsaudit (kostenlos)", "IDC-Berechnung", "AMU-Nutzerbegleitung", "Massgeschneidertes Audit"],
+    fr: ["GED – Gestionnaire énergie délégué", "Écologement (subventionné)", "Audit chauffage (gratuit)", "Calcul IDC", "Assistance à maîtrise d’usage (AMU)", "Audit sur mesure"],
+    en: ["DEM – Delegated energy manager", "Écologement (subsidised)", "Heating audit (free)", "IDC calculation", "Building use management assistance (AMU)", "Custom audit"],
+    de: ["DEV – Delegierter Energieverwalter", "Écologement (subventioniert)", "Heizungsaudit (kostenlos)", "IDC-Berechnung", "Nutzungsbegleitung (AMU)", "Massgeschneidertes Audit"],
   },
   '/services/entreprise': {
     fr: ["Visite conseil SIG (gratuite)", "Visite expertise SIG", "Audit chauffage (gratuit)", "Audit PEIK", "Calcul IDC", "Audit sur mesure"],
